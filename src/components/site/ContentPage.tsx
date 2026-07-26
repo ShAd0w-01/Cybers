@@ -1,6 +1,11 @@
+import { useQuery } from "@tanstack/react-query";
+import { useRouterState } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
+
 import { PageHero, type Crumb } from "./PageHero";
 import { SectionRenderer } from "./SectionRenderer";
 import { bodySections, heroOf, type PageContent } from "@/content/site";
+import { getPageOverride } from "@/lib/cms.functions";
 
 export function ContentPage({
   page,
@@ -13,7 +18,23 @@ export function ContentPage({
   crumbs?: Crumb[];
   children?: React.ReactNode;
 }) {
-  const hero = heroOf(page);
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const fetchOverride = useServerFn(getPageOverride);
+
+  // Admin-edited copy (saved in the admin panel) transparently replaces the
+  // built-in content for any page whose URL has an override.
+  const override = useQuery({
+    queryKey: ["page-override", pathname],
+    queryFn: () => fetchOverride({ data: { url: pathname } }),
+    staleTime: 60_000,
+  });
+
+  const effective: PageContent =
+    override.data && override.data.sections?.length
+      ? { ...page, name: override.data.name, sections: override.data.sections }
+      : page;
+
+  const hero = heroOf(effective);
   return (
     <>
       <PageHero
@@ -23,7 +44,7 @@ export function ContentPage({
         buttons={hero.buttons}
         crumbs={crumbs}
       />
-      {bodySections(page).map((section, i) => (
+      {bodySections(effective).map((section, i) => (
         <SectionRenderer key={`${section.heading}-${i}`} section={section} index={i} />
       ))}
       {children}
