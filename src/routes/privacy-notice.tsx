@@ -1,16 +1,24 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ContentPage, headFor } from "@/components/site/ContentPage";
-import { getPage } from "@/content/site";
+import type { PageContent } from "@/content/site";
 
-const page = getPage("/privacy-notice");
+/** Page copy is loaded on demand so it never ships in the initial bundle. */
+const loadPage = async () =>
+  (await import("@/content/pages/privacy-notice.json")).default as PageContent;
 
 export const Route = createFileRoute("/privacy-notice")({
-  head: () => headFor(page, "Privacy Notice"),
-  component: () => (
+  loader: async () => ({ page: await loadPage() }),
+  head: ({ loaderData }) => headFor(loaderData?.page, "Privacy Notice"),
+  component: PrivacyNotice,
+});
+
+function PrivacyNotice() {
+  const { page } = Route.useLoaderData();
+  return (
     <ContentPage
-      page={page!}
+      page={page}
       eyebrow="Legal"
       crumbs={[{ label: "Home", to: "/" }, { label: "Privacy Notice" }]}
     />
-  ),
-});
+  );
+}

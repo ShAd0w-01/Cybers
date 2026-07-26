@@ -12,7 +12,8 @@ import {
   Radar,
   CalendarCheck,
 } from "lucide-react";
-import { getPage, getSection, heroOf, pillars, industries, frameworkMarks } from "@/content/site";
+import { getSection, heroOf, pillars, industries, frameworkMarks, type PageContent } from "@/content/site";
+import homeData from "@/content/pages/home.json";
 import { headFor } from "@/components/site/ContentPage";
 import { CtaLink, routeForLabel } from "@/components/site/CtaLink";
 import { Reveal, CountUp } from "@/components/site/Reveal";
@@ -24,7 +25,7 @@ import {
 } from "@/components/site/TestimonialCarousel";
 
 
-const page = getPage("/");
+const page = homeData as PageContent;
 
 export const Route = createFileRoute("/")({
   head: () => headFor(page, "Cybersecurity, Compliance & VAPT Services"),
@@ -137,26 +138,24 @@ function Home() {
         {/* drifting ambient gradients */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
           <div
-            className="absolute -left-40 top-[-18%] size-[42rem] rounded-full opacity-[0.28] blur-[110px] will-change-transform"
+            className="anim-drift-a absolute -left-40 top-[-18%] size-[42rem] rounded-full opacity-[0.28] blur-[110px] will-change-transform"
             style={{
               background: "radial-gradient(circle, var(--magenta) 0%, transparent 68%)",
-              animation: "drift-a 34s ease-in-out infinite",
             }}
           />
           <div
-            className="absolute right-[-14%] top-[-24%] size-[46rem] rounded-full opacity-[0.3] blur-[120px] will-change-transform"
+            className="anim-drift-b absolute right-[-14%] top-[-24%] size-[46rem] rounded-full opacity-[0.3] blur-[120px] will-change-transform"
             style={{
               background: "radial-gradient(circle, var(--coral) 0%, transparent 70%)",
-              animation: "drift-b 47s ease-in-out infinite",
             }}
           />
           <div
-            className="absolute bottom-[-30%] left-[30%] size-[38rem] rounded-full opacity-[0.22] blur-[130px] will-change-transform"
+            className="anim-drift-c absolute bottom-[-30%] left-[30%] size-[38rem] rounded-full opacity-[0.22] blur-[130px] will-change-transform"
             style={{
               background: "radial-gradient(circle, var(--rose, var(--magenta)) 0%, transparent 68%)",
-              animation: "drift-c 61s ease-in-out infinite",
             }}
           />
+
         </div>
         <div className="ink-grid absolute inset-0" aria-hidden="true" />
         <div className="hero-noise pointer-events-none absolute inset-0" aria-hidden="true" />
@@ -213,10 +212,8 @@ function Home() {
         {/* Framework marquee */}
         <div className="relative border-t border-ink-border py-5">
           <div className="flex overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_12%,black_88%,transparent)]">
-            <div
-              className="flex shrink-0 items-center gap-12 pr-12"
-              style={{ animation: "marquee-x 42s linear infinite" }}
-            >
+            <div className="anim-marquee flex shrink-0 items-center gap-12 pr-12">
+
               {[...frameworkMarks, ...frameworkMarks].map((mark, i) => (
                 <span
                   key={i}

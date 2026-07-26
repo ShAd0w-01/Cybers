@@ -1,23 +1,34 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { ContentPage, headFor } from "@/components/site/ContentPage";
-import { getPage, pillarForService } from "@/content/site";
+import { pillarForService, type PageContent } from "@/content/site";
 import { RelatedServices } from "@/components/site/RelatedServices";
 
+/**
+ * Each service page's copy is its own lazily-loaded chunk, so visitors only
+ * download the one they are reading.
+ */
+const servicePages = import.meta.glob("../content/pages/services/*.json", {
+  import: "default",
+}) as Record<string, () => Promise<PageContent>>;
+
+const loadServicePage = async (slug: string): Promise<PageContent | undefined> => {
+  const load = servicePages[`../content/pages/services/${slug}.json`];
+  return load ? await load() : undefined;
+};
+
 export const Route = createFileRoute("/services/$slug")({
-  loader: ({ params }) => {
-    const page = getPage(`/services/${params.slug}`);
+  loader: async ({ params }) => {
+    const page = await loadServicePage(params.slug);
     if (!page) throw notFound();
-    return { slug: params.slug };
+    return { slug: params.slug, page };
   },
-  head: ({ params }) =>
-    headFor(getPage(`/services/${params.slug}`), "Services"),
+  head: ({ loaderData }) => headFor(loaderData?.page, "Services"),
   component: ServiceDetail,
 });
 
 function ServiceDetail() {
-  const { slug } = Route.useLoaderData();
+  const { slug, page } = Route.useLoaderData();
   const url = `/services/${slug}`;
-  const page = getPage(url)!;
   const pillar = pillarForService(url);
   const isPillar = pillar?.url === url;
 

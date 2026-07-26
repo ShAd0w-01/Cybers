@@ -1,16 +1,24 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ContentPage, headFor } from "@/components/site/ContentPage";
-import { getPage } from "@/content/site";
+import type { PageContent } from "@/content/site";
 
-const page = getPage("/case-studies");
+/** Page copy is loaded on demand so it never ships in the initial bundle. */
+const loadPage = async () =>
+  (await import("@/content/pages/case-studies.json")).default as PageContent;
 
 export const Route = createFileRoute("/case-studies")({
-  head: () => headFor(page, "Case Studies"),
-  component: () => (
+  loader: async () => ({ page: await loadPage() }),
+  head: ({ loaderData }) => headFor(loaderData?.page, "Case Studies"),
+  component: CaseStudies,
+});
+
+function CaseStudies() {
+  const { page } = Route.useLoaderData();
+  return (
     <ContentPage
-      page={page!}
+      page={page}
       eyebrow="Case Studies"
       crumbs={[{ label: "Home", to: "/" }, { label: "Case Studies" }]}
     />
-  ),
-});
+  );
+}

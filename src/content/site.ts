@@ -1,4 +1,4 @@
-import pagesJson from "./pages.json";
+import indexJson from "./index.json";
 
 export type Block =
   | { type: "p"; text: string }
@@ -21,10 +21,22 @@ export type PageContent = {
   sections: Section[];
 };
 
-export const pages = pagesJson as PageContent[];
+/**
+ * Slim metadata index (url / name / SEO copy) for every page.
+ * Full page bodies live in ./pages/*.json and are imported by the route that
+ * renders them, so no route ships content it does not display.
+ */
+export type PageMeta = {
+  url: string;
+  name: string;
+  seoTitle?: string;
+  metaDescription?: string;
+};
 
-export function getPage(url: string): PageContent | undefined {
-  return pages.find((p) => p.url === url);
+export const pageIndex = indexJson as PageMeta[];
+
+export function getPageMeta(url: string): PageMeta | undefined {
+  return pageIndex.find((p) => p.url === url);
 }
 
 export function getSection(page: PageContent | undefined, heading: string): Section | undefined {
@@ -74,10 +86,7 @@ export type Pillar = {
   services: ServiceLink[];
 };
 
-const s = (url: string): ServiceLink => {
-  const page = getPage(url);
-  return { title: page?.name ?? url, url };
-};
+const s = (url: string): ServiceLink => ({ title: getPageMeta(url)?.name ?? url, url });
 
 export const pillars: Pillar[] = [
   {

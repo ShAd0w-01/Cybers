@@ -303,6 +303,53 @@
     background: var(--coral);
     color: white;
   }
+
+  /* Consistent keyboard focus ring for every interactive element */
+  a,
+  button,
+  summary,
+  [role="button"],
+  [tabindex]:not([tabindex="-1"]),
+  input,
+  select,
+  textarea {
+    outline-color: var(--coral);
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  summary:focus-visible,
+  [role="button"]:focus-visible,
+  [tabindex]:not([tabindex="-1"]):focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid var(--coral);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* On ink (dark) bands the coral ring needs a lighter halo to stay visible */
+  .bg-ink a:focus-visible,
+  .bg-ink button:focus-visible,
+  .bg-ink [role="button"]:focus-visible,
+  .bg-ink [tabindex]:not([tabindex="-1"]):focus-visible {
+    outline-color: var(--amber);
+  }
+}
+
+/* Motion utilities — paired with the reduced-motion overrides below */
+@utility anim-drift-a {
+  animation: drift-a 34s ease-in-out infinite;
+}
+@utility anim-drift-b {
+  animation: drift-b 47s ease-in-out infinite;
+}
+@utility anim-drift-c {
+  animation: drift-c 61s ease-in-out infinite;
+}
+@utility anim-marquee {
+  animation: marquee-x 42s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -316,8 +363,21 @@
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Looping decorative motion is switched off entirely (not fast-forwarded)
+     so nothing snaps to the end frame of its keyframes. */
+  .anim-drift-a,
+  .anim-drift-b,
+  .anim-drift-c,
+  .anim-marquee,
+  [class*="animate-"] {
+    animation: none !important;
+    transform: none !important;
   }
 }
+
 
 @keyframes marquee-x {
   from {
