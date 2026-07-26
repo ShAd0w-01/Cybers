@@ -16,7 +16,7 @@ import { getPage, getSection, heroOf, pillars, industries, frameworkMarks } from
 import { headFor } from "@/components/site/ContentPage";
 import { CtaLink, routeForLabel } from "@/components/site/CtaLink";
 import { Reveal, CountUp } from "@/components/site/Reveal";
-import { BrandMark } from "@/components/site/Logo";
+
 import { SectionRenderer } from "@/components/site/SectionRenderer";
 import {
   TestimonialCarousel,
@@ -236,20 +236,6 @@ function Home() {
               <div className="absolute inset-14 rounded-full border border-dashed border-ink-border/70" />
               <div className="absolute inset-24 rounded-full border border-ink-border" />
 
-              {/* centre glass lockup */}
-              <div className="absolute inset-0 grid place-items-center">
-                <div className="grid size-40 place-items-center rounded-full border border-ink-border bg-ink-soft/70 text-center shadow-[0_20px_60px_-20px_rgba(0,0,0,0.8)] backdrop-blur">
-                  <div>
-                    <BrandMark spin className="mx-auto h-12 w-auto" />
-                    <p className="mt-3 font-display text-2xl font-bold leading-none brand-gradient-text">
-                      360°
-                    </p>
-                    <p className="mt-1 text-[10px] font-medium uppercase tracking-[0.18em] text-ink-muted">
-                      Security Coverage
-                    </p>
-                  </div>
-                </div>
-              </div>
 
               {/* orbiting capability chips */}
               {["VAPT", "ISO 27001", "SOC 2", "DPDPA", "vCISO", "GDPR"].map((label, i, arr) => {
