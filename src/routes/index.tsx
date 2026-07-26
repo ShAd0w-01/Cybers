@@ -220,6 +220,43 @@ function Home() {
         </div>
       </section>
 
+      {/* -------------------------------------------------- Value props */}
+      <section className="border-b border-border bg-surface py-16 sm:py-24">
+        <div className="mx-auto max-w-7xl px-5 lg:px-8">
+          <Reveal>
+            <div className="max-w-3xl">
+              <div className="brand-rule mb-5" />
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-coral">
+                Why teams choose CyberSentinels
+              </p>
+              <h2 className="mt-3 font-display text-2xl font-semibold leading-tight sm:text-[2rem]">
+                Security work that survives contact with auditors, boards and attackers
+              </h2>
+            </div>
+          </Reveal>
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {valueProps.map((v, i) => (
+              <Reveal
+                as="article"
+                key={v.title}
+                delay={i * 70}
+                className="group rounded-xl border border-border bg-background p-6 transition-all duration-300 hover:-translate-y-1 hover:border-coral/40 hover:shadow-xl hover:shadow-coral/5"
+              >
+                <span className="brand-gradient grid size-10 place-items-center rounded-lg text-white">
+                  <v.icon className="size-5" aria-hidden="true" />
+                </span>
+                <h3 className="mt-5 font-display text-base font-semibold leading-snug">
+                  {v.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{v.body}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
+
       {/* ------------------------------------------------ Challenge grid */}
       <section className="border-b border-border bg-surface py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
