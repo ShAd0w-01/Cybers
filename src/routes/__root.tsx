@@ -14,6 +14,9 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { AdvisorWidget } from "@/components/advisor/AdvisorWidget";
+import { ThemeStyle } from "@/components/site/ThemeStyle";
+import { getActiveTheme } from "@/lib/theme.functions";
+import { DEFAULT_THEME, googleFontsHref } from "@/lib/theme";
 
 function NotFoundComponent() {
   return (
@@ -101,11 +104,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         rel: "preload",
         as: "style",
-        href: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Manrope:wght@400;500;600&display=swap",
+        href: googleFontsHref(loaderData?.theme ?? DEFAULT_THEME),
       },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Manrope:wght@400;500;600&display=swap",
+        href: googleFontsHref(loaderData?.theme ?? DEFAULT_THEME),
       },
 
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
@@ -146,9 +149,11 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const { theme } = Route.useLoaderData();
 
   return (
     <QueryClientProvider client={queryClient}>
+      <ThemeStyle theme={theme} />
       <div className="flex min-h-screen flex-col">
         <Header />
         <main className="flex-1">
