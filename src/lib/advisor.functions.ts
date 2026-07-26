@@ -1,4 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
+import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import type { UIMessage } from "ai";
 
 export type AdvisorThread = {
@@ -124,6 +125,7 @@ export type AdvisorAnalytics = {
 
 /** Admin-only aggregate view of advisor conversations. */
 export const getAdvisorAnalytics = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
   .inputValidator((input: { days?: number }) => input)
   .handler(async ({ data, context }): Promise<AdvisorAnalytics> => {
     const { requireAdmin } = await import("@/lib/admin.server");
@@ -195,7 +197,9 @@ export const getAdvisorAnalytics = createServerFn({ method: "POST" })
     };
   });
 
-export const getMyAdminStatus = createServerFn({ method: "POST" }).handler(async ({ context }) => {
+export const getMyAdminStatus = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .handler(async ({ context }) => {
   const { isAdmin } = await import("@/lib/admin.server");
   return { isAdmin: await isAdmin(context.supabase, context.userId) };
 });
