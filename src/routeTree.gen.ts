@@ -13,6 +13,7 @@ import { Route as WebsiteDisclaimerRouteImport } from './routes/website-disclaim
 import { Route as ThreatMapRouteImport } from './routes/threat-map'
 import { Route as TermsOfUseRouteImport } from './routes/terms-of-use'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as SecurityScorecardRouteImport } from './routes/security-scorecard'
 import { Route as ResponsibleDisclosureRouteImport } from './routes/responsible-disclosure'
 import { Route as PrivacyNoticeRouteImport } from './routes/privacy-notice'
 import { Route as InsightsRouteImport } from './routes/insights'
@@ -63,6 +64,11 @@ const TermsOfUseRoute = TermsOfUseRouteImport.update({
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SecurityScorecardRoute = SecurityScorecardRouteImport.update({
+  id: '/security-scorecard',
+  path: '/security-scorecard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResponsibleDisclosureRoute = ResponsibleDisclosureRouteImport.update({
@@ -237,6 +243,7 @@ export interface FileRoutesByFullPath {
   '/insights': typeof InsightsRoute
   '/privacy-notice': typeof PrivacyNoticeRoute
   '/responsible-disclosure': typeof ResponsibleDisclosureRoute
+  '/security-scorecard': typeof SecurityScorecardRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-of-use': typeof TermsOfUseRoute
   '/threat-map': typeof ThreatMapRoute
@@ -272,6 +279,7 @@ export interface FileRoutesByTo {
   '/insights': typeof InsightsRoute
   '/privacy-notice': typeof PrivacyNoticeRoute
   '/responsible-disclosure': typeof ResponsibleDisclosureRoute
+  '/security-scorecard': typeof SecurityScorecardRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-of-use': typeof TermsOfUseRoute
   '/threat-map': typeof ThreatMapRoute
@@ -310,6 +318,7 @@ export interface FileRoutesById {
   '/insights': typeof InsightsRoute
   '/privacy-notice': typeof PrivacyNoticeRoute
   '/responsible-disclosure': typeof ResponsibleDisclosureRoute
+  '/security-scorecard': typeof SecurityScorecardRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-of-use': typeof TermsOfUseRoute
   '/threat-map': typeof ThreatMapRoute
@@ -349,6 +358,7 @@ export interface FileRouteTypes {
     | '/insights'
     | '/privacy-notice'
     | '/responsible-disclosure'
+    | '/security-scorecard'
     | '/sitemap.xml'
     | '/terms-of-use'
     | '/threat-map'
@@ -384,6 +394,7 @@ export interface FileRouteTypes {
     | '/insights'
     | '/privacy-notice'
     | '/responsible-disclosure'
+    | '/security-scorecard'
     | '/sitemap.xml'
     | '/terms-of-use'
     | '/threat-map'
@@ -421,6 +432,7 @@ export interface FileRouteTypes {
     | '/insights'
     | '/privacy-notice'
     | '/responsible-disclosure'
+    | '/security-scorecard'
     | '/sitemap.xml'
     | '/terms-of-use'
     | '/threat-map'
@@ -459,6 +471,7 @@ export interface RootRouteChildren {
   InsightsRoute: typeof InsightsRoute
   PrivacyNoticeRoute: typeof PrivacyNoticeRoute
   ResponsibleDisclosureRoute: typeof ResponsibleDisclosureRoute
+  SecurityScorecardRoute: typeof SecurityScorecardRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsOfUseRoute: typeof TermsOfUseRoute
   ThreatMapRoute: typeof ThreatMapRoute
@@ -500,6 +513,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/security-scorecard': {
+      id: '/security-scorecard'
+      path: '/security-scorecard'
+      fullPath: '/security-scorecard'
+      preLoaderRoute: typeof SecurityScorecardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/responsible-disclosure': {
@@ -782,6 +802,7 @@ const rootRouteChildren: RootRouteChildren = {
   InsightsRoute: InsightsRoute,
   PrivacyNoticeRoute: PrivacyNoticeRoute,
   ResponsibleDisclosureRoute: ResponsibleDisclosureRoute,
+  SecurityScorecardRoute: SecurityScorecardRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsOfUseRoute: TermsOfUseRoute,
   ThreatMapRoute: ThreatMapRoute,
