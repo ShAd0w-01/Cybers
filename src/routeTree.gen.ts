@@ -19,12 +19,16 @@ import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CaseStudiesRouteImport } from './routes/case-studies'
 import { Route as CareersRouteImport } from './routes/careers'
+import { Route as AiAdvisorRouteImport } from './routes/ai-advisor'
 import { Route as AboutUsRouteImport } from './routes/about-us'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as IndustriesIndexRouteImport } from './routes/industries.index'
+import { Route as AiAdvisorIndexRouteImport } from './routes/ai-advisor.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as IndustriesSlugRouteImport } from './routes/industries.$slug'
+import { Route as ApiChatRouteImport } from './routes/api/chat'
+import { Route as AiAdvisorThreadIdRouteImport } from './routes/ai-advisor.$threadId'
 
 const WebsiteDisclaimerRoute = WebsiteDisclaimerRouteImport.update({
   id: '/website-disclaimer',
@@ -76,6 +80,11 @@ const CareersRoute = CareersRouteImport.update({
   path: '/careers',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AiAdvisorRoute = AiAdvisorRouteImport.update({
+  id: '/ai-advisor',
+  path: '/ai-advisor',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutUsRoute = AboutUsRouteImport.update({
   id: '/about-us',
   path: '/about-us',
@@ -96,6 +105,11 @@ const IndustriesIndexRoute = IndustriesIndexRouteImport.update({
   path: '/industries/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AiAdvisorIndexRoute = AiAdvisorIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AiAdvisorRoute,
+} as any)
 const ServicesSlugRoute = ServicesSlugRouteImport.update({
   id: '/services/$slug',
   path: '/services/$slug',
@@ -106,10 +120,21 @@ const IndustriesSlugRoute = IndustriesSlugRouteImport.update({
   path: '/industries/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiChatRoute = ApiChatRouteImport.update({
+  id: '/api/chat',
+  path: '/api/chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiAdvisorThreadIdRoute = AiAdvisorThreadIdRouteImport.update({
+  id: '/$threadId',
+  path: '/$threadId',
+  getParentRoute: () => AiAdvisorRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
+  '/ai-advisor': typeof AiAdvisorRouteWithChildren
   '/careers': typeof CareersRoute
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
@@ -120,8 +145,11 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-of-use': typeof TermsOfUseRoute
   '/website-disclaimer': typeof WebsiteDisclaimerRoute
+  '/ai-advisor/$threadId': typeof AiAdvisorThreadIdRoute
+  '/api/chat': typeof ApiChatRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/ai-advisor/': typeof AiAdvisorIndexRoute
   '/industries/': typeof IndustriesIndexRoute
   '/services/': typeof ServicesIndexRoute
 }
@@ -138,8 +166,11 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-of-use': typeof TermsOfUseRoute
   '/website-disclaimer': typeof WebsiteDisclaimerRoute
+  '/ai-advisor/$threadId': typeof AiAdvisorThreadIdRoute
+  '/api/chat': typeof ApiChatRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/ai-advisor': typeof AiAdvisorIndexRoute
   '/industries': typeof IndustriesIndexRoute
   '/services': typeof ServicesIndexRoute
 }
@@ -147,6 +178,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
+  '/ai-advisor': typeof AiAdvisorRouteWithChildren
   '/careers': typeof CareersRoute
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
@@ -157,8 +189,11 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-of-use': typeof TermsOfUseRoute
   '/website-disclaimer': typeof WebsiteDisclaimerRoute
+  '/ai-advisor/$threadId': typeof AiAdvisorThreadIdRoute
+  '/api/chat': typeof ApiChatRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/ai-advisor/': typeof AiAdvisorIndexRoute
   '/industries/': typeof IndustriesIndexRoute
   '/services/': typeof ServicesIndexRoute
 }
@@ -167,6 +202,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about-us'
+    | '/ai-advisor'
     | '/careers'
     | '/case-studies'
     | '/contact'
@@ -177,8 +213,11 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms-of-use'
     | '/website-disclaimer'
+    | '/ai-advisor/$threadId'
+    | '/api/chat'
     | '/industries/$slug'
     | '/services/$slug'
+    | '/ai-advisor/'
     | '/industries/'
     | '/services/'
   fileRoutesByTo: FileRoutesByTo
@@ -195,14 +234,18 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms-of-use'
     | '/website-disclaimer'
+    | '/ai-advisor/$threadId'
+    | '/api/chat'
     | '/industries/$slug'
     | '/services/$slug'
+    | '/ai-advisor'
     | '/industries'
     | '/services'
   id:
     | '__root__'
     | '/'
     | '/about-us'
+    | '/ai-advisor'
     | '/careers'
     | '/case-studies'
     | '/contact'
@@ -213,8 +256,11 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms-of-use'
     | '/website-disclaimer'
+    | '/ai-advisor/$threadId'
+    | '/api/chat'
     | '/industries/$slug'
     | '/services/$slug'
+    | '/ai-advisor/'
     | '/industries/'
     | '/services/'
   fileRoutesById: FileRoutesById
@@ -222,6 +268,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutUsRoute: typeof AboutUsRoute
+  AiAdvisorRoute: typeof AiAdvisorRouteWithChildren
   CareersRoute: typeof CareersRoute
   CaseStudiesRoute: typeof CaseStudiesRoute
   ContactRoute: typeof ContactRoute
@@ -232,6 +279,7 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsOfUseRoute: typeof TermsOfUseRoute
   WebsiteDisclaimerRoute: typeof WebsiteDisclaimerRoute
+  ApiChatRoute: typeof ApiChatRoute
   IndustriesSlugRoute: typeof IndustriesSlugRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
   IndustriesIndexRoute: typeof IndustriesIndexRoute
@@ -310,6 +358,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CareersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ai-advisor': {
+      id: '/ai-advisor'
+      path: '/ai-advisor'
+      fullPath: '/ai-advisor'
+      preLoaderRoute: typeof AiAdvisorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about-us': {
       id: '/about-us'
       path: '/about-us'
@@ -338,6 +393,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndustriesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ai-advisor/': {
+      id: '/ai-advisor/'
+      path: '/'
+      fullPath: '/ai-advisor/'
+      preLoaderRoute: typeof AiAdvisorIndexRouteImport
+      parentRoute: typeof AiAdvisorRoute
+    }
     '/services/$slug': {
       id: '/services/$slug'
       path: '/services/$slug'
@@ -352,12 +414,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndustriesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/chat': {
+      id: '/api/chat'
+      path: '/api/chat'
+      fullPath: '/api/chat'
+      preLoaderRoute: typeof ApiChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai-advisor/$threadId': {
+      id: '/ai-advisor/$threadId'
+      path: '/$threadId'
+      fullPath: '/ai-advisor/$threadId'
+      preLoaderRoute: typeof AiAdvisorThreadIdRouteImport
+      parentRoute: typeof AiAdvisorRoute
+    }
   }
 }
+
+interface AiAdvisorRouteChildren {
+  AiAdvisorThreadIdRoute: typeof AiAdvisorThreadIdRoute
+  AiAdvisorIndexRoute: typeof AiAdvisorIndexRoute
+}
+
+const AiAdvisorRouteChildren: AiAdvisorRouteChildren = {
+  AiAdvisorThreadIdRoute: AiAdvisorThreadIdRoute,
+  AiAdvisorIndexRoute: AiAdvisorIndexRoute,
+}
+
+const AiAdvisorRouteWithChildren = AiAdvisorRoute._addFileChildren(
+  AiAdvisorRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutUsRoute: AboutUsRoute,
+  AiAdvisorRoute: AiAdvisorRouteWithChildren,
   CareersRoute: CareersRoute,
   CaseStudiesRoute: CaseStudiesRoute,
   ContactRoute: ContactRoute,
@@ -368,6 +459,7 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsOfUseRoute: TermsOfUseRoute,
   WebsiteDisclaimerRoute: WebsiteDisclaimerRoute,
+  ApiChatRoute: ApiChatRoute,
   IndustriesSlugRoute: IndustriesSlugRoute,
   ServicesSlugRoute: ServicesSlugRoute,
   IndustriesIndexRoute: IndustriesIndexRoute,
