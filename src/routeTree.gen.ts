@@ -38,6 +38,8 @@ import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 import { Route as AiAdvisorThreadIdRouteImport } from './routes/ai-advisor.$threadId'
 import { Route as AdminLeadsRouteImport } from './routes/admin.leads'
+import { Route as AdminBlogRouteImport } from './routes/admin.blog'
+import { Route as AdminAdvisorRouteImport } from './routes/admin.advisor'
 
 const WebsiteDisclaimerRoute = WebsiteDisclaimerRouteImport.update({
   id: '/website-disclaimer',
@@ -184,6 +186,16 @@ const AdminLeadsRoute = AdminLeadsRouteImport.update({
   path: '/leads',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminBlogRoute = AdminBlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminAdvisorRoute = AdminAdvisorRouteImport.update({
+  id: '/advisor',
+  path: '/advisor',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -203,6 +215,8 @@ export interface FileRoutesByFullPath {
   '/terms-of-use': typeof TermsOfUseRoute
   '/threat-map': typeof ThreatMapRoute
   '/website-disclaimer': typeof WebsiteDisclaimerRoute
+  '/admin/advisor': typeof AdminAdvisorRoute
+  '/admin/blog': typeof AdminBlogRoute
   '/admin/leads': typeof AdminLeadsRoute
   '/ai-advisor/$threadId': typeof AiAdvisorThreadIdRoute
   '/api/chat': typeof ApiChatRoute
@@ -232,6 +246,8 @@ export interface FileRoutesByTo {
   '/terms-of-use': typeof TermsOfUseRoute
   '/threat-map': typeof ThreatMapRoute
   '/website-disclaimer': typeof WebsiteDisclaimerRoute
+  '/admin/advisor': typeof AdminAdvisorRoute
+  '/admin/blog': typeof AdminBlogRoute
   '/admin/leads': typeof AdminLeadsRoute
   '/ai-advisor/$threadId': typeof AiAdvisorThreadIdRoute
   '/api/chat': typeof ApiChatRoute
@@ -264,6 +280,8 @@ export interface FileRoutesById {
   '/terms-of-use': typeof TermsOfUseRoute
   '/threat-map': typeof ThreatMapRoute
   '/website-disclaimer': typeof WebsiteDisclaimerRoute
+  '/admin/advisor': typeof AdminAdvisorRoute
+  '/admin/blog': typeof AdminBlogRoute
   '/admin/leads': typeof AdminLeadsRoute
   '/ai-advisor/$threadId': typeof AiAdvisorThreadIdRoute
   '/api/chat': typeof ApiChatRoute
@@ -297,6 +315,8 @@ export interface FileRouteTypes {
     | '/terms-of-use'
     | '/threat-map'
     | '/website-disclaimer'
+    | '/admin/advisor'
+    | '/admin/blog'
     | '/admin/leads'
     | '/ai-advisor/$threadId'
     | '/api/chat'
@@ -326,6 +346,8 @@ export interface FileRouteTypes {
     | '/terms-of-use'
     | '/threat-map'
     | '/website-disclaimer'
+    | '/admin/advisor'
+    | '/admin/blog'
     | '/admin/leads'
     | '/ai-advisor/$threadId'
     | '/api/chat'
@@ -357,6 +379,8 @@ export interface FileRouteTypes {
     | '/terms-of-use'
     | '/threat-map'
     | '/website-disclaimer'
+    | '/admin/advisor'
+    | '/admin/blog'
     | '/admin/leads'
     | '/ai-advisor/$threadId'
     | '/api/chat'
@@ -603,15 +627,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminLeadsRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/blog': {
+      id: '/admin/blog'
+      path: '/blog'
+      fullPath: '/admin/blog'
+      preLoaderRoute: typeof AdminBlogRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/advisor': {
+      id: '/admin/advisor'
+      path: '/advisor'
+      fullPath: '/admin/advisor'
+      preLoaderRoute: typeof AdminAdvisorRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
 interface AdminRouteChildren {
+  AdminAdvisorRoute: typeof AdminAdvisorRoute
+  AdminBlogRoute: typeof AdminBlogRoute
   AdminLeadsRoute: typeof AdminLeadsRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminAdvisorRoute: AdminAdvisorRoute,
+  AdminBlogRoute: AdminBlogRoute,
   AdminLeadsRoute: AdminLeadsRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
