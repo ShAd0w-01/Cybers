@@ -311,6 +311,69 @@ export type Database = {
         }
         Relationships: []
       }
+      site_theme: {
+        Row: {
+          base_font_size: number
+          body_font: string
+          color_amber: string
+          color_background: string
+          color_coral: string
+          color_coral_ink: string
+          color_foreground: string
+          color_ink: string
+          color_magenta: string
+          color_muted_foreground: string
+          color_surface: string
+          created_at: string
+          heading_font: string
+          heading_scale: number
+          id: string
+          is_active: boolean
+          updated_at: string
+          updated_by: string | null
+        }
+        Insert: {
+          base_font_size?: number
+          body_font?: string
+          color_amber?: string
+          color_background?: string
+          color_coral?: string
+          color_coral_ink?: string
+          color_foreground?: string
+          color_ink?: string
+          color_magenta?: string
+          color_muted_foreground?: string
+          color_surface?: string
+          created_at?: string
+          heading_font?: string
+          heading_scale?: number
+          id?: string
+          is_active?: boolean
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Update: {
+          base_font_size?: number
+          body_font?: string
+          color_amber?: string
+          color_background?: string
+          color_coral?: string
+          color_coral_ink?: string
+          color_foreground?: string
+          color_ink?: string
+          color_magenta?: string
+          color_muted_foreground?: string
+          color_surface?: string
+          created_at?: string
+          heading_font?: string
+          heading_scale?: number
+          id?: string
+          is_active?: boolean
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
