@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useState } from "react";
@@ -19,6 +19,7 @@ export function AdvisorWidget() {
   const [threadId, setThreadId] = useState<string | null>(null);
   const [initialMessages, setInitialMessages] = useState<UIMessage[] | null>(null);
   const queryClient = useQueryClient();
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
 
   const list = useServerFn(listThreads);
   const create = useServerFn(createThread);
@@ -46,6 +47,9 @@ export function AdvisorWidget() {
     if (open && visitorId && !threadId && bootstrap.isIdle) bootstrap.mutate();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open, visitorId, threadId]);
+
+  // The dedicated workspace already is the advisor; no floating duplicate there.
+  if (pathname.startsWith("/ai-advisor")) return null;
 
   return (
     <>
