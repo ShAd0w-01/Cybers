@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as PrivacyNoticeRouteImport } from './routes/privacy-notice'
 import { Route as InsightsRouteImport } from './routes/insights'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CaseStudiesRouteImport } from './routes/case-studies'
@@ -20,6 +21,11 @@ import { Route as IndustriesIndexRouteImport } from './routes/industries.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as IndustriesSlugRouteImport } from './routes/industries.$slug'
 
+const PrivacyNoticeRoute = PrivacyNoticeRouteImport.update({
+  id: '/privacy-notice',
+  path: '/privacy-notice',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const InsightsRoute = InsightsRouteImport.update({
   id: '/insights',
   path: '/insights',
@@ -78,6 +84,7 @@ export interface FileRoutesByFullPath {
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
   '/insights': typeof InsightsRoute
+  '/privacy-notice': typeof PrivacyNoticeRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/industries/': typeof IndustriesIndexRoute
@@ -90,6 +97,7 @@ export interface FileRoutesByTo {
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
   '/insights': typeof InsightsRoute
+  '/privacy-notice': typeof PrivacyNoticeRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/industries': typeof IndustriesIndexRoute
@@ -103,6 +111,7 @@ export interface FileRoutesById {
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
   '/insights': typeof InsightsRoute
+  '/privacy-notice': typeof PrivacyNoticeRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/industries/': typeof IndustriesIndexRoute
@@ -117,6 +126,7 @@ export interface FileRouteTypes {
     | '/case-studies'
     | '/contact'
     | '/insights'
+    | '/privacy-notice'
     | '/industries/$slug'
     | '/services/$slug'
     | '/industries/'
@@ -129,6 +139,7 @@ export interface FileRouteTypes {
     | '/case-studies'
     | '/contact'
     | '/insights'
+    | '/privacy-notice'
     | '/industries/$slug'
     | '/services/$slug'
     | '/industries'
@@ -141,6 +152,7 @@ export interface FileRouteTypes {
     | '/case-studies'
     | '/contact'
     | '/insights'
+    | '/privacy-notice'
     | '/industries/$slug'
     | '/services/$slug'
     | '/industries/'
@@ -154,6 +166,7 @@ export interface RootRouteChildren {
   CaseStudiesRoute: typeof CaseStudiesRoute
   ContactRoute: typeof ContactRoute
   InsightsRoute: typeof InsightsRoute
+  PrivacyNoticeRoute: typeof PrivacyNoticeRoute
   IndustriesSlugRoute: typeof IndustriesSlugRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
   IndustriesIndexRoute: typeof IndustriesIndexRoute
@@ -162,6 +175,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/privacy-notice': {
+      id: '/privacy-notice'
+      path: '/privacy-notice'
+      fullPath: '/privacy-notice'
+      preLoaderRoute: typeof PrivacyNoticeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/insights': {
       id: '/insights'
       path: '/insights'
@@ -242,6 +262,7 @@ const rootRouteChildren: RootRouteChildren = {
   CaseStudiesRoute: CaseStudiesRoute,
   ContactRoute: ContactRoute,
   InsightsRoute: InsightsRoute,
+  PrivacyNoticeRoute: PrivacyNoticeRoute,
   IndustriesSlugRoute: IndustriesSlugRoute,
   ServicesSlugRoute: ServicesSlugRoute,
   IndustriesIndexRoute: IndustriesIndexRoute,
