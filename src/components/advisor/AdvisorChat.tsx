@@ -187,20 +187,36 @@ export function AdvisorChat({
                   return null;
                 })}
               </MessageContent>
+              {message.role === "assistant" && status !== "streaming" ? (
+                <Sources citations={citationsFor(message)} />
+              ) : null}
             </Message>
           ))}
 
-          {status === "submitted" ? <Shimmer className="text-sm">Thinking...</Shimmer> : null}
+          {status === "submitted" ? (
+            <Shimmer className="text-sm">The advisor is typing…</Shimmer>
+          ) : null}
 
           {error ? (
-            <p role="alert" className="text-sm text-destructive">
-              {error}{" "}
-              <Link to="/contact" className="underline">
-                Contact the team instead
-              </Link>
-              .
-            </p>
+            <div role="alert" className="space-y-2 text-sm text-destructive">
+              <p>{error}</p>
+              <p className="text-muted-foreground">
+                {rateLimited && !user ? (
+                  <>
+                    <Link to="/auth" search={{ redirect: "/ai-advisor" }} className="underline">
+                      Sign in
+                    </Link>{" "}
+                    for a higher allowance, or{" "}
+                  </>
+                ) : null}
+                <Link to="/contact" className="underline" onClick={() => handoff("error-contact")}>
+                  contact the team
+                </Link>
+                .
+              </p>
+            </div>
           ) : null}
+
         </ConversationContent>
         <ConversationScrollButton />
       </Conversation>
