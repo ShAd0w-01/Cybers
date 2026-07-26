@@ -18,6 +18,11 @@ import { CtaLink, routeForLabel } from "@/components/site/CtaLink";
 import { Reveal, CountUp } from "@/components/site/Reveal";
 import { BrandMark } from "@/components/site/Logo";
 import { SectionRenderer } from "@/components/site/SectionRenderer";
+import {
+  TestimonialCarousel,
+  type Testimonial,
+} from "@/components/site/TestimonialCarousel";
+
 
 const page = getPage("/");
 
@@ -58,26 +63,54 @@ const valueProps = [
   },
 ];
 
-const testimonials = [
+const testimonials: Testimonial[] = [
   {
     quote:
       "The team turned a scattered set of audit gaps into a single roadmap. We cleared our ISO 27001 stage 2 without a major non-conformity.",
     author: "Head of IT",
     detail: "BFSI lender, India",
+    rating: 5,
+    logo: "Northbridge Finance",
+    logoNote: "BFSI • India",
   },
   {
     quote:
       "Their VAPT report was the first one our engineers actually enjoyed reading — reproducible steps, real impact, and a retest that confirmed every fix.",
     author: "VP Engineering",
     detail: "SaaS platform, UAE",
+    rating: 5,
+    logo: "Averio Cloud",
+    logoNote: "SaaS • UAE",
   },
   {
     quote:
       "The vCISO engagement gave our board the security reporting it had been asking for, at a fraction of a full-time hire.",
     author: "Chief Operating Officer",
     detail: "Healthcare group",
+    rating: 5,
+    logo: "Medira Health",
+    logoNote: "Healthcare • India",
+  },
+  {
+    quote:
+      "DPDPA readiness felt overwhelming until we had a mapped inventory, notices and consent flows we could actually operate day to day.",
+    author: "Data Protection Lead",
+    detail: "E-commerce marketplace",
+    rating: 5,
+    logo: "Kartway Retail",
+    logoNote: "Retail • India",
+  },
+  {
+    quote:
+      "Third-party risk reviews used to block every enterprise deal. Now we hand over an evidence pack and the security questionnaire closes in days.",
+    author: "Director, Information Security",
+    detail: "Manufacturing exporter",
+    rating: 4,
+    logo: "Volten Industries",
+    logoNote: "Manufacturing • Global",
   },
 ];
+
 
 
 function Home() {
@@ -473,26 +506,10 @@ function Home() {
               </p>
             </div>
           </Reveal>
-          <div className="mt-12 grid gap-6 lg:grid-cols-3">
-            {testimonials.map((t, i) => (
-              <Reveal
-                as="article"
-                key={t.author + t.detail}
-                delay={i * 70}
-                className="flex flex-col rounded-xl border border-border bg-background p-7 transition-all duration-300 hover:-translate-y-1 hover:border-coral/40 hover:shadow-xl hover:shadow-coral/5"
-              >
-                <Quote className="size-6 text-coral" aria-hidden="true" />
-                <blockquote className="mt-5 text-sm leading-relaxed text-foreground">
-                  “{t.quote}”
-                </blockquote>
-                <div className="mt-auto pt-6">
-                  <div className="brand-rule mb-4 w-8" />
-                  <p className="font-display text-sm font-semibold">{t.author}</p>
-                  <p className="text-[13px] text-muted-foreground">{t.detail}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal delay={80} className="mt-12">
+            <TestimonialCarousel items={testimonials} />
+          </Reveal>
+
         </div>
       </section>
 
