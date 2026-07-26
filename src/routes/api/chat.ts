@@ -164,10 +164,10 @@ export const Route = createFileRoute("/api/chat")({
                 region: z.string(),
                 recommendedServices: z.array(z.object({ title: z.string(), url: z.string() })),
               }),
-              execute: async (input) => ({
-                ...input,
-                nextStep: "Book a scoping consultation at /contact",
-              }),
+              execute: async (input) => {
+                scoped = true;
+                return { ...input, nextStep: "Book a scoping consultation at /contact" };
+              },
             }),
           },
           onError: ({ error }) => {
@@ -185,11 +185,13 @@ export const Route = createFileRoute("/api/chat")({
                 .update({ updated_at: new Date().toISOString() })
                 .eq("id", threadId)
                 .eq("visitor_id", visitorId);
+              await tagThread(threadId, { outcome: scoped ? "scoped" : "answered" });
             } catch (error) {
               console.error("advisor persistence error", error);
             }
           },
         });
+
       },
     },
   },
