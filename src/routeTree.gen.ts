@@ -25,6 +25,7 @@ import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as IndustriesIndexRouteImport } from './routes/industries.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as IndustriesSlugRouteImport } from './routes/industries.$slug'
+import { Route as ApiChatRouteImport } from './routes/api/chat'
 
 const WebsiteDisclaimerRoute = WebsiteDisclaimerRouteImport.update({
   id: '/website-disclaimer',
@@ -106,6 +107,11 @@ const IndustriesSlugRoute = IndustriesSlugRouteImport.update({
   path: '/industries/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiChatRoute = ApiChatRouteImport.update({
+  id: '/api/chat',
+  path: '/api/chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -120,6 +126,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-of-use': typeof TermsOfUseRoute
   '/website-disclaimer': typeof WebsiteDisclaimerRoute
+  '/api/chat': typeof ApiChatRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/industries/': typeof IndustriesIndexRoute
@@ -138,6 +145,7 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-of-use': typeof TermsOfUseRoute
   '/website-disclaimer': typeof WebsiteDisclaimerRoute
+  '/api/chat': typeof ApiChatRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/industries': typeof IndustriesIndexRoute
@@ -157,6 +165,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-of-use': typeof TermsOfUseRoute
   '/website-disclaimer': typeof WebsiteDisclaimerRoute
+  '/api/chat': typeof ApiChatRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/industries/': typeof IndustriesIndexRoute
@@ -177,6 +186,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms-of-use'
     | '/website-disclaimer'
+    | '/api/chat'
     | '/industries/$slug'
     | '/services/$slug'
     | '/industries/'
@@ -195,6 +205,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms-of-use'
     | '/website-disclaimer'
+    | '/api/chat'
     | '/industries/$slug'
     | '/services/$slug'
     | '/industries'
@@ -213,6 +224,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms-of-use'
     | '/website-disclaimer'
+    | '/api/chat'
     | '/industries/$slug'
     | '/services/$slug'
     | '/industries/'
@@ -232,6 +244,7 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsOfUseRoute: typeof TermsOfUseRoute
   WebsiteDisclaimerRoute: typeof WebsiteDisclaimerRoute
+  ApiChatRoute: typeof ApiChatRoute
   IndustriesSlugRoute: typeof IndustriesSlugRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
   IndustriesIndexRoute: typeof IndustriesIndexRoute
@@ -352,6 +365,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndustriesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/chat': {
+      id: '/api/chat'
+      path: '/api/chat'
+      fullPath: '/api/chat'
+      preLoaderRoute: typeof ApiChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -368,6 +388,7 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsOfUseRoute: TermsOfUseRoute,
   WebsiteDisclaimerRoute: WebsiteDisclaimerRoute,
+  ApiChatRoute: ApiChatRoute,
   IndustriesSlugRoute: IndustriesSlugRoute,
   ServicesSlugRoute: ServicesSlugRoute,
   IndustriesIndexRoute: IndustriesIndexRoute,
