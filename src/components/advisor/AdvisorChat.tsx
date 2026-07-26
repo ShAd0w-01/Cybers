@@ -76,7 +76,7 @@ export function AdvisorChat({
         <ConversationContent className="mx-auto w-full max-w-3xl gap-6 px-4 py-6">
           {messages.length === 0 ? (
             <div className="py-6">
-              <Logo className="h-8 w-auto" />
+              <Logo tone="light" />
               <h2 className="mt-5 font-display text-xl font-semibold text-foreground">
                 Ask the CyberSentinels Advisor
               </h2>
@@ -103,7 +103,6 @@ export function AdvisorChat({
           {messages.map((message) => (
             <Message from={message.role} key={message.id}>
               <MessageContent
-                variant={message.role === "user" ? "contained" : "flat"}
                 className={
                   message.role === "user"
                     ? "bg-primary text-primary-foreground"
@@ -123,7 +122,7 @@ export function AdvisorChat({
                         : "Building your scoping summary";
                     return part.state === "output-available" ? null : (
                       <Shimmer key={`${message.id}-${index}`} className="text-xs">
-                        {label}…
+                        {`${label}…`}
                       </Shimmer>
                     );
                   }
@@ -133,7 +132,7 @@ export function AdvisorChat({
             </Message>
           ))}
 
-          {status === "submitted" ? <Shimmer className="text-sm">Thinking…</Shimmer> : null}
+          {status === "submitted" ? <Shimmer className="text-sm">Thinking...</Shimmer> : null}
 
           {error ? (
             <p role="alert" className="text-sm text-destructive">
