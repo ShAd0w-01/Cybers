@@ -344,6 +344,30 @@ function Home() {
         </div>
       </section>
 
+      {/* -------------------------------------------------- Mid-page CTA */}
+      <section className="border-b border-border bg-surface py-14">
+        <div className="mx-auto max-w-7xl px-5 lg:px-8">
+          <Reveal className="flex flex-col gap-6 rounded-xl border border-border bg-background p-8 sm:p-10 lg:flex-row lg:items-center lg:justify-between">
+            <div className="max-w-2xl">
+              <h2 className="font-display text-xl font-semibold leading-snug sm:text-2xl">
+                Not sure whether you need a test, an audit or a roadmap?
+              </h2>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                Share your goal, deadline or customer requirement. We will recommend the right scope
+                — even when it is smaller than you expected.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <CtaLink to="/contact">Request an Assessment</CtaLink>
+              <CtaLink to="/case-studies" variant="outline">
+                See Client Outcomes
+              </CtaLink>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+
       {/* ----------------------------------------------------- Practices */}
       <section className="border-b border-border bg-background py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
