@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Mail, MapPin, Clock } from "lucide-react";
 import { ContentPage, headFor } from "@/components/site/ContentPage";
-import type { PageContent } from "@/content/site";
+import { type PageContent, whatsapp } from "@/content/site";
+import { WhatsAppIcon, whatsappHref } from "@/components/site/WhatsAppButton";
+
 import { Reveal } from "@/components/site/Reveal";
 import { ContactForm } from "@/components/site/ContactForm";
 
