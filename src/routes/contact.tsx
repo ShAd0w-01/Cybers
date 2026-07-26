@@ -1,14 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Mail, MapPin, Clock } from "lucide-react";
 import { ContentPage, headFor } from "@/components/site/ContentPage";
-import { type PageContent } from "@/content/site";
-import pageData from "@/content/pages/contact.json";
+import type { PageContent } from "@/content/site";
 import { Reveal } from "@/components/site/Reveal";
 
-const page = pageData as PageContent;
+/** Page copy is loaded on demand so it never ships in the initial bundle. */
+const loadPage = async () =>
+  (await import("@/content/pages/contact.json")).default as PageContent;
 
 export const Route = createFileRoute("/contact")({
-  head: () => headFor(page, "Contact Cybersentinels Consulting"),
+  loader: async () => ({ page: await loadPage() }),
+  head: ({ loaderData }) => headFor(loaderData?.page, "Contact Cybersentinels Consulting"),
   component: Contact,
 });
 
@@ -19,6 +21,7 @@ const details = [
 ];
 
 function Contact() {
+  const { page } = Route.useLoaderData();
   return (
     <ContentPage
       page={page}

@@ -1,18 +1,20 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ContentPage, headFor } from "@/components/site/ContentPage";
-import { industries, getPageMeta } from "@/content/site";
-import { type PageContent } from "@/content/site";
-import pageData from "@/content/pages/industries.json";
+import { industries, getPageMeta, type PageContent } from "@/content/site";
 import { Reveal } from "@/components/site/Reveal";
 
-const page = pageData as PageContent;
+/** Page copy is loaded on demand so it never ships in the initial bundle. */
+const loadPage = async () =>
+  (await import("@/content/pages/industries.json")).default as PageContent;
 
 export const Route = createFileRoute("/industries/")({
-  head: () => headFor(page, "Industries We Serve"),
+  loader: async () => ({ page: await loadPage() }),
+  head: ({ loaderData }) => headFor(loaderData?.page, "Industries We Serve"),
   component: IndustriesIndex,
 });
 
 function IndustriesIndex() {
+  const { page } = Route.useLoaderData();
   return (
     <ContentPage
       page={page}
