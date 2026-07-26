@@ -163,6 +163,19 @@ export const pillars: Pillar[] = [
   },
 ];
 
+/**
+ * WhatsApp business contact. `number` is in international format, digits only
+ * (country code first, no "+", spaces or dashes) as wa.me requires.
+ */
+export const whatsapp = {
+  number: "919999999999",
+  display: "+91 99999 99999",
+  defaultMessage:
+    "Hello Cybersentinels, I would like to discuss a cybersecurity, privacy or compliance requirement.",
+};
+
+
+
 export const industries: ServiceLink[] = [
   s("/industries/technology-saas-it-services"),
   s("/industries/bfsi-fintech-financial-services"),

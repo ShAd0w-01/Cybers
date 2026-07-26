@@ -14,6 +14,8 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { AdvisorWidget } from "@/components/advisor/AdvisorWidget";
+import { WhatsAppButton } from "@/components/site/WhatsAppButton";
+
 import { ThemeStyle } from "@/components/site/ThemeStyle";
 import { getActiveTheme } from "@/lib/theme.functions";
 import { DEFAULT_THEME, googleFontsHref } from "@/lib/theme";
@@ -162,6 +164,8 @@ function RootComponent() {
         </main>
         <Footer />
         <AdvisorWidget />
+        <WhatsAppButton />
+
       </div>
     </QueryClientProvider>
   );
