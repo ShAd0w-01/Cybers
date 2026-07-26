@@ -278,9 +278,8 @@ function Home() {
                 delay={i * 70}
                 className="group rounded-xl border border-border bg-background p-6 transition-all duration-300 hover:-translate-y-1 hover:border-coral/40 hover:shadow-xl hover:shadow-coral/5"
               >
-                <span className="brand-gradient grid size-10 place-items-center rounded-lg text-white">
-                  <v.icon className="size-5" aria-hidden="true" />
-                </span>
+                <IconTile icon={v.icon} />
+
                 <h3 className="mt-5 type-h4">
                   {v.title}
                 </h3>
