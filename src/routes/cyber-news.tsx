@@ -62,13 +62,16 @@ export const Route = createFileRoute("/cyber-news")({
 });
 
 function CyberNewsPage() {
-  const { news, categories } = Route.useLoaderData();
+  const { news, categories } = Route.useLoaderData() as {
+    news: NewsPage;
+    categories: NewsCategory[];
+  };
   const search = Route.useSearch();
   const navigate = Route.useNavigate();
   const [term, setTerm] = useState(search.q);
 
   const apply = (next: Partial<Search>) =>
-    navigate({ search: (prev) => ({ ...prev, page: 1, ...next }) as Search });
+    navigate({ search: (prev: Search) => ({ ...prev, page: 1, ...next }) });
 
   return (
     <>
@@ -129,7 +132,7 @@ function CyberNewsPage() {
               <FilterChip active={!search.cat} onClick={() => apply({ cat: undefined })}>
                 All topics
               </FilterChip>
-              {categories.map((c) => (
+              {categories.map((c: NewsCategory) => (
                 <FilterChip
                   key={c.id}
                   active={search.cat === c.id}
@@ -161,7 +164,7 @@ function CyberNewsPage() {
             </div>
           ) : (
             <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {news.items.map((item, i) => (
+              {news.items.map((item: NewsItem, i: number) => (
                 <Reveal key={item.id} delay={i * 40}>
                   <NewsCard item={item} />
                 </Reveal>
@@ -263,7 +266,7 @@ function PagerLink({
   return (
     <Link
       to="/cyber-news"
-      search={(prev) => ({ ...prev, ...to })}
+      search={(prev: Search) => ({ ...prev, ...to })}
       className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-4 py-2 text-sm font-medium transition-all duration-200 hover:-translate-y-0.5 hover:border-coral hover:text-coral-ink"
     >
       {!trailing && icon}
