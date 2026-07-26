@@ -455,6 +455,9 @@ function Home() {
       {/* ----------------------------------------------------- Why us */}
       {why ? <SectionRenderer section={why} index={1} /> : null}
 
+      {/* -------------------------------------------- Live threat map */}
+      <ThreatMap />
+
       {/* ---------------------------------------------------- Industries */}
       <section className="border-b border-border bg-background py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
