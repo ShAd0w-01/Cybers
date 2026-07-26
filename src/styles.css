@@ -336,7 +336,15 @@
   .bg-ink [tabindex]:not([tabindex="-1"]):focus-visible {
     outline-color: var(--amber);
   }
+
+  /* Unified icon line weight and joins across the whole product */
+  svg.lucide {
+    stroke-width: 1.75;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
 }
+
 
 /* Motion utilities — paired with the reduced-motion overrides below */
 @utility anim-drift-a {

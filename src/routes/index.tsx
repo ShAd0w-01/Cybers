@@ -11,12 +11,20 @@ import {
   Handshake,
   Radar,
   CalendarCheck,
+  Award,
+  Fingerprint,
+  UserCog,
+  Landmark,
+  CloudCog,
+  Truck,
+  Briefcase,
 } from "lucide-react";
 import { getSection, heroOf, pillars, industries, frameworkMarks, type PageContent } from "@/content/site";
 import homeData from "@/content/pages/home.json";
 import { headFor } from "@/components/site/ContentPage";
 import { CtaLink, routeForLabel } from "@/components/site/CtaLink";
 import { Reveal, CountUp } from "@/components/site/Reveal";
+import { IconTile } from "@/components/site/IconTile";
 
 import { SectionRenderer } from "@/components/site/SectionRenderer";
 import {
@@ -34,13 +42,15 @@ export const Route = createFileRoute("/")({
 });
 
 const pillarIcons = [ShieldCheck, ScrollText, Lock, Users];
+const industryIcons = [Landmark, CloudCog, Truck, Briefcase];
 
 const heroProof = [
-  "CERT-In aligned testing",
-  "ISO 27001 & SOC 2 readiness",
-  "DPDPA & GDPR privacy",
-  "vCISO on demand",
+  { label: "CERT-In aligned testing", icon: ShieldCheck },
+  { label: "ISO 27001 & SOC 2 readiness", icon: Award },
+  { label: "DPDPA & GDPR privacy", icon: Fingerprint },
+  { label: "vCISO on demand", icon: UserCog },
 ];
+
 
 const valueProps = [
   {
@@ -182,12 +192,13 @@ function Home() {
             <ul className="mt-10 flex flex-wrap justify-center gap-2.5">
               {heroProof.map((item) => (
                 <li
-                  key={item}
+                  key={item.label}
                   className="type-small inline-flex items-center gap-2 rounded-full border border-ink-border bg-ink-soft/60 px-3.5 py-1.5 font-medium text-ink-foreground/85"
                 >
-                  <ShieldCheck className="size-3.5 text-amber" aria-hidden="true" />
-                  {item}
+                  <item.icon className="size-3.5 text-amber" strokeWidth={1.75} aria-hidden="true" />
+                  {item.label}
                 </li>
+
               ))}
             </ul>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
@@ -267,9 +278,8 @@ function Home() {
                 delay={i * 70}
                 className="group rounded-xl border border-border bg-background p-6 transition-all duration-300 hover:-translate-y-1 hover:border-coral/40 hover:shadow-xl hover:shadow-coral/5"
               >
-                <span className="brand-gradient grid size-10 place-items-center rounded-lg text-white">
-                  <v.icon className="size-5" aria-hidden="true" />
-                </span>
+                <IconTile icon={v.icon} />
+
                 <h3 className="mt-5 type-h4">
                   {v.title}
                 </h3>
@@ -307,7 +317,7 @@ function Home() {
                   className="group relative overflow-hidden rounded-xl border border-border bg-surface p-7 transition-all duration-300 hover:-translate-y-1 hover:border-coral/40 hover:shadow-2xl hover:shadow-coral/8"
                 >
                   <div className="brand-gradient absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100" />
-                  <Icon className="size-6 text-coral-ink" aria-hidden="true" />
+                  <IconTile icon={Icon} />
                   <h3 className="mt-5 type-h3">{c.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
                   {pillar ? (
@@ -472,14 +482,16 @@ function Home() {
             {industries.map((ind, i) => (
               <Reveal key={ind.url} delay={i * 60} className="bg-background">
                 <Link to={ind.url} className="group block h-full p-7">
+                  <IconTile icon={industryIcons[i] ?? Briefcase} size="sm" className="mb-5" />
                   <h3 className="type-h4 transition-colors group-hover:text-coral-ink">
                     {ind.title}
                   </h3>
                   <div className="brand-rule mt-3 w-6 transition-all duration-300 group-hover:w-14" />
                   <span className="mt-6 inline-flex items-center gap-2 text-sm text-muted-foreground transition-all group-hover:gap-3 group-hover:text-coral-ink">
-                    Industry approach <ArrowRight className="size-4" aria-hidden="true" />
+                    Industry approach <ArrowRight className="size-4" strokeWidth={1.75} aria-hidden="true" />
                   </span>
                 </Link>
+
               </Reveal>
             ))}
           </div>
