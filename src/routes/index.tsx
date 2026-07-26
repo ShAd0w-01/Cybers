@@ -213,6 +213,9 @@ function Home() {
               Free 30-minute scoping call — no obligation
             </p>
 
+            <BrandHologram className="mt-14" />
+
+
             {heroTail ? (
               <p className="type-body mx-auto mt-12 max-w-2xl border-l-2 border-coral pl-5 text-left italic text-ink-muted">
                 {heroTail.type === "p" ? heroTail.text : null}
