@@ -162,6 +162,8 @@ function RootComponent() {
         </main>
         <Footer />
         <AdvisorWidget />
+        <WhatsAppButton />
+
       </div>
     </QueryClientProvider>
   );
