@@ -34,7 +34,7 @@ import {
 } from "@/components/site/TestimonialCarousel";
 import { ThreatMap } from "@/components/site/ThreatMap";
 import { NewsStrip } from "@/components/site/NewsStrip";
-import { HeroVisual } from "@/components/site/HeroVisual";
+
 
 
 const page = homeData as PageContent;
@@ -177,7 +177,6 @@ function Home() {
 
         <div className="relative mx-auto max-w-4xl px-5 py-24 text-center sm:py-28 lg:px-8 lg:py-36">
           <Reveal>
-            <HeroVisual />
             <p className="type-eyebrow mb-7 text-amber">
               Cybersecurity • Compliance • Privacy • Governance
             </p>
