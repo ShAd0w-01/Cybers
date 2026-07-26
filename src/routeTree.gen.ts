@@ -37,6 +37,7 @@ import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 import { Route as AiAdvisorThreadIdRouteImport } from './routes/ai-advisor.$threadId'
+import { Route as AdminPagesRouteImport } from './routes/admin.pages'
 import { Route as AdminLeadsRouteImport } from './routes/admin.leads'
 import { Route as AdminBlogRouteImport } from './routes/admin.blog'
 import { Route as AdminAdvisorRouteImport } from './routes/admin.advisor'
@@ -181,6 +182,11 @@ const AiAdvisorThreadIdRoute = AiAdvisorThreadIdRouteImport.update({
   path: '/$threadId',
   getParentRoute: () => AiAdvisorRoute,
 } as any)
+const AdminPagesRoute = AdminPagesRouteImport.update({
+  id: '/pages',
+  path: '/pages',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminLeadsRoute = AdminLeadsRouteImport.update({
   id: '/leads',
   path: '/leads',
@@ -218,6 +224,7 @@ export interface FileRoutesByFullPath {
   '/admin/advisor': typeof AdminAdvisorRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/leads': typeof AdminLeadsRoute
+  '/admin/pages': typeof AdminPagesRoute
   '/ai-advisor/$threadId': typeof AiAdvisorThreadIdRoute
   '/api/chat': typeof ApiChatRoute
   '/auth/callback': typeof AuthCallbackRoute
@@ -249,6 +256,7 @@ export interface FileRoutesByTo {
   '/admin/advisor': typeof AdminAdvisorRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/leads': typeof AdminLeadsRoute
+  '/admin/pages': typeof AdminPagesRoute
   '/ai-advisor/$threadId': typeof AiAdvisorThreadIdRoute
   '/api/chat': typeof ApiChatRoute
   '/auth/callback': typeof AuthCallbackRoute
@@ -283,6 +291,7 @@ export interface FileRoutesById {
   '/admin/advisor': typeof AdminAdvisorRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/leads': typeof AdminLeadsRoute
+  '/admin/pages': typeof AdminPagesRoute
   '/ai-advisor/$threadId': typeof AiAdvisorThreadIdRoute
   '/api/chat': typeof ApiChatRoute
   '/auth/callback': typeof AuthCallbackRoute
@@ -318,6 +327,7 @@ export interface FileRouteTypes {
     | '/admin/advisor'
     | '/admin/blog'
     | '/admin/leads'
+    | '/admin/pages'
     | '/ai-advisor/$threadId'
     | '/api/chat'
     | '/auth/callback'
@@ -349,6 +359,7 @@ export interface FileRouteTypes {
     | '/admin/advisor'
     | '/admin/blog'
     | '/admin/leads'
+    | '/admin/pages'
     | '/ai-advisor/$threadId'
     | '/api/chat'
     | '/auth/callback'
@@ -382,6 +393,7 @@ export interface FileRouteTypes {
     | '/admin/advisor'
     | '/admin/blog'
     | '/admin/leads'
+    | '/admin/pages'
     | '/ai-advisor/$threadId'
     | '/api/chat'
     | '/auth/callback'
@@ -620,6 +632,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AiAdvisorThreadIdRouteImport
       parentRoute: typeof AiAdvisorRoute
     }
+    '/admin/pages': {
+      id: '/admin/pages'
+      path: '/pages'
+      fullPath: '/admin/pages'
+      preLoaderRoute: typeof AdminPagesRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/leads': {
       id: '/admin/leads'
       path: '/leads'
@@ -648,6 +667,7 @@ interface AdminRouteChildren {
   AdminAdvisorRoute: typeof AdminAdvisorRoute
   AdminBlogRoute: typeof AdminBlogRoute
   AdminLeadsRoute: typeof AdminLeadsRoute
+  AdminPagesRoute: typeof AdminPagesRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
 
@@ -655,6 +675,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminAdvisorRoute: AdminAdvisorRoute,
   AdminBlogRoute: AdminBlogRoute,
   AdminLeadsRoute: AdminLeadsRoute,
+  AdminPagesRoute: AdminPagesRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
 
