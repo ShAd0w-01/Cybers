@@ -132,7 +132,7 @@ function Home() {
                 <p className="brand-gradient-text font-display text-3xl font-bold">
                   <StatValue title={c.title} />
                 </p>
-                <h2 className="mt-2 font-display text-sm font-semibold">{c.title}</h2>
+                <h2 className="mt-2 font-display text-sm font-semibold">{statLabel(c.title)}</h2>
                 <p className="mt-3 text-[13px] leading-relaxed text-muted-foreground">{c.body}</p>
               </Reveal>
             ))}
@@ -369,6 +369,11 @@ function extractCards(section?: { blocks: { type: string; text?: string; items?:
     }
   }
   return cards;
+}
+
+/** Strips the leading value token so the label doesn't repeat the big number. */
+function statLabel(title: string) {
+  return title.replace(/^(\d+\+?|\S+)\s+/, "");
 }
 
 function StatValue({ title }: { title: string }) {
