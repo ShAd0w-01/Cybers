@@ -239,3 +239,30 @@
     transform: rotate(360deg);
   }
 }
+
+/* Ambient drifting gradient blobs (hero background) */
+@keyframes drift-a {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  22% { transform: translate3d(14vw, 6vh, 0) scale(1.15); }
+  47% { transform: translate3d(-6vw, 14vh, 0) scale(0.92); }
+  68% { transform: translate3d(9vw, -8vh, 0) scale(1.08); }
+  86% { transform: translate3d(-12vw, 4vh, 0) scale(1.02); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes drift-b {
+  0% { transform: translate3d(0, 0, 0) scale(1.05); }
+  18% { transform: translate3d(-16vw, 9vh, 0) scale(0.9); }
+  41% { transform: translate3d(8vw, -11vh, 0) scale(1.2); }
+  63% { transform: translate3d(-5vw, -4vh, 0) scale(0.98); }
+  84% { transform: translate3d(13vw, 8vh, 0) scale(1.12); }
+  100% { transform: translate3d(0, 0, 0) scale(1.05); }
+}
+
+@keyframes drift-c {
+  0% { transform: translate3d(0, 0, 0) scale(0.95); }
+  27% { transform: translate3d(10vw, -13vh, 0) scale(1.18); }
+  52% { transform: translate3d(-14vw, -3vh, 0) scale(1); }
+  74% { transform: translate3d(4vw, 12vh, 0) scale(0.88); }
+  100% { transform: translate3d(0, 0, 0) scale(0.95); }
+}
