@@ -37,6 +37,7 @@ import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 import { Route as AiAdvisorThreadIdRouteImport } from './routes/ai-advisor.$threadId'
+import { Route as AdminThemeRouteImport } from './routes/admin.theme'
 import { Route as AdminPagesRouteImport } from './routes/admin.pages'
 import { Route as AdminLeadsRouteImport } from './routes/admin.leads'
 import { Route as AdminBlogRouteImport } from './routes/admin.blog'
@@ -182,6 +183,11 @@ const AiAdvisorThreadIdRoute = AiAdvisorThreadIdRouteImport.update({
   path: '/$threadId',
   getParentRoute: () => AiAdvisorRoute,
 } as any)
+const AdminThemeRoute = AdminThemeRouteImport.update({
+  id: '/theme',
+  path: '/theme',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminPagesRoute = AdminPagesRouteImport.update({
   id: '/pages',
   path: '/pages',
@@ -225,6 +231,7 @@ export interface FileRoutesByFullPath {
   '/admin/blog': typeof AdminBlogRoute
   '/admin/leads': typeof AdminLeadsRoute
   '/admin/pages': typeof AdminPagesRoute
+  '/admin/theme': typeof AdminThemeRoute
   '/ai-advisor/$threadId': typeof AiAdvisorThreadIdRoute
   '/api/chat': typeof ApiChatRoute
   '/auth/callback': typeof AuthCallbackRoute
@@ -257,6 +264,7 @@ export interface FileRoutesByTo {
   '/admin/blog': typeof AdminBlogRoute
   '/admin/leads': typeof AdminLeadsRoute
   '/admin/pages': typeof AdminPagesRoute
+  '/admin/theme': typeof AdminThemeRoute
   '/ai-advisor/$threadId': typeof AiAdvisorThreadIdRoute
   '/api/chat': typeof ApiChatRoute
   '/auth/callback': typeof AuthCallbackRoute
@@ -292,6 +300,7 @@ export interface FileRoutesById {
   '/admin/blog': typeof AdminBlogRoute
   '/admin/leads': typeof AdminLeadsRoute
   '/admin/pages': typeof AdminPagesRoute
+  '/admin/theme': typeof AdminThemeRoute
   '/ai-advisor/$threadId': typeof AiAdvisorThreadIdRoute
   '/api/chat': typeof ApiChatRoute
   '/auth/callback': typeof AuthCallbackRoute
@@ -328,6 +337,7 @@ export interface FileRouteTypes {
     | '/admin/blog'
     | '/admin/leads'
     | '/admin/pages'
+    | '/admin/theme'
     | '/ai-advisor/$threadId'
     | '/api/chat'
     | '/auth/callback'
@@ -360,6 +370,7 @@ export interface FileRouteTypes {
     | '/admin/blog'
     | '/admin/leads'
     | '/admin/pages'
+    | '/admin/theme'
     | '/ai-advisor/$threadId'
     | '/api/chat'
     | '/auth/callback'
@@ -394,6 +405,7 @@ export interface FileRouteTypes {
     | '/admin/blog'
     | '/admin/leads'
     | '/admin/pages'
+    | '/admin/theme'
     | '/ai-advisor/$threadId'
     | '/api/chat'
     | '/auth/callback'
@@ -632,6 +644,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AiAdvisorThreadIdRouteImport
       parentRoute: typeof AiAdvisorRoute
     }
+    '/admin/theme': {
+      id: '/admin/theme'
+      path: '/theme'
+      fullPath: '/admin/theme'
+      preLoaderRoute: typeof AdminThemeRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/pages': {
       id: '/admin/pages'
       path: '/pages'
@@ -668,6 +687,7 @@ interface AdminRouteChildren {
   AdminBlogRoute: typeof AdminBlogRoute
   AdminLeadsRoute: typeof AdminLeadsRoute
   AdminPagesRoute: typeof AdminPagesRoute
+  AdminThemeRoute: typeof AdminThemeRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
 
@@ -676,6 +696,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminBlogRoute: AdminBlogRoute,
   AdminLeadsRoute: AdminLeadsRoute,
   AdminPagesRoute: AdminPagesRoute,
+  AdminThemeRoute: AdminThemeRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
 
@@ -734,3 +755,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
