@@ -34,6 +34,7 @@ import {
 } from "@/components/site/TestimonialCarousel";
 import { ThreatMap } from "@/components/site/ThreatMap";
 import { NewsStrip } from "@/components/site/NewsStrip";
+import { HeroVisual } from "@/components/site/HeroVisual";
 
 
 const page = homeData as PageContent;
