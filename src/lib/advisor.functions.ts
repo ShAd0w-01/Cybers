@@ -52,7 +52,7 @@ export const deleteThread = createServerFn({ method: "POST" })
 
 export const getThreadMessages = createServerFn({ method: "POST" })
   .inputValidator((input: { visitorId: string; threadId: string }) => input)
-  .handler(async ({ data }): Promise<UIMessage[]> => {
+  .handler(async ({ data }): Promise<StoredMessage[]> => {
     const { advisorDb, assertThreadOwner } = await import("@/lib/advisor.server");
     await assertThreadOwner(data.threadId, data.visitorId);
     const { data: rows, error } = await advisorDb()
@@ -62,8 +62,20 @@ export const getThreadMessages = createServerFn({ method: "POST" })
       .order("created_at", { ascending: true });
     if (error) throw new Error(error.message);
     return (rows ?? []).map((row) => ({
-      id: row.id as string,
-      role: row.role as UIMessage["role"],
-      parts: (row.parts ?? []) as UIMessage["parts"],
+      id: String(row.id),
+      role: String(row.role),
+      parts: (row.parts ?? []) as unknown[],
     }));
   });
+
+/** Serializable row shape; cast to UIMessage on the client. */
+export type StoredMessage = { id: string; role: string; parts: unknown[] };
+
+export function toUiMessages(rows: StoredMessage[]): UIMessage[] {
+  return rows.map((row) => ({
+    id: row.id,
+    role: row.role as UIMessage["role"],
+    parts: row.parts as UIMessage["parts"],
+  }));
+}
+
