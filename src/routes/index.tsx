@@ -11,12 +11,20 @@ import {
   Handshake,
   Radar,
   CalendarCheck,
+  Award,
+  Fingerprint,
+  UserCog,
+  Landmark,
+  CloudCog,
+  Truck,
+  Briefcase,
 } from "lucide-react";
 import { getSection, heroOf, pillars, industries, frameworkMarks, type PageContent } from "@/content/site";
 import homeData from "@/content/pages/home.json";
 import { headFor } from "@/components/site/ContentPage";
 import { CtaLink, routeForLabel } from "@/components/site/CtaLink";
 import { Reveal, CountUp } from "@/components/site/Reveal";
+import { IconTile } from "@/components/site/IconTile";
 
 import { SectionRenderer } from "@/components/site/SectionRenderer";
 import {
@@ -34,13 +42,15 @@ export const Route = createFileRoute("/")({
 });
 
 const pillarIcons = [ShieldCheck, ScrollText, Lock, Users];
+const industryIcons = [Landmark, CloudCog, Truck, Briefcase];
 
 const heroProof = [
-  "CERT-In aligned testing",
-  "ISO 27001 & SOC 2 readiness",
-  "DPDPA & GDPR privacy",
-  "vCISO on demand",
+  { label: "CERT-In aligned testing", icon: ShieldCheck },
+  { label: "ISO 27001 & SOC 2 readiness", icon: Award },
+  { label: "DPDPA & GDPR privacy", icon: Fingerprint },
+  { label: "vCISO on demand", icon: UserCog },
 ];
+
 
 const valueProps = [
   {
