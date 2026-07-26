@@ -86,6 +86,9 @@ export function Footer() {
               <FooterLink to="/blog">Blog</FooterLink>
             </li>
             <li>
+              <FooterLink to="/cyber-news">Global Cyber News</FooterLink>
+            </li>
+            <li>
               <FooterLink to="/threat-map">Live Threat Map</FooterLink>
             </li>
             <li>
