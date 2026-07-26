@@ -255,10 +255,9 @@ function Home() {
         </div>
       </section>
 
-
-
       {/* ------------------------------------------------ Challenge grid */}
-      <section className="border-b border-border bg-surface py-16 sm:py-24">
+      <section className="border-b border-border bg-background py-16 sm:py-24">
+
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal>
             <div className="max-w-3xl">
