@@ -107,12 +107,12 @@ export function AdvisorWidget() {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="Open the CyberSentinels AI Advisor"
-        className={`brand-gradient fixed right-4 bottom-4 z-40 inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-xs font-semibold text-white shadow-lg transition-transform hover:scale-[1.03] ${
+        title="Open the CyberSentinels AI Advisor"
+        className={`brand-gradient fixed right-4 bottom-4 z-40 inline-flex size-11 items-center justify-center rounded-full text-white shadow-lg transition-transform hover:scale-110 ${
           open ? "hidden sm:inline-flex" : ""
         }`}
       >
-        <MessageCircle className="h-4 w-4" />
-        <span className="hidden sm:inline">Ask the Advisor</span>
+        <MessageCircle className="h-6 w-6" />
       </button>
     </>
   );
