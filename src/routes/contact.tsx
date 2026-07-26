@@ -3,6 +3,7 @@ import { Mail, MapPin, Clock } from "lucide-react";
 import { ContentPage, headFor } from "@/components/site/ContentPage";
 import type { PageContent } from "@/content/site";
 import { Reveal } from "@/components/site/Reveal";
+import { ContactForm } from "@/components/site/ContactForm";
 
 /** Page copy is loaded on demand so it never ships in the initial bundle. */
 const loadPage = async () =>
@@ -43,6 +44,9 @@ function Contact() {
               <p className="mt-2 text-sm leading-relaxed text-foreground">{d.value}</p>
             </Reveal>
           ))}
+        </div>
+        <div className="mx-auto mt-12 max-w-3xl px-5 lg:px-8">
+          <ContactForm />
         </div>
       </section>
     </ContentPage>

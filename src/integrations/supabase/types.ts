@@ -123,6 +123,194 @@ export type Database = {
         }
         Relationships: []
       }
+      blog_posts: {
+        Row: {
+          author: string
+          body: string
+          cover_image_url: string | null
+          created_at: string
+          created_by: string | null
+          excerpt: string
+          id: string
+          meta_description: string | null
+          published_at: string | null
+          read_minutes: number
+          seo_title: string | null
+          slug: string
+          status: string
+          tags: string[]
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          author?: string
+          body?: string
+          cover_image_url?: string | null
+          created_at?: string
+          created_by?: string | null
+          excerpt?: string
+          id?: string
+          meta_description?: string | null
+          published_at?: string | null
+          read_minutes?: number
+          seo_title?: string | null
+          slug: string
+          status?: string
+          tags?: string[]
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          author?: string
+          body?: string
+          cover_image_url?: string | null
+          created_at?: string
+          created_by?: string | null
+          excerpt?: string
+          id?: string
+          meta_description?: string | null
+          published_at?: string | null
+          read_minutes?: number
+          seo_title?: string | null
+          slug?: string
+          status?: string
+          tags?: string[]
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      crm_lead_notes: {
+        Row: {
+          author_id: string | null
+          body: string
+          created_at: string
+          id: string
+          lead_id: string
+          updated_at: string
+        }
+        Insert: {
+          author_id?: string | null
+          body: string
+          created_at?: string
+          id?: string
+          lead_id: string
+          updated_at?: string
+        }
+        Update: {
+          author_id?: string | null
+          body?: string
+          created_at?: string
+          id?: string
+          lead_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "crm_lead_notes_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "crm_leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      crm_leads: {
+        Row: {
+          assigned_to: string | null
+          company: string | null
+          created_at: string
+          email: string
+          estimated_value: number | null
+          id: string
+          message: string
+          name: string
+          next_follow_up: string | null
+          phone: string | null
+          priority: string
+          service_interest: string | null
+          source: string
+          status: string
+          thread_id: string | null
+          updated_at: string
+        }
+        Insert: {
+          assigned_to?: string | null
+          company?: string | null
+          created_at?: string
+          email: string
+          estimated_value?: number | null
+          id?: string
+          message?: string
+          name: string
+          next_follow_up?: string | null
+          phone?: string | null
+          priority?: string
+          service_interest?: string | null
+          source?: string
+          status?: string
+          thread_id?: string | null
+          updated_at?: string
+        }
+        Update: {
+          assigned_to?: string | null
+          company?: string | null
+          created_at?: string
+          email?: string
+          estimated_value?: number | null
+          id?: string
+          message?: string
+          name?: string
+          next_follow_up?: string | null
+          phone?: string | null
+          priority?: string
+          service_interest?: string | null
+          source?: string
+          status?: string
+          thread_id?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      site_pages: {
+        Row: {
+          created_at: string
+          id: string
+          is_published: boolean
+          meta_description: string | null
+          name: string
+          sections: Json
+          seo_title: string | null
+          updated_at: string
+          updated_by: string | null
+          url: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_published?: boolean
+          meta_description?: string | null
+          name: string
+          sections?: Json
+          seo_title?: string | null
+          updated_at?: string
+          updated_by?: string | null
+          url: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_published?: boolean
+          meta_description?: string | null
+          name?: string
+          sections?: Json
+          seo_title?: string | null
+          updated_at?: string
+          updated_by?: string | null
+          url?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string

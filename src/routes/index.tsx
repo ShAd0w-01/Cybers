@@ -23,6 +23,7 @@ import {
   TestimonialCarousel,
   type Testimonial,
 } from "@/components/site/TestimonialCarousel";
+import { ThreatMap } from "@/components/site/ThreatMap";
 
 
 const page = homeData as PageContent;
@@ -454,6 +455,9 @@ function Home() {
 
       {/* ----------------------------------------------------- Why us */}
       {why ? <SectionRenderer section={why} index={1} /> : null}
+
+      {/* -------------------------------------------- Live threat map */}
+      <ThreatMap />
 
       {/* ---------------------------------------------------- Industries */}
       <section className="border-b border-border bg-background py-16 sm:py-24">

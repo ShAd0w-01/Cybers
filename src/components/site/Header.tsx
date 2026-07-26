@@ -7,6 +7,8 @@ import { industries, pillars } from "@/content/site";
 import { cn } from "@/lib/utils";
 
 const resources = [
+  { title: "Blog", url: "/blog" },
+  { title: "Live Threat Map", url: "/threat-map" },
   { title: "Case Studies", url: "/case-studies" },
   { title: "Insights & Resources", url: "/insights" },
 ];
