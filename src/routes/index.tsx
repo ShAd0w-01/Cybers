@@ -279,7 +279,7 @@ function Home() {
                   as="article"
                   key={c.title}
                   delay={i * 60}
-                  className="group relative overflow-hidden rounded-xl border border-border bg-background p-7 transition-all duration-300 hover:-translate-y-1 hover:border-coral/40 hover:shadow-2xl hover:shadow-coral/8"
+                  className="group relative overflow-hidden rounded-xl border border-border bg-surface p-7 transition-all duration-300 hover:-translate-y-1 hover:border-coral/40 hover:shadow-2xl hover:shadow-coral/8"
                 >
                   <div className="brand-gradient absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100" />
                   <Icon className="size-6 text-coral" aria-hidden="true" />
