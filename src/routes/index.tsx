@@ -192,12 +192,13 @@ function Home() {
             <ul className="mt-10 flex flex-wrap justify-center gap-2.5">
               {heroProof.map((item) => (
                 <li
-                  key={item}
+                  key={item.label}
                   className="type-small inline-flex items-center gap-2 rounded-full border border-ink-border bg-ink-soft/60 px-3.5 py-1.5 font-medium text-ink-foreground/85"
                 >
-                  <ShieldCheck className="size-3.5 text-amber" aria-hidden="true" />
-                  {item}
+                  <item.icon className="size-3.5 text-amber" strokeWidth={1.75} aria-hidden="true" />
+                  {item.label}
                 </li>
+
               ))}
             </ul>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
