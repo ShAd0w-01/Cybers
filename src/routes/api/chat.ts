@@ -27,7 +27,7 @@ ${catalogue}
 Industries: ${industries.map((i) => `${i.title} :: ${i.url}`).join(", ")}
 
 Rules:
-- Use the find_services tool before recommending services so links are accurate.
+- Use the find_services tool before recommending services so links are accurate. Every answer that draws on our services, frameworks or industry pages must cite them: link the exact page inline (markdown link) using only URLs returned by the tool or listed above. Never invent a URL.
 - Be concise; use short paragraphs and bullets. Markdown is rendered.
 - Never quote prices, timelines in days, or guarantee certification outcomes — say the team confirms these on a scoping call.
 - Never ask for credentials, secrets, live vulnerability details or personal data beyond a work email.
@@ -62,12 +62,35 @@ export const Route = createFileRoute("/api/chat")({
           saveMessage,
           titleFrom,
           textOf,
+          userFromRequest,
+          checkRateLimit,
+          detectTopics,
+          tagThread,
+          logEvent,
         } = await import("@/lib/advisor.server");
 
         try {
           await assertThreadOwner(threadId, visitorId);
         } catch {
           return new Response("Conversation not found", { status: 404 });
+        }
+
+        // Sign-in is optional; it only raises the usage allowance and links
+        // the conversation to the account.
+        const user = await userFromRequest(request);
+
+        const limit = await checkRateLimit(visitorId, user?.id ?? null);
+        if (!limit.ok) {
+          await logEvent({
+            threadId,
+            visitorId,
+            userId: user?.id,
+            type: "rate_limited",
+          });
+          return new Response(limit.message, {
+            status: 429,
+            headers: { "retry-after": String(limit.retryAfterSeconds) },
+          });
         }
 
         const lastMessage = messages[messages.length - 1];
@@ -83,13 +106,20 @@ export const Route = createFileRoute("/api/chat")({
             .from("advisor_threads")
             .update({
               updated_at: new Date().toISOString(),
+              ...(user ? { user_id: user.id } : {}),
               ...(count === 1 ? { title: titleFrom(textOf(lastMessage)) } : {}),
             })
             .eq("id", threadId)
             .eq("visitor_id", visitorId);
+
+          const topics = detectTopics(textOf(lastMessage));
+          if (topics.length) await tagThread(threadId, { topics });
         }
 
+        let scoped = false;
+
         const gateway = createLovableAiGatewayProvider(key, getLovableAiGatewayRunId(request));
+
 
         const result = streamText({
           model: gateway("google/gemini-3.6-flash"),
@@ -134,10 +164,10 @@ export const Route = createFileRoute("/api/chat")({
                 region: z.string(),
                 recommendedServices: z.array(z.object({ title: z.string(), url: z.string() })),
               }),
-              execute: async (input) => ({
-                ...input,
-                nextStep: "Book a scoping consultation at /contact",
-              }),
+              execute: async (input) => {
+                scoped = true;
+                return { ...input, nextStep: "Book a scoping consultation at /contact" };
+              },
             }),
           },
           onError: ({ error }) => {
@@ -155,11 +185,13 @@ export const Route = createFileRoute("/api/chat")({
                 .update({ updated_at: new Date().toISOString() })
                 .eq("id", threadId)
                 .eq("visitor_id", visitorId);
+              await tagThread(threadId, { outcome: scoped ? "scoped" : "answered" });
             } catch (error) {
               console.error("advisor persistence error", error);
             }
           },
         });
+
       },
     },
   },

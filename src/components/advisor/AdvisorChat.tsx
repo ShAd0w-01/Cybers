@@ -2,7 +2,7 @@ import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport, type UIMessage } from "ai";
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Download, ExternalLink, LogIn } from "lucide-react";
 
 import {
   Conversation,
@@ -18,6 +18,12 @@ import {
 } from "@/components/ai-elements/prompt-input";
 import { Shimmer } from "@/components/ai-elements/shimmer";
 import { Logo } from "@/components/site/Logo";
+import { Button } from "@/components/ui/button";
+import { supabase } from "@/integrations/supabase/client";
+import { useSession } from "@/lib/useSession";
+import { citationsFor } from "@/lib/citations";
+import { exportThreadPdf } from "@/lib/exportPdf";
+import { recordHandoff } from "@/lib/advisor.functions";
 
 const STARTERS = [
   "We need a VAPT for our web app and API — where do we start?",
@@ -32,6 +38,7 @@ type Props = {
   initialMessages: UIMessage[];
   /** Called after the first user message so a thread list can refresh titles. */
   onActivity?: () => void;
+  title?: string;
   className?: string;
 };
 
@@ -40,10 +47,13 @@ export function AdvisorChat({
   visitorId,
   initialMessages,
   onActivity,
+  title,
   className,
 }: Props) {
   const [error, setError] = useState<string | null>(null);
+  const [rateLimited, setRateLimited] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+  const { user } = useSession();
 
   const { messages, sendMessage, status } = useChat({
     id: threadId,
@@ -51,8 +61,19 @@ export function AdvisorChat({
     transport: new DefaultChatTransport({
       api: "/api/chat",
       body: { threadId, visitorId },
+      // Sign-in is optional; when present the bearer raises the rate limit and
+      // links the conversation to the account.
+      headers: async (): Promise<Record<string, string>> => {
+        const { data } = await supabase.auth.getSession();
+        return data.session ? { authorization: `Bearer ${data.session.access_token}` } : {};
+      },
+
     }),
-    onError: (err) => setError(err.message || "The advisor is unavailable right now."),
+    onError: (err) => {
+      const message = err.message || "The advisor is unavailable right now.";
+      setRateLimited(/limit/i.test(message));
+      setError(message);
+    },
     onFinish: () => onActivity?.(),
   });
 
@@ -67,12 +88,49 @@ export function AdvisorChat({
     const value = text.trim();
     if (!value || busy) return;
     setError(null);
+    setRateLimited(false);
     void sendMessage({ text: value });
   };
 
+  const handoff = (target: string) => {
+    void recordHandoff({ data: { visitorId, threadId, target } }).catch(() => {});
+  };
+
+
   return (
     <div className={`flex min-h-0 flex-1 flex-col ${className ?? ""}`}>
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border px-4 py-2">
+        <p className="text-xs text-muted-foreground">
+          {user ? (
+            <>Signed in as {user.email} — higher message allowance</>
+          ) : (
+            <>Guest session — sign in for a higher message allowance</>
+          )}
+        </p>
+        <div className="flex items-center gap-2">
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            disabled={messages.length === 0}
+            onClick={() => void exportThreadPdf(title ?? "Advisor conversation", messages)}
+          >
+            <Download className="h-3.5 w-3.5" />
+            Export PDF
+          </Button>
+          {user ? null : (
+            <Button asChild variant="ghost" size="sm">
+              <Link to="/auth" search={{ redirect: "/ai-advisor" }}>
+                <LogIn className="h-3.5 w-3.5" />
+                Sign in
+              </Link>
+            </Button>
+          )}
+        </div>
+      </div>
+
       <Conversation className="min-h-0 flex-1">
+
         <ConversationContent className="mx-auto w-full max-w-3xl gap-6 px-4 py-6">
           {messages.length === 0 ? (
             <div className="py-6">
@@ -129,20 +187,36 @@ export function AdvisorChat({
                   return null;
                 })}
               </MessageContent>
+              {message.role === "assistant" && status !== "streaming" ? (
+                <Sources citations={citationsFor(message)} />
+              ) : null}
             </Message>
           ))}
 
-          {status === "submitted" ? <Shimmer className="text-sm">Thinking...</Shimmer> : null}
+          {status === "submitted" ? (
+            <Shimmer className="text-sm">The advisor is typing…</Shimmer>
+          ) : null}
 
           {error ? (
-            <p role="alert" className="text-sm text-destructive">
-              {error}{" "}
-              <Link to="/contact" className="underline">
-                Contact the team instead
-              </Link>
-              .
-            </p>
+            <div role="alert" className="space-y-2 text-sm text-destructive">
+              <p>{error}</p>
+              <p className="text-muted-foreground">
+                {rateLimited && !user ? (
+                  <>
+                    <Link to="/auth" search={{ redirect: "/ai-advisor" }} className="underline">
+                      Sign in
+                    </Link>{" "}
+                    for a higher allowance, or{" "}
+                  </>
+                ) : null}
+                <Link to="/contact" className="underline" onClick={() => handoff("error-contact")}>
+                  contact the team
+                </Link>
+                .
+              </p>
+            </div>
           ) : null}
+
         </ConversationContent>
         <ConversationScrollButton />
       </Conversation>
@@ -168,6 +242,31 @@ export function AdvisorChat({
           </p>
         </div>
       </div>
+    </div>
+  );
+}
+
+/** Every answer cites the exact pages the advisor drew on. */
+function Sources({ citations }: { citations: Array<{ title: string; url: string }> }) {
+  if (!citations.length) return null;
+  return (
+    <div className="mt-2 rounded-lg border border-border bg-muted/40 px-3 py-2">
+      <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+        Sources
+      </p>
+      <ul className="mt-1.5 flex flex-wrap gap-x-4 gap-y-1">
+        {citations.map((citation) => (
+          <li key={citation.url}>
+            <a
+              href={citation.url}
+              className="inline-flex items-center gap-1 text-xs text-foreground underline underline-offset-2 hover:text-primary"
+            >
+              {citation.title}
+              <ExternalLink className="h-3 w-3" aria-hidden="true" />
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
