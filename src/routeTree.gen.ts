@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as PrivacyNoticeRouteImport } from './routes/privacy-notice'
 import { Route as InsightsRouteImport } from './routes/insights'
+import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CaseStudiesRouteImport } from './routes/case-studies'
 import { Route as CareersRouteImport } from './routes/careers'
@@ -29,6 +30,11 @@ const PrivacyNoticeRoute = PrivacyNoticeRouteImport.update({
 const InsightsRoute = InsightsRouteImport.update({
   id: '/insights',
   path: '/insights',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CookiePolicyRoute = CookiePolicyRouteImport.update({
+  id: '/cookie-policy',
+  path: '/cookie-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -83,6 +89,7 @@ export interface FileRoutesByFullPath {
   '/careers': typeof CareersRoute
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
+  '/cookie-policy': typeof CookiePolicyRoute
   '/insights': typeof InsightsRoute
   '/privacy-notice': typeof PrivacyNoticeRoute
   '/industries/$slug': typeof IndustriesSlugRoute
@@ -96,6 +103,7 @@ export interface FileRoutesByTo {
   '/careers': typeof CareersRoute
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
+  '/cookie-policy': typeof CookiePolicyRoute
   '/insights': typeof InsightsRoute
   '/privacy-notice': typeof PrivacyNoticeRoute
   '/industries/$slug': typeof IndustriesSlugRoute
@@ -110,6 +118,7 @@ export interface FileRoutesById {
   '/careers': typeof CareersRoute
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
+  '/cookie-policy': typeof CookiePolicyRoute
   '/insights': typeof InsightsRoute
   '/privacy-notice': typeof PrivacyNoticeRoute
   '/industries/$slug': typeof IndustriesSlugRoute
@@ -125,6 +134,7 @@ export interface FileRouteTypes {
     | '/careers'
     | '/case-studies'
     | '/contact'
+    | '/cookie-policy'
     | '/insights'
     | '/privacy-notice'
     | '/industries/$slug'
@@ -138,6 +148,7 @@ export interface FileRouteTypes {
     | '/careers'
     | '/case-studies'
     | '/contact'
+    | '/cookie-policy'
     | '/insights'
     | '/privacy-notice'
     | '/industries/$slug'
@@ -151,6 +162,7 @@ export interface FileRouteTypes {
     | '/careers'
     | '/case-studies'
     | '/contact'
+    | '/cookie-policy'
     | '/insights'
     | '/privacy-notice'
     | '/industries/$slug'
@@ -165,6 +177,7 @@ export interface RootRouteChildren {
   CareersRoute: typeof CareersRoute
   CaseStudiesRoute: typeof CaseStudiesRoute
   ContactRoute: typeof ContactRoute
+  CookiePolicyRoute: typeof CookiePolicyRoute
   InsightsRoute: typeof InsightsRoute
   PrivacyNoticeRoute: typeof PrivacyNoticeRoute
   IndustriesSlugRoute: typeof IndustriesSlugRoute
@@ -187,6 +200,13 @@ declare module '@tanstack/react-router' {
       path: '/insights'
       fullPath: '/insights'
       preLoaderRoute: typeof InsightsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cookie-policy': {
+      id: '/cookie-policy'
+      path: '/cookie-policy'
+      fullPath: '/cookie-policy'
+      preLoaderRoute: typeof CookiePolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -261,6 +281,7 @@ const rootRouteChildren: RootRouteChildren = {
   CareersRoute: CareersRoute,
   CaseStudiesRoute: CaseStudiesRoute,
   ContactRoute: ContactRoute,
+  CookiePolicyRoute: CookiePolicyRoute,
   InsightsRoute: InsightsRoute,
   PrivacyNoticeRoute: PrivacyNoticeRoute,
   IndustriesSlugRoute: IndustriesSlugRoute,
