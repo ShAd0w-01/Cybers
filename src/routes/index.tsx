@@ -482,14 +482,16 @@ function Home() {
             {industries.map((ind, i) => (
               <Reveal key={ind.url} delay={i * 60} className="bg-background">
                 <Link to={ind.url} className="group block h-full p-7">
+                  <IconTile icon={industryIcons[i] ?? Briefcase} size="sm" className="mb-5" />
                   <h3 className="type-h4 transition-colors group-hover:text-coral-ink">
                     {ind.title}
                   </h3>
                   <div className="brand-rule mt-3 w-6 transition-all duration-300 group-hover:w-14" />
                   <span className="mt-6 inline-flex items-center gap-2 text-sm text-muted-foreground transition-all group-hover:gap-3 group-hover:text-coral-ink">
-                    Industry approach <ArrowRight className="size-4" aria-hidden="true" />
+                    Industry approach <ArrowRight className="size-4" strokeWidth={1.75} aria-hidden="true" />
                   </span>
                 </Link>
+
               </Reveal>
             ))}
           </div>
