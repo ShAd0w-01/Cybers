@@ -58,26 +58,54 @@ const valueProps = [
   },
 ];
 
-const testimonials = [
+const testimonials: Testimonial[] = [
   {
     quote:
       "The team turned a scattered set of audit gaps into a single roadmap. We cleared our ISO 27001 stage 2 without a major non-conformity.",
     author: "Head of IT",
     detail: "BFSI lender, India",
+    rating: 5,
+    logo: "Northbridge Finance",
+    logoNote: "BFSI • India",
   },
   {
     quote:
       "Their VAPT report was the first one our engineers actually enjoyed reading — reproducible steps, real impact, and a retest that confirmed every fix.",
     author: "VP Engineering",
     detail: "SaaS platform, UAE",
+    rating: 5,
+    logo: "Averio Cloud",
+    logoNote: "SaaS • UAE",
   },
   {
     quote:
       "The vCISO engagement gave our board the security reporting it had been asking for, at a fraction of a full-time hire.",
     author: "Chief Operating Officer",
     detail: "Healthcare group",
+    rating: 5,
+    logo: "Medira Health",
+    logoNote: "Healthcare • India",
+  },
+  {
+    quote:
+      "DPDPA readiness felt overwhelming until we had a mapped inventory, notices and consent flows we could actually operate day to day.",
+    author: "Data Protection Lead",
+    detail: "E-commerce marketplace",
+    rating: 5,
+    logo: "Kartway Retail",
+    logoNote: "Retail • India",
+  },
+  {
+    quote:
+      "Third-party risk reviews used to block every enterprise deal. Now we hand over an evidence pack and the security questionnaire closes in days.",
+    author: "Director, Information Security",
+    detail: "Manufacturing exporter",
+    rating: 4,
+    logo: "Volten Industries",
+    logoNote: "Manufacturing • Global",
   },
 ];
+
 
 
 function Home() {
