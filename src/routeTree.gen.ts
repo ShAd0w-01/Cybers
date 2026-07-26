@@ -19,6 +19,7 @@ import { Route as InsightsRouteImport } from './routes/insights'
 import { Route as CyberNewsRouteImport } from './routes/cyber-news'
 import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as ComplianceExplorerRouteImport } from './routes/compliance-explorer'
 import { Route as CaseStudiesRouteImport } from './routes/case-studies'
 import { Route as CareersRouteImport } from './routes/careers'
 import { Route as AuthRouteImport } from './routes/auth'
@@ -92,6 +93,11 @@ const CookiePolicyRoute = CookiePolicyRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComplianceExplorerRoute = ComplianceExplorerRouteImport.update({
+  id: '/compliance-explorer',
+  path: '/compliance-explorer',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CaseStudiesRoute = CaseStudiesRouteImport.update({
@@ -224,6 +230,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRouteWithChildren
   '/careers': typeof CareersRoute
   '/case-studies': typeof CaseStudiesRoute
+  '/compliance-explorer': typeof ComplianceExplorerRoute
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/cyber-news': typeof CyberNewsRoute
@@ -258,6 +265,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRouteWithChildren
   '/careers': typeof CareersRoute
   '/case-studies': typeof CaseStudiesRoute
+  '/compliance-explorer': typeof ComplianceExplorerRoute
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/cyber-news': typeof CyberNewsRoute
@@ -295,6 +303,7 @@ export interface FileRoutesById {
   '/auth': typeof AuthRouteWithChildren
   '/careers': typeof CareersRoute
   '/case-studies': typeof CaseStudiesRoute
+  '/compliance-explorer': typeof ComplianceExplorerRoute
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/cyber-news': typeof CyberNewsRoute
@@ -333,6 +342,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/careers'
     | '/case-studies'
+    | '/compliance-explorer'
     | '/contact'
     | '/cookie-policy'
     | '/cyber-news'
@@ -367,6 +377,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/careers'
     | '/case-studies'
+    | '/compliance-explorer'
     | '/contact'
     | '/cookie-policy'
     | '/cyber-news'
@@ -403,6 +414,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/careers'
     | '/case-studies'
+    | '/compliance-explorer'
     | '/contact'
     | '/cookie-policy'
     | '/cyber-news'
@@ -440,6 +452,7 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRouteWithChildren
   CareersRoute: typeof CareersRoute
   CaseStudiesRoute: typeof CaseStudiesRoute
+  ComplianceExplorerRoute: typeof ComplianceExplorerRoute
   ContactRoute: typeof ContactRoute
   CookiePolicyRoute: typeof CookiePolicyRoute
   CyberNewsRoute: typeof CyberNewsRoute
@@ -529,6 +542,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/compliance-explorer': {
+      id: '/compliance-explorer'
+      path: '/compliance-explorer'
+      fullPath: '/compliance-explorer'
+      preLoaderRoute: typeof ComplianceExplorerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/case-studies': {
@@ -755,6 +775,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRouteWithChildren,
   CareersRoute: CareersRoute,
   CaseStudiesRoute: CaseStudiesRoute,
+  ComplianceExplorerRoute: ComplianceExplorerRoute,
   ContactRoute: ContactRoute,
   CookiePolicyRoute: CookiePolicyRoute,
   CyberNewsRoute: CyberNewsRoute,
