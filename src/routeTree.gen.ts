@@ -14,7 +14,6 @@ import { Route as ThreatMapRouteImport } from './routes/threat-map'
 import { Route as TermsOfUseRouteImport } from './routes/terms-of-use'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SecurityScorecardRouteImport } from './routes/security-scorecard'
-import { Route as SearchRouteImport } from './routes/search'
 import { Route as ResponsibleDisclosureRouteImport } from './routes/responsible-disclosure'
 import { Route as PrivacyNoticeRouteImport } from './routes/privacy-notice'
 import { Route as InsightsRouteImport } from './routes/insights'
@@ -70,11 +69,6 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
 const SecurityScorecardRoute = SecurityScorecardRouteImport.update({
   id: '/security-scorecard',
   path: '/security-scorecard',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SearchRoute = SearchRouteImport.update({
-  id: '/search',
-  path: '/search',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResponsibleDisclosureRoute = ResponsibleDisclosureRouteImport.update({
@@ -249,7 +243,6 @@ export interface FileRoutesByFullPath {
   '/insights': typeof InsightsRoute
   '/privacy-notice': typeof PrivacyNoticeRoute
   '/responsible-disclosure': typeof ResponsibleDisclosureRoute
-  '/search': typeof SearchRoute
   '/security-scorecard': typeof SecurityScorecardRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-of-use': typeof TermsOfUseRoute
@@ -286,7 +279,6 @@ export interface FileRoutesByTo {
   '/insights': typeof InsightsRoute
   '/privacy-notice': typeof PrivacyNoticeRoute
   '/responsible-disclosure': typeof ResponsibleDisclosureRoute
-  '/search': typeof SearchRoute
   '/security-scorecard': typeof SecurityScorecardRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-of-use': typeof TermsOfUseRoute
@@ -326,7 +318,6 @@ export interface FileRoutesById {
   '/insights': typeof InsightsRoute
   '/privacy-notice': typeof PrivacyNoticeRoute
   '/responsible-disclosure': typeof ResponsibleDisclosureRoute
-  '/search': typeof SearchRoute
   '/security-scorecard': typeof SecurityScorecardRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-of-use': typeof TermsOfUseRoute
@@ -367,7 +358,6 @@ export interface FileRouteTypes {
     | '/insights'
     | '/privacy-notice'
     | '/responsible-disclosure'
-    | '/search'
     | '/security-scorecard'
     | '/sitemap.xml'
     | '/terms-of-use'
@@ -404,7 +394,6 @@ export interface FileRouteTypes {
     | '/insights'
     | '/privacy-notice'
     | '/responsible-disclosure'
-    | '/search'
     | '/security-scorecard'
     | '/sitemap.xml'
     | '/terms-of-use'
@@ -443,7 +432,6 @@ export interface FileRouteTypes {
     | '/insights'
     | '/privacy-notice'
     | '/responsible-disclosure'
-    | '/search'
     | '/security-scorecard'
     | '/sitemap.xml'
     | '/terms-of-use'
@@ -483,7 +471,6 @@ export interface RootRouteChildren {
   InsightsRoute: typeof InsightsRoute
   PrivacyNoticeRoute: typeof PrivacyNoticeRoute
   ResponsibleDisclosureRoute: typeof ResponsibleDisclosureRoute
-  SearchRoute: typeof SearchRoute
   SecurityScorecardRoute: typeof SecurityScorecardRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsOfUseRoute: typeof TermsOfUseRoute
@@ -533,13 +520,6 @@ declare module '@tanstack/react-router' {
       path: '/security-scorecard'
       fullPath: '/security-scorecard'
       preLoaderRoute: typeof SecurityScorecardRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/search': {
-      id: '/search'
-      path: '/search'
-      fullPath: '/search'
-      preLoaderRoute: typeof SearchRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/responsible-disclosure': {
@@ -822,7 +802,6 @@ const rootRouteChildren: RootRouteChildren = {
   InsightsRoute: InsightsRoute,
   PrivacyNoticeRoute: PrivacyNoticeRoute,
   ResponsibleDisclosureRoute: ResponsibleDisclosureRoute,
-  SearchRoute: SearchRoute,
   SecurityScorecardRoute: SecurityScorecardRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsOfUseRoute: TermsOfUseRoute,
