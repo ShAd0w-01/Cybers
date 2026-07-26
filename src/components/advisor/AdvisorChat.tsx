@@ -63,10 +63,11 @@ export function AdvisorChat({
       body: { threadId, visitorId },
       // Sign-in is optional; when present the bearer raises the rate limit and
       // links the conversation to the account.
-      headers: async () => {
+      headers: async (): Promise<Record<string, string>> => {
         const { data } = await supabase.auth.getSession();
         return data.session ? { authorization: `Bearer ${data.session.access_token}` } : {};
       },
+
     }),
     onError: (err) => {
       const message = err.message || "The advisor is unavailable right now.";
