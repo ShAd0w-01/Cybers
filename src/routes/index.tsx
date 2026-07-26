@@ -1,5 +1,17 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ShieldCheck, ScrollText, Lock, Users } from "lucide-react";
+import {
+  ArrowRight,
+  ShieldCheck,
+  ScrollText,
+  Lock,
+  Users,
+  Quote,
+  Gauge,
+  FileCheck2,
+  Handshake,
+  Radar,
+  CalendarCheck,
+} from "lucide-react";
 import { getPage, getSection, heroOf, pillars, industries, frameworkMarks } from "@/content/site";
 import { headFor } from "@/components/site/ContentPage";
 import { CtaLink, routeForLabel } from "@/components/site/CtaLink";
@@ -15,6 +27,58 @@ export const Route = createFileRoute("/")({
 });
 
 const pillarIcons = [ShieldCheck, ScrollText, Lock, Users];
+
+const heroProof = [
+  "CERT-In aligned testing",
+  "ISO 27001 & SOC 2 readiness",
+  "DPDPA & GDPR privacy",
+  "vCISO on demand",
+];
+
+const valueProps = [
+  {
+    icon: Radar,
+    title: "Findings you can act on",
+    body: "Every assessment ends with prioritised, exploit-verified findings mapped to business impact — not a raw scanner dump.",
+  },
+  {
+    icon: FileCheck2,
+    title: "Audit-ready evidence",
+    body: "Policies, controls and artefacts are produced in the format auditors, regulators and enterprise customers expect.",
+  },
+  {
+    icon: Gauge,
+    title: "Speed without shortcuts",
+    body: "Scoped in days, not weeks. Clear timelines, fixed deliverables and retesting included so remediation actually closes.",
+  },
+  {
+    icon: Handshake,
+    title: "One accountable team",
+    body: "Testing, GRC, privacy and advisory delivered by the same team, so nothing is lost between vendors and hand-offs.",
+  },
+];
+
+const testimonials = [
+  {
+    quote:
+      "The team turned a scattered set of audit gaps into a single roadmap. We cleared our ISO 27001 stage 2 without a major non-conformity.",
+    author: "Head of IT",
+    detail: "BFSI lender, India",
+  },
+  {
+    quote:
+      "Their VAPT report was the first one our engineers actually enjoyed reading — reproducible steps, real impact, and a retest that confirmed every fix.",
+    author: "VP Engineering",
+    detail: "SaaS platform, UAE",
+  },
+  {
+    quote:
+      "The vCISO engagement gave our board the security reporting it had been asking for, at a fraction of a full-time hire.",
+    author: "Chief Operating Officer",
+    detail: "Healthcare group",
+  },
+];
+
 
 function Home() {
   const hero = heroOf(page);
