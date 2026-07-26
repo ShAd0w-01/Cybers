@@ -20,7 +20,7 @@ export function RelatedServices({
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
               <div className="brand-rule mb-5" />
-              <h2 className="font-display text-2xl font-semibold">
+              <h2 className="type-h2">
                 Related services in {pillar.short}
               </h2>
             </div>

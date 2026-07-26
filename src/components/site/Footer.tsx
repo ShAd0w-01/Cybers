@@ -11,7 +11,7 @@ export function Footer() {
       <div className="ink-grid border-b border-ink-border">
         <div className="mx-auto flex max-w-7xl flex-col gap-6 px-5 py-14 lg:flex-row lg:items-center lg:justify-between lg:px-8">
           <div>
-            <h2 className="max-w-2xl font-display text-2xl font-semibold sm:text-3xl">
+            <h2 className="max-w-2xl type-h2">
               Discuss your security, privacy or compliance requirement
             </h2>
             <p className="mt-3 max-w-xl text-sm leading-relaxed text-ink-muted">

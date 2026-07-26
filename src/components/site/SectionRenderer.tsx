@@ -59,7 +59,7 @@ export function SectionRenderer({
             <div className="brand-rule mb-5" />
             <h2
               className={cn(
-                "font-display text-2xl font-semibold leading-tight sm:text-[2rem]",
+                "type-h2",
                 accentHeading && "brand-gradient-text",
               )}
             >
@@ -122,7 +122,7 @@ export function SectionRenderer({
                 delay={i * 50}
                 className="group rounded-xl border border-border bg-background p-6 transition-all duration-300 hover:-translate-y-1 hover:border-coral/40 hover:shadow-xl hover:shadow-coral/5"
               >
-                <h3 className="font-display text-base font-semibold leading-snug">{g.title}</h3>
+                <h3 className="type-h4">{g.title}</h3>
                 <div className="brand-rule mt-3 mb-4 w-6 transition-all duration-300 group-hover:w-12" />
                 {g.paragraphs.map((p, j) => (
                   <p key={j} className="text-sm leading-relaxed text-muted-foreground">

@@ -56,7 +56,7 @@ export function PageHero({
 
         <Reveal>
           {eyebrow ? (
-            <p className="mb-5 text-xs font-semibold uppercase tracking-[0.22em] text-amber">
+            <p className="mb-5 type-eyebrow text-amber">
               {eyebrow}
             </p>
           ) : null}

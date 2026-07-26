@@ -253,10 +253,10 @@ function Home() {
           <Reveal>
             <div className="max-w-3xl">
               <div className="brand-rule mb-5" />
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-coral">
+              <p className="type-eyebrow text-coral">
                 Why teams choose CyberSentinels
               </p>
-              <h2 className="mt-3 font-display text-2xl font-semibold leading-tight sm:text-[2rem]">
+              <h2 className="mt-3 type-h2">
                 Security work that survives contact with auditors, boards and attackers
               </h2>
             </div>
@@ -272,7 +272,7 @@ function Home() {
                 <span className="brand-gradient grid size-10 place-items-center rounded-lg text-white">
                   <v.icon className="size-5" aria-hidden="true" />
                 </span>
-                <h3 className="mt-5 font-display text-base font-semibold leading-snug">
+                <h3 className="mt-5 type-h4">
                   {v.title}
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{v.body}</p>
@@ -289,7 +289,7 @@ function Home() {
           <Reveal>
             <div className="max-w-3xl">
               <div className="brand-rule mb-5" />
-              <h2 className="font-display text-2xl font-semibold leading-tight sm:text-[2rem]">
+              <h2 className="type-h2">
                 {challenge?.heading}
               </h2>
               <p className="mt-4 text-base leading-relaxed text-muted-foreground">
@@ -310,7 +310,7 @@ function Home() {
                 >
                   <div className="brand-gradient absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100" />
                   <Icon className="size-6 text-coral" aria-hidden="true" />
-                  <h3 className="mt-5 font-display text-lg font-semibold">{c.title}</h3>
+                  <h3 className="mt-5 type-h3">{c.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
                   {pillar ? (
                     <ul className="mt-5 flex flex-wrap gap-1.5">
@@ -349,7 +349,7 @@ function Home() {
           <Reveal>
             <div className="max-w-3xl">
               <div className="brand-rule mb-5" />
-              <h2 className="font-display text-2xl font-semibold leading-tight sm:text-[2rem]">
+              <h2 className="type-h2">
                 {approach?.heading}
               </h2>
             </div>
@@ -363,7 +363,7 @@ function Home() {
                   </span>
                   <div className="h-px flex-1 bg-ink-border" />
                 </div>
-                <h3 className="mt-4 font-display text-base font-semibold">{c.title}</h3>
+                <h3 className="mt-4 type-h4">{c.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink-muted">{c.body}</p>
               </Reveal>
             ))}
@@ -376,7 +376,7 @@ function Home() {
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal className="flex flex-col gap-6 rounded-xl border border-border bg-background p-8 sm:p-10 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-2xl">
-              <h2 className="font-display text-xl font-semibold leading-snug sm:text-2xl">
+              <h2 className="type-h2">
                 Not sure whether you need a test, an audit or a roadmap?
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
@@ -402,7 +402,7 @@ function Home() {
             <div className="flex flex-wrap items-end justify-between gap-6">
               <div className="max-w-2xl">
                 <div className="brand-rule mb-5" />
-                <h2 className="font-display text-2xl font-semibold leading-tight sm:text-[2rem]">
+                <h2 className="type-h2">
                   One Partner Across Your Security, Compliance and Privacy Journey
                 </h2>
                 <p className="mt-4 text-base leading-relaxed text-muted-foreground">
@@ -426,7 +426,7 @@ function Home() {
                 <span className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <h3 className="mt-3 font-display text-base font-semibold leading-snug">
+                <h3 className="mt-3 type-h4">
                   {p.title}
                 </h3>
                 <div className="brand-rule mt-3 mb-4 w-6 transition-all duration-300 group-hover:w-12" />
@@ -463,7 +463,7 @@ function Home() {
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal>
             <div className="brand-rule mb-5" />
-            <h2 className="max-w-3xl font-display text-2xl font-semibold leading-tight sm:text-[2rem]">
+            <h2 className="max-w-3xl type-h2">
               Security and Compliance Designed Around Your Industry
             </h2>
           </Reveal>
@@ -471,7 +471,7 @@ function Home() {
             {industries.map((ind, i) => (
               <Reveal key={ind.url} delay={i * 60} className="bg-background">
                 <Link to={ind.url} className="group block h-full p-7">
-                  <h3 className="font-display text-base font-semibold leading-snug transition-colors group-hover:text-coral">
+                  <h3 className="type-h4 transition-colors group-hover:text-coral">
                     {ind.title}
                   </h3>
                   <div className="brand-rule mt-3 w-6 transition-all duration-300 group-hover:w-14" />
@@ -491,7 +491,7 @@ function Home() {
           <Reveal>
             <div className="max-w-3xl">
               <div className="brand-rule mb-5" />
-              <h2 className="font-display text-2xl font-semibold leading-tight sm:text-[2rem]">
+              <h2 className="type-h2">
                 What Security and Compliance Leaders Say
               </h2>
               <p className="mt-4 text-base leading-relaxed text-muted-foreground">
@@ -516,7 +516,7 @@ function Home() {
         <div className="mx-auto grid max-w-7xl gap-10 px-5 lg:grid-cols-2 lg:px-8">
           <Reveal>
             <div className="brand-rule mb-5" />
-            <h2 className="font-display text-2xl font-semibold leading-tight sm:text-[2rem]">
+            <h2 className="type-h2">
               {start?.heading ?? "Not Sure Where to Start?"}
             </h2>
             <p className="mt-4 max-w-xl text-base leading-relaxed text-ink-muted">
