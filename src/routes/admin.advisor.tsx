@@ -40,11 +40,11 @@ function AdvisorTab() {
           ))}
         </div>
       )}
-      {data.data?.topTopics && (
+      {data.data?.topics && (
         <div className="mt-8 rounded-xl border border-border bg-background p-6">
           <h2 className="type-h4 text-foreground">Top topics</h2>
           <ul className="mt-4 space-y-2">
-            {data.data.topTopics.map((t) => (
+            {data.data.topics.map((t) => (
               <li key={t.topic} className="flex items-center justify-between text-sm">
                 <span className="text-foreground">{t.topic}</span>
                 <span className="text-muted-foreground">{t.count}</span>
