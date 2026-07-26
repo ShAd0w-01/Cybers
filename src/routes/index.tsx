@@ -127,12 +127,28 @@ function Home() {
                 </p>
               ))}
             </div>
-            <div className="mt-9 flex flex-wrap gap-3">
+            <ul className="mt-7 flex flex-wrap gap-2">
+              {heroProof.map((item) => (
+                <li
+                  key={item}
+                  className="inline-flex items-center gap-2 rounded-full border border-ink-border bg-ink-soft/60 px-3 py-1.5 text-[12px] font-medium text-ink-muted"
+                >
+                  <ShieldCheck className="size-3.5 text-amber" aria-hidden="true" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
               <CtaLink to="/contact">Book a Consultation</CtaLink>
               <CtaLink to="/services" variant="ghost-dark">
                 Explore Our Services
               </CtaLink>
+              <span className="inline-flex items-center gap-2 text-[13px] text-ink-muted">
+                <CalendarCheck className="size-4 text-coral" aria-hidden="true" />
+                Free 30-minute scoping call
+              </span>
             </div>
+
             {heroTail ? (
               <p className="mt-8 border-l-2 border-coral pl-4 text-sm italic text-ink-muted">
                 {heroTail.type === "p" ? heroTail.text : null}
