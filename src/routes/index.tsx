@@ -23,6 +23,7 @@ import {
   TestimonialCarousel,
   type Testimonial,
 } from "@/components/site/TestimonialCarousel";
+import { ThreatMap } from "@/components/site/ThreatMap";
 
 
 const page = homeData as PageContent;
