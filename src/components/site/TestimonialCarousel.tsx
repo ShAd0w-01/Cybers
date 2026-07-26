@@ -96,7 +96,7 @@ export function TestimonialCarousel({ items }: { items: Testimonial[] }) {
       <Carousel
         setApi={setApi}
         opts={{ loop: true, align: "start" }}
-        className="[&_[data-slot=carousel-content]]:overflow-visible"
+        >
       >
         <CarouselContent className="-ml-6">
           {items.map((t) => (
