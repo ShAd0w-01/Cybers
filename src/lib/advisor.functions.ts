@@ -64,12 +64,13 @@ export const getThreadMessages = createServerFn({ method: "POST" })
     return (rows ?? []).map((row) => ({
       id: String(row.id),
       role: String(row.role),
-      parts: (row.parts ?? []) as unknown[],
+      parts: (row.parts ?? []) as Json[],
     }));
   });
 
 /** Serializable row shape; cast to UIMessage on the client. */
-export type StoredMessage = { id: string; role: string; parts: unknown[] };
+export type Json = string | number | boolean | null | Json[] | { [key: string]: Json };
+export type StoredMessage = { id: string; role: string; parts: Json[] };
 
 export function toUiMessages(rows: StoredMessage[]): UIMessage[] {
   return rows.map((row) => ({
