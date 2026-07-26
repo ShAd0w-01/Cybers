@@ -39,8 +39,8 @@ export const Route = createFileRoute("/blog/$slug")({
   component: Article,
 });
 
+function Article() {
   const { post } = Route.useLoaderData() as { post: BlogPost };
-  const { post } = Route.useLoaderData();
   return (
     <article>
       <header className="ink-grid bg-ink py-16 text-ink-foreground sm:py-20">
