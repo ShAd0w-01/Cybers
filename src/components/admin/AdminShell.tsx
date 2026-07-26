@@ -7,6 +7,7 @@ import {
   LayoutDashboard,
   LayoutTemplate,
   LogOut,
+  Palette,
   ShieldCheck,
   Users,
 } from "lucide-react";
@@ -21,6 +22,7 @@ const nav = [
   { to: "/admin/leads", label: "CRM — Leads", icon: Users },
   { to: "/admin/blog", label: "Blog posts", icon: FileText },
   { to: "/admin/pages", label: "Website content", icon: LayoutTemplate },
+  { to: "/admin/theme", label: "Theme settings", icon: Palette },
   { to: "/admin/advisor", label: "Advisor analytics", icon: BarChart3 },
 ];
 
