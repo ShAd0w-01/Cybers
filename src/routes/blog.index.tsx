@@ -6,7 +6,7 @@ import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
 
 export const Route = createFileRoute("/blog/")({
-  loader: async () => ({ posts: await listPublishedPosts() }),
+  loader: async (): Promise<{ posts: BlogPostCard[] }> => ({ posts: await listPublishedPosts() }),
   head: () => ({
     meta: [
       { title: "Cybersecurity & Compliance Blog | CyberSentinels" },
