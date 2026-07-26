@@ -3,8 +3,11 @@ import { cn } from "@/lib/utils";
 
 type Variant = "primary" | "outline" | "ghost-dark" | "link";
 
+// Focus styling is inherited from the global focus-visible rule in styles.css
+// so every link and button in the design shares one ring.
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 type-button transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral focus-visible:ring-offset-2";
+  "inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 type-button transition-all duration-200";
+
 
 const styles: Record<Variant, string> = {
   primary: "brand-gradient text-white shadow-sm hover:brightness-110 hover:-translate-y-0.5",
