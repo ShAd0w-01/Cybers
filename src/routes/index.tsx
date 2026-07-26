@@ -1,5 +1,17 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ShieldCheck, ScrollText, Lock, Users } from "lucide-react";
+import {
+  ArrowRight,
+  ShieldCheck,
+  ScrollText,
+  Lock,
+  Users,
+  Quote,
+  Gauge,
+  FileCheck2,
+  Handshake,
+  Radar,
+  CalendarCheck,
+} from "lucide-react";
 import { getPage, getSection, heroOf, pillars, industries, frameworkMarks } from "@/content/site";
 import { headFor } from "@/components/site/ContentPage";
 import { CtaLink, routeForLabel } from "@/components/site/CtaLink";
@@ -15,6 +27,58 @@ export const Route = createFileRoute("/")({
 });
 
 const pillarIcons = [ShieldCheck, ScrollText, Lock, Users];
+
+const heroProof = [
+  "CERT-In aligned testing",
+  "ISO 27001 & SOC 2 readiness",
+  "DPDPA & GDPR privacy",
+  "vCISO on demand",
+];
+
+const valueProps = [
+  {
+    icon: Radar,
+    title: "Findings you can act on",
+    body: "Every assessment ends with prioritised, exploit-verified findings mapped to business impact — not a raw scanner dump.",
+  },
+  {
+    icon: FileCheck2,
+    title: "Audit-ready evidence",
+    body: "Policies, controls and artefacts are produced in the format auditors, regulators and enterprise customers expect.",
+  },
+  {
+    icon: Gauge,
+    title: "Speed without shortcuts",
+    body: "Scoped in days, not weeks. Clear timelines, fixed deliverables and retesting included so remediation actually closes.",
+  },
+  {
+    icon: Handshake,
+    title: "One accountable team",
+    body: "Testing, GRC, privacy and advisory delivered by the same team, so nothing is lost between vendors and hand-offs.",
+  },
+];
+
+const testimonials = [
+  {
+    quote:
+      "The team turned a scattered set of audit gaps into a single roadmap. We cleared our ISO 27001 stage 2 without a major non-conformity.",
+    author: "Head of IT",
+    detail: "BFSI lender, India",
+  },
+  {
+    quote:
+      "Their VAPT report was the first one our engineers actually enjoyed reading — reproducible steps, real impact, and a retest that confirmed every fix.",
+    author: "VP Engineering",
+    detail: "SaaS platform, UAE",
+  },
+  {
+    quote:
+      "The vCISO engagement gave our board the security reporting it had been asking for, at a fraction of a full-time hire.",
+    author: "Chief Operating Officer",
+    detail: "Healthcare group",
+  },
+];
+
 
 function Home() {
   const hero = heroOf(page);
@@ -63,12 +127,28 @@ function Home() {
                 </p>
               ))}
             </div>
-            <div className="mt-9 flex flex-wrap gap-3">
+            <ul className="mt-7 flex flex-wrap gap-2">
+              {heroProof.map((item) => (
+                <li
+                  key={item}
+                  className="inline-flex items-center gap-2 rounded-full border border-ink-border bg-ink-soft/60 px-3 py-1.5 text-[12px] font-medium text-ink-muted"
+                >
+                  <ShieldCheck className="size-3.5 text-amber" aria-hidden="true" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
               <CtaLink to="/contact">Book a Consultation</CtaLink>
               <CtaLink to="/services" variant="ghost-dark">
                 Explore Our Services
               </CtaLink>
+              <span className="inline-flex items-center gap-2 text-[13px] text-ink-muted">
+                <CalendarCheck className="size-4 text-coral" aria-hidden="true" />
+                Free 30-minute scoping call
+              </span>
             </div>
+
             {heroTail ? (
               <p className="mt-8 border-l-2 border-coral pl-4 text-sm italic text-ink-muted">
                 {heroTail.type === "p" ? heroTail.text : null}
@@ -140,8 +220,44 @@ function Home() {
         </div>
       </section>
 
-      {/* ------------------------------------------------ Challenge grid */}
+      {/* -------------------------------------------------- Value props */}
       <section className="border-b border-border bg-surface py-16 sm:py-24">
+        <div className="mx-auto max-w-7xl px-5 lg:px-8">
+          <Reveal>
+            <div className="max-w-3xl">
+              <div className="brand-rule mb-5" />
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-coral">
+                Why teams choose CyberSentinels
+              </p>
+              <h2 className="mt-3 font-display text-2xl font-semibold leading-tight sm:text-[2rem]">
+                Security work that survives contact with auditors, boards and attackers
+              </h2>
+            </div>
+          </Reveal>
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {valueProps.map((v, i) => (
+              <Reveal
+                as="article"
+                key={v.title}
+                delay={i * 70}
+                className="group rounded-xl border border-border bg-background p-6 transition-all duration-300 hover:-translate-y-1 hover:border-coral/40 hover:shadow-xl hover:shadow-coral/5"
+              >
+                <span className="brand-gradient grid size-10 place-items-center rounded-lg text-white">
+                  <v.icon className="size-5" aria-hidden="true" />
+                </span>
+                <h3 className="mt-5 font-display text-base font-semibold leading-snug">
+                  {v.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{v.body}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ------------------------------------------------ Challenge grid */}
+      <section className="border-b border-border bg-background py-16 sm:py-24">
+
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal>
             <div className="max-w-3xl">
@@ -163,7 +279,7 @@ function Home() {
                   as="article"
                   key={c.title}
                   delay={i * 60}
-                  className="group relative overflow-hidden rounded-xl border border-border bg-background p-7 transition-all duration-300 hover:-translate-y-1 hover:border-coral/40 hover:shadow-2xl hover:shadow-coral/8"
+                  className="group relative overflow-hidden rounded-xl border border-border bg-surface p-7 transition-all duration-300 hover:-translate-y-1 hover:border-coral/40 hover:shadow-2xl hover:shadow-coral/8"
                 >
                   <div className="brand-gradient absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100" />
                   <Icon className="size-6 text-coral" aria-hidden="true" />
@@ -227,6 +343,30 @@ function Home() {
           </ol>
         </div>
       </section>
+
+      {/* -------------------------------------------------- Mid-page CTA */}
+      <section className="border-b border-border bg-surface py-14">
+        <div className="mx-auto max-w-7xl px-5 lg:px-8">
+          <Reveal className="flex flex-col gap-6 rounded-xl border border-border bg-background p-8 sm:p-10 lg:flex-row lg:items-center lg:justify-between">
+            <div className="max-w-2xl">
+              <h2 className="font-display text-xl font-semibold leading-snug sm:text-2xl">
+                Not sure whether you need a test, an audit or a roadmap?
+              </h2>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                Share your goal, deadline or customer requirement. We will recommend the right scope
+                — even when it is smaller than you expected.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <CtaLink to="/contact">Request an Assessment</CtaLink>
+              <CtaLink to="/case-studies" variant="outline">
+                See Client Outcomes
+              </CtaLink>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
 
       {/* ----------------------------------------------------- Practices */}
       <section className="border-b border-border bg-background py-16 sm:py-24">
@@ -317,6 +457,45 @@ function Home() {
           </div>
         </div>
       </section>
+
+      {/* --------------------------------------------------- Testimonials */}
+      <section className="border-b border-border bg-surface py-16 sm:py-24">
+        <div className="mx-auto max-w-7xl px-5 lg:px-8">
+          <Reveal>
+            <div className="max-w-3xl">
+              <div className="brand-rule mb-5" />
+              <h2 className="font-display text-2xl font-semibold leading-tight sm:text-[2rem]">
+                What Security and Compliance Leaders Say
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+                Client names are withheld under engagement confidentiality. Outcomes are shared with
+                permission.
+              </p>
+            </div>
+          </Reveal>
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            {testimonials.map((t, i) => (
+              <Reveal
+                as="article"
+                key={t.author + t.detail}
+                delay={i * 70}
+                className="flex flex-col rounded-xl border border-border bg-background p-7 transition-all duration-300 hover:-translate-y-1 hover:border-coral/40 hover:shadow-xl hover:shadow-coral/5"
+              >
+                <Quote className="size-6 text-coral" aria-hidden="true" />
+                <blockquote className="mt-5 text-sm leading-relaxed text-foreground">
+                  “{t.quote}”
+                </blockquote>
+                <div className="mt-auto pt-6">
+                  <div className="brand-rule mb-4 w-8" />
+                  <p className="font-display text-sm font-semibold">{t.author}</p>
+                  <p className="text-[13px] text-muted-foreground">{t.detail}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
 
       {/* ------------------------------------------------------ Insights */}
       {insights ? <SectionRenderer section={insights} index={1} /> : null}
