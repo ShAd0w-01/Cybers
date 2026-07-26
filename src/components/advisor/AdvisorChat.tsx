@@ -245,3 +245,28 @@ export function AdvisorChat({
     </div>
   );
 }
+
+/** Every answer cites the exact pages the advisor drew on. */
+function Sources({ citations }: { citations: Array<{ title: string; url: string }> }) {
+  if (!citations.length) return null;
+  return (
+    <div className="mt-2 rounded-lg border border-border bg-muted/40 px-3 py-2">
+      <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+        Sources
+      </p>
+      <ul className="mt-1.5 flex flex-wrap gap-x-4 gap-y-1">
+        {citations.map((citation) => (
+          <li key={citation.url}>
+            <a
+              href={citation.url}
+              className="inline-flex items-center gap-1 text-xs text-foreground underline underline-offset-2 hover:text-primary"
+            >
+              {citation.title}
+              <ExternalLink className="h-3 w-3" aria-hidden="true" />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
