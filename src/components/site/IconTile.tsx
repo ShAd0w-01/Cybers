@@ -20,7 +20,7 @@ export function IconTile({
   return (
     <span
       className={cn(
-        "grid shrink-0 place-items-center rounded-lg border",
+        "grid shrink-0 place-items-center rounded-lg border transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-coral/50 group-hover:shadow-[0_10px_22px_-12px_color-mix(in_oklab,var(--coral)_65%,transparent)]",
         size === "sm" ? "size-9" : "size-11",
         tone === "dark"
           ? "border-ink-border bg-ink-soft/60 text-amber"

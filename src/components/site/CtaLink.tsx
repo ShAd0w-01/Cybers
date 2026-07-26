@@ -10,11 +10,12 @@ const base =
 
 
 const styles: Record<Variant, string> = {
-  primary: "brand-gradient text-white shadow-sm hover:brightness-110 hover:-translate-y-0.5",
+  primary:
+    "brand-gradient anim-glow text-white hover:brightness-110 hover:-translate-y-0.5 hover:shadow-[0_16px_36px_-12px_color-mix(in_oklab,var(--coral)_70%,transparent)] active:translate-y-0",
   outline:
-    "border border-border bg-background text-foreground hover:border-coral hover:text-coral-ink",
+    "border border-border bg-background text-foreground hover:-translate-y-0.5 hover:border-coral hover:text-coral-ink hover:shadow-[0_12px_28px_-14px_color-mix(in_oklab,var(--ink)_45%,transparent)] active:translate-y-0",
   "ghost-dark":
-    "border border-ink-border bg-white/5 text-ink-foreground hover:bg-white/10 hover:border-white/30",
+    "border border-ink-border bg-white/5 text-ink-foreground hover:-translate-y-0.5 hover:bg-white/10 hover:border-white/30 hover:shadow-[0_14px_30px_-14px_rgba(0,0,0,0.6)] active:translate-y-0",
   link: "px-0 py-0 text-coral-ink hover:gap-3",
 };
 

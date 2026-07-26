@@ -276,7 +276,7 @@ function Home() {
                 as="article"
                 key={v.title}
                 delay={i * 70}
-                className="group rounded-xl border border-border bg-background p-6 transition-all duration-300 hover:-translate-y-1 hover:border-coral/40 hover:shadow-xl hover:shadow-coral/5"
+                className="group card-lift sheen rounded-xl border border-border bg-background p-6"
               >
                 <IconTile icon={v.icon} />
 
@@ -314,7 +314,7 @@ function Home() {
                   as="article"
                   key={c.title}
                   delay={i * 60}
-                  className="group relative overflow-hidden rounded-xl border border-border bg-surface p-7 transition-all duration-300 hover:-translate-y-1 hover:border-coral/40 hover:shadow-2xl hover:shadow-coral/8"
+                  className="group card-lift sheen relative overflow-hidden rounded-xl border border-border bg-surface p-7"
                 >
                   <div className="brand-gradient absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100" />
                   <IconTile icon={Icon} />
@@ -429,7 +429,7 @@ function Home() {
                 as="article"
                 key={p.url}
                 delay={i * 60}
-                className="group flex flex-col rounded-xl border border-border p-6 transition-all duration-300 hover:-translate-y-1 hover:border-coral/40 hover:shadow-xl hover:shadow-coral/5"
+                className="group card-lift sheen flex flex-col rounded-xl border border-border bg-background p-6"
               >
                 <span className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
                   {String(i + 1).padStart(2, "0")}
