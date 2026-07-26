@@ -45,10 +45,32 @@ function Contact() {
             </Reveal>
           ))}
         </div>
-        <div className="mx-auto mt-12 max-w-3xl px-5 lg:px-8">
+        <div className="mx-auto mt-10 max-w-3xl px-5 lg:px-8">
+          <a
+            href={whatsappHref()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col gap-3 rounded-xl border border-border bg-background p-6 transition-colors hover:border-[#25D366] sm:flex-row sm:items-center sm:justify-between"
+          >
+            <div className="flex items-center gap-3">
+              <span className="inline-flex size-10 items-center justify-center rounded-full bg-[#25D366] text-[#062d15]">
+                <WhatsAppIcon className="size-5" />
+              </span>
+              <div>
+                <p className="font-display text-sm font-semibold text-foreground">
+                  Chat with us on WhatsApp
+                </p>
+                <p className="text-sm text-muted-foreground">{whatsapp.display}</p>
+              </div>
+            </div>
+            <span className="text-sm font-semibold text-coral-ink">Start chat →</span>
+          </a>
+        </div>
+        <div className="mx-auto mt-8 max-w-3xl px-5 lg:px-8">
           <ContactForm />
         </div>
       </section>
+
     </ContentPage>
   );
 }
