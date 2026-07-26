@@ -96,8 +96,8 @@ export function TestimonialCarousel({ items }: { items: Testimonial[] }) {
       <Carousel
         setApi={setApi}
         opts={{ loop: true, align: "start" }}
-        >
       >
+
         <CarouselContent className="-ml-6">
           {items.map((t) => (
             <CarouselItem key={t.author + t.detail} className="pl-6 md:basis-1/2 lg:basis-1/3">
