@@ -434,6 +434,45 @@ function Home() {
         </div>
       </section>
 
+      {/* --------------------------------------------------- Testimonials */}
+      <section className="border-b border-border bg-surface py-16 sm:py-24">
+        <div className="mx-auto max-w-7xl px-5 lg:px-8">
+          <Reveal>
+            <div className="max-w-3xl">
+              <div className="brand-rule mb-5" />
+              <h2 className="font-display text-2xl font-semibold leading-tight sm:text-[2rem]">
+                What Security and Compliance Leaders Say
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+                Client names are withheld under engagement confidentiality. Outcomes are shared with
+                permission.
+              </p>
+            </div>
+          </Reveal>
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            {testimonials.map((t, i) => (
+              <Reveal
+                as="article"
+                key={t.author + t.detail}
+                delay={i * 70}
+                className="flex flex-col rounded-xl border border-border bg-background p-7 transition-all duration-300 hover:-translate-y-1 hover:border-coral/40 hover:shadow-xl hover:shadow-coral/5"
+              >
+                <Quote className="size-6 text-coral" aria-hidden="true" />
+                <blockquote className="mt-5 text-sm leading-relaxed text-foreground">
+                  “{t.quote}”
+                </blockquote>
+                <div className="mt-auto pt-6">
+                  <div className="brand-rule mb-4 w-8" />
+                  <p className="font-display text-sm font-semibold">{t.author}</p>
+                  <p className="text-[13px] text-muted-foreground">{t.detail}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
       {/* ------------------------------------------------------ Insights */}
       {insights ? <SectionRenderer section={insights} index={1} /> : null}
 
