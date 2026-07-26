@@ -160,24 +160,24 @@ function Home() {
         </div>
         <div className="ink-grid absolute inset-0" aria-hidden="true" />
 
-        <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-5 py-20 lg:grid-cols-[1.15fr_0.85fr] lg:px-8 lg:py-28">
+        <div className="relative mx-auto max-w-4xl px-5 py-20 text-center lg:px-8 lg:py-28">
           <Reveal>
             <p className="mb-6 text-xs font-semibold uppercase tracking-[0.24em] text-amber">
               Cybersecurity • Compliance • Privacy • Governance
             </p>
-            <h1 className="font-display text-[2rem] font-semibold leading-[1.1] sm:text-5xl lg:text-[3.4rem]">
+            <h1 className="font-display text-[2rem] font-semibold leading-[1.1] sm:text-5xl lg:text-[3.8rem]">
               Strengthen Security.{" "}
               <span className="brand-gradient-text">Simplify Compliance.</span> Build Lasting
               Resilience.
             </h1>
-            <div className="mt-7 max-w-2xl space-y-4">
+            <div className="mt-7 space-y-4">
               {hero.paragraphs.slice(0, 2).map((p, i) => (
-                <p key={i} className="text-base leading-relaxed text-ink-muted">
+                <p key={i} className="mx-auto max-w-2xl text-base leading-relaxed text-ink-muted">
                   {p}
                 </p>
               ))}
             </div>
-            <ul className="mt-7 flex flex-wrap gap-2">
+            <ul className="mt-7 flex flex-wrap justify-center gap-2">
               {heroProof.map((item) => (
                 <li
                   key={item}
@@ -188,7 +188,7 @@ function Home() {
                 </li>
               ))}
             </ul>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <CtaLink to="/contact">Book a Consultation</CtaLink>
               <CtaLink to="/services" variant="ghost-dark">
                 Explore Our Services
@@ -200,69 +200,11 @@ function Home() {
             </div>
 
             {heroTail ? (
-              <p className="mt-8 border-l-2 border-coral pl-4 text-sm italic text-ink-muted">
+              <p className="mx-auto mt-8 max-w-2xl border-l-2 border-coral pl-4 text-left text-sm italic text-ink-muted">
                 {heroTail.type === "p" ? heroTail.text : null}
               </p>
             ) : null}
           </Reveal>
-
-          <Reveal delay={120} className="hidden lg:block">
-            <div className="relative mx-auto aspect-square w-full max-w-md">
-              {/* soft glow */}
-              <div
-                className="absolute inset-8 rounded-full opacity-40 blur-3xl"
-                style={{
-                  background:
-                    "radial-gradient(circle, var(--magenta) 0%, var(--coral) 45%, transparent 72%)",
-                }}
-                aria-hidden="true"
-              />
-
-              {/* radar sweep */}
-              <div
-                className="absolute inset-4 rounded-full opacity-[0.28]"
-                style={{
-                  background:
-                    "conic-gradient(from 0deg, transparent 0deg, transparent 250deg, var(--coral) 330deg, var(--magenta) 360deg)",
-                  animation: "arc-spin 9s linear infinite",
-                  maskImage: "radial-gradient(circle, transparent 34%, black 36%)",
-                  WebkitMaskImage: "radial-gradient(circle, transparent 34%, black 36%)",
-                }}
-                aria-hidden="true"
-              />
-
-              {/* rings */}
-              <div className="absolute inset-4 rounded-full border border-ink-border" />
-              <div className="absolute inset-14 rounded-full border border-dashed border-ink-border/70" />
-              <div className="absolute inset-24 rounded-full border border-ink-border" />
-
-
-              {/* orbiting capability chips */}
-              {["VAPT", "ISO 27001", "SOC 2", "DPDPA", "vCISO", "GDPR"].map((label, i, arr) => {
-                const angle = (i / arr.length) * 2 * Math.PI - Math.PI / 2;
-                return (
-                  <span
-                    key={label}
-                    className="absolute inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-ink-border bg-ink-soft/85 px-3 py-1.5 text-[11px] font-medium tracking-wide shadow-lg backdrop-blur transition-transform duration-300 hover:scale-110"
-                    style={{
-                      left: `${50 + 46 * Math.cos(angle)}%`,
-                      top: `${50 + 46 * Math.sin(angle)}%`,
-                      transform: "translate(-50%, -50%)",
-                      animation: `fade-in 0.5s ease-out ${i * 90}ms both`,
-                    }}
-                  >
-                    <span
-                      className="size-1.5 rounded-full"
-                      style={{ background: "var(--coral)" }}
-                      aria-hidden="true"
-                    />
-                    {label}
-                  </span>
-                );
-              })}
-            </div>
-          </Reveal>
-
         </div>
 
         {/* Framework marquee */}
