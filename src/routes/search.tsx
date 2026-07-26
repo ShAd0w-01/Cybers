@@ -47,7 +47,9 @@ function SearchPage() {
       <PageHero
         eyebrow="Search"
         title={query ? `Results for “${query}”` : "Search the site"}
-        subtitle="Find services, industries, frameworks and resources across Cybersentinels."
+        paragraphs={[
+          "Find services, industries, frameworks and resources across Cybersentinels.",
+        ]}
       />
 
       <section className="mx-auto max-w-4xl px-5 py-12 lg:px-8">
