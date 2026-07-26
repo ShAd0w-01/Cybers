@@ -253,7 +253,7 @@ function Home() {
           <Reveal>
             <div className="max-w-3xl">
               <div className="brand-rule mb-5" />
-              <p className="type-eyebrow text-coral">
+              <p className="type-eyebrow text-coral-ink">
                 Why teams choose CyberSentinels
               </p>
               <h2 className="mt-3 type-h2">
@@ -309,7 +309,7 @@ function Home() {
                   className="group relative overflow-hidden rounded-xl border border-border bg-surface p-7 transition-all duration-300 hover:-translate-y-1 hover:border-coral/40 hover:shadow-2xl hover:shadow-coral/8"
                 >
                   <div className="brand-gradient absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100" />
-                  <Icon className="size-6 text-coral" aria-hidden="true" />
+                  <Icon className="size-6 text-coral-ink" aria-hidden="true" />
                   <h3 className="mt-5 type-h3">{c.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
                   {pillar ? (
@@ -330,7 +330,7 @@ function Home() {
                   {c.button ? (
                     <Link
                       to={pillar?.url ?? routeForLabel(c.button)}
-                      className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-coral transition-all group-hover:gap-3"
+                      className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-coral-ink transition-all group-hover:gap-3"
                     >
                       {c.button}
                       <ArrowRight className="size-4" aria-hidden="true" />
@@ -436,7 +436,7 @@ function Home() {
                     <li key={s.url}>
                       <Link
                         to={s.url}
-                        className="text-[13px] leading-snug text-muted-foreground transition-colors hover:text-coral"
+                        className="text-[13px] leading-snug text-muted-foreground transition-colors hover:text-coral-ink"
                       >
                         {s.title}
                       </Link>
@@ -445,7 +445,7 @@ function Home() {
                 </ul>
                 <Link
                   to={p.url}
-                  className="mt-auto pt-5 text-sm font-semibold text-coral transition-all hover:tracking-wide"
+                  className="mt-auto pt-5 text-sm font-semibold text-coral-ink transition-all hover:tracking-wide"
                 >
                   Explore {p.short} →
                 </Link>
@@ -471,11 +471,11 @@ function Home() {
             {industries.map((ind, i) => (
               <Reveal key={ind.url} delay={i * 60} className="bg-background">
                 <Link to={ind.url} className="group block h-full p-7">
-                  <h3 className="type-h4 transition-colors group-hover:text-coral">
+                  <h3 className="type-h4 transition-colors group-hover:text-coral-ink">
                     {ind.title}
                   </h3>
                   <div className="brand-rule mt-3 w-6 transition-all duration-300 group-hover:w-14" />
-                  <span className="mt-6 inline-flex items-center gap-2 text-sm text-muted-foreground transition-all group-hover:gap-3 group-hover:text-coral">
+                  <span className="mt-6 inline-flex items-center gap-2 text-sm text-muted-foreground transition-all group-hover:gap-3 group-hover:text-coral-ink">
                     Industry approach <ArrowRight className="size-4" aria-hidden="true" />
                   </span>
                 </Link>

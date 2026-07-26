@@ -59,7 +59,7 @@ export function Header() {
                 <div key={p.url}>
                   <Link
                     to={p.url}
-                    className="font-display text-sm font-semibold text-foreground hover:text-coral"
+                    className="font-display text-sm font-semibold text-foreground hover:text-coral-ink"
                     onClick={() => setOpen(null)}
                   >
                     {p.title}
@@ -70,7 +70,7 @@ export function Header() {
                       <li key={svc.url}>
                         <Link
                           to={svc.url}
-                          className="block text-[13px] leading-snug text-muted-foreground transition-colors hover:text-coral"
+                          className="block text-[13px] leading-snug text-muted-foreground transition-colors hover:text-coral-ink"
                           onClick={() => setOpen(null)}
                         >
                           {svc.title}
@@ -87,7 +87,7 @@ export function Header() {
               </p>
               <Link
                 to="/services"
-                className="text-sm font-semibold text-coral"
+                className="text-sm font-semibold text-coral-ink"
                 onClick={() => setOpen(null)}
               >
                 View all services →
@@ -195,8 +195,8 @@ function TopLink({ to, children }: { to: string; children: React.ReactNode }) {
   return (
     <Link
       to={to}
-      className="rounded-md px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:text-coral"
-      activeProps={{ className: "text-coral" }}
+      className="rounded-md px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:text-coral-ink"
+      activeProps={{ className: "text-coral-ink" }}
       activeOptions={{ exact: to === "/" }}
     >
       {children}
@@ -226,7 +226,7 @@ function MenuTrigger({
         type="button"
         className={cn(
           "flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors",
-          isOpen ? "text-coral" : "text-foreground/80 hover:text-coral",
+          isOpen ? "text-coral-ink" : "text-foreground/80 hover:text-coral-ink",
         )}
         aria-expanded={isOpen}
         onClick={() => setOpen(isOpen ? null : id)}
@@ -262,7 +262,7 @@ function SimpleList({
         <li key={i.url}>
           <Link
             to={i.url}
-            className="block rounded-md px-3 py-2.5 text-sm text-muted-foreground transition-colors hover:bg-surface hover:text-coral"
+            className="block rounded-md px-3 py-2.5 text-sm text-muted-foreground transition-colors hover:bg-surface hover:text-coral-ink"
             onClick={onNavigate}
           >
             {i.title}

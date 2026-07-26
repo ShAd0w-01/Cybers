@@ -78,7 +78,7 @@ export function SectionRenderer({
             <ul className="mt-8 grid gap-x-10 gap-y-3 sm:grid-cols-2">
               {bare.flatMap((g) => g.items).map((item, i) => (
                 <li key={i} className="flex gap-3 text-sm leading-relaxed text-muted-foreground">
-                  <Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" />
+                  <Check className="mt-0.5 size-4 shrink-0 text-coral-ink" aria-hidden="true" />
                   <span>{item}</span>
                 </li>
               ))}

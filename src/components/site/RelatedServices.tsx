@@ -33,7 +33,7 @@ export function RelatedServices({
           {related.map((s, i) => (
             <Reveal key={s.url} delay={i * 50} className="bg-background">
               <Link to={s.url} className="group block h-full p-6">
-                <h3 className="font-display text-sm font-semibold leading-snug transition-colors group-hover:text-coral">
+                <h3 className="font-display text-sm font-semibold leading-snug transition-colors group-hover:text-coral-ink">
                   {s.title}
                 </h3>
                 <div className="brand-rule mt-3 w-6 transition-all duration-300 group-hover:w-12" />
