@@ -211,6 +211,9 @@ export const allRoutes: string[] = [
   ...industries.map((i) => i.url),
   "/case-studies",
   "/insights",
+  "/security-scorecard",
+  "/compliance-explorer",
+
   "/contact",
   ...legalLinks.map((l) => l.url),
 ];

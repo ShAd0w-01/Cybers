@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ContentPage, headFor } from "@/components/site/ContentPage";
+import { CaseStudyShowcase } from "@/components/site/CaseStudyShowcase";
 import type { PageContent } from "@/content/site";
 
 /** Page copy is loaded on demand so it never ships in the initial bundle. */
@@ -19,6 +20,9 @@ function CaseStudies() {
       page={page}
       eyebrow="Case Studies"
       crumbs={[{ label: "Home", to: "/" }, { label: "Case Studies" }]}
-    />
+    >
+      <CaseStudyShowcase />
+    </ContentPage>
   );
 }
+

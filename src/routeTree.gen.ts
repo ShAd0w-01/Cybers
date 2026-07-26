@@ -13,12 +13,14 @@ import { Route as WebsiteDisclaimerRouteImport } from './routes/website-disclaim
 import { Route as ThreatMapRouteImport } from './routes/threat-map'
 import { Route as TermsOfUseRouteImport } from './routes/terms-of-use'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as SecurityScorecardRouteImport } from './routes/security-scorecard'
 import { Route as ResponsibleDisclosureRouteImport } from './routes/responsible-disclosure'
 import { Route as PrivacyNoticeRouteImport } from './routes/privacy-notice'
 import { Route as InsightsRouteImport } from './routes/insights'
 import { Route as CyberNewsRouteImport } from './routes/cyber-news'
 import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as ComplianceExplorerRouteImport } from './routes/compliance-explorer'
 import { Route as CaseStudiesRouteImport } from './routes/case-studies'
 import { Route as CareersRouteImport } from './routes/careers'
 import { Route as AuthRouteImport } from './routes/auth'
@@ -64,6 +66,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SecurityScorecardRoute = SecurityScorecardRouteImport.update({
+  id: '/security-scorecard',
+  path: '/security-scorecard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResponsibleDisclosureRoute = ResponsibleDisclosureRouteImport.update({
   id: '/responsible-disclosure',
   path: '/responsible-disclosure',
@@ -92,6 +99,11 @@ const CookiePolicyRoute = CookiePolicyRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComplianceExplorerRoute = ComplianceExplorerRouteImport.update({
+  id: '/compliance-explorer',
+  path: '/compliance-explorer',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CaseStudiesRoute = CaseStudiesRouteImport.update({
@@ -224,12 +236,14 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRouteWithChildren
   '/careers': typeof CareersRoute
   '/case-studies': typeof CaseStudiesRoute
+  '/compliance-explorer': typeof ComplianceExplorerRoute
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/cyber-news': typeof CyberNewsRoute
   '/insights': typeof InsightsRoute
   '/privacy-notice': typeof PrivacyNoticeRoute
   '/responsible-disclosure': typeof ResponsibleDisclosureRoute
+  '/security-scorecard': typeof SecurityScorecardRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-of-use': typeof TermsOfUseRoute
   '/threat-map': typeof ThreatMapRoute
@@ -258,12 +272,14 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRouteWithChildren
   '/careers': typeof CareersRoute
   '/case-studies': typeof CaseStudiesRoute
+  '/compliance-explorer': typeof ComplianceExplorerRoute
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/cyber-news': typeof CyberNewsRoute
   '/insights': typeof InsightsRoute
   '/privacy-notice': typeof PrivacyNoticeRoute
   '/responsible-disclosure': typeof ResponsibleDisclosureRoute
+  '/security-scorecard': typeof SecurityScorecardRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-of-use': typeof TermsOfUseRoute
   '/threat-map': typeof ThreatMapRoute
@@ -295,12 +311,14 @@ export interface FileRoutesById {
   '/auth': typeof AuthRouteWithChildren
   '/careers': typeof CareersRoute
   '/case-studies': typeof CaseStudiesRoute
+  '/compliance-explorer': typeof ComplianceExplorerRoute
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/cyber-news': typeof CyberNewsRoute
   '/insights': typeof InsightsRoute
   '/privacy-notice': typeof PrivacyNoticeRoute
   '/responsible-disclosure': typeof ResponsibleDisclosureRoute
+  '/security-scorecard': typeof SecurityScorecardRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-of-use': typeof TermsOfUseRoute
   '/threat-map': typeof ThreatMapRoute
@@ -333,12 +351,14 @@ export interface FileRouteTypes {
     | '/auth'
     | '/careers'
     | '/case-studies'
+    | '/compliance-explorer'
     | '/contact'
     | '/cookie-policy'
     | '/cyber-news'
     | '/insights'
     | '/privacy-notice'
     | '/responsible-disclosure'
+    | '/security-scorecard'
     | '/sitemap.xml'
     | '/terms-of-use'
     | '/threat-map'
@@ -367,12 +387,14 @@ export interface FileRouteTypes {
     | '/auth'
     | '/careers'
     | '/case-studies'
+    | '/compliance-explorer'
     | '/contact'
     | '/cookie-policy'
     | '/cyber-news'
     | '/insights'
     | '/privacy-notice'
     | '/responsible-disclosure'
+    | '/security-scorecard'
     | '/sitemap.xml'
     | '/terms-of-use'
     | '/threat-map'
@@ -403,12 +425,14 @@ export interface FileRouteTypes {
     | '/auth'
     | '/careers'
     | '/case-studies'
+    | '/compliance-explorer'
     | '/contact'
     | '/cookie-policy'
     | '/cyber-news'
     | '/insights'
     | '/privacy-notice'
     | '/responsible-disclosure'
+    | '/security-scorecard'
     | '/sitemap.xml'
     | '/terms-of-use'
     | '/threat-map'
@@ -440,12 +464,14 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRouteWithChildren
   CareersRoute: typeof CareersRoute
   CaseStudiesRoute: typeof CaseStudiesRoute
+  ComplianceExplorerRoute: typeof ComplianceExplorerRoute
   ContactRoute: typeof ContactRoute
   CookiePolicyRoute: typeof CookiePolicyRoute
   CyberNewsRoute: typeof CyberNewsRoute
   InsightsRoute: typeof InsightsRoute
   PrivacyNoticeRoute: typeof PrivacyNoticeRoute
   ResponsibleDisclosureRoute: typeof ResponsibleDisclosureRoute
+  SecurityScorecardRoute: typeof SecurityScorecardRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsOfUseRoute: typeof TermsOfUseRoute
   ThreatMapRoute: typeof ThreatMapRoute
@@ -489,6 +515,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/security-scorecard': {
+      id: '/security-scorecard'
+      path: '/security-scorecard'
+      fullPath: '/security-scorecard'
+      preLoaderRoute: typeof SecurityScorecardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/responsible-disclosure': {
       id: '/responsible-disclosure'
       path: '/responsible-disclosure'
@@ -529,6 +562,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/compliance-explorer': {
+      id: '/compliance-explorer'
+      path: '/compliance-explorer'
+      fullPath: '/compliance-explorer'
+      preLoaderRoute: typeof ComplianceExplorerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/case-studies': {
@@ -755,12 +795,14 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRouteWithChildren,
   CareersRoute: CareersRoute,
   CaseStudiesRoute: CaseStudiesRoute,
+  ComplianceExplorerRoute: ComplianceExplorerRoute,
   ContactRoute: ContactRoute,
   CookiePolicyRoute: CookiePolicyRoute,
   CyberNewsRoute: CyberNewsRoute,
   InsightsRoute: InsightsRoute,
   PrivacyNoticeRoute: PrivacyNoticeRoute,
   ResponsibleDisclosureRoute: ResponsibleDisclosureRoute,
+  SecurityScorecardRoute: SecurityScorecardRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsOfUseRoute: TermsOfUseRoute,
   ThreatMapRoute: ThreatMapRoute,

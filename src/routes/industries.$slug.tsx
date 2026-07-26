@@ -1,6 +1,8 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { ContentPage, headFor } from "@/components/site/ContentPage";
+import { IndustryRiskSnapshot } from "@/components/site/IndustryRiskSnapshot";
 import type { PageContent } from "@/content/site";
+
 
 /** Industry copy is split per page and fetched only when that page is opened. */
 const industryPages = import.meta.glob("../content/pages/industries/*.json", {
@@ -24,6 +26,7 @@ export const Route = createFileRoute("/industries/$slug")({
 
 function IndustryDetail() {
   const { page } = Route.useLoaderData();
+  const { slug } = Route.useParams();
   return (
     <ContentPage
       page={page}
@@ -33,6 +36,9 @@ function IndustryDetail() {
         { label: "Industries", to: "/industries" },
         { label: page.name },
       ]}
-    />
+    >
+      <IndustryRiskSnapshot slug={slug} />
+    </ContentPage>
   );
 }
+

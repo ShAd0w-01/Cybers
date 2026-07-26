@@ -7,12 +7,15 @@ import { industries, pillars } from "@/content/site";
 import { cn } from "@/lib/utils";
 
 const resources = [
+  { title: "Security Scorecard", url: "/security-scorecard" },
+  { title: "Compliance Framework Explorer", url: "/compliance-explorer" },
   { title: "Blog", url: "/blog" },
   { title: "Global Cyber News", url: "/cyber-news" },
   { title: "Live Threat Map", url: "/threat-map" },
   { title: "Case Studies", url: "/case-studies" },
   { title: "Insights & Resources", url: "/insights" },
 ];
+
 
 const about = [
   { title: "About Cybersentinels", url: "/about-us" },
