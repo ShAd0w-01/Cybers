@@ -24,11 +24,11 @@ export function WhatsAppButton() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with Cybersentinels on WhatsApp"
-      className={`fixed bottom-5 left-5 z-40 inline-flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-3 text-sm font-semibold text-[#062d15] shadow-xl transition-all duration-300 hover:scale-[1.03] hover:brightness-105 motion-reduce:transition-none ${
+      className={`fixed bottom-4 left-4 z-40 inline-flex items-center gap-1.5 rounded-full bg-[#25D366] px-3 py-2 text-xs font-semibold text-[#062d15] shadow-lg transition-all duration-300 hover:scale-[1.03] hover:brightness-105 motion-reduce:transition-none ${
         shown ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
       }`}
     >
-      <WhatsAppIcon className="size-5" />
+      <WhatsAppIcon className="size-4" />
       <span className="hidden sm:inline">WhatsApp us</span>
     </a>
   );
