@@ -41,7 +41,10 @@ export function heroOf(page: PageContent | undefined) {
     ?.items;
   return {
     title: h1?.text ?? page?.name ?? "",
-    paragraphs: paragraphs.map((p) => p.text),
+    paragraphs: paragraphs
+      .map((p) => p.text)
+      // Drop all-caps kicker lines — they are rendered as the eyebrow instead.
+      .filter((t) => t !== t.toUpperCase() || t.length > 90),
     buttons: buttons ?? [],
   };
 }

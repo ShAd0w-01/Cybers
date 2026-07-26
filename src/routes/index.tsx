@@ -372,9 +372,7 @@ function extractCards(section?: { blocks: { type: string; text?: string; items?:
 }
 
 function StatValue({ title }: { title: string }) {
-  const match = title.match(/^(\d+)/);
-  if (match) {
-    return <CountUp value={Number(match[1])} suffix={title.includes("+") ? "+" : ""} />;
-  }
+  const match = title.match(/^(\d+)(\+?)/);
+  if (match) return <CountUp value={Number(match[1])} suffix={match[2]} />;
   return <>{title.split(" ")[0]}</>;
 }
