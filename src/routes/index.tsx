@@ -20,6 +20,8 @@ import {
   Briefcase,
 } from "lucide-react";
 import { getSection, heroOf, pillars, industries, frameworkMarks, type PageContent } from "@/content/site";
+import { BrandHologram } from "@/components/site/BrandHologram";
+
 import homeData from "@/content/pages/home.json";
 import { headFor } from "@/components/site/ContentPage";
 import { CtaLink, routeForLabel } from "@/components/site/CtaLink";
