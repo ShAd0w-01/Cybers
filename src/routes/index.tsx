@@ -137,26 +137,24 @@ function Home() {
         {/* drifting ambient gradients */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
           <div
-            className="absolute -left-40 top-[-18%] size-[42rem] rounded-full opacity-[0.28] blur-[110px] will-change-transform"
+            className="anim-drift-a absolute -left-40 top-[-18%] size-[42rem] rounded-full opacity-[0.28] blur-[110px] will-change-transform"
             style={{
               background: "radial-gradient(circle, var(--magenta) 0%, transparent 68%)",
-              animation: "drift-a 34s ease-in-out infinite",
             }}
           />
           <div
-            className="absolute right-[-14%] top-[-24%] size-[46rem] rounded-full opacity-[0.3] blur-[120px] will-change-transform"
+            className="anim-drift-b absolute right-[-14%] top-[-24%] size-[46rem] rounded-full opacity-[0.3] blur-[120px] will-change-transform"
             style={{
               background: "radial-gradient(circle, var(--coral) 0%, transparent 70%)",
-              animation: "drift-b 47s ease-in-out infinite",
             }}
           />
           <div
-            className="absolute bottom-[-30%] left-[30%] size-[38rem] rounded-full opacity-[0.22] blur-[130px] will-change-transform"
+            className="anim-drift-c absolute bottom-[-30%] left-[30%] size-[38rem] rounded-full opacity-[0.22] blur-[130px] will-change-transform"
             style={{
               background: "radial-gradient(circle, var(--rose, var(--magenta)) 0%, transparent 68%)",
-              animation: "drift-c 61s ease-in-out infinite",
             }}
           />
+
         </div>
         <div className="ink-grid absolute inset-0" aria-hidden="true" />
         <div className="hero-noise pointer-events-none absolute inset-0" aria-hidden="true" />
