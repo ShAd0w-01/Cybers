@@ -103,13 +103,12 @@ export async function checkRateLimit(visitorId: string, userId: string | null) {
   const since = (minutes: number) => new Date(Date.now() - minutes * 60_000).toISOString();
 
   const countSince = async (iso: string) => {
-    let query = db
+    const { count, error } = await db
       .from("advisor_messages")
       .select("id", { count: "exact", head: true })
       .eq("role", "user")
+      .eq("visitor_id", visitorId)
       .gte("created_at", iso);
-    query = userId ? query.eq("user_id", userId) : query.eq("visitor_id", visitorId);
-    const { count, error } = await query;
     if (error) throw new Error(error.message);
     return count ?? 0;
   };
