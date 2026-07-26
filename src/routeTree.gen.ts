@@ -9,6 +9,10 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WebsiteDisclaimerRouteImport } from './routes/website-disclaimer'
+import { Route as TermsOfUseRouteImport } from './routes/terms-of-use'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as ResponsibleDisclosureRouteImport } from './routes/responsible-disclosure'
 import { Route as PrivacyNoticeRouteImport } from './routes/privacy-notice'
 import { Route as InsightsRouteImport } from './routes/insights'
 import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
@@ -22,6 +26,26 @@ import { Route as IndustriesIndexRouteImport } from './routes/industries.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as IndustriesSlugRouteImport } from './routes/industries.$slug'
 
+const WebsiteDisclaimerRoute = WebsiteDisclaimerRouteImport.update({
+  id: '/website-disclaimer',
+  path: '/website-disclaimer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsOfUseRoute = TermsOfUseRouteImport.update({
+  id: '/terms-of-use',
+  path: '/terms-of-use',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResponsibleDisclosureRoute = ResponsibleDisclosureRouteImport.update({
+  id: '/responsible-disclosure',
+  path: '/responsible-disclosure',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PrivacyNoticeRoute = PrivacyNoticeRouteImport.update({
   id: '/privacy-notice',
   path: '/privacy-notice',
@@ -92,6 +116,10 @@ export interface FileRoutesByFullPath {
   '/cookie-policy': typeof CookiePolicyRoute
   '/insights': typeof InsightsRoute
   '/privacy-notice': typeof PrivacyNoticeRoute
+  '/responsible-disclosure': typeof ResponsibleDisclosureRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/terms-of-use': typeof TermsOfUseRoute
+  '/website-disclaimer': typeof WebsiteDisclaimerRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/industries/': typeof IndustriesIndexRoute
@@ -106,6 +134,10 @@ export interface FileRoutesByTo {
   '/cookie-policy': typeof CookiePolicyRoute
   '/insights': typeof InsightsRoute
   '/privacy-notice': typeof PrivacyNoticeRoute
+  '/responsible-disclosure': typeof ResponsibleDisclosureRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/terms-of-use': typeof TermsOfUseRoute
+  '/website-disclaimer': typeof WebsiteDisclaimerRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/industries': typeof IndustriesIndexRoute
@@ -121,6 +153,10 @@ export interface FileRoutesById {
   '/cookie-policy': typeof CookiePolicyRoute
   '/insights': typeof InsightsRoute
   '/privacy-notice': typeof PrivacyNoticeRoute
+  '/responsible-disclosure': typeof ResponsibleDisclosureRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/terms-of-use': typeof TermsOfUseRoute
+  '/website-disclaimer': typeof WebsiteDisclaimerRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/industries/': typeof IndustriesIndexRoute
@@ -137,6 +173,10 @@ export interface FileRouteTypes {
     | '/cookie-policy'
     | '/insights'
     | '/privacy-notice'
+    | '/responsible-disclosure'
+    | '/sitemap.xml'
+    | '/terms-of-use'
+    | '/website-disclaimer'
     | '/industries/$slug'
     | '/services/$slug'
     | '/industries/'
@@ -151,6 +191,10 @@ export interface FileRouteTypes {
     | '/cookie-policy'
     | '/insights'
     | '/privacy-notice'
+    | '/responsible-disclosure'
+    | '/sitemap.xml'
+    | '/terms-of-use'
+    | '/website-disclaimer'
     | '/industries/$slug'
     | '/services/$slug'
     | '/industries'
@@ -165,6 +209,10 @@ export interface FileRouteTypes {
     | '/cookie-policy'
     | '/insights'
     | '/privacy-notice'
+    | '/responsible-disclosure'
+    | '/sitemap.xml'
+    | '/terms-of-use'
+    | '/website-disclaimer'
     | '/industries/$slug'
     | '/services/$slug'
     | '/industries/'
@@ -180,6 +228,10 @@ export interface RootRouteChildren {
   CookiePolicyRoute: typeof CookiePolicyRoute
   InsightsRoute: typeof InsightsRoute
   PrivacyNoticeRoute: typeof PrivacyNoticeRoute
+  ResponsibleDisclosureRoute: typeof ResponsibleDisclosureRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  TermsOfUseRoute: typeof TermsOfUseRoute
+  WebsiteDisclaimerRoute: typeof WebsiteDisclaimerRoute
   IndustriesSlugRoute: typeof IndustriesSlugRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
   IndustriesIndexRoute: typeof IndustriesIndexRoute
@@ -188,6 +240,34 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/website-disclaimer': {
+      id: '/website-disclaimer'
+      path: '/website-disclaimer'
+      fullPath: '/website-disclaimer'
+      preLoaderRoute: typeof WebsiteDisclaimerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms-of-use': {
+      id: '/terms-of-use'
+      path: '/terms-of-use'
+      fullPath: '/terms-of-use'
+      preLoaderRoute: typeof TermsOfUseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/responsible-disclosure': {
+      id: '/responsible-disclosure'
+      path: '/responsible-disclosure'
+      fullPath: '/responsible-disclosure'
+      preLoaderRoute: typeof ResponsibleDisclosureRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/privacy-notice': {
       id: '/privacy-notice'
       path: '/privacy-notice'
@@ -284,6 +364,10 @@ const rootRouteChildren: RootRouteChildren = {
   CookiePolicyRoute: CookiePolicyRoute,
   InsightsRoute: InsightsRoute,
   PrivacyNoticeRoute: PrivacyNoticeRoute,
+  ResponsibleDisclosureRoute: ResponsibleDisclosureRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
+  TermsOfUseRoute: TermsOfUseRoute,
+  WebsiteDisclaimerRoute: WebsiteDisclaimerRoute,
   IndustriesSlugRoute: IndustriesSlugRoute,
   ServicesSlugRoute: ServicesSlugRoute,
   IndustriesIndexRoute: IndustriesIndexRoute,
@@ -292,3 +376,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
