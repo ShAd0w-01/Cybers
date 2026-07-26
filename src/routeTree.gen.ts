@@ -30,12 +30,14 @@ import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as IndustriesIndexRouteImport } from './routes/industries.index'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as AiAdvisorIndexRouteImport } from './routes/ai-advisor.index'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as IndustriesSlugRouteImport } from './routes/industries.$slug'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 import { Route as AiAdvisorThreadIdRouteImport } from './routes/ai-advisor.$threadId'
+import { Route as AdminLeadsRouteImport } from './routes/admin.leads'
 
 const WebsiteDisclaimerRoute = WebsiteDisclaimerRouteImport.update({
   id: '/website-disclaimer',
@@ -142,6 +144,11 @@ const AiAdvisorIndexRoute = AiAdvisorIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AiAdvisorRoute,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
 const ServicesSlugRoute = ServicesSlugRouteImport.update({
   id: '/services/$slug',
   path: '/services/$slug',
@@ -172,11 +179,16 @@ const AiAdvisorThreadIdRoute = AiAdvisorThreadIdRouteImport.update({
   path: '/$threadId',
   getParentRoute: () => AiAdvisorRoute,
 } as any)
+const AdminLeadsRoute = AdminLeadsRouteImport.update({
+  id: '/leads',
+  path: '/leads',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
-  '/admin': typeof AdminRoute
+  '/admin': typeof AdminRouteWithChildren
   '/advisor-analytics': typeof AdvisorAnalyticsRoute
   '/ai-advisor': typeof AiAdvisorRouteWithChildren
   '/auth': typeof AuthRouteWithChildren
@@ -191,12 +203,14 @@ export interface FileRoutesByFullPath {
   '/terms-of-use': typeof TermsOfUseRoute
   '/threat-map': typeof ThreatMapRoute
   '/website-disclaimer': typeof WebsiteDisclaimerRoute
+  '/admin/leads': typeof AdminLeadsRoute
   '/ai-advisor/$threadId': typeof AiAdvisorThreadIdRoute
   '/api/chat': typeof ApiChatRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/admin/': typeof AdminIndexRoute
   '/ai-advisor/': typeof AiAdvisorIndexRoute
   '/blog/': typeof BlogIndexRoute
   '/industries/': typeof IndustriesIndexRoute
@@ -205,7 +219,6 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
-  '/admin': typeof AdminRoute
   '/advisor-analytics': typeof AdvisorAnalyticsRoute
   '/auth': typeof AuthRouteWithChildren
   '/careers': typeof CareersRoute
@@ -219,12 +232,14 @@ export interface FileRoutesByTo {
   '/terms-of-use': typeof TermsOfUseRoute
   '/threat-map': typeof ThreatMapRoute
   '/website-disclaimer': typeof WebsiteDisclaimerRoute
+  '/admin/leads': typeof AdminLeadsRoute
   '/ai-advisor/$threadId': typeof AiAdvisorThreadIdRoute
   '/api/chat': typeof ApiChatRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/admin': typeof AdminIndexRoute
   '/ai-advisor': typeof AiAdvisorIndexRoute
   '/blog': typeof BlogIndexRoute
   '/industries': typeof IndustriesIndexRoute
@@ -234,7 +249,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
-  '/admin': typeof AdminRoute
+  '/admin': typeof AdminRouteWithChildren
   '/advisor-analytics': typeof AdvisorAnalyticsRoute
   '/ai-advisor': typeof AiAdvisorRouteWithChildren
   '/auth': typeof AuthRouteWithChildren
@@ -249,12 +264,14 @@ export interface FileRoutesById {
   '/terms-of-use': typeof TermsOfUseRoute
   '/threat-map': typeof ThreatMapRoute
   '/website-disclaimer': typeof WebsiteDisclaimerRoute
+  '/admin/leads': typeof AdminLeadsRoute
   '/ai-advisor/$threadId': typeof AiAdvisorThreadIdRoute
   '/api/chat': typeof ApiChatRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/admin/': typeof AdminIndexRoute
   '/ai-advisor/': typeof AiAdvisorIndexRoute
   '/blog/': typeof BlogIndexRoute
   '/industries/': typeof IndustriesIndexRoute
@@ -280,12 +297,14 @@ export interface FileRouteTypes {
     | '/terms-of-use'
     | '/threat-map'
     | '/website-disclaimer'
+    | '/admin/leads'
     | '/ai-advisor/$threadId'
     | '/api/chat'
     | '/auth/callback'
     | '/blog/$slug'
     | '/industries/$slug'
     | '/services/$slug'
+    | '/admin/'
     | '/ai-advisor/'
     | '/blog/'
     | '/industries/'
@@ -294,7 +313,6 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about-us'
-    | '/admin'
     | '/advisor-analytics'
     | '/auth'
     | '/careers'
@@ -308,12 +326,14 @@ export interface FileRouteTypes {
     | '/terms-of-use'
     | '/threat-map'
     | '/website-disclaimer'
+    | '/admin/leads'
     | '/ai-advisor/$threadId'
     | '/api/chat'
     | '/auth/callback'
     | '/blog/$slug'
     | '/industries/$slug'
     | '/services/$slug'
+    | '/admin'
     | '/ai-advisor'
     | '/blog'
     | '/industries'
@@ -337,12 +357,14 @@ export interface FileRouteTypes {
     | '/terms-of-use'
     | '/threat-map'
     | '/website-disclaimer'
+    | '/admin/leads'
     | '/ai-advisor/$threadId'
     | '/api/chat'
     | '/auth/callback'
     | '/blog/$slug'
     | '/industries/$slug'
     | '/services/$slug'
+    | '/admin/'
     | '/ai-advisor/'
     | '/blog/'
     | '/industries/'
@@ -352,7 +374,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutUsRoute: typeof AboutUsRoute
-  AdminRoute: typeof AdminRoute
+  AdminRoute: typeof AdminRouteWithChildren
   AdvisorAnalyticsRoute: typeof AdvisorAnalyticsRoute
   AiAdvisorRoute: typeof AiAdvisorRouteWithChildren
   AuthRoute: typeof AuthRouteWithChildren
@@ -525,6 +547,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AiAdvisorIndexRouteImport
       parentRoute: typeof AiAdvisorRoute
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/services/$slug': {
       id: '/services/$slug'
       path: '/services/$slug'
@@ -567,8 +596,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AiAdvisorThreadIdRouteImport
       parentRoute: typeof AiAdvisorRoute
     }
+    '/admin/leads': {
+      id: '/admin/leads'
+      path: '/leads'
+      fullPath: '/admin/leads'
+      preLoaderRoute: typeof AdminLeadsRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
+
+interface AdminRouteChildren {
+  AdminLeadsRoute: typeof AdminLeadsRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminLeadsRoute: AdminLeadsRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
 interface AiAdvisorRouteChildren {
   AiAdvisorThreadIdRoute: typeof AiAdvisorThreadIdRoute
@@ -597,7 +645,7 @@ const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutUsRoute: AboutUsRoute,
-  AdminRoute: AdminRoute,
+  AdminRoute: AdminRouteWithChildren,
   AdvisorAnalyticsRoute: AdvisorAnalyticsRoute,
   AiAdvisorRoute: AiAdvisorRouteWithChildren,
   AuthRoute: AuthRouteWithChildren,
