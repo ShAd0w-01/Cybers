@@ -506,26 +506,10 @@ function Home() {
               </p>
             </div>
           </Reveal>
-          <div className="mt-12 grid gap-6 lg:grid-cols-3">
-            {testimonials.map((t, i) => (
-              <Reveal
-                as="article"
-                key={t.author + t.detail}
-                delay={i * 70}
-                className="flex flex-col rounded-xl border border-border bg-background p-7 transition-all duration-300 hover:-translate-y-1 hover:border-coral/40 hover:shadow-xl hover:shadow-coral/5"
-              >
-                <Quote className="size-6 text-coral" aria-hidden="true" />
-                <blockquote className="mt-5 text-sm leading-relaxed text-foreground">
-                  “{t.quote}”
-                </blockquote>
-                <div className="mt-auto pt-6">
-                  <div className="brand-rule mb-4 w-8" />
-                  <p className="font-display text-sm font-semibold">{t.author}</p>
-                  <p className="text-[13px] text-muted-foreground">{t.detail}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal delay={80} className="mt-12">
+            <TestimonialCarousel items={testimonials} />
+          </Reveal>
+
         </div>
       </section>
 
