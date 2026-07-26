@@ -317,7 +317,7 @@ function Home() {
                   className="group relative overflow-hidden rounded-xl border border-border bg-surface p-7 transition-all duration-300 hover:-translate-y-1 hover:border-coral/40 hover:shadow-2xl hover:shadow-coral/8"
                 >
                   <div className="brand-gradient absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100" />
-                  <Icon className="size-6 text-coral-ink" aria-hidden="true" />
+                  <IconTile icon={Icon} />
                   <h3 className="mt-5 type-h3">{c.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
                   {pillar ? (
