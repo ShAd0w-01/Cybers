@@ -23,6 +23,7 @@ import { Route as CareersRouteImport } from './routes/careers'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AiAdvisorRouteImport } from './routes/ai-advisor'
 import { Route as AdvisorAnalyticsRouteImport } from './routes/advisor-analytics'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutUsRouteImport } from './routes/about-us'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
@@ -106,6 +107,11 @@ const AdvisorAnalyticsRoute = AdvisorAnalyticsRouteImport.update({
   path: '/advisor-analytics',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutUsRoute = AboutUsRouteImport.update({
   id: '/about-us',
   path: '/about-us',
@@ -170,6 +176,7 @@ const AiAdvisorThreadIdRoute = AiAdvisorThreadIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
+  '/admin': typeof AdminRoute
   '/advisor-analytics': typeof AdvisorAnalyticsRoute
   '/ai-advisor': typeof AiAdvisorRouteWithChildren
   '/auth': typeof AuthRouteWithChildren
@@ -198,6 +205,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
+  '/admin': typeof AdminRoute
   '/advisor-analytics': typeof AdvisorAnalyticsRoute
   '/auth': typeof AuthRouteWithChildren
   '/careers': typeof CareersRoute
@@ -226,6 +234,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
+  '/admin': typeof AdminRoute
   '/advisor-analytics': typeof AdvisorAnalyticsRoute
   '/ai-advisor': typeof AiAdvisorRouteWithChildren
   '/auth': typeof AuthRouteWithChildren
@@ -256,6 +265,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about-us'
+    | '/admin'
     | '/advisor-analytics'
     | '/ai-advisor'
     | '/auth'
@@ -284,6 +294,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about-us'
+    | '/admin'
     | '/advisor-analytics'
     | '/auth'
     | '/careers'
@@ -311,6 +322,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about-us'
+    | '/admin'
     | '/advisor-analytics'
     | '/ai-advisor'
     | '/auth'
@@ -340,6 +352,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutUsRoute: typeof AboutUsRoute
+  AdminRoute: typeof AdminRoute
   AdvisorAnalyticsRoute: typeof AdvisorAnalyticsRoute
   AiAdvisorRoute: typeof AiAdvisorRouteWithChildren
   AuthRoute: typeof AuthRouteWithChildren
@@ -463,6 +476,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdvisorAnalyticsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about-us': {
       id: '/about-us'
       path: '/about-us'
@@ -577,6 +597,7 @@ const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutUsRoute: AboutUsRoute,
+  AdminRoute: AdminRoute,
   AdvisorAnalyticsRoute: AdvisorAnalyticsRoute,
   AiAdvisorRoute: AiAdvisorRouteWithChildren,
   AuthRoute: AuthRouteWithChildren,
