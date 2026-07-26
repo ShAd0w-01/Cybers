@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ContentPage, headFor } from "@/components/site/ContentPage";
-import { industries } from "@/content/site";
+import { industries, getPageMeta } from "@/content/site";
 import { type PageContent } from "@/content/site";
 import pageData from "@/content/pages/industries.json";
 import { Reveal } from "@/components/site/Reveal";
@@ -34,7 +34,7 @@ function IndustriesIndex() {
                   </h2>
                   <div className="brand-rule mt-3 w-6 transition-all duration-300 group-hover:w-14" />
                   <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                    {getPage(ind.url)?.metaDescription}
+                    {getPageMeta(ind.url)?.metaDescription}
                   </p>
                 </Link>
               </Reveal>

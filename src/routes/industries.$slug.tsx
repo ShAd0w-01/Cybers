@@ -1,20 +1,28 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { ContentPage, headFor } from "@/components/site/ContentPage";
-import { getPage } from "@/content/site";
+import { type PageContent } from "@/content/site";
+
+const industryPages = import.meta.glob("../content/pages/industries/*.json", {
+  eager: true,
+  import: "default",
+}) as Record<string, PageContent>;
+
+const getIndustryPage = (slug: string): PageContent | undefined =>
+  industryPages[`../content/pages/industries/${slug}.json`];
 
 export const Route = createFileRoute("/industries/$slug")({
   loader: ({ params }) => {
-    const page = getPage(`/industries/${params.slug}`);
+    const page = getIndustryPage(params.slug);
     if (!page) throw notFound();
     return { slug: params.slug };
   },
-  head: ({ params }) => headFor(getPage(`/industries/${params.slug}`), "Industries"),
+  head: ({ params }) => headFor(getIndustryPage(params.slug), "Industries"),
   component: IndustryDetail,
 });
 
 function IndustryDetail() {
   const { slug } = Route.useLoaderData();
-  const page = getPage(`/industries/${slug}`)!;
+  const page = getIndustryPage(slug)!;
   return (
     <ContentPage
       page={page}

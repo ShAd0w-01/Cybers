@@ -12,7 +12,8 @@ import {
   Radar,
   CalendarCheck,
 } from "lucide-react";
-import { getPage, getSection, heroOf, pillars, industries, frameworkMarks } from "@/content/site";
+import { getSection, heroOf, pillars, industries, frameworkMarks, type PageContent } from "@/content/site";
+import homeData from "@/content/pages/home.json";
 import { headFor } from "@/components/site/ContentPage";
 import { CtaLink, routeForLabel } from "@/components/site/CtaLink";
 import { Reveal, CountUp } from "@/components/site/Reveal";
@@ -24,7 +25,7 @@ import {
 } from "@/components/site/TestimonialCarousel";
 
 
-const page = getPage("/");
+const page = homeData as PageContent;
 
 export const Route = createFileRoute("/")({
   head: () => headFor(page, "Cybersecurity, Compliance & VAPT Services"),
