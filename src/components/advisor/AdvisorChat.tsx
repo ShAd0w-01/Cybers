@@ -2,7 +2,7 @@ import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport, type UIMessage } from "ai";
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Download, ExternalLink, LogIn } from "lucide-react";
 
 import {
   Conversation,
@@ -18,6 +18,12 @@ import {
 } from "@/components/ai-elements/prompt-input";
 import { Shimmer } from "@/components/ai-elements/shimmer";
 import { Logo } from "@/components/site/Logo";
+import { Button } from "@/components/ui/button";
+import { supabase } from "@/integrations/supabase/client";
+import { useSession } from "@/lib/useSession";
+import { citationsFor } from "@/lib/citations";
+import { exportThreadPdf } from "@/lib/exportPdf";
+import { recordHandoff } from "@/lib/advisor.functions";
 
 const STARTERS = [
   "We need a VAPT for our web app and API — where do we start?",
@@ -32,6 +38,7 @@ type Props = {
   initialMessages: UIMessage[];
   /** Called after the first user message so a thread list can refresh titles. */
   onActivity?: () => void;
+  title?: string;
   className?: string;
 };
 
@@ -40,10 +47,13 @@ export function AdvisorChat({
   visitorId,
   initialMessages,
   onActivity,
+  title,
   className,
 }: Props) {
   const [error, setError] = useState<string | null>(null);
+  const [rateLimited, setRateLimited] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+  const { user } = useSession();
 
   const { messages, sendMessage, status } = useChat({
     id: threadId,
@@ -51,8 +61,18 @@ export function AdvisorChat({
     transport: new DefaultChatTransport({
       api: "/api/chat",
       body: { threadId, visitorId },
+      // Sign-in is optional; when present the bearer raises the rate limit and
+      // links the conversation to the account.
+      headers: async () => {
+        const { data } = await supabase.auth.getSession();
+        return data.session ? { authorization: `Bearer ${data.session.access_token}` } : {};
+      },
     }),
-    onError: (err) => setError(err.message || "The advisor is unavailable right now."),
+    onError: (err) => {
+      const message = err.message || "The advisor is unavailable right now.";
+      setRateLimited(/limit/i.test(message));
+      setError(message);
+    },
     onFinish: () => onActivity?.(),
   });
 
@@ -67,8 +87,14 @@ export function AdvisorChat({
     const value = text.trim();
     if (!value || busy) return;
     setError(null);
+    setRateLimited(false);
     void sendMessage({ text: value });
   };
+
+  const handoff = (target: string) => {
+    void recordHandoff({ data: { visitorId, threadId, target } }).catch(() => {});
+  };
+
 
   return (
     <div className={`flex min-h-0 flex-1 flex-col ${className ?? ""}`}>
