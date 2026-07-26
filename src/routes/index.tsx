@@ -159,53 +159,56 @@ function Home() {
           />
         </div>
         <div className="ink-grid absolute inset-0" aria-hidden="true" />
+        <div className="hero-noise pointer-events-none absolute inset-0" aria-hidden="true" />
+        <div className="hero-vignette pointer-events-none absolute inset-0" aria-hidden="true" />
 
-        <div className="relative mx-auto max-w-4xl px-5 py-20 text-center lg:px-8 lg:py-28">
+        <div className="relative mx-auto max-w-4xl px-5 py-24 text-center sm:py-28 lg:px-8 lg:py-36">
           <Reveal>
-            <p className="mb-6 text-xs font-semibold uppercase tracking-[0.24em] text-amber">
+            <p className="type-eyebrow mb-7 text-amber">
               Cybersecurity • Compliance • Privacy • Governance
             </p>
-            <h1 className="font-display text-[2rem] font-semibold leading-[1.1] sm:text-5xl lg:text-[3.8rem]">
+            <h1 className="type-display">
               Strengthen Security.{" "}
               <span className="brand-gradient-text">Simplify Compliance.</span> Build Lasting
               Resilience.
             </h1>
-            <div className="mt-7 space-y-4">
+            <div className="mt-8 space-y-5">
               {hero.paragraphs.slice(0, 2).map((p, i) => (
-                <p key={i} className="mx-auto max-w-2xl text-base leading-relaxed text-ink-muted">
+                <p key={i} className="type-lead mx-auto max-w-2xl text-ink-muted">
                   {p}
                 </p>
               ))}
             </div>
-            <ul className="mt-7 flex flex-wrap justify-center gap-2">
+            <ul className="mt-10 flex flex-wrap justify-center gap-2.5">
               {heroProof.map((item) => (
                 <li
                   key={item}
-                  className="inline-flex items-center gap-2 rounded-full border border-ink-border bg-ink-soft/60 px-3 py-1.5 text-[12px] font-medium text-ink-muted"
+                  className="type-small inline-flex items-center gap-2 rounded-full border border-ink-border bg-ink-soft/60 px-3.5 py-1.5 font-medium text-ink-foreground/85"
                 >
                   <ShieldCheck className="size-3.5 text-amber" aria-hidden="true" />
                   {item}
                 </li>
               ))}
             </ul>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
               <CtaLink to="/contact">Book a Consultation</CtaLink>
               <CtaLink to="/services" variant="ghost-dark">
                 Explore Our Services
               </CtaLink>
-              <span className="inline-flex items-center gap-2 text-[13px] text-ink-muted">
-                <CalendarCheck className="size-4 text-coral" aria-hidden="true" />
-                Free 30-minute scoping call
-              </span>
             </div>
+            <p className="type-small mt-5 inline-flex items-center justify-center gap-2 text-ink-muted">
+              <CalendarCheck className="size-4 text-amber" aria-hidden="true" />
+              Free 30-minute scoping call — no obligation
+            </p>
 
             {heroTail ? (
-              <p className="mx-auto mt-8 max-w-2xl border-l-2 border-coral pl-4 text-left text-sm italic text-ink-muted">
+              <p className="type-body mx-auto mt-12 max-w-2xl border-l-2 border-coral pl-5 text-left italic text-ink-muted">
                 {heroTail.type === "p" ? heroTail.text : null}
               </p>
             ) : null}
           </Reveal>
         </div>
+
 
         {/* Framework marquee */}
         <div className="relative border-t border-ink-border py-5">
