@@ -27,7 +27,7 @@ function IndustriesIndex() {
                 className="group rounded-xl border border-border p-7 transition-all duration-300 hover:-translate-y-1 hover:border-coral/40 hover:shadow-xl hover:shadow-coral/5"
               >
                 <Link to={ind.url}>
-                  <h2 className="font-display text-lg font-semibold transition-colors group-hover:text-coral">
+                  <h2 className="type-h3 transition-colors group-hover:text-coral-ink">
                     {ind.title}
                   </h2>
                   <div className="brand-rule mt-3 w-6 transition-all duration-300 group-hover:w-14" />

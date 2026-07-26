@@ -59,7 +59,7 @@ export function SectionRenderer({
             <div className="brand-rule mb-5" />
             <h2
               className={cn(
-                "font-display text-2xl font-semibold leading-tight sm:text-[2rem]",
+                "type-h2",
                 accentHeading && "brand-gradient-text",
               )}
             >
@@ -78,7 +78,7 @@ export function SectionRenderer({
             <ul className="mt-8 grid gap-x-10 gap-y-3 sm:grid-cols-2">
               {bare.flatMap((g) => g.items).map((item, i) => (
                 <li key={i} className="flex gap-3 text-sm leading-relaxed text-muted-foreground">
-                  <Check className="mt-0.5 size-4 shrink-0 text-coral" aria-hidden="true" />
+                  <Check className="mt-0.5 size-4 shrink-0 text-coral-ink" aria-hidden="true" />
                   <span>{item}</span>
                 </li>
               ))}
@@ -122,7 +122,7 @@ export function SectionRenderer({
                 delay={i * 50}
                 className="group rounded-xl border border-border bg-background p-6 transition-all duration-300 hover:-translate-y-1 hover:border-coral/40 hover:shadow-xl hover:shadow-coral/5"
               >
-                <h3 className="font-display text-base font-semibold leading-snug">{g.title}</h3>
+                <h3 className="type-h4">{g.title}</h3>
                 <div className="brand-rule mt-3 mb-4 w-6 transition-all duration-300 group-hover:w-12" />
                 {g.paragraphs.map((p, j) => (
                   <p key={j} className="text-sm leading-relaxed text-muted-foreground">

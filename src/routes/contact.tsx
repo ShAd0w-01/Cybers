@@ -32,7 +32,7 @@ function Contact() {
               delay={i * 60}
               className="rounded-xl border border-border bg-background p-7"
             >
-              <d.icon className="size-5 text-coral" aria-hidden="true" />
+              <d.icon className="size-5 text-coral-ink" aria-hidden="true" />
               <h2 className="mt-4 text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
                 {d.label}
               </h2>

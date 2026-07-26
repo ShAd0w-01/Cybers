@@ -4,15 +4,15 @@ import { cn } from "@/lib/utils";
 type Variant = "primary" | "outline" | "ghost-dark" | "link";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-sm font-semibold tracking-tight transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral focus-visible:ring-offset-2";
+  "inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 type-button transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral focus-visible:ring-offset-2";
 
 const styles: Record<Variant, string> = {
   primary: "brand-gradient text-white shadow-sm hover:brightness-110 hover:-translate-y-0.5",
   outline:
-    "border border-border bg-background text-foreground hover:border-coral hover:text-coral",
+    "border border-border bg-background text-foreground hover:border-coral hover:text-coral-ink",
   "ghost-dark":
     "border border-ink-border bg-white/5 text-ink-foreground hover:bg-white/10 hover:border-white/30",
-  link: "px-0 py-0 text-coral hover:gap-3",
+  link: "px-0 py-0 text-coral-ink hover:gap-3",
 };
 
 export function CtaLink({

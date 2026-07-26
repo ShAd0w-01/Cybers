@@ -46,7 +46,7 @@ function ClientLogo({ logo, note }: { logo: string; note: string }) {
 
 function Stars({ rating }: { rating: number }) {
   return (
-    <div className="flex items-center gap-0.5" aria-label={`${rating} out of 5`}>
+    <div className="flex items-center gap-0.5" role="img" aria-label={`${rating} out of 5`}>
       {[1, 2, 3, 4, 5].map((i) => (
         <Star
           key={i}
@@ -104,7 +104,7 @@ export function TestimonialCarousel({ items }: { items: Testimonial[] }) {
               <article className="flex h-full flex-col rounded-xl border border-border bg-background p-7 transition-colors duration-300 hover:border-coral/40">
                 <div className="flex items-start justify-between gap-4">
                   <Stars rating={t.rating} />
-                  <Quote className="size-6 shrink-0 text-coral" aria-hidden="true" />
+                  <Quote className="size-6 shrink-0 text-coral-ink" aria-hidden="true" />
                 </div>
                 <blockquote className="mt-5 text-sm leading-relaxed text-foreground">
                   “{t.quote}”
@@ -142,7 +142,7 @@ export function TestimonialCarousel({ items }: { items: Testimonial[] }) {
             type="button"
             onClick={() => api?.scrollPrev()}
             aria-label="Previous testimonial"
-            className="grid size-10 place-items-center rounded-full border border-border transition-colors hover:border-coral hover:text-coral"
+            className="grid size-10 place-items-center rounded-full border border-border transition-colors hover:border-coral hover:text-coral-ink"
           >
             <ChevronLeft className="size-4" aria-hidden="true" />
           </button>
@@ -150,7 +150,7 @@ export function TestimonialCarousel({ items }: { items: Testimonial[] }) {
             type="button"
             onClick={() => api?.scrollNext()}
             aria-label="Next testimonial"
-            className="grid size-10 place-items-center rounded-full border border-border transition-colors hover:border-coral hover:text-coral"
+            className="grid size-10 place-items-center rounded-full border border-border transition-colors hover:border-coral hover:text-coral-ink"
           >
             <ChevronRight className="size-4" aria-hidden="true" />
           </button>

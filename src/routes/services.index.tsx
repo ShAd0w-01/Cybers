@@ -21,7 +21,7 @@ function ServicesIndex() {
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal>
             <div className="brand-rule mb-5" />
-            <h2 className="font-display text-2xl font-semibold sm:text-[2rem]">
+            <h2 className="type-h2">
               Full service directory
             </h2>
           </Reveal>
@@ -29,8 +29,8 @@ function ServicesIndex() {
             {pillars.map((p, i) => (
               <Reveal key={p.url} delay={i * 40}>
                 <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-border pb-4">
-                  <h3 className="font-display text-lg font-semibold">
-                    <Link to={p.url} className="transition-colors hover:text-coral">
+                  <h3 className="type-h3">
+                    <Link to={p.url} className="transition-colors hover:text-coral-ink">
                       {p.title}
                     </Link>
                   </h3>
@@ -43,7 +43,7 @@ function ServicesIndex() {
                     <li key={s.url}>
                       <Link
                         to={s.url}
-                        className="group flex items-start gap-2.5 text-sm leading-snug text-muted-foreground transition-colors hover:text-coral"
+                        className="group flex items-start gap-2.5 text-sm leading-snug text-muted-foreground transition-colors hover:text-coral-ink"
                       >
                         <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-coral/60 transition-colors group-hover:bg-coral" />
                         {s.title}

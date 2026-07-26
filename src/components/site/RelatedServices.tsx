@@ -20,7 +20,7 @@ export function RelatedServices({
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
               <div className="brand-rule mb-5" />
-              <h2 className="font-display text-2xl font-semibold">
+              <h2 className="type-h2">
                 Related services in {pillar.short}
               </h2>
             </div>
@@ -33,7 +33,7 @@ export function RelatedServices({
           {related.map((s, i) => (
             <Reveal key={s.url} delay={i * 50} className="bg-background">
               <Link to={s.url} className="group block h-full p-6">
-                <h3 className="font-display text-sm font-semibold leading-snug transition-colors group-hover:text-coral">
+                <h3 className="font-display text-sm font-semibold leading-snug transition-colors group-hover:text-coral-ink">
                   {s.title}
                 </h3>
                 <div className="brand-rule mt-3 w-6 transition-all duration-300 group-hover:w-12" />
