@@ -62,12 +62,35 @@ export const Route = createFileRoute("/api/chat")({
           saveMessage,
           titleFrom,
           textOf,
+          userFromRequest,
+          checkRateLimit,
+          detectTopics,
+          tagThread,
+          logEvent,
         } = await import("@/lib/advisor.server");
 
         try {
           await assertThreadOwner(threadId, visitorId);
         } catch {
           return new Response("Conversation not found", { status: 404 });
+        }
+
+        // Sign-in is optional; it only raises the usage allowance and links
+        // the conversation to the account.
+        const user = await userFromRequest(request);
+
+        const limit = await checkRateLimit(visitorId, user?.id ?? null);
+        if (!limit.ok) {
+          await logEvent({
+            threadId,
+            visitorId,
+            userId: user?.id,
+            type: "rate_limited",
+          });
+          return new Response(limit.message, {
+            status: 429,
+            headers: { "retry-after": String(limit.retryAfterSeconds) },
+          });
         }
 
         const lastMessage = messages[messages.length - 1];
@@ -83,13 +106,20 @@ export const Route = createFileRoute("/api/chat")({
             .from("advisor_threads")
             .update({
               updated_at: new Date().toISOString(),
+              ...(user ? { user_id: user.id } : {}),
               ...(count === 1 ? { title: titleFrom(textOf(lastMessage)) } : {}),
             })
             .eq("id", threadId)
             .eq("visitor_id", visitorId);
+
+          const topics = detectTopics(textOf(lastMessage));
+          if (topics.length) await tagThread(threadId, { topics });
         }
 
+        let scoped = false;
+
         const gateway = createLovableAiGatewayProvider(key, getLovableAiGatewayRunId(request));
+
 
         const result = streamText({
           model: gateway("google/gemini-3.6-flash"),
