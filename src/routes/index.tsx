@@ -211,10 +211,8 @@ function Home() {
         {/* Framework marquee */}
         <div className="relative border-t border-ink-border py-5">
           <div className="flex overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_12%,black_88%,transparent)]">
-            <div
-              className="flex shrink-0 items-center gap-12 pr-12"
-              style={{ animation: "marquee-x 42s linear infinite" }}
-            >
+            <div className="anim-marquee flex shrink-0 items-center gap-12 pr-12">
+
               {[...frameworkMarks, ...frameworkMarks].map((mark, i) => (
                 <span
                   key={i}
