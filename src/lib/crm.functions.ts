@@ -98,7 +98,12 @@ export const adminUpdateLead = createServerFn({ method: "POST" })
   .handler(async ({ data, context }) => {
     const { requireAdmin } = await import("@/lib/admin.server");
     await requireAdmin(context.supabase, context.userId);
-    const patch: Record<string, unknown> = {};
+    const patch: {
+      status?: string;
+      priority?: string;
+      estimated_value?: number | null;
+      next_follow_up?: string | null;
+    } = {};
     if (data.status && (LEAD_STATUSES as readonly string[]).includes(data.status))
       patch.status = data.status;
     if (data.priority && (LEAD_PRIORITIES as readonly string[]).includes(data.priority))
