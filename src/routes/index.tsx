@@ -32,6 +32,7 @@ import {
   type Testimonial,
 } from "@/components/site/TestimonialCarousel";
 import { ThreatMap } from "@/components/site/ThreatMap";
+import { NewsStrip } from "@/components/site/NewsStrip";
 
 
 const page = homeData as PageContent;
@@ -468,6 +469,9 @@ function Home() {
 
       {/* -------------------------------------------- Live threat map */}
       <ThreatMap />
+
+      {/* ------------------------------------------- Global cyber news */}
+      <NewsStrip />
 
       {/* ---------------------------------------------------- Industries */}
       <section className="border-b border-border bg-background py-16 sm:py-24">

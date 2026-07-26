@@ -16,6 +16,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ResponsibleDisclosureRouteImport } from './routes/responsible-disclosure'
 import { Route as PrivacyNoticeRouteImport } from './routes/privacy-notice'
 import { Route as InsightsRouteImport } from './routes/insights'
+import { Route as CyberNewsRouteImport } from './routes/cyber-news'
 import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CaseStudiesRouteImport } from './routes/case-studies'
@@ -76,6 +77,11 @@ const PrivacyNoticeRoute = PrivacyNoticeRouteImport.update({
 const InsightsRoute = InsightsRouteImport.update({
   id: '/insights',
   path: '/insights',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CyberNewsRoute = CyberNewsRouteImport.update({
+  id: '/cyber-news',
+  path: '/cyber-news',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CookiePolicyRoute = CookiePolicyRouteImport.update({
@@ -220,6 +226,7 @@ export interface FileRoutesByFullPath {
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
+  '/cyber-news': typeof CyberNewsRoute
   '/insights': typeof InsightsRoute
   '/privacy-notice': typeof PrivacyNoticeRoute
   '/responsible-disclosure': typeof ResponsibleDisclosureRoute
@@ -253,6 +260,7 @@ export interface FileRoutesByTo {
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
+  '/cyber-news': typeof CyberNewsRoute
   '/insights': typeof InsightsRoute
   '/privacy-notice': typeof PrivacyNoticeRoute
   '/responsible-disclosure': typeof ResponsibleDisclosureRoute
@@ -289,6 +297,7 @@ export interface FileRoutesById {
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
+  '/cyber-news': typeof CyberNewsRoute
   '/insights': typeof InsightsRoute
   '/privacy-notice': typeof PrivacyNoticeRoute
   '/responsible-disclosure': typeof ResponsibleDisclosureRoute
@@ -326,6 +335,7 @@ export interface FileRouteTypes {
     | '/case-studies'
     | '/contact'
     | '/cookie-policy'
+    | '/cyber-news'
     | '/insights'
     | '/privacy-notice'
     | '/responsible-disclosure'
@@ -359,6 +369,7 @@ export interface FileRouteTypes {
     | '/case-studies'
     | '/contact'
     | '/cookie-policy'
+    | '/cyber-news'
     | '/insights'
     | '/privacy-notice'
     | '/responsible-disclosure'
@@ -394,6 +405,7 @@ export interface FileRouteTypes {
     | '/case-studies'
     | '/contact'
     | '/cookie-policy'
+    | '/cyber-news'
     | '/insights'
     | '/privacy-notice'
     | '/responsible-disclosure'
@@ -430,6 +442,7 @@ export interface RootRouteChildren {
   CaseStudiesRoute: typeof CaseStudiesRoute
   ContactRoute: typeof ContactRoute
   CookiePolicyRoute: typeof CookiePolicyRoute
+  CyberNewsRoute: typeof CyberNewsRoute
   InsightsRoute: typeof InsightsRoute
   PrivacyNoticeRoute: typeof PrivacyNoticeRoute
   ResponsibleDisclosureRoute: typeof ResponsibleDisclosureRoute
@@ -495,6 +508,13 @@ declare module '@tanstack/react-router' {
       path: '/insights'
       fullPath: '/insights'
       preLoaderRoute: typeof InsightsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cyber-news': {
+      id: '/cyber-news'
+      path: '/cyber-news'
+      fullPath: '/cyber-news'
+      preLoaderRoute: typeof CyberNewsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cookie-policy': {
@@ -737,6 +757,7 @@ const rootRouteChildren: RootRouteChildren = {
   CaseStudiesRoute: CaseStudiesRoute,
   ContactRoute: ContactRoute,
   CookiePolicyRoute: CookiePolicyRoute,
+  CyberNewsRoute: CyberNewsRoute,
   InsightsRoute: InsightsRoute,
   PrivacyNoticeRoute: PrivacyNoticeRoute,
   ResponsibleDisclosureRoute: ResponsibleDisclosureRoute,

@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 
 const resources = [
   { title: "Blog", url: "/blog" },
+  { title: "Global Cyber News", url: "/cyber-news" },
   { title: "Live Threat Map", url: "/threat-map" },
   { title: "Case Studies", url: "/case-studies" },
   { title: "Insights & Resources", url: "/insights" },
