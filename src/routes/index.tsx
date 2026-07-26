@@ -191,29 +191,75 @@ function Home() {
 
           <Reveal delay={120} className="hidden lg:block">
             <div className="relative mx-auto aspect-square w-full max-w-md">
+              {/* soft glow */}
+              <div
+                className="absolute inset-8 rounded-full opacity-40 blur-3xl"
+                style={{
+                  background:
+                    "radial-gradient(circle, var(--magenta) 0%, var(--coral) 45%, transparent 72%)",
+                }}
+                aria-hidden="true"
+              />
+
+              {/* radar sweep */}
+              <div
+                className="absolute inset-4 rounded-full opacity-[0.28]"
+                style={{
+                  background:
+                    "conic-gradient(from 0deg, transparent 0deg, transparent 250deg, var(--coral) 330deg, var(--magenta) 360deg)",
+                  animation: "arc-spin 9s linear infinite",
+                  maskImage: "radial-gradient(circle, transparent 34%, black 36%)",
+                  WebkitMaskImage: "radial-gradient(circle, transparent 34%, black 36%)",
+                }}
+                aria-hidden="true"
+              />
+
+              {/* rings */}
+              <div className="absolute inset-4 rounded-full border border-ink-border" />
+              <div className="absolute inset-14 rounded-full border border-dashed border-ink-border/70" />
+              <div className="absolute inset-24 rounded-full border border-ink-border" />
+
+              {/* centre glass lockup */}
               <div className="absolute inset-0 grid place-items-center">
-                <BrandMark spin className="h-64 w-auto opacity-90" />
+                <div className="grid size-40 place-items-center rounded-full border border-ink-border bg-ink-soft/70 text-center shadow-[0_20px_60px_-20px_rgba(0,0,0,0.8)] backdrop-blur">
+                  <div>
+                    <BrandMark spin className="mx-auto h-12 w-auto" />
+                    <p className="mt-3 font-display text-2xl font-bold leading-none brand-gradient-text">
+                      360°
+                    </p>
+                    <p className="mt-1 text-[10px] font-medium uppercase tracking-[0.18em] text-ink-muted">
+                      Security Coverage
+                    </p>
+                  </div>
+                </div>
               </div>
-              <div className="absolute inset-6 rounded-full border border-ink-border" />
-              <div className="absolute inset-16 rounded-full border border-ink-border" />
+
+              {/* orbiting capability chips */}
               {["VAPT", "ISO 27001", "SOC 2", "DPDPA", "vCISO", "GDPR"].map((label, i, arr) => {
                 const angle = (i / arr.length) * 2 * Math.PI - Math.PI / 2;
                 return (
                   <span
                     key={label}
-                    className="absolute whitespace-nowrap rounded-full border border-ink-border bg-ink-soft/80 px-3 py-1.5 text-[11px] font-medium tracking-wide backdrop-blur"
+                    className="absolute inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-ink-border bg-ink-soft/85 px-3 py-1.5 text-[11px] font-medium tracking-wide shadow-lg backdrop-blur transition-transform duration-300 hover:scale-110"
                     style={{
-                      left: `${50 + 48 * Math.cos(angle)}%`,
-                      top: `${50 + 48 * Math.sin(angle)}%`,
+                      left: `${50 + 46 * Math.cos(angle)}%`,
+                      top: `${50 + 46 * Math.sin(angle)}%`,
                       transform: "translate(-50%, -50%)",
+                      animation: `fade-in 0.5s ease-out ${i * 90}ms both`,
                     }}
                   >
+                    <span
+                      className="size-1.5 rounded-full"
+                      style={{ background: "var(--coral)" }}
+                      aria-hidden="true"
+                    />
                     {label}
                   </span>
                 );
               })}
             </div>
           </Reveal>
+
         </div>
 
         {/* Framework marquee */}
