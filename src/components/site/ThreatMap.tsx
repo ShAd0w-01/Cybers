@@ -42,7 +42,7 @@ export function ThreatMap({ compact = false }: { compact?: boolean }) {
             {!compact && (
               <div className="mt-8 flex flex-wrap gap-3">
                 <CtaLink to="/contact">Request an Assessment</CtaLink>
-                <CtaLink to="/services" variant="outline-ink">
+                <CtaLink to="/services" variant="ghost-dark">
                   Explore our services
                 </CtaLink>
               </div>
