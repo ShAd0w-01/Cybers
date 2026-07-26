@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WebsiteDisclaimerRouteImport } from './routes/website-disclaimer'
+import { Route as ThreatMapRouteImport } from './routes/threat-map'
 import { Route as TermsOfUseRouteImport } from './routes/terms-of-use'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ResponsibleDisclosureRouteImport } from './routes/responsible-disclosure'
@@ -30,6 +31,7 @@ import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as AiAdvisorIndexRouteImport } from './routes/ai-advisor.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as IndustriesSlugRouteImport } from './routes/industries.$slug'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 import { Route as AiAdvisorThreadIdRouteImport } from './routes/ai-advisor.$threadId'
@@ -37,6 +39,11 @@ import { Route as AiAdvisorThreadIdRouteImport } from './routes/ai-advisor.$thre
 const WebsiteDisclaimerRoute = WebsiteDisclaimerRouteImport.update({
   id: '/website-disclaimer',
   path: '/website-disclaimer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ThreatMapRoute = ThreatMapRouteImport.update({
+  id: '/threat-map',
+  path: '/threat-map',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TermsOfUseRoute = TermsOfUseRouteImport.update({
@@ -139,6 +146,11 @@ const IndustriesSlugRoute = IndustriesSlugRouteImport.update({
   path: '/industries/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthCallbackRoute = AuthCallbackRouteImport.update({
   id: '/callback',
   path: '/callback',
@@ -170,10 +182,12 @@ export interface FileRoutesByFullPath {
   '/responsible-disclosure': typeof ResponsibleDisclosureRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-of-use': typeof TermsOfUseRoute
+  '/threat-map': typeof ThreatMapRoute
   '/website-disclaimer': typeof WebsiteDisclaimerRoute
   '/ai-advisor/$threadId': typeof AiAdvisorThreadIdRoute
   '/api/chat': typeof ApiChatRoute
   '/auth/callback': typeof AuthCallbackRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/ai-advisor/': typeof AiAdvisorIndexRoute
@@ -195,10 +209,12 @@ export interface FileRoutesByTo {
   '/responsible-disclosure': typeof ResponsibleDisclosureRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-of-use': typeof TermsOfUseRoute
+  '/threat-map': typeof ThreatMapRoute
   '/website-disclaimer': typeof WebsiteDisclaimerRoute
   '/ai-advisor/$threadId': typeof AiAdvisorThreadIdRoute
   '/api/chat': typeof ApiChatRoute
   '/auth/callback': typeof AuthCallbackRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/ai-advisor': typeof AiAdvisorIndexRoute
@@ -222,10 +238,12 @@ export interface FileRoutesById {
   '/responsible-disclosure': typeof ResponsibleDisclosureRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-of-use': typeof TermsOfUseRoute
+  '/threat-map': typeof ThreatMapRoute
   '/website-disclaimer': typeof WebsiteDisclaimerRoute
   '/ai-advisor/$threadId': typeof AiAdvisorThreadIdRoute
   '/api/chat': typeof ApiChatRoute
   '/auth/callback': typeof AuthCallbackRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/ai-advisor/': typeof AiAdvisorIndexRoute
@@ -250,10 +268,12 @@ export interface FileRouteTypes {
     | '/responsible-disclosure'
     | '/sitemap.xml'
     | '/terms-of-use'
+    | '/threat-map'
     | '/website-disclaimer'
     | '/ai-advisor/$threadId'
     | '/api/chat'
     | '/auth/callback'
+    | '/blog/$slug'
     | '/industries/$slug'
     | '/services/$slug'
     | '/ai-advisor/'
@@ -275,10 +295,12 @@ export interface FileRouteTypes {
     | '/responsible-disclosure'
     | '/sitemap.xml'
     | '/terms-of-use'
+    | '/threat-map'
     | '/website-disclaimer'
     | '/ai-advisor/$threadId'
     | '/api/chat'
     | '/auth/callback'
+    | '/blog/$slug'
     | '/industries/$slug'
     | '/services/$slug'
     | '/ai-advisor'
@@ -301,10 +323,12 @@ export interface FileRouteTypes {
     | '/responsible-disclosure'
     | '/sitemap.xml'
     | '/terms-of-use'
+    | '/threat-map'
     | '/website-disclaimer'
     | '/ai-advisor/$threadId'
     | '/api/chat'
     | '/auth/callback'
+    | '/blog/$slug'
     | '/industries/$slug'
     | '/services/$slug'
     | '/ai-advisor/'
@@ -328,8 +352,10 @@ export interface RootRouteChildren {
   ResponsibleDisclosureRoute: typeof ResponsibleDisclosureRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsOfUseRoute: typeof TermsOfUseRoute
+  ThreatMapRoute: typeof ThreatMapRoute
   WebsiteDisclaimerRoute: typeof WebsiteDisclaimerRoute
   ApiChatRoute: typeof ApiChatRoute
+  BlogSlugRoute: typeof BlogSlugRoute
   IndustriesSlugRoute: typeof IndustriesSlugRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
@@ -344,6 +370,13 @@ declare module '@tanstack/react-router' {
       path: '/website-disclaimer'
       fullPath: '/website-disclaimer'
       preLoaderRoute: typeof WebsiteDisclaimerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/threat-map': {
+      id: '/threat-map'
+      path: '/threat-map'
+      fullPath: '/threat-map'
+      preLoaderRoute: typeof ThreatMapRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/terms-of-use': {
@@ -486,6 +519,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndustriesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/auth/callback': {
       id: '/auth/callback'
       path: '/callback'
@@ -549,8 +589,10 @@ const rootRouteChildren: RootRouteChildren = {
   ResponsibleDisclosureRoute: ResponsibleDisclosureRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsOfUseRoute: TermsOfUseRoute,
+  ThreatMapRoute: ThreatMapRoute,
   WebsiteDisclaimerRoute: WebsiteDisclaimerRoute,
   ApiChatRoute: ApiChatRoute,
+  BlogSlugRoute: BlogSlugRoute,
   IndustriesSlugRoute: IndustriesSlugRoute,
   ServicesSlugRoute: ServicesSlugRoute,
   BlogIndexRoute: BlogIndexRoute,
@@ -560,3 +602,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
