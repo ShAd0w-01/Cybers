@@ -1,9 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ContentPage, headFor } from "@/components/site/ContentPage";
-import { getPage, industries } from "@/content/site";
+import { industries } from "@/content/site";
+import { type PageContent } from "@/content/site";
+import pageData from "@/content/pages/industries.json";
 import { Reveal } from "@/components/site/Reveal";
 
-const page = getPage("/industries");
+const page = pageData as PageContent;
 
 export const Route = createFileRoute("/industries/")({
   head: () => headFor(page, "Industries We Serve"),
@@ -13,7 +15,7 @@ export const Route = createFileRoute("/industries/")({
 function IndustriesIndex() {
   return (
     <ContentPage
-      page={page!}
+      page={page}
       eyebrow="Industries"
       crumbs={[{ label: "Home", to: "/" }, { label: "Industries" }]}
     >

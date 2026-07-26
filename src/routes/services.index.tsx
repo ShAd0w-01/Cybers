@@ -1,9 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ContentPage, headFor } from "@/components/site/ContentPage";
-import { getPage, pillars } from "@/content/site";
+import { pillars } from "@/content/site";
+import { type PageContent } from "@/content/site";
+import pageData from "@/content/pages/services.json";
 import { Reveal } from "@/components/site/Reveal";
 
-const page = getPage("/services");
+const page = pageData as PageContent;
 
 export const Route = createFileRoute("/services/")({
   head: () => headFor(page, "Cybersecurity, Compliance & Privacy Services"),
@@ -13,7 +15,7 @@ export const Route = createFileRoute("/services/")({
 function ServicesIndex() {
   return (
     <ContentPage
-      page={page!}
+      page={page}
       eyebrow="Services"
       crumbs={[{ label: "Home", to: "/" }, { label: "Services" }]}
     >

@@ -1,10 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Mail, MapPin, Clock } from "lucide-react";
 import { ContentPage, headFor } from "@/components/site/ContentPage";
-import { getPage } from "@/content/site";
+import { type PageContent } from "@/content/site";
+import pageData from "@/content/pages/contact.json";
 import { Reveal } from "@/components/site/Reveal";
 
-const page = getPage("/contact");
+const page = pageData as PageContent;
 
 export const Route = createFileRoute("/contact")({
   head: () => headFor(page, "Contact Cybersentinels Consulting"),
@@ -20,7 +21,7 @@ const details = [
 function Contact() {
   return (
     <ContentPage
-      page={page!}
+      page={page}
       eyebrow="Contact"
       crumbs={[{ label: "Home", to: "/" }, { label: "Contact" }]}
     >
