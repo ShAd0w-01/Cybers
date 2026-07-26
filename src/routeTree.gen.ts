@@ -30,6 +30,7 @@ import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as IndustriesSlugRouteImport } from './routes/industries.$slug'
 import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
+import { Route as AiAdvisorAnalyticsRouteImport } from './routes/ai-advisor.analytics'
 import { Route as AiAdvisorThreadIdRouteImport } from './routes/ai-advisor.$threadId'
 
 const WebsiteDisclaimerRoute = WebsiteDisclaimerRouteImport.update({
@@ -137,6 +138,11 @@ const ApiChatRoute = ApiChatRouteImport.update({
   path: '/api/chat',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AiAdvisorAnalyticsRoute = AiAdvisorAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => AiAdvisorRoute,
+} as any)
 const AiAdvisorThreadIdRoute = AiAdvisorThreadIdRouteImport.update({
   id: '/$threadId',
   path: '/$threadId',
@@ -159,6 +165,7 @@ export interface FileRoutesByFullPath {
   '/terms-of-use': typeof TermsOfUseRoute
   '/website-disclaimer': typeof WebsiteDisclaimerRoute
   '/ai-advisor/$threadId': typeof AiAdvisorThreadIdRoute
+  '/ai-advisor/analytics': typeof AiAdvisorAnalyticsRoute
   '/api/chat': typeof ApiChatRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/industries/$slug': typeof IndustriesSlugRoute
@@ -182,6 +189,7 @@ export interface FileRoutesByTo {
   '/terms-of-use': typeof TermsOfUseRoute
   '/website-disclaimer': typeof WebsiteDisclaimerRoute
   '/ai-advisor/$threadId': typeof AiAdvisorThreadIdRoute
+  '/ai-advisor/analytics': typeof AiAdvisorAnalyticsRoute
   '/api/chat': typeof ApiChatRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/industries/$slug': typeof IndustriesSlugRoute
@@ -207,6 +215,7 @@ export interface FileRoutesById {
   '/terms-of-use': typeof TermsOfUseRoute
   '/website-disclaimer': typeof WebsiteDisclaimerRoute
   '/ai-advisor/$threadId': typeof AiAdvisorThreadIdRoute
+  '/ai-advisor/analytics': typeof AiAdvisorAnalyticsRoute
   '/api/chat': typeof ApiChatRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/industries/$slug': typeof IndustriesSlugRoute
@@ -233,6 +242,7 @@ export interface FileRouteTypes {
     | '/terms-of-use'
     | '/website-disclaimer'
     | '/ai-advisor/$threadId'
+    | '/ai-advisor/analytics'
     | '/api/chat'
     | '/auth/callback'
     | '/industries/$slug'
@@ -256,6 +266,7 @@ export interface FileRouteTypes {
     | '/terms-of-use'
     | '/website-disclaimer'
     | '/ai-advisor/$threadId'
+    | '/ai-advisor/analytics'
     | '/api/chat'
     | '/auth/callback'
     | '/industries/$slug'
@@ -280,6 +291,7 @@ export interface FileRouteTypes {
     | '/terms-of-use'
     | '/website-disclaimer'
     | '/ai-advisor/$threadId'
+    | '/ai-advisor/analytics'
     | '/api/chat'
     | '/auth/callback'
     | '/industries/$slug'
@@ -460,6 +472,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiChatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ai-advisor/analytics': {
+      id: '/ai-advisor/analytics'
+      path: '/analytics'
+      fullPath: '/ai-advisor/analytics'
+      preLoaderRoute: typeof AiAdvisorAnalyticsRouteImport
+      parentRoute: typeof AiAdvisorRoute
+    }
     '/ai-advisor/$threadId': {
       id: '/ai-advisor/$threadId'
       path: '/$threadId'
@@ -472,11 +491,13 @@ declare module '@tanstack/react-router' {
 
 interface AiAdvisorRouteChildren {
   AiAdvisorThreadIdRoute: typeof AiAdvisorThreadIdRoute
+  AiAdvisorAnalyticsRoute: typeof AiAdvisorAnalyticsRoute
   AiAdvisorIndexRoute: typeof AiAdvisorIndexRoute
 }
 
 const AiAdvisorRouteChildren: AiAdvisorRouteChildren = {
   AiAdvisorThreadIdRoute: AiAdvisorThreadIdRoute,
+  AiAdvisorAnalyticsRoute: AiAdvisorAnalyticsRoute,
   AiAdvisorIndexRoute: AiAdvisorIndexRoute,
 }
 

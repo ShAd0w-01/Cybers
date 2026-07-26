@@ -6,7 +6,7 @@ import { getAdvisorAnalytics, getMyAdminStatus } from "@/lib/advisor.functions";
 import { useSession } from "@/lib/useSession";
 import { Button } from "@/components/ui/button";
 
-export const Route = createFileRoute("/ai-advisor/analytics")({
+export const Route = createFileRoute("/advisor-analytics")({
   // Session lives in browser storage, so this dashboard is client-rendered.
   ssr: false,
   head: () => ({
@@ -54,7 +54,7 @@ function AnalyticsPage() {
       <Shell>
         <p className="text-muted-foreground">Advisor analytics is available to administrators.</p>
         <Button asChild className="mt-4">
-          <Link to="/auth" search={{ redirect: "/ai-advisor/analytics" }}>
+          <Link to="/auth" search={{ redirect: "/advisor-analytics" }}>
             Sign in
           </Link>
         </Button>
