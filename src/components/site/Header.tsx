@@ -116,6 +116,28 @@ export function Header() {
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
+          <form
+            action="/search"
+            method="GET"
+            className="relative flex items-center"
+            role="search"
+            aria-label="Site search"
+          >
+            <BrandMark className="pointer-events-none absolute left-2.5 h-4 w-auto" />
+            <input
+              type="search"
+              name="q"
+              placeholder="Search…"
+              className="h-9 w-44 rounded-full border border-border bg-background pl-8 pr-8 text-sm text-foreground placeholder:text-muted-foreground transition-all focus:w-60 focus:border-coral-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-coral-ink/30"
+            />
+            <button
+              type="submit"
+              className="absolute right-2 rounded-full p-1 text-muted-foreground transition-colors hover:text-foreground"
+              aria-label="Submit search"
+            >
+              <Search className="size-3.5" />
+            </button>
+          </form>
           <CtaLink to="/contact" variant="outline" className="px-4 py-2.5">
             Request an Assessment
           </CtaLink>
