@@ -99,7 +99,38 @@ export function AdvisorChat({
 
   return (
     <div className={`flex min-h-0 flex-1 flex-col ${className ?? ""}`}>
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border px-4 py-2">
+        <p className="text-xs text-muted-foreground">
+          {user ? (
+            <>Signed in as {user.email} — higher message allowance</>
+          ) : (
+            <>Guest session — sign in for a higher message allowance</>
+          )}
+        </p>
+        <div className="flex items-center gap-2">
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            disabled={messages.length === 0}
+            onClick={() => void exportThreadPdf(title ?? "Advisor conversation", messages)}
+          >
+            <Download className="h-3.5 w-3.5" />
+            Export PDF
+          </Button>
+          {user ? null : (
+            <Button asChild variant="ghost" size="sm">
+              <Link to="/auth" search={{ redirect: "/ai-advisor" }}>
+                <LogIn className="h-3.5 w-3.5" />
+                Sign in
+              </Link>
+            </Button>
+          )}
+        </div>
+      </div>
+
       <Conversation className="min-h-0 flex-1">
+
         <ConversationContent className="mx-auto w-full max-w-3xl gap-6 px-4 py-6">
           {messages.length === 0 ? (
             <div className="py-6">
