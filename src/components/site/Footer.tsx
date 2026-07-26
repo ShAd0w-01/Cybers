@@ -83,6 +83,12 @@ export function Footer() {
               <FooterLink to="/services">All Services</FooterLink>
             </li>
             <li>
+              <FooterLink to="/blog">Blog</FooterLink>
+            </li>
+            <li>
+              <FooterLink to="/threat-map">Live Threat Map</FooterLink>
+            </li>
+            <li>
               <FooterLink to="/case-studies">Case Studies</FooterLink>
             </li>
             <li>
