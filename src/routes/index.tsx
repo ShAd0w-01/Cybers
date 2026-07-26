@@ -18,6 +18,11 @@ import { CtaLink, routeForLabel } from "@/components/site/CtaLink";
 import { Reveal, CountUp } from "@/components/site/Reveal";
 import { BrandMark } from "@/components/site/Logo";
 import { SectionRenderer } from "@/components/site/SectionRenderer";
+import {
+  TestimonialCarousel,
+  type Testimonial,
+} from "@/components/site/TestimonialCarousel";
+
 
 const page = getPage("/");
 
