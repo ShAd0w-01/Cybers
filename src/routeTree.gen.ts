@@ -28,6 +28,7 @@ import { Route as AiAdvisorIndexRouteImport } from './routes/ai-advisor.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as IndustriesSlugRouteImport } from './routes/industries.$slug'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
+import { Route as AiAdvisorThreadIdRouteImport } from './routes/ai-advisor.$threadId'
 
 const WebsiteDisclaimerRoute = WebsiteDisclaimerRouteImport.update({
   id: '/website-disclaimer',
@@ -124,6 +125,11 @@ const ApiChatRoute = ApiChatRouteImport.update({
   path: '/api/chat',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AiAdvisorThreadIdRoute = AiAdvisorThreadIdRouteImport.update({
+  id: '/$threadId',
+  path: '/$threadId',
+  getParentRoute: () => AiAdvisorRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -139,6 +145,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-of-use': typeof TermsOfUseRoute
   '/website-disclaimer': typeof WebsiteDisclaimerRoute
+  '/ai-advisor/$threadId': typeof AiAdvisorThreadIdRoute
   '/api/chat': typeof ApiChatRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
@@ -159,6 +166,7 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-of-use': typeof TermsOfUseRoute
   '/website-disclaimer': typeof WebsiteDisclaimerRoute
+  '/ai-advisor/$threadId': typeof AiAdvisorThreadIdRoute
   '/api/chat': typeof ApiChatRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
@@ -181,6 +189,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-of-use': typeof TermsOfUseRoute
   '/website-disclaimer': typeof WebsiteDisclaimerRoute
+  '/ai-advisor/$threadId': typeof AiAdvisorThreadIdRoute
   '/api/chat': typeof ApiChatRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
@@ -204,6 +213,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms-of-use'
     | '/website-disclaimer'
+    | '/ai-advisor/$threadId'
     | '/api/chat'
     | '/industries/$slug'
     | '/services/$slug'
@@ -224,6 +234,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms-of-use'
     | '/website-disclaimer'
+    | '/ai-advisor/$threadId'
     | '/api/chat'
     | '/industries/$slug'
     | '/services/$slug'
@@ -245,6 +256,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms-of-use'
     | '/website-disclaimer'
+    | '/ai-advisor/$threadId'
     | '/api/chat'
     | '/industries/$slug'
     | '/services/$slug'
@@ -409,14 +421,23 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiChatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ai-advisor/$threadId': {
+      id: '/ai-advisor/$threadId'
+      path: '/$threadId'
+      fullPath: '/ai-advisor/$threadId'
+      preLoaderRoute: typeof AiAdvisorThreadIdRouteImport
+      parentRoute: typeof AiAdvisorRoute
+    }
   }
 }
 
 interface AiAdvisorRouteChildren {
+  AiAdvisorThreadIdRoute: typeof AiAdvisorThreadIdRoute
   AiAdvisorIndexRoute: typeof AiAdvisorIndexRoute
 }
 
 const AiAdvisorRouteChildren: AiAdvisorRouteChildren = {
+  AiAdvisorThreadIdRoute: AiAdvisorThreadIdRoute,
   AiAdvisorIndexRoute: AiAdvisorIndexRoute,
 }
 
