@@ -1227,6 +1227,15 @@ html[data-aurora-preview="off"] .aurora-bloom {
   }
 }
 
+@utility scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 @keyframes arc-spin {
   from {
     transform: rotate(0deg);
