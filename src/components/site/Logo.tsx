@@ -26,19 +26,24 @@ export function BrandMark({ className, spin = false }: { className?: string; spi
   );
 }
 
-export function Logo({ tone = "light" }: { tone?: "light" | "dark" }) {
+export function Logo({
+  tone = "light",
+  className,
+}: {
+  tone?: "light" | "dark";
+  className?: string;
+}) {
+  const asset = tone === "dark" ? logoWhite : logoPrimary;
   return (
-    <span className="flex items-center gap-2.5">
-      <BrandMark className="h-7 w-auto" />
-      <span
-        className={cn(
-          "font-display text-[1.15rem] leading-none tracking-tight",
-          tone === "dark" ? "text-ink-foreground" : "text-foreground",
-        )}
-      >
-        <span className="font-light">Cyber</span>
-        <span className="font-bold">Sentinels</span>
-      </span>
-    </span>
+    <img
+      src={asset.url}
+      alt="CyberSentinels"
+      width={1154}
+      height={326}
+      className={cn("h-8 w-auto object-contain sm:h-9", className)}
+      loading="eager"
+      decoding="async"
+    />
   );
 }
+
