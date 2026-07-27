@@ -402,47 +402,69 @@
 }
 
 /* ------------------------------------------------------------------
- * Aurora bloom — the big, soft, blurred colour field that rises from the
- * bottom of a band (magenta → coral → amber, on warm off-white).
- * Purely decorative: it sits behind content and never carries text.
+ * Aurora bloom — the big, soft, blurred colour field (magenta → coral →
+ * amber) that rises out of a band on warm off-white. Purely decorative:
+ * it sits behind content and never carries text.
+ *
+ * Tunable per instance through CSS variables (set inline by the
+ * <AuroraBloom /> component):
+ *   --aurora-intensity : 0–1 overall strength
+ *   --aurora-blur      : blur radius of the colour field
+ *   --aurora-spread    : how far the field extends past the band
+ *   --aurora-x/--aurora-y : anchor of the field (direction)
+ *   --aurora-fade-*    : where the fade-to-page mask starts/ends
+ *   --aurora-grain     : 0–1 strength of the paper grain blended into it
  * ------------------------------------------------------------------ */
 @utility aurora-bloom {
+  --aurora-intensity: 0.78;
+  --aurora-blur: 70px;
+  --aurora-spread: 20%;
+  --aurora-x: 50%;
+  --aurora-y: 100%;
+  --aurora-fade-start: 0%;
+  --aurora-fade-mid: 26%;
+  --aurora-fade-end: 52%;
+  --aurora-fade-angle: to bottom;
+  --aurora-grain: 0.5;
+
   position: absolute;
   inset: 0;
   pointer-events: none;
   overflow: hidden;
+  isolation: isolate;
   z-index: 0;
 
   &::before {
     content: "";
     position: absolute;
-    left: -20%;
-    right: -20%;
-    bottom: -55%;
-    height: 130%;
-    filter: blur(70px);
+    left: calc(var(--aurora-spread) * -1);
+    right: calc(var(--aurora-spread) * -1);
+    top: calc(var(--aurora-spread) * -1.6);
+    bottom: calc(var(--aurora-spread) * -1.6);
+    z-index: 0;
+    filter: blur(var(--aurora-blur));
     background:
       radial-gradient(
-        ellipse 55% 60% at 22% 78%,
+        ellipse 55% 60% at calc(var(--aurora-x) - 28%) calc(var(--aurora-y) - 22%),
         color-mix(in oklab, var(--magenta) 62%, transparent) 0%,
         transparent 70%
       ),
       radial-gradient(
-        ellipse 60% 62% at 76% 82%,
+        ellipse 60% 62% at calc(var(--aurora-x) + 26%) calc(var(--aurora-y) - 18%),
         color-mix(in oklab, var(--coral) 58%, transparent) 0%,
         transparent 72%
       ),
       radial-gradient(
-        ellipse 70% 55% at 50% 106%,
+        ellipse 70% 55% at var(--aurora-x) calc(var(--aurora-y) + 6%),
         color-mix(in oklab, var(--amber) 62%, transparent) 0%,
         transparent 72%
       ),
       radial-gradient(
-        ellipse 48% 46% at 50% 62%,
+        ellipse 48% 46% at var(--aurora-x) calc(var(--aurora-y) - 38%),
         color-mix(in oklab, var(--magenta) 30%, transparent) 0%,
         transparent 76%
       );
-    opacity: 0.78;
+    opacity: var(--aurora-intensity);
     animation: aurora-breathe 22s ease-in-out infinite alternate;
     will-change: transform;
   }
@@ -452,13 +474,29 @@
     content: "";
     position: absolute;
     inset: 0;
+    z-index: 1;
     background: linear-gradient(
-      to bottom,
-      var(--ink) 0%,
-      color-mix(in oklab, var(--ink) 60%, transparent) 26%,
-      transparent 52%
+      var(--aurora-fade-angle),
+      var(--ink) var(--aurora-fade-start),
+      color-mix(in oklab, var(--ink) 60%, transparent) var(--aurora-fade-mid),
+      transparent var(--aurora-fade-end)
     );
   }
+}
+
+/* Paper grain sitting *inside* the bloom so the glow picks up the same
+   printed-stock texture as the rest of the page instead of reading as a
+   flat blurred blob (most visible on small screens). */
+@utility aurora-grain {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background-image: var(--texture-image);
+  background-repeat: repeat;
+  background-size: var(--texture-size) var(--texture-size);
+  opacity: calc(var(--texture-opacity) * 6 * var(--aurora-grain));
+  mix-blend-mode: overlay;
 }
 
 @keyframes aurora-breathe {
@@ -478,6 +516,26 @@
     animation: none;
   }
 }
+
+/* Mobile: less blur (cheaper, and the field is physically smaller) and a
+   touch more grain so the glow keeps its texture at close viewing distance. */
+@media (max-width: 48rem) {
+  .aurora-bloom {
+    --aurora-blur: calc(var(--aurora-blur, 70px) * 0.72);
+    --aurora-grain: 0.85;
+  }
+}
+
+/* Contrast preview mode (?qa=contrast) pushes every bloom to full strength
+   so AA can be verified against the worst-case glow. */
+html[data-aurora-preview="max"] .aurora-bloom {
+  --aurora-intensity: 1;
+}
+
+html[data-aurora-preview="off"] .aurora-bloom {
+  --aurora-intensity: 0;
+}
+
 
 /* ------------------------------------------------------------------
  * Section separation without lines
