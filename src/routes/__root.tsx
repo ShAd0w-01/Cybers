@@ -16,6 +16,7 @@ import { Footer } from "@/components/site/Footer";
 import { AdvisorWidget } from "@/components/advisor/AdvisorWidget";
 import { WhatsAppButton } from "@/components/site/WhatsAppButton";
 import { ContrastQA } from "@/components/site/ContrastQA";
+import { GlassGuard } from "@/components/site/GlassGuard";
 
 
 import { ThemeStyle } from "@/components/site/ThemeStyle";
@@ -158,6 +159,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeStyle theme={theme} />
+      <GlassGuard />
       <div className="flex min-h-screen flex-col">
         <Header />
         <main className="flex-1">
