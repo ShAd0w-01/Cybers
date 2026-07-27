@@ -1,3 +1,5 @@
+import logoPrimary from "@/assets/logo-primary.asset.json";
+import logoWhite from "@/assets/logo-primary-white.asset.json";
 import { cn } from "@/lib/utils";
 
 /** Brand arc mark, redrawn from the Cybersentinels logo. */
