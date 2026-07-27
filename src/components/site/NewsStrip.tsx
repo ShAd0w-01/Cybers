@@ -19,7 +19,7 @@ export function NewsStrip() {
   const fetchNews = useServerFn(listCyberNews);
   const { data } = useQuery<NewsPage>({
     queryKey: ["cyber-news", "home"],
-    queryFn: () => fetchNews({ data: { page: 1, perPage: 6 } }),
+    queryFn: () => fetchNews({ data: { page: 1, perPage: 3 } }),
     staleTime: 10 * 60 * 1000,
   });
 
