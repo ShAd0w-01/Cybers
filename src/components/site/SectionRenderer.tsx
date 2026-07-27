@@ -51,7 +51,7 @@ export function SectionRenderer({
 
   return (
     <section
-      className={cn("border-b border-border py-16 sm:py-20", tinted ? "bg-surface" : "bg-background")}
+      className={cn("band-fade py-16 sm:py-20", tinted ? "bg-surface" : "bg-background")}
     >
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <Reveal>

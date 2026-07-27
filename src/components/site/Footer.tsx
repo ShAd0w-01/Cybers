@@ -8,7 +8,7 @@ const year = new Date().getFullYear();
 export function Footer() {
   return (
     <footer className="bg-ink text-ink-foreground">
-      <div className="ink-wash-grid border-b border-ink-border">
+      <div className="ink-wash-grid band-fade">
         <div className="mx-auto flex max-w-7xl flex-col gap-6 px-5 py-14 lg:flex-row lg:items-center lg:justify-between lg:px-8">
           <div>
             <h2 className="max-w-2xl type-h2">

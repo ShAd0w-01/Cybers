@@ -177,7 +177,7 @@ function Home() {
 
         <div className="relative mx-auto max-w-4xl px-5 py-24 text-center sm:py-28 lg:px-8 lg:py-36">
           <Reveal>
-            <p className="type-eyebrow mb-7 text-amber">
+            <p className="type-eyebrow mb-7 text-amber-ink">
               Cybersecurity • Compliance • Privacy • Governance
             </p>
             <h1 className="type-display">
@@ -198,7 +198,7 @@ function Home() {
                   key={item.label}
                   className="type-small inline-flex items-center gap-2 rounded-full border border-ink-border bg-ink-soft/60 px-3.5 py-1.5 font-medium text-ink-foreground/85"
                 >
-                  <item.icon className="size-3.5 text-amber" strokeWidth={1.75} aria-hidden="true" />
+                  <item.icon className="size-3.5 text-amber-ink" strokeWidth={1.75} aria-hidden="true" />
                   {item.label}
                 </li>
 
@@ -211,7 +211,7 @@ function Home() {
               </CtaLink>
             </div>
             <p className="type-small mt-5 inline-flex items-center justify-center gap-2 text-ink-muted">
-              <CalendarCheck className="size-4 text-amber" aria-hidden="true" />
+              <CalendarCheck className="size-4 text-amber-ink" aria-hidden="true" />
               Free 30-minute scoping call — no obligation
             </p>
 
@@ -243,7 +243,7 @@ function Home() {
       </section>
 
       {/* -------------------------------------------------- Credibility */}
-      <section className="border-b border-border bg-background py-16 sm:py-20">
+      <section className="band-fade bg-background py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <div className="grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
             {credCards.map((c, i) => (
@@ -260,7 +260,7 @@ function Home() {
       </section>
 
       {/* -------------------------------------------------- Value props */}
-      <section className="border-b border-border bg-surface py-16 sm:py-24">
+      <section className="band-fade bg-surface py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal>
             <div className="max-w-3xl">
@@ -294,7 +294,7 @@ function Home() {
       </section>
 
       {/* ------------------------------------------------ Challenge grid */}
-      <section className="border-b border-border bg-background py-16 sm:py-24">
+      <section className="band-fade bg-background py-16 sm:py-24">
 
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal>
@@ -355,7 +355,7 @@ function Home() {
       </section>
 
       {/* ------------------------------------------------------ Approach */}
-      <section className="ink-wash border-b border-border bg-ink py-16 text-ink-foreground sm:py-24">
+      <section className="ink-wash band-fade bg-ink py-16 text-ink-foreground sm:py-24">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal>
             <div className="max-w-3xl">
@@ -383,7 +383,7 @@ function Home() {
       </section>
 
       {/* -------------------------------------------------- Mid-page CTA */}
-      <section className="border-b border-border bg-surface py-14">
+      <section className="band-fade bg-surface py-14">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal className="flex flex-col gap-6 rounded-xl border border-border bg-background p-8 sm:p-10 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-2xl">
@@ -407,7 +407,7 @@ function Home() {
 
 
       {/* ----------------------------------------------------- Practices */}
-      <section className="border-b border-border bg-background py-16 sm:py-24">
+      <section className="band-fade bg-background py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-6">
@@ -476,7 +476,7 @@ function Home() {
       <NewsStrip />
 
       {/* ---------------------------------------------------- Industries */}
-      <section className="border-b border-border bg-background py-16 sm:py-24">
+      <section className="band-fade bg-background py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal>
             <div className="brand-rule mb-5" />
@@ -505,7 +505,7 @@ function Home() {
       </section>
 
       {/* --------------------------------------------------- Testimonials */}
-      <section className="border-b border-border bg-surface py-16 sm:py-24">
+      <section className="band-fade bg-surface py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal>
             <div className="max-w-3xl">

@@ -52,6 +52,8 @@
   --color-coral: var(--coral);
   --color-coral-ink: var(--coral-ink);
   --color-amber: var(--amber);
+  --color-amber-ink: var(--amber-ink);
+
   --color-surface: var(--surface);
 
   --color-chart-1: var(--chart-1);
@@ -72,37 +74,39 @@
 :root {
   --radius: 0.5rem;
 
-  /* Brand */
-  --ink: oklch(0.16 0.018 285);
-  --ink-soft: oklch(0.22 0.02 285);
-  --ink-foreground: oklch(0.98 0 0);
-  --ink-muted: oklch(0.75 0.012 285);
-  --ink-border: oklch(1 0 0 / 12%);
+  /* Brand — warm light system. "ink" bands are now warm off-white, not dark. */
+  --ink: oklch(0.977 0.009 68);
+  --ink-soft: oklch(0.952 0.016 62);
+  --ink-foreground: oklch(0.21 0.02 300);
+  --ink-muted: oklch(0.455 0.024 40);
+  --ink-border: oklch(0.28 0.03 340 / 14%);
   --magenta: oklch(0.65 0.19 331);
   --coral: oklch(0.66 0.2 15);
   --coral-ink: oklch(0.535 0.2 18);
   --amber: oklch(0.76 0.15 61);
-  --surface: oklch(0.975 0.003 286);
+  --amber-ink: oklch(0.58 0.14 55);
+  --surface: oklch(0.969 0.013 66);
 
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.19 0.015 285);
+  --background: oklch(0.993 0.005 78);
+  --foreground: oklch(0.21 0.02 300);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.19 0.015 285);
+  --card-foreground: oklch(0.21 0.02 300);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.19 0.015 285);
+  --popover-foreground: oklch(0.21 0.02 300);
   --primary: oklch(0.66 0.2 15);
   --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.965 0.004 286);
-  --secondary-foreground: oklch(0.22 0.015 285);
-  --muted: oklch(0.965 0.004 286);
-  --muted-foreground: oklch(0.44 0.014 286);
-  --accent: oklch(0.965 0.004 286);
-  --accent-foreground: oklch(0.22 0.015 285);
+  --secondary: oklch(0.962 0.01 66);
+  --secondary-foreground: oklch(0.24 0.02 300);
+  --muted: oklch(0.962 0.01 66);
+  --muted-foreground: oklch(0.455 0.024 40);
+  --accent: oklch(0.962 0.01 66);
+  --accent-foreground: oklch(0.24 0.02 300);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.99 0 0);
-  --border: oklch(0.918 0.005 286);
-  --input: oklch(0.918 0.005 286);
+  --border: oklch(0.912 0.012 62);
+  --input: oklch(0.912 0.012 62);
   --ring: oklch(0.66 0.2 15);
+
 
   --chart-1: oklch(0.65 0.19 331);
   --chart-2: oklch(0.66 0.2 15);
@@ -171,50 +175,50 @@
 
 @utility ink-grid {
   background-image:
-    linear-gradient(oklch(1 0 0 / 4%) 1px, transparent 1px),
-    linear-gradient(90deg, oklch(1 0 0 / 4%) 1px, transparent 1px);
+    linear-gradient(oklch(0.28 0.03 340 / 4%) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0.28 0.03 340 / 4%) 1px, transparent 1px);
   background-size: 64px 64px;
 }
 
-/* Warm brand gradient wash for dark (ink) bands — magenta → coral → amber. */
+/* Warm off-white gradient wash — magenta → coral → amber over off-white. */
 @utility ink-wash {
   background-image:
     radial-gradient(
-      ellipse 95% 75% at 10% -10%,
-      color-mix(in oklab, var(--magenta) 34%, transparent) 0%,
-      transparent 62%
-    ),
-    radial-gradient(
-      ellipse 85% 70% at 92% 4%,
-      color-mix(in oklab, var(--coral) 30%, transparent) 0%,
+      ellipse 95% 78% at 8% -12%,
+      color-mix(in oklab, var(--magenta) 20%, transparent) 0%,
       transparent 64%
     ),
     radial-gradient(
-      ellipse 120% 65% at 50% 112%,
-      color-mix(in oklab, var(--amber) 24%, transparent) 0%,
+      ellipse 88% 72% at 94% 2%,
+      color-mix(in oklab, var(--coral) 18%, transparent) 0%,
       transparent 66%
+    ),
+    radial-gradient(
+      ellipse 125% 70% at 50% 114%,
+      color-mix(in oklab, var(--amber) 22%, transparent) 0%,
+      transparent 68%
     );
 }
 
 /* Same warm wash, with the fine grid lines layered on top. */
 @utility ink-wash-grid {
   background-image:
-    linear-gradient(oklch(1 0 0 / 4%) 1px, transparent 1px),
-    linear-gradient(90deg, oklch(1 0 0 / 4%) 1px, transparent 1px),
+    linear-gradient(oklch(0.28 0.03 340 / 4%) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0.28 0.03 340 / 4%) 1px, transparent 1px),
     radial-gradient(
-      ellipse 95% 75% at 10% -10%,
-      color-mix(in oklab, var(--magenta) 32%, transparent) 0%,
-      transparent 62%
-    ),
-    radial-gradient(
-      ellipse 85% 70% at 92% 4%,
-      color-mix(in oklab, var(--coral) 28%, transparent) 0%,
+      ellipse 95% 78% at 8% -12%,
+      color-mix(in oklab, var(--magenta) 18%, transparent) 0%,
       transparent 64%
     ),
     radial-gradient(
-      ellipse 120% 65% at 50% 112%,
-      color-mix(in oklab, var(--amber) 22%, transparent) 0%,
+      ellipse 88% 72% at 94% 2%,
+      color-mix(in oklab, var(--coral) 16%, transparent) 0%,
       transparent 66%
+    ),
+    radial-gradient(
+      ellipse 125% 70% at 50% 114%,
+      color-mix(in oklab, var(--amber) 20%, transparent) 0%,
+      transparent 68%
     );
   background-size:
     64px 64px,
@@ -224,24 +228,64 @@
     auto;
 }
 
+/* ------------------------------------------------------------------
+ * Section separation without hard rules: bands blend into each other
+ * with a soft warm gradient feather at the top and bottom edges.
+ * ------------------------------------------------------------------ */
+@utility band-fade {
+  position: relative;
 
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    height: 5rem;
+    pointer-events: none;
+    z-index: 0;
+  }
 
-/* Subtle film-grain / noise texture for dark hero bands */
+  &::before {
+    top: 0;
+    background: linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--amber) 9%, transparent) 0%,
+      transparent 100%
+    );
+  }
+
+  &::after {
+    bottom: 0;
+    background: linear-gradient(
+      to top,
+      color-mix(in oklab, var(--magenta) 7%, transparent) 0%,
+      transparent 100%
+    );
+  }
+
+  & > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+/* Subtle film-grain / noise texture for warm hero bands */
 @utility hero-noise {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
   background-repeat: repeat;
-  opacity: 0.045;
-  mix-blend-mode: screen;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
 }
 
-/* Soft vignette so hero edges settle behind the content */
+/* Soft warm vignette so hero edges settle behind the content */
 @utility hero-vignette {
   background-image: radial-gradient(
-    ellipse 80% 60% at 50% 40%,
+    ellipse 82% 62% at 50% 40%,
     transparent 0%,
-    color-mix(in oklab, var(--ink) 70%, transparent) 100%
+    color-mix(in oklab, var(--amber) 16%, transparent) 100%
   );
 }
+
 
 /* ------------------------------------------------------------------
  * Typography scale — use these instead of ad-hoc text-[..] values.
