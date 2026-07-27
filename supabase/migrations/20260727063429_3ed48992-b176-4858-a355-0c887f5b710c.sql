@@ -1,0 +1,1 @@
+UPDATE public.site_theme SET color_ink='#fdf7f2', color_surface='#faf2ea', color_background='#fffcf9', color_foreground='#1f1a24', color_muted_foreground='#5c5047', updated_at=now() WHERE is_active = true;
