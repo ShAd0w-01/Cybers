@@ -28,6 +28,7 @@ import { Reveal, CountUp } from "@/components/site/Reveal";
 import { IconTile } from "@/components/site/IconTile";
 import { AuroraBloom } from "@/components/site/AuroraBloom";
 import { BrandMark } from "@/components/site/Logo";
+import heroLogo from "@/assets/logo-dark.asset.json";
 
 
 import { SectionRenderer } from "@/components/site/SectionRenderer";
