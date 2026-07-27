@@ -1,6 +1,6 @@
 /**
  * Data powering the industry risk snapshots, the compliance framework
- * explorer, the security scorecard and the case-study / resource hub.
+ * explorer and the case-study / resource hub.
  * Content only — no runtime logic lives here.
  */
 
