@@ -209,23 +209,10 @@ function Home() {
 
         <div className="relative mx-auto max-w-4xl px-5 py-24 text-center sm:py-28 lg:px-8 lg:py-36">
           <Reveal>
-            <div className="relative mb-8 flex justify-center sm:mb-10">
-              <span
-                aria-hidden="true"
-                className="pointer-events-none absolute left-1/2 top-1/2 -z-0 h-[140%] w-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-70 blur-[46px]"
-                style={{
-                  background:
-                    "radial-gradient(60% 60% at 30% 40%, color-mix(in oklab, var(--magenta) 34%, transparent) 0%, transparent 70%), radial-gradient(55% 55% at 75% 60%, color-mix(in oklab, var(--amber) 32%, transparent) 0%, transparent 72%)",
-                }}
-              />
-              <Logo
-                className="relative z-10 h-11 w-auto sm:h-14 lg:h-16"
-                style={{
-                  filter:
-                    "drop-shadow(0 10px 22px color-mix(in oklab, var(--magenta) 22%, transparent)) drop-shadow(0 2px 1px color-mix(in oklab, white 85%, transparent))",
-                }}
-              />
+            <div className="mb-7 flex justify-center sm:mb-9 lg:mb-10">
+              <Logo halo="lg" reveal className="h-10 w-auto sm:h-14 lg:h-16" />
             </div>
+
 
 
             <p className="type-eyebrow mb-6 text-amber-ink sm:mb-7">
