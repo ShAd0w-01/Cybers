@@ -78,7 +78,7 @@ export function SectionRenderer({
 
         {bare.length > 0 ? (
           <Reveal delay={60}>
-            <GradientPanel tone={tinted ? "quiet" : "soft"} className="mt-10">
+            <GradientPanel tone="glass" className="mt-10">
               <ul className="grid gap-x-10 gap-y-4 sm:grid-cols-2">
                 {bare.flatMap((g) => g.items).map((item, i) => (
                   <li key={i} className="flex gap-3 type-body text-muted-foreground">
@@ -96,7 +96,7 @@ export function SectionRenderer({
           <ol className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {titled.map((g, i) => (
               <Reveal as="li" key={i} delay={i * 50}>
-                <GradientPanel tone="soft" interactive className="h-full">
+                <GradientPanel tone="glass" interactive className="h-full">
                   <span className="brand-gradient-text font-display text-3xl font-bold">
                     {String(i + 1).padStart(2, "0")}
                   </span>
@@ -125,7 +125,7 @@ export function SectionRenderer({
               <Reveal key={i} delay={i * 50}>
                 <GradientPanel
                   as="article"
-                  tone={tinted ? "quiet" : "soft"}
+                  tone="glass"
                   interactive
                   className="h-full"
                 >
