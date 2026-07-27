@@ -243,10 +243,11 @@ function MenuTrigger({
       {isOpen ? (
         <div
           className={cn(
-            "absolute left-1/2 top-full z-50 -translate-x-1/2 overflow-hidden rounded-xl border border-border bg-background shadow-2xl shadow-black/8",
+            "glass animate-scale-in absolute left-1/2 top-full z-50 -translate-x-1/2 overflow-hidden rounded-2xl",
             narrow ? "w-72" : "w-[min(76rem,calc(100vw-3rem))]",
           )}
         >
+
           <div className="brand-gradient h-0.5 w-full" />
           {children}
         </div>
