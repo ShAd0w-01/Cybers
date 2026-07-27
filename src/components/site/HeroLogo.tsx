@@ -14,8 +14,8 @@ const SIZES: Record<HeroLogoSize, { img: string; pad: string }> = {
     pad: "px-5 py-3.5 sm:px-7 sm:py-4 lg:px-9 lg:py-5",
   },
   lg: {
-    img: "h-12 sm:h-16 lg:h-24",
-    pad: "px-6 py-4 sm:px-9 sm:py-5 lg:px-12 lg:py-7",
+    img: "h-16 sm:h-20 lg:h-32",
+    pad: "px-7 py-5 sm:px-11 sm:py-6 lg:px-14 lg:py-8",
   },
 };
 
