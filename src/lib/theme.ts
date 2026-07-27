@@ -25,15 +25,15 @@ export const DEFAULT_THEME: SiteTheme = {
   body_font: "Manrope",
   base_font_size: 16,
   heading_scale: 1,
-  color_ink: "#12121b",
+  color_ink: "#fdf7f2",
   color_magenta: "#d63bab",
   color_coral: "#f2603f",
   color_coral_ink: "#c33a25",
   color_amber: "#f0a441",
-  color_surface: "#f7f7f8",
-  color_background: "#ffffff",
-  color_foreground: "#1c1c26",
-  color_muted_foreground: "#5f5f6b",
+  color_surface: "#faf2ea",
+  color_background: "#fffcf9",
+  color_foreground: "#1f1a24",
+  color_muted_foreground: "#5c5047",
 };
 
 export const FONT_OPTIONS = [
@@ -63,7 +63,7 @@ export function themeCss(theme: SiteTheme) {
   const scale = clamp(Number(theme.heading_scale) || 1, 0.85, 1.25);
   return `:root{
   --ink:${theme.color_ink};
-  --ink-soft:${mix(theme.color_ink, "#ffffff", 0.08)};
+  --ink-soft:${mix(theme.color_ink, theme.color_amber, 0.12)};
   --magenta:${theme.color_magenta};
   --coral:${theme.color_coral};
   --coral-ink:${theme.color_coral_ink};
