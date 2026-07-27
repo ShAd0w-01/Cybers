@@ -1584,3 +1584,75 @@ html {
     transition: none !important;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   Brand logo: halo, hover lift and scroll-reveal
+   --------------------------------------------------------------------------- */
+@utility logo-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  isolation: isolate;
+}
+
+@utility logo-halo {
+  position: absolute;
+  inset: -55% -22%;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: 9999px;
+  opacity: 0.75;
+  filter: blur(38px);
+  background:
+    radial-gradient(60% 60% at 30% 40%, color-mix(in oklab, var(--magenta) 32%, transparent) 0%, transparent 70%),
+    radial-gradient(55% 55% at 74% 62%, color-mix(in oklab, var(--amber) 30%, transparent) 0%, transparent 72%);
+  transition: opacity 420ms var(--ease-ios-spring, cubic-bezier(0.22, 1, 0.36, 1));
+}
+
+@utility logo-halo-sm {
+  inset: -70% -30%;
+  filter: blur(20px);
+  opacity: 0.55;
+}
+
+@utility logo-img {
+  position: relative;
+  z-index: 1;
+  filter:
+    drop-shadow(0 10px 22px color-mix(in oklab, var(--magenta) 20%, transparent))
+    drop-shadow(0 1px 1px color-mix(in oklab, white 80%, transparent));
+  transition:
+    transform 420ms var(--ease-ios-spring, cubic-bezier(0.22, 1, 0.36, 1)),
+    filter 420ms ease;
+}
+
+@utility logo-img-dark {
+  filter:
+    drop-shadow(0 10px 24px color-mix(in oklab, var(--magenta) 34%, transparent))
+    drop-shadow(0 1px 2px color-mix(in oklab, black 55%, transparent));
+}
+
+.logo-wrap:hover .logo-img,
+.logo-wrap:focus-visible .logo-img {
+  transform: translateY(-2px) scale(1.035);
+}
+
+.logo-wrap:hover .logo-halo {
+  opacity: 1;
+}
+
+@utility logo-reveal {
+  animation: logo-reveal 900ms var(--ease-ios-spring, cubic-bezier(0.22, 1, 0.36, 1)) both;
+}
+
+@keyframes logo-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
