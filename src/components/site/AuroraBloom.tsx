@@ -28,6 +28,8 @@ export type AuroraBloomProps = {
   grain?: number;
   /** Where the fade-to-page mask finishes, in %. Lower = glow reaches further. */
   fade?: number;
+  /** Drift the glow against the scroll for depth. 0 disables. Default 0.1. */
+  parallax?: number;
   className?: string;
 };
 
