@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 import { cn } from "@/lib/utils";
+import { useParallax } from "@/lib/useParallax";
 
 export type AuroraDirection = "bottom" | "top" | "left" | "right" | "center";
 
