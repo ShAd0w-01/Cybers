@@ -45,9 +45,9 @@ export function Header() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full border-b transition-all duration-300",
+        "sticky top-0 z-50 w-full border-b transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]",
         scrolled
-          ? "border-border bg-background/92 backdrop-blur-md"
+          ? "border-transparent bg-background/70 backdrop-blur-xl backdrop-saturate-150 shadow-[0_1px_0_color-mix(in_oklab,white_80%,transparent)_inset,0_18px_40px_-34px_color-mix(in_oklab,var(--magenta)_50%,transparent)]"
           : "border-transparent bg-background",
       )}
       onMouseLeave={() => setOpen(null)}
@@ -243,10 +243,11 @@ function MenuTrigger({
       {isOpen ? (
         <div
           className={cn(
-            "absolute left-1/2 top-full z-50 -translate-x-1/2 overflow-hidden rounded-xl border border-border bg-background shadow-2xl shadow-black/8",
+            "glass animate-scale-in absolute left-1/2 top-full z-50 -translate-x-1/2 overflow-hidden rounded-2xl",
             narrow ? "w-72" : "w-[min(76rem,calc(100vw-3rem))]",
           )}
         >
+
           <div className="brand-gradient h-0.5 w-full" />
           {children}
         </div>
