@@ -210,8 +210,25 @@ function Home() {
         <div className="relative mx-auto max-w-4xl px-5 py-24 text-center sm:py-28 lg:px-8 lg:py-36">
           <Reveal>
             <div className="mb-8 flex justify-center sm:mb-10">
-              <Logo className="h-10 sm:h-12 lg:h-14" />
+              <div
+                className="glass-strong relative inline-flex items-center justify-center rounded-[1.75rem] px-7 py-4 sm:px-9 sm:py-5"
+                style={{
+                  boxShadow:
+                    "0 1px 0 0 color-mix(in oklab, white 70%, transparent) inset, 0 18px 45px -22px color-mix(in oklab, var(--magenta) 45%, transparent)",
+                }}
+              >
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 rounded-[1.75rem] opacity-70"
+                  style={{
+                    background:
+                      "linear-gradient(115deg, color-mix(in oklab, var(--magenta) 10%, transparent) 0%, transparent 45%, color-mix(in oklab, var(--amber) 12%, transparent) 100%)",
+                  }}
+                />
+                <Logo className="relative h-10 sm:h-12 lg:h-14" />
+              </div>
             </div>
+
             <p className="type-eyebrow mb-6 text-amber-ink sm:mb-7">
 
 
