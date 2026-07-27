@@ -165,6 +165,8 @@ function RootComponent() {
         <Footer />
         <AdvisorWidget />
         <WhatsAppButton />
+        {import.meta.env.DEV ? <ContrastQA /> : null}
+
 
       </div>
     </QueryClientProvider>
