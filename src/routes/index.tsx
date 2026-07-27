@@ -26,6 +26,7 @@ import { headFor } from "@/components/site/ContentPage";
 import { CtaLink, routeForLabel } from "@/components/site/CtaLink";
 import { Reveal, CountUp } from "@/components/site/Reveal";
 import { IconTile } from "@/components/site/IconTile";
+import { AuroraBloom } from "@/components/site/AuroraBloom";
 
 import { SectionRenderer } from "@/components/site/SectionRenderer";
 import {
@@ -171,7 +172,7 @@ function Home() {
           />
 
         </div>
-        <div className="aurora-bloom" aria-hidden="true" />
+        <AuroraBloom intensity={0.8} blur={82} spread={24} grain={0.6} />
         <div className="ink-grid absolute inset-0" aria-hidden="true" />
         <div className="hero-noise pointer-events-none absolute inset-0" aria-hidden="true" />
         <div className="hero-vignette pointer-events-none absolute inset-0" aria-hidden="true" />
@@ -261,8 +262,9 @@ function Home() {
       </section>
 
       {/* -------------------------------------------------- Value props */}
-      <section className="band-soft wash-soft py-16 sm:py-24">
-        <div className="mx-auto max-w-7xl px-5 lg:px-8">
+      <section className="band-soft wash-soft relative overflow-hidden py-16 sm:py-24">
+        <AuroraBloom intensity={0.38} blur={88} direction="center" grain={0.6} fade={74} />
+        <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal>
             <div className="max-w-3xl">
               <div className="brand-rule mb-5" />
@@ -356,8 +358,9 @@ function Home() {
       </section>
 
       {/* ------------------------------------------------------ Approach */}
-      <section className="wash-warm band-soft py-16 text-ink-foreground sm:py-24">
-        <div className="mx-auto max-w-7xl px-5 lg:px-8">
+      <section className="wash-warm band-soft relative overflow-hidden py-16 text-ink-foreground sm:py-24">
+        <AuroraBloom intensity={0.4} blur={90} direction="left" grain={0.6} fade={70} />
+        <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal>
             <div className="max-w-3xl">
               <div className="brand-rule mb-5" />
@@ -384,8 +387,9 @@ function Home() {
       </section>
 
       {/* -------------------------------------------------- Mid-page CTA */}
-      <section className="band-soft wash-soft py-14">
-        <div className="mx-auto max-w-7xl px-5 lg:px-8">
+      <section className="band-soft wash-soft relative overflow-hidden py-14">
+        <AuroraBloom intensity={0.32} blur={96} direction="right" grain={0.6} fade={72} />
+        <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal className="flex flex-col gap-6 rounded-xl border border-border bg-background p-8 sm:p-10 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-2xl">
               <h2 className="type-h2">
@@ -408,8 +412,9 @@ function Home() {
 
 
       {/* ----------------------------------------------------- Practices */}
-      <section className="band-soft wash-quiet py-16 sm:py-24">
-        <div className="mx-auto max-w-7xl px-5 lg:px-8">
+      <section className="band-soft wash-quiet relative overflow-hidden py-16 sm:py-24">
+        <AuroraBloom intensity={0.34} blur={92} direction="top" grain={0.6} fade={68} />
+        <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-6">
               <div className="max-w-2xl">
@@ -477,8 +482,9 @@ function Home() {
       <NewsStrip />
 
       {/* ---------------------------------------------------- Industries */}
-      <section className="band-soft wash-quiet py-16 sm:py-24">
-        <div className="mx-auto max-w-7xl px-5 lg:px-8">
+      <section className="band-soft wash-quiet relative overflow-hidden py-16 sm:py-24">
+        <AuroraBloom intensity={0.34} blur={92} direction="top" grain={0.6} fade={68} />
+        <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal>
             <div className="brand-rule mb-5" />
             <h2 className="max-w-3xl type-h2">
@@ -532,8 +538,9 @@ function Home() {
       {insights ? <SectionRenderer section={insights} index={1} /> : null}
 
       {/* ------------------------------------------------- Where to start */}
-      <section className="wash-warm py-16 text-ink-foreground sm:py-24">
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 lg:grid-cols-2 lg:px-8">
+      <section className="wash-warm relative overflow-hidden py-16 text-ink-foreground sm:py-24">
+        <AuroraBloom intensity={0.55} blur={84} direction="bottom" grain={0.6} fade={62} />
+        <div className="relative mx-auto grid max-w-7xl gap-10 px-5 lg:grid-cols-2 lg:px-8">
           <Reveal>
             <div className="brand-rule mb-5" />
             <h2 className="type-h2">
