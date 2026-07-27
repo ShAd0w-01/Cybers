@@ -108,7 +108,7 @@ export function SectionRenderer({
         ) : titled.length > 0 ? (
           <div
             className={cn(
-              "mt-12 grid gap-6",
+              "mt-14 grid gap-6",
               titled.length === 1
                 ? "sm:grid-cols-1"
                 : titled.length % 3 === 0
@@ -121,23 +121,23 @@ export function SectionRenderer({
                 as="article"
                 key={i}
                 delay={i * 50}
-                className="group rounded-xl border border-border bg-background p-6 transition-all duration-300 hover:-translate-y-1 hover:border-coral/40 hover:shadow-xl hover:shadow-coral/5"
+                className="section-card card-lift group bg-card/80 p-7 backdrop-blur-sm"
               >
                 <h3 className="type-h4">{g.title}</h3>
                 <div className="brand-rule mt-3 mb-4 w-6 transition-all duration-300 group-hover:w-12" />
                 {g.paragraphs.map((p, j) => (
-                  <p key={j} className="text-sm leading-relaxed text-muted-foreground">
+                  <p key={j} className="type-body text-muted-foreground">
                     {p}
                   </p>
                 ))}
                 {g.items.length > 0 ? (
-                  <ul className="mt-4 space-y-2">
+                  <ul className="mt-5 space-y-2.5">
                     {g.items.map((item, j) => (
                       <li
                         key={j}
-                        className="flex gap-2.5 text-[13px] leading-relaxed text-muted-foreground"
+                        className="flex gap-2.5 type-small text-muted-foreground"
                       >
-                        <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-coral" />
+                        <span className="mt-2 size-1.5 shrink-0 rounded-full bg-coral" />
                         <span>{item}</span>
                       </li>
                     ))}
@@ -147,6 +147,7 @@ export function SectionRenderer({
             ))}
           </div>
         ) : null}
+
 
         {buttons.length > 0 ? (
           <Reveal delay={80}>
