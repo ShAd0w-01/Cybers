@@ -62,18 +62,18 @@ function ThankYou() {
 
   return (
     <>
-      <section className="wash-warm relative overflow-hidden py-20 text-ink-foreground sm:py-24">
+      <section className="wash-warm relative overflow-hidden py-20 text-foreground sm:py-24">
         <AuroraBloom intensity={0.6} blur={84} direction="center" grain={0.6} fade={66} />
         <div className="relative mx-auto max-w-3xl px-5 text-center lg:px-8">
           <Reveal>
             <span className="brand-gradient mx-auto inline-flex size-14 items-center justify-center rounded-full text-white">
               <CheckCircle2 className="size-7" strokeWidth={1.75} aria-hidden="true" />
             </span>
-            <h1 className="mt-7 type-h1">
+            <h1 className="mt-7 type-display">
               Your Starter Kit is on its way{" "}
               <span className="brand-gradient-text">down</span>
             </h1>
-            <p className="mt-5 type-lead text-ink-muted">
+            <p className="mt-5 type-lead text-muted-foreground">
               The download should start automatically. If it does not, use the button below — the
               PDF is 4 pages and needs no sign-in.
             </p>
@@ -90,7 +90,7 @@ function ThankYou() {
                 Book a free consultation
               </CtaLink>
             </div>
-            <p className="type-small mt-5 inline-flex items-center justify-center gap-2 text-ink-muted">
+            <p className="type-small mt-5 inline-flex items-center justify-center gap-2 text-muted-foreground">
               <CalendarCheck className="size-4 text-amber-ink" aria-hidden="true" />
               A consultant will follow up once to ask whether the kit was useful.
             </p>

@@ -71,23 +71,23 @@ function StarterKit() {
 
   return (
     <>
-      <section className="wash-warm relative overflow-hidden py-16 text-ink-foreground sm:py-20">
+      <section className="wash-warm relative overflow-hidden py-16 text-foreground sm:py-20">
         <AuroraBloom intensity={0.55} blur={86} direction="left" grain={0.6} fade={68} />
         <div className="relative mx-auto grid max-w-7xl items-start gap-12 px-5 lg:grid-cols-2 lg:px-8">
           <Reveal>
-            <nav aria-label="Breadcrumb" className="type-small text-ink-muted">
-              <Link to="/" className="hover:text-ink-foreground">
+            <nav aria-label="Breadcrumb" className="type-small text-muted-foreground">
+              <Link to="/" className="hover:text-foreground">
                 Home
               </Link>
               <span aria-hidden="true"> / </span>
               <span>Starter Kit</span>
             </nav>
             <p className="type-eyebrow mt-6 text-amber-ink">Free practitioner guide</p>
-            <h1 className="mt-3 type-h1">
+            <h1 className="mt-3 type-display">
               Security &amp; Compliance{" "}
               <span className="brand-gradient-text">Starter Kit</span>
             </h1>
-            <p className="mt-5 max-w-xl type-lead text-ink-muted">
+            <p className="mt-5 max-w-xl type-lead text-muted-foreground">
               The same checklists we open on a first consultation call: a 12-week readiness roadmap,
               the ISO 27001:2022 mandatory documentation list, a SOC 2 evidence matrix, GDPR and
               DPDPA privacy checklists, and nine board metrics that survive scrutiny.
@@ -97,7 +97,7 @@ function StarterKit() {
                 <li key={item.title}>
                   <IconTile icon={kitIcons[i] ?? ListChecks} size="sm" />
                   <h2 className="mt-4 type-h4">{item.title}</h2>
-                  <p className="mt-2 text-sm leading-relaxed text-ink-muted">{item.body}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
                 </li>
               ))}
             </ul>
@@ -105,14 +105,14 @@ function StarterKit() {
 
           <Reveal delay={80}>
             <form
-              className="rounded-xl border border-ink-border bg-ink-soft/60 p-7 backdrop-blur-sm sm:p-8"
+              className="rounded-xl border border-border bg-background p-7 backdrop-blur-sm sm:p-8"
               onSubmit={(e) => {
                 e.preventDefault();
                 mutation.mutate();
               }}
             >
               <h2 className="type-h3">Where should we send it?</h2>
-              <p className="mt-2 text-sm text-ink-muted">
+              <p className="mt-2 text-sm text-muted-foreground">
                 Enter your details and the PDF downloads immediately on the next page. We never sell
                 or share your data.
               </p>
@@ -174,7 +174,7 @@ function StarterKit() {
                 {mutation.isPending ? "Preparing your kit…" : "Send me the Starter Kit"}
               </button>
 
-              <p className="mt-4 flex items-start gap-2 text-xs leading-relaxed text-ink-muted">
+              <p className="mt-4 flex items-start gap-2 text-xs leading-relaxed text-muted-foreground">
                 <CheckCircle2
                   className="mt-0.5 size-3.5 shrink-0 text-amber-ink"
                   strokeWidth={1.75}
@@ -221,7 +221,7 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="mb-1.5 block text-xs font-semibold uppercase tracking-[0.12em] text-ink-muted">
+      <span className="mb-1.5 block text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
         {label}
         {required && <span className="text-amber-ink"> *</span>}
       </span>
