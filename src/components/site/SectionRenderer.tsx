@@ -76,10 +76,10 @@ export function SectionRenderer({
 
         {bare.length > 0 ? (
           <Reveal delay={60}>
-            <ul className="mt-8 grid gap-x-10 gap-y-3 sm:grid-cols-2">
+            <ul className="mt-10 grid gap-x-10 gap-y-4 sm:grid-cols-2">
               {bare.flatMap((g) => g.items).map((item, i) => (
-                <li key={i} className="flex gap-3 text-sm leading-relaxed text-muted-foreground">
-                  <Check className="mt-0.5 size-4 shrink-0 text-coral-ink" aria-hidden="true" />
+                <li key={i} className="flex gap-3 type-body text-muted-foreground">
+                  <Check className="mt-1 size-4 shrink-0 text-coral-ink" aria-hidden="true" />
                   <span>{item}</span>
                 </li>
               ))}
@@ -88,22 +88,28 @@ export function SectionRenderer({
         ) : null}
 
         {isNumbered ? (
-          <ol className="mt-12 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+          <ol className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {titled.map((g, i) => (
-              <Reveal as="li" key={i} delay={i * 50} className="bg-background p-6">
-                <span className="brand-gradient-text font-display text-2xl font-bold">
+              <Reveal
+                as="li"
+                key={i}
+                delay={i * 50}
+                className="section-card card-lift bg-card/80 p-7 backdrop-blur-sm"
+              >
+                <span className="brand-gradient-text font-display text-3xl font-bold">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <h3 className="mt-3 font-display text-sm font-semibold">
+                <h3 className="mt-3 type-h4">
                   {g.title!.replace(/^\d+\.\s*/, "")}
                 </h3>
                 {g.paragraphs.map((p, j) => (
-                  <p key={j} className="mt-2 text-[13px] leading-relaxed text-muted-foreground">
+                  <p key={j} className="mt-2.5 type-small text-muted-foreground">
                     {p}
                   </p>
                 ))}
               </Reveal>
             ))}
+
           </ol>
         ) : titled.length > 0 ? (
           <div
