@@ -92,26 +92,20 @@ export function SectionRenderer({
         {isNumbered ? (
           <ol className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {titled.map((g, i) => (
-              <Reveal
-                as="li"
-                key={i}
-                delay={i * 50}
-                className="section-card card-lift bg-card/80 p-7 backdrop-blur-sm"
-              >
-                <span className="brand-gradient-text font-display text-3xl font-bold">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3 className="mt-3 type-h4">
-                  {g.title!.replace(/^\d+\.\s*/, "")}
-                </h3>
-                {g.paragraphs.map((p, j) => (
-                  <p key={j} className="mt-2.5 type-small text-muted-foreground">
-                    {p}
-                  </p>
-                ))}
+              <Reveal as="li" key={i} delay={i * 50}>
+                <GradientPanel tone="soft" interactive className="h-full">
+                  <span className="brand-gradient-text font-display text-3xl font-bold">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="mt-3 type-h4">{g.title!.replace(/^\d+\.\s*/, "")}</h3>
+                  {g.paragraphs.map((p, j) => (
+                    <p key={j} className="mt-2.5 type-small text-muted-foreground">
+                      {p}
+                    </p>
+                  ))}
+                </GradientPanel>
               </Reveal>
             ))}
-
           </ol>
         ) : titled.length > 0 ? (
           <div
@@ -125,36 +119,36 @@ export function SectionRenderer({
             )}
           >
             {titled.map((g, i) => (
-              <Reveal
-                as="article"
-                key={i}
-                delay={i * 50}
-                className="section-card card-lift group bg-card/80 p-7 backdrop-blur-sm"
-              >
-                <h3 className="type-h4">{g.title}</h3>
-                <div className="brand-rule mt-3 mb-4 w-6 transition-all duration-300 group-hover:w-12" />
-                {g.paragraphs.map((p, j) => (
-                  <p key={j} className="type-body text-muted-foreground">
-                    {p}
-                  </p>
-                ))}
-                {g.items.length > 0 ? (
-                  <ul className="mt-5 space-y-2.5">
-                    {g.items.map((item, j) => (
-                      <li
-                        key={j}
-                        className="flex gap-2.5 type-small text-muted-foreground"
-                      >
-                        <span className="mt-2 size-1.5 shrink-0 rounded-full bg-coral" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                ) : null}
+              <Reveal key={i} delay={i * 50}>
+                <GradientPanel
+                  as="article"
+                  tone={tinted ? "quiet" : "soft"}
+                  interactive
+                  className="h-full"
+                >
+                  <h3 className="type-h4">{g.title}</h3>
+                  <div className="brand-rule mt-3 mb-4 w-6 transition-all duration-300 group-hover:w-12" />
+                  {g.paragraphs.map((p, j) => (
+                    <p key={j} className="type-body text-muted-foreground">
+                      {p}
+                    </p>
+                  ))}
+                  {g.items.length > 0 ? (
+                    <ul className="mt-5 space-y-2.5">
+                      {g.items.map((item, j) => (
+                        <li key={j} className="flex gap-2.5 type-small text-muted-foreground">
+                          <span className="mt-2 size-1.5 shrink-0 rounded-full bg-coral" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
+                </GradientPanel>
               </Reveal>
             ))}
           </div>
         ) : null}
+
 
 
         {buttons.length > 0 ? (
