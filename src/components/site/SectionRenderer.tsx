@@ -1,8 +1,10 @@
 import { Check } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { CtaLink, routeForLabel } from "./CtaLink";
+import { GradientPanel } from "./GradientPanel";
 import type { Block, Section } from "@/content/site";
 import { cn } from "@/lib/utils";
+
 
 type Group = { title?: string; paragraphs: string[]; items: string[] };
 
