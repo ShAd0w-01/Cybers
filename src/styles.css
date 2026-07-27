@@ -1535,14 +1535,16 @@ html {
   scroll-padding-top: 6rem;
 }
 
+/* Uses `translate` (not `transform`) so it composes with the aurora's
+   own breathing keyframes instead of being overridden by them. */
 @utility parallax-layer {
-  will-change: transform;
-  transform: translate3d(0, var(--parallax-y), 0);
+  will-change: translate;
+  translate: 0 var(--parallax-y);
 }
 
 @media (prefers-reduced-motion: reduce) {
   .parallax-layer {
-    transform: none !important;
+    translate: none !important;
   }
 
   [data-slot="dialog-content"],
