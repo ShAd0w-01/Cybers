@@ -3,6 +3,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { CalendarCheck, Phone } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { whatsapp } from "@/content/site";
 
 /**
  * Mobile-only sticky consultation bar. Desktop keeps the header CTAs, so this
@@ -44,7 +45,7 @@ export function StickyBookBar() {
             </p>
           </div>
           <a
-            href="tel:+919999999999"
+            href={`tel:+${whatsapp.number}`}
             className="inline-flex size-10 shrink-0 items-center justify-center rounded-full border border-border bg-background text-coral-ink"
             aria-label="Call CyberSentinels"
           >
