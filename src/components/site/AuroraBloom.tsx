@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 import { cn } from "@/lib/utils";
+import { useParallax } from "@/lib/useParallax";
 
 export type AuroraDirection = "bottom" | "top" | "left" | "right" | "center";
 
@@ -27,6 +28,8 @@ export type AuroraBloomProps = {
   grain?: number;
   /** Where the fade-to-page mask finishes, in %. Lower = glow reaches further. */
   fade?: number;
+  /** Drift the glow against the scroll for depth. 0 disables. Default 0.1. */
+  parallax?: number;
   className?: string;
 };
 
@@ -47,9 +50,11 @@ export function AuroraBloom({
   spread = 20,
   grain = 0.5,
   fade = 52,
+  parallax = 0.1,
   className,
 }: AuroraBloomProps) {
   const d = DIRECTIONS[direction];
+  const ref = useParallax<HTMLDivElement>(parallax);
 
   const style = {
     "--aurora-intensity": String(Math.min(Math.max(intensity, 0), 1)),
@@ -64,7 +69,12 @@ export function AuroraBloom({
   } as CSSProperties;
 
   return (
-    <div className={cn("aurora-bloom", className)} style={style} aria-hidden="true">
+    <div
+      ref={parallax > 0 ? ref : undefined}
+      className={cn("aurora-bloom", parallax > 0 && "parallax-layer", className)}
+      style={style}
+      aria-hidden="true"
+    >
       <span className="aurora-grain" />
     </div>
   );
