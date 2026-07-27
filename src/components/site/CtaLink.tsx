@@ -13,7 +13,7 @@ const styles: Record<Variant, string> = {
   primary:
     "brand-gradient anim-glow text-white hover:brightness-110 hover:-translate-y-0.5 hover:shadow-[0_16px_36px_-12px_color-mix(in_oklab,var(--coral)_70%,transparent)] active:translate-y-0",
   outline:
-    "border border-border bg-background text-foreground hover:-translate-y-0.5 hover:border-coral hover:text-coral-ink hover:shadow-[0_12px_28px_-14px_color-mix(in_oklab,var(--ink)_45%,transparent)] active:translate-y-0",
+    "border border-border bg-background text-foreground hover:-translate-y-0.5 hover:border-coral hover:text-coral-ink hover:shadow-[0_12px_28px_-14px_color-mix(in_oklab,var(--coral)_35%,transparent)] active:translate-y-0",
   "ghost-dark":
     "border border-ink-border bg-white/70 text-ink-foreground backdrop-blur-sm hover:-translate-y-0.5 hover:border-coral hover:text-coral-ink hover:shadow-[0_14px_30px_-14px_color-mix(in_oklab,var(--coral)_45%,transparent)] active:translate-y-0",
   link: "px-0 py-0 text-coral-ink hover:gap-3",
