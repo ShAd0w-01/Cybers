@@ -213,9 +213,6 @@ function Home() {
 
         <div className="relative mx-auto max-w-4xl px-5 py-24 text-center sm:py-28 lg:px-8 lg:py-36">
           <Reveal>
-            <div className="mb-10 flex justify-center sm:mb-12 lg:mb-14">
-              <HeroLogo size={HERO_LOGO_SIZE} />
-            </div>
             <p className="type-eyebrow mb-6 text-amber-ink sm:mb-7">
 
               Free 30-minute consultation • India • UAE • International
