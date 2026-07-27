@@ -28,11 +28,13 @@ import { Route as AdvisorAnalyticsRouteImport } from './routes/advisor-analytics
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutUsRouteImport } from './routes/about-us'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as StarterKitIndexRouteImport } from './routes/starter-kit.index'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as IndustriesIndexRouteImport } from './routes/industries.index'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as AiAdvisorIndexRouteImport } from './routes/ai-advisor.index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as StarterKitThankYouRouteImport } from './routes/starter-kit.thank-you'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as IndustriesSlugRouteImport } from './routes/industries.$slug'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
@@ -140,6 +142,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StarterKitIndexRoute = StarterKitIndexRouteImport.update({
+  id: '/starter-kit/',
+  path: '/starter-kit/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesIndexRoute = ServicesIndexRouteImport.update({
   id: '/services/',
   path: '/services/',
@@ -164,6 +171,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AdminRoute,
+} as any)
+const StarterKitThankYouRoute = StarterKitThankYouRouteImport.update({
+  id: '/starter-kit/thank-you',
+  path: '/starter-kit/thank-you',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesSlugRoute = ServicesSlugRouteImport.update({
   id: '/services/$slug',
@@ -252,11 +264,13 @@ export interface FileRoutesByFullPath {
   '/blog/$slug': typeof BlogSlugRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/starter-kit/thank-you': typeof StarterKitThankYouRoute
   '/admin/': typeof AdminIndexRoute
   '/ai-advisor/': typeof AiAdvisorIndexRoute
   '/blog/': typeof BlogIndexRoute
   '/industries/': typeof IndustriesIndexRoute
   '/services/': typeof ServicesIndexRoute
+  '/starter-kit/': typeof StarterKitIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -287,11 +301,13 @@ export interface FileRoutesByTo {
   '/blog/$slug': typeof BlogSlugRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/starter-kit/thank-you': typeof StarterKitThankYouRoute
   '/admin': typeof AdminIndexRoute
   '/ai-advisor': typeof AiAdvisorIndexRoute
   '/blog': typeof BlogIndexRoute
   '/industries': typeof IndustriesIndexRoute
   '/services': typeof ServicesIndexRoute
+  '/starter-kit': typeof StarterKitIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -325,11 +341,13 @@ export interface FileRoutesById {
   '/blog/$slug': typeof BlogSlugRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/starter-kit/thank-you': typeof StarterKitThankYouRoute
   '/admin/': typeof AdminIndexRoute
   '/ai-advisor/': typeof AiAdvisorIndexRoute
   '/blog/': typeof BlogIndexRoute
   '/industries/': typeof IndustriesIndexRoute
   '/services/': typeof ServicesIndexRoute
+  '/starter-kit/': typeof StarterKitIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -364,11 +382,13 @@ export interface FileRouteTypes {
     | '/blog/$slug'
     | '/industries/$slug'
     | '/services/$slug'
+    | '/starter-kit/thank-you'
     | '/admin/'
     | '/ai-advisor/'
     | '/blog/'
     | '/industries/'
     | '/services/'
+    | '/starter-kit/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -399,11 +419,13 @@ export interface FileRouteTypes {
     | '/blog/$slug'
     | '/industries/$slug'
     | '/services/$slug'
+    | '/starter-kit/thank-you'
     | '/admin'
     | '/ai-advisor'
     | '/blog'
     | '/industries'
     | '/services'
+    | '/starter-kit'
   id:
     | '__root__'
     | '/'
@@ -436,11 +458,13 @@ export interface FileRouteTypes {
     | '/blog/$slug'
     | '/industries/$slug'
     | '/services/$slug'
+    | '/starter-kit/thank-you'
     | '/admin/'
     | '/ai-advisor/'
     | '/blog/'
     | '/industries/'
     | '/services/'
+    | '/starter-kit/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -467,9 +491,11 @@ export interface RootRouteChildren {
   BlogSlugRoute: typeof BlogSlugRoute
   IndustriesSlugRoute: typeof IndustriesSlugRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
+  StarterKitThankYouRoute: typeof StarterKitThankYouRoute
   BlogIndexRoute: typeof BlogIndexRoute
   IndustriesIndexRoute: typeof IndustriesIndexRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
+  StarterKitIndexRoute: typeof StarterKitIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -607,6 +633,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/starter-kit/': {
+      id: '/starter-kit/'
+      path: '/starter-kit'
+      fullPath: '/starter-kit/'
+      preLoaderRoute: typeof StarterKitIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services/': {
       id: '/services/'
       path: '/services'
@@ -641,6 +674,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/admin/'
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRoute
+    }
+    '/starter-kit/thank-you': {
+      id: '/starter-kit/thank-you'
+      path: '/starter-kit/thank-you'
+      fullPath: '/starter-kit/thank-you'
+      preLoaderRoute: typeof StarterKitThankYouRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/services/$slug': {
       id: '/services/$slug'
@@ -790,9 +830,11 @@ const rootRouteChildren: RootRouteChildren = {
   BlogSlugRoute: BlogSlugRoute,
   IndustriesSlugRoute: IndustriesSlugRoute,
   ServicesSlugRoute: ServicesSlugRoute,
+  StarterKitThankYouRoute: StarterKitThankYouRoute,
   BlogIndexRoute: BlogIndexRoute,
   IndustriesIndexRoute: IndustriesIndexRoute,
   ServicesIndexRoute: ServicesIndexRoute,
+  StarterKitIndexRoute: StarterKitIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

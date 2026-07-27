@@ -36,15 +36,26 @@ import {
 import { ThreatMap } from "@/components/site/ThreatMap";
 import { TrustedBy } from "@/components/site/TrustedBy";
 import { NewsStrip } from "@/components/site/NewsStrip";
+import { FaqAccordion } from "@/components/site/FaqAccordion";
+import { homeFaqs, faqSchema } from "@/content/faqs";
 
 
 
 const page = homeData as PageContent;
 
 export const Route = createFileRoute("/")({
-  head: () => headFor(page, "Cybersecurity, Compliance & VAPT Services"),
+  head: () => ({
+    ...headFor(page, "Cybersecurity, Compliance & VAPT Services"),
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(faqSchema(homeFaqs)),
+      },
+    ],
+  }),
   component: Home,
 });
+
 
 const pillarIcons = [ShieldCheck, ScrollText, Lock, Users];
 const industryIcons = [Landmark, CloudCog, Truck, Briefcase];
@@ -55,6 +66,22 @@ const heroProof = [
   { label: "DPDPA & GDPR privacy", icon: Fingerprint },
   { label: "vCISO on demand", icon: UserCog },
 ];
+
+/** High-intent compliance destinations linked from the hero and service band. */
+const complianceLinks = [
+  {
+    label: "ISO 27001 certification",
+    slug: "iso-27001-implementation-certification-assistance",
+  },
+  { label: "SOC 2 readiness", slug: "soc-2-compliance-assistance" },
+  { label: "GDPR readiness", slug: "gdpr-readiness-implementation" },
+  {
+    label: "Virtual CISO (vCISO)",
+    slug: "virtual-chief-information-security-officer-vciso",
+  },
+] as const;
+
+
 
 
 const valueProps = [
@@ -181,19 +208,22 @@ function Home() {
         <div className="relative mx-auto max-w-4xl px-5 py-24 text-center sm:py-28 lg:px-8 lg:py-36">
           <Reveal>
             <p className="type-eyebrow mb-7 text-amber-ink">
-              Cybersecurity • Compliance • Privacy • Governance
+              Free 30-minute consultation • India • UAE • International
             </p>
             <h1 className="type-display">
-              Strengthen Security.{" "}
-              <span className="brand-gradient-text">Simplify Compliance.</span> Build Lasting
-              Resilience.
+              Get a clear, costed path to{" "}
+              <span className="brand-gradient-text">ISO 27001, SOC 2 and privacy compliance</span>{" "}
+              — before you spend on controls.
             </h1>
             <div className="mt-8 space-y-5">
-              {hero.paragraphs.slice(0, 2).map((p, i) => (
-                <p key={i} className="type-lead mx-auto max-w-2xl text-ink-muted">
-                  {p}
-                </p>
-              ))}
+              <p className="type-lead mx-auto max-w-2xl text-ink-muted">
+                Start with a free 30-minute consultation. We map your deadline, customer requirement
+                and current gaps into a sequenced plan with owners, effort and evidence — then you
+                decide whether to run it with us or in-house.
+              </p>
+              <p className="type-lead mx-auto max-w-2xl text-ink-muted">
+                {hero.paragraphs[0]}
+              </p>
             </div>
             <ul className="mt-10 flex flex-wrap justify-center gap-2.5">
               {heroProof.map((item) => (
@@ -208,15 +238,38 @@ function Home() {
               ))}
             </ul>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-              <CtaLink to="/contact">Book a Consultation</CtaLink>
-              <CtaLink to="/services" variant="ghost-dark">
-                Explore Our Services
+              <CtaLink to="/contact">Book your free consultation</CtaLink>
+              <CtaLink to="/starter-kit" variant="ghost-dark">
+                Get the Starter Kit (PDF)
               </CtaLink>
             </div>
             <p className="type-small mt-5 inline-flex items-center justify-center gap-2 text-ink-muted">
               <CalendarCheck className="size-4 text-amber-ink" aria-hidden="true" />
-              Free 30-minute scoping call — no obligation
+              No obligation, no sales script — a consultant, not a form-filler
             </p>
+
+            <div className="mt-11">
+              <p className="type-small text-ink-muted">Or go straight to what you need:</p>
+              <ul className="mt-4 flex flex-wrap justify-center gap-2.5">
+                {complianceLinks.map((l) => (
+                  <li key={l.slug}>
+                    <Link
+                      to="/services/$slug"
+                      params={{ slug: l.slug }}
+                      className="group inline-flex items-center gap-2 rounded-full border border-ink-border bg-ink-soft/40 px-4 py-2 text-sm font-medium text-ink-foreground/90 transition-all hover:border-coral hover:text-ink-foreground"
+                    >
+
+                      {l.label}
+                      <ArrowRight
+                        className="size-3.5 text-amber-ink transition-transform group-hover:translate-x-0.5"
+                        strokeWidth={1.75}
+                        aria-hidden="true"
+                      />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
             {heroTail ? (
               <p className="type-body mx-auto mt-12 max-w-2xl border-l-2 border-coral pl-5 text-left italic text-ink-muted">
@@ -225,6 +278,7 @@ function Home() {
             ) : null}
           </Reveal>
         </div>
+
 
 
         {/* Framework marquee */}
@@ -435,7 +489,29 @@ function Home() {
                 View all 36 services
               </CtaLink>
             </div>
+            <div className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-2.5">
+              <span className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                Most requested
+              </span>
+              {complianceLinks.map((l) => (
+                <Link
+                  key={l.slug}
+                  to="/services/$slug"
+                  params={{ slug: l.slug }}
+                  className="group inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-all hover:border-coral hover:text-coral-ink"
+                >
+
+                  {l.label}
+                  <ArrowRight
+                    className="size-3.5 transition-transform group-hover:translate-x-0.5"
+                    strokeWidth={1.75}
+                    aria-hidden="true"
+                  />
+                </Link>
+              ))}
+            </div>
           </Reveal>
+
           <div className="mt-12 grid gap-6 lg:grid-cols-4">
             {pillars.map((p, i) => (
               <Reveal
@@ -538,8 +614,38 @@ function Home() {
       </section>
 
 
+      {/* ------------------------------------------------- Lead magnet */}
+      <section className="band-soft wash-soft relative overflow-hidden py-16 sm:py-20">
+        <AuroraBloom intensity={0.36} blur={92} direction="right" grain={0.6} fade={72} />
+        <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
+          <Reveal className="flex flex-col gap-8 rounded-xl border border-border bg-background p-8 sm:p-10 lg:flex-row lg:items-center lg:justify-between">
+            <div className="max-w-2xl">
+              <p className="type-eyebrow text-coral-ink">Free download</p>
+              <h2 className="mt-3 type-h2">Security &amp; Compliance Starter Kit</h2>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                A 4-page practitioner guide: the 12-week readiness roadmap, the ISO 27001:2022
+                mandatory documentation checklist, a SOC 2 evidence matrix, GDPR and DPDPA privacy
+                checklists, and nine board metrics that survive scrutiny.
+              </p>
+            </div>
+            <div className="flex shrink-0 flex-wrap gap-3">
+              <CtaLink to="/starter-kit">Download the Starter Kit</CtaLink>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* ------------------------------------------------------ Insights */}
       {insights ? <SectionRenderer section={insights} index={1} /> : null}
+
+      {/* -------------------------------------------------- Compliance FAQ */}
+      <FaqAccordion
+        faqs={homeFaqs}
+        eyebrow="ISO 27001 & SOC 2"
+        title="Compliance questions we answer on every first call"
+      />
+
+
 
       {/* ------------------------------------------------- Where to start */}
       <section className="wash-warm relative overflow-hidden py-16 text-ink-foreground sm:py-24">

@@ -225,6 +225,8 @@ export const allRoutes: string[] = [
   "/case-studies",
   "/insights",
   "/compliance-explorer",
+  "/starter-kit",
+
 
   "/contact",
   ...legalLinks.map((l) => l.url),
