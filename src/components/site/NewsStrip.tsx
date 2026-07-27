@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, Newspaper, Pause, Play } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, Newspaper, Pause, Play } from "lucide-react";
 
 import { Reveal } from "@/components/site/Reveal";
 import { listCyberNews, type NewsPage } from "@/lib/cybernews.functions";
