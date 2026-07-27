@@ -30,7 +30,7 @@ export function Footer() {
 
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:grid-cols-2 lg:grid-cols-6 lg:px-8">
         <div className="lg:col-span-2">
-          <Logo tone="dark" />
+          <Logo tone="dark" className="h-8 sm:h-9 lg:h-10" />
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-ink-muted">
             Cybersentinels Consulting delivers cybersecurity testing, governance and compliance,
             privacy and managed advisory services across India, the UAE and international
