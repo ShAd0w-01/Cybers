@@ -152,3 +152,38 @@ export function faqSchema(faqs: Faq[]) {
     })),
   };
 }
+
+/**
+ * Compliance FAQs shown on the homepage. Deliberately answers the ISO 27001 and
+ * SOC 2 questions prospects ask on a first consultation call.
+ */
+export const homeFaqs: Faq[] = [
+  {
+    q: "How long does ISO 27001 certification take from a standing start?",
+    a: "Six to nine months is realistic for a mid-sized organisation: about six weeks for scoping and gap assessment, three to four months to implement controls and generate evidence, then an internal audit, management review and the stage 1 and stage 2 certification audits. Teams with mature IT controls and a narrow scope have gone from kick-off to certificate in four months.",
+  },
+  {
+    q: "Should we do ISO 27001 or SOC 2 first?",
+    a: "Follow the buyer. North American enterprise customers usually ask for SOC 2; European, Indian and Middle East buyers, tenders and regulators tend to ask for ISO 27001. If both are on the roadmap, build the ISO 27001 management system first and map it to the Trust Services Criteria — more than half the control work is shared, so the second framework costs far less than the first.",
+  },
+  {
+    q: "What is the difference between SOC 2 Type 1 and Type 2?",
+    a: "Type 1 attests that your controls are suitably designed at a single point in time. Type 2 tests that they actually operated over a period, usually three to twelve months. Most enterprise procurement teams now expect Type 2, so a common path is Type 1 first, then an observation window that produces the Type 2 report.",
+  },
+  {
+    q: "Do you issue the certificate or the SOC 2 report yourselves?",
+    a: "No, and no consultancy legitimately can. ISO 27001 certificates come from an accredited certification body and SOC 2 reports from a licensed CPA firm, and neither may audit work they consulted on. We prepare you end to end, run the internal audit, help you shortlist and brief the auditor, and stay with you through the audit itself.",
+  },
+  {
+    q: "What will ISO 27001 or SOC 2 cost us?",
+    a: "Cost is driven by scope, headcount, number of locations or environments, and how much control evidence already exists — plus separate certification body or CPA fees. After a free 30-minute scoping call we issue a fixed-fee proposal with phases, deliverables and the smallest credible scope that still satisfies your customer or regulator.",
+  },
+  {
+    q: "Can our existing tools and policies be reused?",
+    a: "Almost always. We start from what you already run — identity, endpoint, logging, ticketing, HR onboarding — and turn those into evidence sources rather than replacing them. A compliance automation platform helps with collection but is never a prerequisite.",
+  },
+  {
+    q: "What happens after certification?",
+    a: "ISO 27001 has surveillance audits in years one and two and recertification in year three; SOC 2 Type 2 reports are typically refreshed annually. We hand over an operating calendar covering internal audits, management reviews, risk reviews, vendor reviews and evidence collection, and can run it as a managed service or a vCISO retainer.",
+  },
+];

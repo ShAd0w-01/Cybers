@@ -12,9 +12,14 @@ import { whatsapp } from "@/content/site";
  */
 const HIDDEN_ON = ["/contact", "/auth", "/admin", "/ai-advisor"];
 
+/** Matches the rendered bar height so page content is never covered. */
+const BAR_HEIGHT = "4.75rem";
+
 export function StickyBookBar() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const [show, setShow] = useState(false);
+
+  const hidden = HIDDEN_ON.some((p) => pathname === p || pathname.startsWith(`${p}/`));
 
   useEffect(() => {
     const onScroll = () => setShow(window.scrollY > 420);
@@ -23,12 +28,20 @@ export function StickyBookBar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  if (HIDDEN_ON.some((p) => pathname === p || pathname.startsWith(`${p}/`))) return null;
+  // Reserve space at the bottom of the document while the bar is visible so it
+  // never sits on top of the footer, the WhatsApp launcher or page content.
+  useEffect(() => {
+    const root = document.documentElement;
+    root.style.setProperty("--sticky-book-h", hidden || !show ? "0px" : BAR_HEIGHT);
+    return () => root.style.setProperty("--sticky-book-h", "0px");
+  }, [hidden, show]);
+
+  if (hidden) return null;
 
   return (
     <div
       className={cn(
-        "fixed inset-x-0 bottom-0 z-40 lg:hidden",
+        "fixed inset-x-0 bottom-0 z-50 lg:hidden",
         "transition-transform duration-300 ease-out motion-reduce:transition-none",
         show ? "translate-y-0" : "translate-y-full",
       )}
@@ -46,6 +59,7 @@ export function StickyBookBar() {
           </div>
           <a
             href={`tel:+${whatsapp.number}`}
+            tabIndex={show ? 0 : -1}
             className="inline-flex size-10 shrink-0 items-center justify-center rounded-full border border-border bg-background text-coral-ink"
             aria-label="Call CyberSentinels"
           >

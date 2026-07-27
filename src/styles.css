@@ -1361,7 +1361,28 @@ button:not(:disabled):active,
 :root {
   --glass-saturate: 165%;
   --parallax-y: 0px;
+  /* Live height of the mobile sticky booking bar; set by <StickyBookBar />. */
+  --sticky-book-h: 0px;
 }
+
+/* Reserve room so the sticky booking bar never covers footer content. */
+body {
+  padding-bottom: var(--sticky-book-h);
+  transition: padding-bottom 0.3s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    transition: none;
+  }
+}
+
+/* Anchor targets clear both the sticky header and the booking bar. */
+[id="book"] {
+  scroll-margin-top: 7rem;
+  scroll-margin-bottom: calc(var(--sticky-book-h) + 1rem);
+}
+
 
 html[data-glass="lite"] {
   --glass-blur: 7px;
