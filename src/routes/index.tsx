@@ -27,6 +27,8 @@ import { CtaLink, routeForLabel } from "@/components/site/CtaLink";
 import { Reveal, CountUp } from "@/components/site/Reveal";
 import { IconTile } from "@/components/site/IconTile";
 import { AuroraBloom } from "@/components/site/AuroraBloom";
+import { BrandMark } from "@/components/site/Logo";
+
 
 import { SectionRenderer } from "@/components/site/SectionRenderer";
 import {
@@ -207,9 +209,19 @@ function Home() {
 
         <div className="relative mx-auto max-w-4xl px-5 py-24 text-center sm:py-28 lg:px-8 lg:py-36">
           <Reveal>
+            <div className="mb-8 flex justify-center">
+              <span className="glass-strong card-lift inline-flex items-center gap-3 rounded-full px-5 py-3 shadow-[0_18px_45px_-24px_color-mix(in_oklab,var(--magenta)_60%,transparent)] sm:gap-4 sm:px-7 sm:py-4">
+                <BrandMark className="h-9 w-auto sm:h-11" spin />
+                <span className="font-display text-[1.35rem] leading-none tracking-tight text-ink-foreground sm:text-[1.7rem]">
+                  <span className="font-light">Cyber</span>
+                  <span className="font-bold brand-gradient-text">Sentinels</span>
+                </span>
+              </span>
+            </div>
             <p className="type-eyebrow mb-7 text-amber-ink">
               Free 30-minute consultation • India • UAE • International
             </p>
+
             <h1 className="type-display">
               Get a clear, costed path to{" "}
               <span className="brand-gradient-text">ISO 27001, SOC 2 and privacy compliance</span>{" "}
