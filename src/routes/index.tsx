@@ -35,7 +35,6 @@ import {
 } from "@/components/site/TestimonialCarousel";
 import { ThreatMap } from "@/components/site/ThreatMap";
 import { TrustedBy } from "@/components/site/TrustedBy";
-import { NewsStrip } from "@/components/site/NewsStrip";
 import { FaqAccordion } from "@/components/site/FaqAccordion";
 import { homeFaqs, faqSchema } from "@/content/faqs";
 
@@ -557,9 +556,6 @@ function Home() {
 
       {/* -------------------------------------------- Live threat map */}
       <ThreatMap />
-
-      {/* ------------------------------------------- Global cyber news */}
-      <NewsStrip />
 
       {/* ---------------------------------------------------- Industries */}
       <section className="band-soft wash-quiet relative overflow-hidden py-16 sm:py-24">
