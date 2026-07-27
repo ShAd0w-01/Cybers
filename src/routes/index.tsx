@@ -247,12 +247,12 @@ function Home() {
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {credCards.map((c, i) => (
-              <Reveal key={c.title} delay={i * 70} className="bg-background p-7">
+              <Reveal key={c.title} delay={i * 70} className="section-card card-lift bg-card/80 p-7 backdrop-blur-sm">
                 <p className="brand-gradient-text font-display text-3xl font-bold">
                   <StatValue title={c.title} />
                 </p>
-                <h2 className="mt-2 font-display text-sm font-semibold">{statLabel(c.title)}</h2>
-                <p className="mt-3 text-[13px] leading-relaxed text-muted-foreground">{c.body}</p>
+                <h2 className="mt-2 type-h4">{statLabel(c.title)}</h2>
+                <p className="mt-3 type-small text-muted-foreground">{c.body}</p>
               </Reveal>
             ))}
           </div>
@@ -486,7 +486,7 @@ function Home() {
           </Reveal>
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {industries.map((ind, i) => (
-              <Reveal key={ind.url} delay={i * 60} className="bg-background">
+              <Reveal key={ind.url} delay={i * 60} className="section-card card-lift bg-card/80 backdrop-blur-sm">
                 <Link to={ind.url} className="group block h-full p-7">
                   <IconTile icon={industryIcons[i] ?? Briefcase} size="sm" className="mb-5" />
                   <h3 className="type-h4 transition-colors group-hover:text-coral-ink">
