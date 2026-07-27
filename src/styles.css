@@ -1295,7 +1295,7 @@ html[data-aurora-preview="off"] .aurora-bloom {
  * iOS motion: springy hover lift, tactile press-in scale, smooth
  * everything. Applies to every button/link built on btn-base.
  * ------------------------------------------------------------------ */
-@utility btn-base {
+.btn-base {
   transform: translateZ(0);
   transition:
     transform 420ms var(--ease-ios-spring),
@@ -1334,7 +1334,7 @@ button:not(:disabled):active,
 }
 
 /* Cards inherit the same iOS spring feel */
-@utility card-lift {
+.card-lift {
   transition:
     transform 460ms var(--ease-ios-spring),
     box-shadow 420ms var(--ease-ios),
