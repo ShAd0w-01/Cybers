@@ -442,7 +442,7 @@
         color-mix(in oklab, var(--magenta) 30%, transparent) 0%,
         transparent 76%
       );
-    opacity: 0.55;
+    opacity: 0.78;
     animation: aurora-breathe 22s ease-in-out infinite alternate;
     will-change: transform;
   }
@@ -455,8 +455,8 @@
     background: linear-gradient(
       to bottom,
       var(--ink) 0%,
-      color-mix(in oklab, var(--ink) 55%, transparent) 30%,
-      transparent 62%
+      color-mix(in oklab, var(--ink) 60%, transparent) 26%,
+      transparent 52%
     );
   }
 }
