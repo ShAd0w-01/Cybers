@@ -32,24 +32,39 @@ export function Logo({
   tone = "light",
   className,
   style,
+  halo = "sm",
+  reveal = false,
 }: {
   tone?: "light" | "dark";
   className?: string;
   style?: React.CSSProperties;
+  /** Size of the soft brand glow behind the mark. */
+  halo?: "sm" | "lg" | "none";
+  /** Play the one-off entrance animation (hero use). */
+  reveal?: boolean;
 }) {
   const asset = tone === "dark" ? logoWhite : logoPrimary;
   return (
-    <img
-      src={asset.url}
-      alt="CyberSentinels"
-      width={1154}
-      height={326}
-      style={style}
-      className={cn("h-8 w-auto object-contain sm:h-9", className)}
-
-      loading="eager"
-      decoding="async"
-    />
+    <span className={cn("logo-wrap", reveal && "logo-reveal")}>
+      {halo !== "none" && (
+        <span aria-hidden="true" className={cn("logo-halo", halo === "sm" && "logo-halo-sm")} />
+      )}
+      <img
+        src={asset.url}
+        alt="CyberSentinels"
+        width={1154}
+        height={326}
+        style={style}
+        className={cn(
+          "logo-img h-7 w-auto object-contain sm:h-9",
+          tone === "dark" && "logo-img-dark",
+          className,
+        )}
+        loading="eager"
+        decoding="async"
+      />
+    </span>
   );
 }
+
 
