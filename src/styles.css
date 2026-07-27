@@ -402,6 +402,84 @@
 }
 
 /* ------------------------------------------------------------------
+ * Aurora bloom — the big, soft, blurred colour field that rises from the
+ * bottom of a band (magenta → coral → amber, on warm off-white).
+ * Purely decorative: it sits behind content and never carries text.
+ * ------------------------------------------------------------------ */
+@utility aurora-bloom {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: -20%;
+    right: -20%;
+    bottom: -55%;
+    height: 130%;
+    filter: blur(70px);
+    background:
+      radial-gradient(
+        ellipse 55% 60% at 22% 78%,
+        color-mix(in oklab, var(--magenta) 62%, transparent) 0%,
+        transparent 70%
+      ),
+      radial-gradient(
+        ellipse 60% 62% at 76% 82%,
+        color-mix(in oklab, var(--coral) 58%, transparent) 0%,
+        transparent 72%
+      ),
+      radial-gradient(
+        ellipse 70% 55% at 50% 106%,
+        color-mix(in oklab, var(--amber) 62%, transparent) 0%,
+        transparent 72%
+      ),
+      radial-gradient(
+        ellipse 48% 46% at 50% 62%,
+        color-mix(in oklab, var(--magenta) 30%, transparent) 0%,
+        transparent 76%
+      );
+    opacity: 0.78;
+    animation: aurora-breathe 22s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+
+  /* Fades the bloom into the page so there is no hard edge. */
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      var(--ink) 0%,
+      color-mix(in oklab, var(--ink) 60%, transparent) 26%,
+      transparent 52%
+    );
+  }
+}
+
+@keyframes aurora-breathe {
+  0% {
+    transform: translate3d(-2%, 2%, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(2%, -1%, 0) scale(1.06);
+  }
+  100% {
+    transform: translate3d(-1%, 1%, 0) scale(1.02);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora-bloom::before {
+    animation: none;
+  }
+}
+
+/* ------------------------------------------------------------------
  * Section separation without lines
  * `band-soft` feathers a band into its neighbours; `section-card` floats a
  * band as a rounded, shadowed panel instead of ruling it off.

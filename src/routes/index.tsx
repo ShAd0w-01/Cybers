@@ -171,6 +171,7 @@ function Home() {
           />
 
         </div>
+        <div className="aurora-bloom" aria-hidden="true" />
         <div className="ink-grid absolute inset-0" aria-hidden="true" />
         <div className="hero-noise pointer-events-none absolute inset-0" aria-hidden="true" />
         <div className="hero-vignette pointer-events-none absolute inset-0" aria-hidden="true" />

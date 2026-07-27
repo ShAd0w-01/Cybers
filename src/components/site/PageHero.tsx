@@ -20,6 +20,7 @@ export function PageHero({
 }) {
   return (
     <section className="wash-warm band-soft relative overflow-hidden text-ink-foreground">
+      <div className="aurora-bloom" aria-hidden="true" />
       <div className="ink-grid absolute inset-0" aria-hidden="true" />
       <div className="hero-noise pointer-events-none absolute inset-0" aria-hidden="true" />
       <div
