@@ -78,16 +78,19 @@ export function SectionRenderer({
 
         {bare.length > 0 ? (
           <Reveal delay={60}>
-            <ul className="mt-10 grid gap-x-10 gap-y-4 sm:grid-cols-2">
-              {bare.flatMap((g) => g.items).map((item, i) => (
-                <li key={i} className="flex gap-3 type-body text-muted-foreground">
-                  <Check className="mt-1 size-4 shrink-0 text-coral-ink" aria-hidden="true" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
+            <GradientPanel tone={tinted ? "quiet" : "soft"} className="mt-10">
+              <ul className="grid gap-x-10 gap-y-4 sm:grid-cols-2">
+                {bare.flatMap((g) => g.items).map((item, i) => (
+                  <li key={i} className="flex gap-3 type-body text-muted-foreground">
+                    <Check className="mt-1 size-4 shrink-0 text-coral-ink" aria-hidden="true" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </GradientPanel>
           </Reveal>
         ) : null}
+
 
         {isNumbered ? (
           <ol className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
