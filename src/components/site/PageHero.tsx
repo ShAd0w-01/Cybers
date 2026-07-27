@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { BrandMark } from "./Logo";
 import { CtaLink, routeForLabel } from "./CtaLink";
 import { Reveal } from "./Reveal";
+import { AuroraBloom } from "./AuroraBloom";
 
 export type Crumb = { label: string; to?: string };
 
@@ -20,7 +21,7 @@ export function PageHero({
 }) {
   return (
     <section className="wash-warm band-soft relative overflow-hidden text-ink-foreground">
-      <div className="aurora-bloom" aria-hidden="true" />
+      <AuroraBloom intensity={0.62} blur={78} direction="bottom" fade={58} />
       <div className="ink-grid absolute inset-0" aria-hidden="true" />
       <div className="hero-noise pointer-events-none absolute inset-0" aria-hidden="true" />
       <div
