@@ -19,7 +19,7 @@ export function PageHero({
   crumbs?: Crumb[];
 }) {
   return (
-    <section className="relative overflow-hidden bg-ink text-ink-foreground">
+    <section className="ink-wash relative overflow-hidden bg-ink text-ink-foreground">
       <div className="ink-grid absolute inset-0" aria-hidden="true" />
       <div
         className="absolute -right-40 -top-40 size-[34rem] rounded-full opacity-20 blur-3xl"

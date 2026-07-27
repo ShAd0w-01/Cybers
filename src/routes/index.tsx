@@ -148,7 +148,7 @@ function Home() {
   return (
     <>
       {/* ---------------------------------------------------------- Hero */}
-      <section className="relative overflow-hidden bg-ink text-ink-foreground">
+      <section className="ink-wash relative overflow-hidden bg-ink text-ink-foreground">
         {/* drifting ambient gradients */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
           <div
@@ -355,7 +355,7 @@ function Home() {
       </section>
 
       {/* ------------------------------------------------------ Approach */}
-      <section className="border-b border-border bg-ink py-16 text-ink-foreground sm:py-24">
+      <section className="ink-wash border-b border-border bg-ink py-16 text-ink-foreground sm:py-24">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal>
             <div className="max-w-3xl">
@@ -531,7 +531,7 @@ function Home() {
       {insights ? <SectionRenderer section={insights} index={1} /> : null}
 
       {/* ------------------------------------------------- Where to start */}
-      <section className="bg-ink py-16 text-ink-foreground sm:py-24">
+      <section className="ink-wash bg-ink py-16 text-ink-foreground sm:py-24">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 lg:grid-cols-2 lg:px-8">
           <Reveal>
             <div className="brand-rule mb-5" />
