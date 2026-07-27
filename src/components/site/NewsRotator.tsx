@@ -88,7 +88,7 @@ export function NewsRotator() {
                 cyber-security newsroom.
               </p>
             </div>
-            <CtaLink to="/cyber-news" variant="ghost">
+            <CtaLink to="/cyber-news" variant="outline">
               Browse all news
             </CtaLink>
           </div>

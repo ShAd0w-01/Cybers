@@ -35,6 +35,7 @@ import {
 } from "@/components/site/TestimonialCarousel";
 import { ThreatMap } from "@/components/site/ThreatMap";
 import { TrustedBy } from "@/components/site/TrustedBy";
+import { NewsRotator } from "@/components/site/NewsRotator";
 import { FaqAccordion } from "@/components/site/FaqAccordion";
 import { homeFaqs, faqSchema } from "@/content/faqs";
 
@@ -609,6 +610,9 @@ function Home() {
         </div>
       </section>
 
+
+      {/* ------------------------------------------------------- News */}
+      <NewsRotator />
 
       {/* ------------------------------------------------- Lead magnet */}
       <section className="band-soft wash-soft relative overflow-hidden py-16 sm:py-20">
