@@ -28,7 +28,10 @@ import { Reveal, CountUp } from "@/components/site/Reveal";
 import { IconTile } from "@/components/site/IconTile";
 import { AuroraBloom } from "@/components/site/AuroraBloom";
 import { BrandMark } from "@/components/site/Logo";
-import heroLogo from "@/assets/logo-dark.asset.json";
+import { HeroLogo, type HeroLogoSize } from "@/components/site/HeroLogo";
+
+/** Switch between "sm" | "default" | "lg" hero logo presets. */
+const HERO_LOGO_SIZE: HeroLogoSize = "lg";
 
 
 import { SectionRenderer } from "@/components/site/SectionRenderer";
