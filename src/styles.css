@@ -1611,9 +1611,9 @@ html {
 }
 
 @utility logo-halo-sm {
-  inset: -70% -30%;
-  filter: blur(20px);
-  opacity: 0.55;
+  inset: -60% -26%;
+  filter: blur(18px);
+  opacity: 0.34;
 }
 
 @utility logo-img {
