@@ -14,12 +14,12 @@ export function RelatedServices({
   if (related.length === 0) return null;
 
   return (
-    <section className="bg-background py-16 sm:py-20">
+    <section className="wash-quiet band-soft py-20 sm:py-24">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <Reveal>
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
-              <div className="brand-rule mb-5" />
+              <div className="brand-rule mb-6" />
               <h2 className="type-h2">
                 Related services in {pillar.short}
               </h2>
@@ -29,11 +29,11 @@ export function RelatedServices({
             </CtaLink>
           </div>
         </Reveal>
-        <div className="mt-10 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {related.map((s, i) => (
-            <Reveal key={s.url} delay={i * 50} className="bg-background">
-              <Link to={s.url} className="group block h-full p-6">
-                <h3 className="font-display text-sm font-semibold leading-snug transition-colors group-hover:text-coral-ink">
+            <Reveal key={s.url} delay={i * 50} className="section-card card-lift bg-card/80 backdrop-blur-sm">
+              <Link to={s.url} className="group block h-full p-7">
+                <h3 className="type-h4 transition-colors group-hover:text-coral-ink">
                   {s.title}
                 </h3>
                 <div className="brand-rule mt-3 w-6 transition-all duration-300 group-hover:w-12" />
@@ -43,5 +43,6 @@ export function RelatedServices({
         </div>
       </div>
     </section>
+
   );
 }
