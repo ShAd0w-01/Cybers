@@ -52,8 +52,13 @@ export function Header() {
       onMouseLeave={() => setOpen(null)}
     >
       <div className="mx-auto flex h-18 max-w-7xl items-center justify-between gap-6 px-5 py-4 lg:px-8">
-        <Link to="/" aria-label="Cybersentinels Consulting — home" onClick={() => setMobile(false)}>
-          <Logo className="h-7 sm:h-8 lg:h-9" />
+        <Link
+          to="/"
+          aria-label="Cybersentinels Consulting — home"
+          onClick={() => setMobile(false)}
+          className="inline-flex shrink-0 items-center"
+        >
+          <Logo className="h-8 w-auto sm:h-9" />
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
