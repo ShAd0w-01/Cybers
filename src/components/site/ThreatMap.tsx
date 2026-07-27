@@ -8,7 +8,7 @@ import { CtaLink } from "./CtaLink";
  */
 export function ThreatMap({ compact = false }: { compact?: boolean }) {
   return (
-    <section className="ink-wash-grid relative overflow-hidden bg-ink py-16 text-ink-foreground sm:py-24">
+    <section className="wash-warm ink-grid relative overflow-hidden py-16 text-ink-foreground sm:py-24">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.25fr]">
           <Reveal>

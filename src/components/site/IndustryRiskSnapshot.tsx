@@ -12,7 +12,7 @@ export function IndustryRiskSnapshot({ slug }: { slug: string }) {
   if (!snap) return null;
 
   return (
-    <section className="bg-surface py-16 sm:py-20">
+    <section className="wash-soft band-soft py-20 sm:py-24">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <Reveal>
           <p className="type-eyebrow text-coral-ink">Risk snapshot</p>

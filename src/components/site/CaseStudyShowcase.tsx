@@ -10,7 +10,7 @@ import { caseStudies, resourceHub } from "@/content/tools-data";
 export function CaseStudyShowcase() {
   return (
     <>
-      <section className="bg-surface py-16 sm:py-20">
+      <section className="wash-soft band-soft py-20 sm:py-24">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal>
             <p className="type-eyebrow text-coral-ink">Engagement outcomes</p>
