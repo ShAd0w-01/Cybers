@@ -31,9 +31,11 @@ export function BrandMark({ className, spin = false }: { className?: string; spi
 export function Logo({
   tone = "light",
   className,
+  style,
 }: {
   tone?: "light" | "dark";
   className?: string;
+  style?: React.CSSProperties;
 }) {
   const asset = tone === "dark" ? logoWhite : logoPrimary;
   return (
@@ -42,7 +44,9 @@ export function Logo({
       alt="CyberSentinels"
       width={1154}
       height={326}
+      style={style}
       className={cn("h-8 w-auto object-contain sm:h-9", className)}
+
       loading="eager"
       decoding="async"
     />
