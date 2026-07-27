@@ -125,11 +125,13 @@ function ThankYou() {
             <h2 className="type-h3">Where teams usually go next</h2>
             <ul className="mt-5 flex flex-wrap gap-2.5">
               {nextSteps.map((s) => (
-                <li key={s.to}>
+                <li key={s.slug}>
                   <Link
-                    to={s.to}
+                    to="/services/$slug"
+                    params={{ slug: s.slug }}
                     className="group inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-all hover:border-coral hover:text-coral-ink"
                   >
+
                     {s.label}
                     <ArrowRight
                       className="size-3.5 transition-transform group-hover:translate-x-0.5"
