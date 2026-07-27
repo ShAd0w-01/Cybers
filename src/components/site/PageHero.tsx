@@ -35,18 +35,18 @@ export function PageHero({
         className="pointer-events-none absolute -bottom-24 -left-16 h-[26rem] w-auto opacity-[0.07]"
       />
 
-      <div className="relative mx-auto max-w-7xl px-5 py-20 sm:py-24 lg:px-8">
+      <div className="relative mx-auto max-w-7xl px-5 py-24 sm:py-32 lg:px-8">
         {crumbs.length > 0 ? (
-          <nav aria-label="Breadcrumb" className="mb-8">
-            <ol className="flex flex-wrap items-center gap-2 text-xs text-ink-muted">
+          <nav aria-label="Breadcrumb" className="mb-10">
+            <ol className="flex flex-wrap items-center gap-2 type-small text-ink-muted">
               {crumbs.map((c, i) => (
                 <li key={i} className="flex items-center gap-2">
                   {c.to ? (
-                    <Link to={c.to} className="transition-colors hover:text-ink-foreground">
+                    <Link to={c.to} className="transition-colors hover:text-coral-ink">
                       {c.label}
                     </Link>
                   ) : (
-                    <span className="text-ink-foreground">{c.label}</span>
+                    <span className="font-semibold text-ink-foreground">{c.label}</span>
                   )}
                   {i < crumbs.length - 1 ? <span aria-hidden="true">/</span> : null}
                 </li>
@@ -56,23 +56,17 @@ export function PageHero({
         ) : null}
 
         <Reveal>
-          {eyebrow ? (
-            <p className="mb-5 type-eyebrow text-amber-ink">
-              {eyebrow}
-            </p>
-          ) : null}
-          <h1 className="max-w-4xl font-display text-3xl font-semibold leading-[1.12] sm:text-[2.75rem] lg:text-[3.25rem]">
-            {title}
-          </h1>
-          <div className="mt-6 max-w-2xl space-y-4">
+          {eyebrow ? <p className="mb-6 type-eyebrow text-amber-ink">{eyebrow}</p> : null}
+          <h1 className="max-w-4xl type-display">{title}</h1>
+          <div className="mt-7 max-w-2xl space-y-4">
             {paragraphs.map((p, i) => (
-              <p key={i} className="text-base leading-relaxed text-ink-muted">
+              <p key={i} className="type-lead text-ink-muted">
                 {p}
               </p>
             ))}
           </div>
           {buttons.length > 0 ? (
-            <div className="mt-9 flex flex-wrap gap-3">
+            <div className="mt-10 flex flex-wrap gap-3">
               {buttons.map((b, i) => (
                 <CtaLink key={b} to={routeForLabel(b)} variant={i === 0 ? "primary" : "ghost-dark"}>
                   {b}
@@ -83,5 +77,6 @@ export function PageHero({
         </Reveal>
       </div>
     </section>
+
   );
 }
