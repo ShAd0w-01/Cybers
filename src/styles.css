@@ -696,9 +696,10 @@
   input:focus-visible,
   select:focus-visible,
   textarea:focus-visible {
-    outline: 2px solid var(--coral);
-    outline-offset: 2px;
+    outline: 2px solid var(--coral-ink);
+    outline-offset: 3px;
     border-radius: var(--radius-sm);
+    box-shadow: 0 0 0 5px color-mix(in oklab, var(--amber) 30%, transparent);
   }
 
   /* On ink (dark) bands the coral ring needs a lighter halo to stay visible */
@@ -706,8 +707,9 @@
   .bg-ink button:focus-visible,
   .bg-ink [role="button"]:focus-visible,
   .bg-ink [tabindex]:not([tabindex="-1"]):focus-visible {
-    outline-color: var(--amber);
+    outline-color: var(--amber-ink);
   }
+
 
   /* Unified icon line weight and joins across the whole product */
   svg.lucide {
