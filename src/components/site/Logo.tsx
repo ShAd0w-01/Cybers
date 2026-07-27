@@ -45,7 +45,7 @@ export function Logo({
 }) {
   const asset = tone === "dark" ? logoWhite : logoPrimary;
   return (
-    <span className={cn("logo-wrap", reveal && "logo-reveal")}>
+    <span className={cn("logo-wrap align-middle", reveal && "logo-reveal")}>
       {halo !== "none" && (
         <span aria-hidden="true" className={cn("logo-halo", halo === "sm" && "logo-halo-sm")} />
       )}
@@ -56,7 +56,7 @@ export function Logo({
         height={326}
         style={style}
         className={cn(
-          "logo-img h-7 w-auto object-contain sm:h-9",
+          "logo-img block h-8 w-auto shrink-0 object-contain object-left sm:h-9",
           tone === "dark" && "logo-img-dark",
           className,
         )}
