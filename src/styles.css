@@ -1178,6 +1178,55 @@ html[data-aurora-preview="off"] .aurora-bloom {
   }
 }
 
+/* ------------------------------------------------------------------
+ * News ticker — horizontally scrolling, draggable, pause-on-hover
+ * Uses duplicated children for a seamless loop. JS can drive scrollLeft
+ * for interactivity; CSS animation is the fallback/decorative path.
+ * ------------------------------------------------------------------ */
+@utility news-ticker {
+  display: flex;
+  width: max-content;
+  gap: var(--ticker-gap, 1.5rem);
+  animation: marquee-x var(--ticker-duration, 45s) linear infinite;
+  will-change: transform;
+
+  &:hover,
+  &:focus-within,
+  &.is-paused {
+    animation-play-state: paused;
+  }
+}
+
+@utility ticker-fade {
+  position: relative;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    width: 3rem;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  &::before {
+    left: 0;
+    background: linear-gradient(to right, var(--surface) 0%, transparent 100%);
+  }
+
+  &::after {
+    right: 0;
+    background: linear-gradient(to left, var(--surface) 0%, transparent 100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .news-ticker {
+    animation: none !important;
+  }
+}
+
 @keyframes arc-spin {
   from {
     transform: rotate(0deg);
