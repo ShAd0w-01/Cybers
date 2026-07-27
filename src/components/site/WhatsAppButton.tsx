@@ -31,7 +31,7 @@ export function WhatsAppButton() {
       }`}
 
     >
-      <WhatsAppIcon className="size-6" />
+      <WhatsAppIcon className="size-6 -mt-0.5" />
     </a>
   );
 }
