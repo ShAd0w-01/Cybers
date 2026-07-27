@@ -51,12 +51,12 @@ export function SectionRenderer({
 
   return (
     <section
-      className={cn("band-fade py-16 sm:py-20", tinted ? "bg-surface" : "bg-background")}
+      className={cn("band-soft py-20 sm:py-28", tinted ? "wash-soft" : "wash-quiet")}
     >
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <Reveal>
           <div className="max-w-3xl">
-            <div className="brand-rule mb-5" />
+            <div className="brand-rule mb-6" />
             <h2
               className={cn(
                 "type-h2",
@@ -66,12 +66,13 @@ export function SectionRenderer({
               {section.heading}
             </h2>
             {intro.map((p, i) => (
-              <p key={i} className="mt-4 text-base leading-relaxed text-muted-foreground">
+              <p key={i} className="mt-5 type-lead">
                 {p}
               </p>
             ))}
           </div>
         </Reveal>
+
 
         {bare.length > 0 ? (
           <Reveal delay={60}>
