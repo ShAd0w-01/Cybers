@@ -15,6 +15,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { AdvisorWidget } from "@/components/advisor/AdvisorWidget";
 import { WhatsAppButton } from "@/components/site/WhatsAppButton";
+import { StickyBookBar } from "@/components/site/StickyBookBar";
 import { ContrastQA } from "@/components/site/ContrastQA";
 import { GlassGuard } from "@/components/site/GlassGuard";
 
@@ -169,6 +170,7 @@ function RootComponent() {
         <Footer />
         <AdvisorWidget />
         <WhatsAppButton />
+        <StickyBookBar />
         {import.meta.env.DEV ? <ContrastQA /> : null}
 
 

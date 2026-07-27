@@ -5,6 +5,7 @@ import { CheckCircle2, Send } from "lucide-react";
 
 import { submitLead } from "@/lib/crm.functions";
 import { pillars } from "@/content/site";
+import { BookingPicker, formatBooking, type Booking } from "./BookingPicker";
 
 const inputClass =
   "w-full rounded-md border border-border bg-background px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/70";
@@ -20,8 +21,20 @@ export function ContactForm() {
     message: "",
   });
 
+  const [booking, setBooking] = useState<Booking>(null);
+  const bookingConfirmed = Boolean(booking?.date && booking.time);
+
   const mutation = useMutation({
-    mutationFn: () => send({ data: { ...form, source: "website-contact-form" } }),
+    mutationFn: () =>
+      send({
+        data: {
+          ...form,
+          message: bookingConfirmed
+            ? `${form.message}\n\nRequested consultation slot: ${formatBooking(booking)}`
+            : form.message,
+          source: bookingConfirmed ? "website-contact-form-booking" : "website-contact-form",
+        },
+      }),
   });
 
   const set = (key: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
@@ -33,7 +46,9 @@ export function ContactForm() {
         <CheckCircle2 className="mx-auto size-8 text-coral-ink" strokeWidth={1.75} aria-hidden="true" />
         <h2 className="type-h4 mt-4 text-foreground">Thank you — your enquiry is with us</h2>
         <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-          A CyberSentinels consultant will respond within one business day.
+          {bookingConfirmed
+            ? `We have your requested slot — ${formatBooking(booking)} — and will send a calendar invite shortly.`
+            : "A CyberSentinels consultant will respond within one business day."}
         </p>
       </div>
     );
@@ -41,7 +56,8 @@ export function ContactForm() {
 
   return (
     <form
-      className="rounded-xl border border-border bg-background p-7 sm:p-8"
+      id="book"
+      className="scroll-mt-28 rounded-xl border border-border bg-background p-7 sm:p-8"
       onSubmit={(e) => {
         e.preventDefault();
         mutation.mutate();
@@ -90,6 +106,10 @@ export function ContactForm() {
         </div>
       </div>
 
+      <div className="mt-6">
+        <BookingPicker value={booking} onChange={setBooking} />
+      </div>
+
       {mutation.isError && (
         <p className="mt-4 text-sm text-destructive" role="alert">
           {(mutation.error as Error).message}
@@ -102,7 +122,11 @@ export function ContactForm() {
         className="brand-gradient mt-6 inline-flex items-center gap-2 rounded-md px-5 py-3 type-button text-white transition-all hover:brightness-110 disabled:opacity-60"
       >
         <Send className="size-4" strokeWidth={1.75} aria-hidden="true" />
-        {mutation.isPending ? "Sending…" : "Send enquiry"}
+        {mutation.isPending
+          ? "Sending…"
+          : bookingConfirmed
+            ? "Confirm booking & send"
+            : "Send enquiry"}
       </button>
     </form>
   );
