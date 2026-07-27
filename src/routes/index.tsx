@@ -27,7 +27,7 @@ import { CtaLink, routeForLabel } from "@/components/site/CtaLink";
 import { Reveal, CountUp } from "@/components/site/Reveal";
 import { IconTile } from "@/components/site/IconTile";
 import { AuroraBloom } from "@/components/site/AuroraBloom";
-import { BrandMark } from "@/components/site/Logo";
+import { BrandMark, Logo } from "@/components/site/Logo";
 
 
 import { SectionRenderer } from "@/components/site/SectionRenderer";
