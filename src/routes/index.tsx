@@ -34,7 +34,6 @@ import {
   type Testimonial,
 } from "@/components/site/TestimonialCarousel";
 import { ThreatMap } from "@/components/site/ThreatMap";
-import { HeroScorecard } from "@/components/site/HeroScorecard";
 import { TrustedBy } from "@/components/site/TrustedBy";
 import { NewsStrip } from "@/components/site/NewsStrip";
 
@@ -218,8 +217,6 @@ function Home() {
               <CalendarCheck className="size-4 text-amber-ink" aria-hidden="true" />
               Free 30-minute scoping call — no obligation
             </p>
-
-            <HeroScorecard className="mt-12" />
 
             {heroTail ? (
               <p className="type-body mx-auto mt-12 max-w-2xl border-l-2 border-coral pl-5 text-left italic text-ink-muted">

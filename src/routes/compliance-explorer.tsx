@@ -123,9 +123,6 @@ function ComplianceExplorer() {
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3">
               <CtaLink to="/contact">Discuss your compliance path</CtaLink>
-              <CtaLink to="/security-scorecard" variant="outline">
-                Take the security scorecard
-              </CtaLink>
             </div>
           </Reveal>
         </div>

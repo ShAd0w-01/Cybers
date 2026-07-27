@@ -1,6 +1,6 @@
 /**
  * Data powering the industry risk snapshots, the compliance framework
- * explorer, the security scorecard and the case-study / resource hub.
+ * explorer and the case-study / resource hub.
  * Content only — no runtime logic lives here.
  */
 
@@ -406,13 +406,6 @@ export type ResourceItem = {
 };
 
 export const resourceHub: ResourceItem[] = [
-  {
-    title: "Security Scorecard",
-    kind: "Tool",
-    summary: "Answer eight questions and get a maturity score with prioritised next steps for your environment.",
-    to: "/security-scorecard",
-    cta: "Start the scorecard",
-  },
   {
     title: "Compliance Framework Explorer",
     kind: "Guide",

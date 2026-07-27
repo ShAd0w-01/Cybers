@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { AlertTriangle, ClipboardCheck, Gauge, ScrollText } from "lucide-react";
+import { AlertTriangle, ClipboardCheck, ScrollText } from "lucide-react";
 
 import { Reveal } from "./Reveal";
 import { IconTile } from "./IconTile";
@@ -100,19 +100,6 @@ export function IndustryRiskSnapshot({ slug }: { slug: string }) {
               </ol>
             </Reveal>
 
-            <Reveal delay={140} className="rounded-xl border border-border bg-background p-7">
-              <div className="flex items-center gap-3">
-                <IconTile icon={Gauge} size="sm" />
-                <h3 className="type-h4 text-foreground">Not sure where you stand?</h3>
-              </div>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                Take the eight-question security scorecard for an instant maturity read and a
-                prioritised action list.
-              </p>
-              <CtaLink to="/security-scorecard" className="mt-5 w-full">
-                Get your score
-              </CtaLink>
-            </Reveal>
           </div>
         </div>
       </div>

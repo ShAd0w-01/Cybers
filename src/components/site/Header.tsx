@@ -7,7 +7,6 @@ import { industries, pillars } from "@/content/site";
 import { cn } from "@/lib/utils";
 
 const resources = [
-  { title: "Security Scorecard", url: "/security-scorecard" },
   { title: "Compliance Framework Explorer", url: "/compliance-explorer" },
   { title: "Blog", url: "/blog" },
   { title: "Global Cyber News", url: "/cyber-news" },
