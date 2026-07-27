@@ -1214,3 +1214,138 @@ html[data-aurora-preview="off"] .aurora-bloom {
   100% { transform: translate3d(0, 0, 0) scale(0.95); }
 }
 
+
+/* ==================================================================
+ * iOS-style glass (frosted, specular, warm-tinted) + spring motion
+ * All colour comes from the brand tokens so AA contrast is preserved:
+ * glass surfaces stay ≥ 78% white-equivalent behind foreground text.
+ * ================================================================== */
+:root {
+  /* iOS-like easings */
+  --ease-ios: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-ios-spring: cubic-bezier(0.34, 1.4, 0.44, 1);
+  --glass-blur: 22px;
+  --glass-tint: color-mix(in oklab, var(--coral) 7%, white 93%);
+}
+
+@utility glass {
+  position: relative;
+  isolation: isolate;
+  background-color: color-mix(in oklab, var(--glass-tint) 74%, transparent);
+  backdrop-filter: blur(var(--glass-blur)) saturate(165%);
+  border: 1px solid color-mix(in oklab, white 65%, transparent);
+  box-shadow:
+    0 1px 0 color-mix(in oklab, white 85%, transparent) inset,
+    0 -1px 0 color-mix(in oklab, var(--coral) 12%, transparent) inset,
+    0 24px 60px -34px color-mix(in oklab, var(--magenta) 45%, transparent);
+
+  /* specular top-edge highlight, the iOS "lens" sheen */
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    border-radius: inherit;
+    background: linear-gradient(
+      180deg,
+      color-mix(in oklab, white 55%, transparent) 0%,
+      transparent 42%,
+      color-mix(in oklab, var(--amber) 10%, transparent) 100%
+    );
+  }
+}
+
+@utility glass-strong {
+  background-color: color-mix(in oklab, var(--glass-tint) 88%, transparent);
+  backdrop-filter: blur(30px) saturate(180%);
+}
+
+/* GradientPanel tone: frosted glass card */
+@utility panel-glass {
+  background-color: color-mix(in oklab, var(--glass-tint) 72%, transparent);
+  backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+  border-color: color-mix(in oklab, white 60%, transparent);
+  box-shadow:
+    0 1px 0 color-mix(in oklab, white 85%, transparent) inset,
+    0 22px 55px -34px color-mix(in oklab, var(--magenta) 45%, transparent);
+}
+
+/* Glass button — tertiary/nav actions on any wash */
+@utility btn-glass {
+  color: var(--foreground);
+  background-color: color-mix(in oklab, var(--glass-tint) 70%, transparent);
+  backdrop-filter: blur(18px) saturate(170%);
+  border: 1px solid color-mix(in oklab, white 62%, transparent);
+  box-shadow:
+    0 1px 0 color-mix(in oklab, white 80%, transparent) inset,
+    0 10px 26px -18px color-mix(in oklab, var(--magenta) 50%, transparent);
+
+  &:hover {
+    color: var(--coral-ink);
+    background-color: color-mix(in oklab, var(--glass-tint) 92%, transparent);
+    border-color: color-mix(in oklab, var(--coral) 32%, transparent);
+    box-shadow:
+      0 1px 0 color-mix(in oklab, white 85%, transparent) inset,
+      0 18px 36px -18px color-mix(in oklab, var(--coral) 55%, transparent);
+  }
+}
+
+/* ------------------------------------------------------------------
+ * iOS motion: springy hover lift, tactile press-in scale, smooth
+ * everything. Applies to every button/link built on btn-base.
+ * ------------------------------------------------------------------ */
+@utility btn-base {
+  transform: translateZ(0);
+  transition:
+    transform 420ms var(--ease-ios-spring),
+    box-shadow 380ms var(--ease-ios),
+    background-color 300ms var(--ease-ios),
+    background-position 520ms var(--ease-ios),
+    border-color 300ms var(--ease-ios),
+    color 240ms var(--ease-ios);
+
+  &:hover {
+    transform: translateY(-2px) scale(1.02);
+  }
+
+  &:active {
+    transform: translateY(0) scale(0.955);
+    transition-duration: 110ms;
+  }
+}
+
+/* Native button/interactive elements outside the CtaLink system */
+button,
+[role="button"],
+summary {
+  transition:
+    transform 420ms var(--ease-ios-spring),
+    box-shadow 380ms var(--ease-ios),
+    background-color 300ms var(--ease-ios),
+    border-color 300ms var(--ease-ios),
+    color 240ms var(--ease-ios);
+}
+
+button:not(:disabled):active,
+[role="button"]:not([aria-disabled="true"]):active {
+  transform: scale(0.96);
+  transition-duration: 110ms;
+}
+
+/* Cards inherit the same iOS spring feel */
+@utility card-lift {
+  transition:
+    transform 460ms var(--ease-ios-spring),
+    box-shadow 420ms var(--ease-ios),
+    border-color 300ms var(--ease-ios);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-base:hover,
+  .btn-base:active,
+  button:active,
+  [role="button"]:active {
+    transform: none !important;
+  }
+}
