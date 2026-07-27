@@ -25,13 +25,12 @@ export function WhatsAppButton() {
       rel="noopener noreferrer"
       aria-label="Chat with Cybersentinels on WhatsApp"
       title="Chat with Cybersentinels on WhatsApp"
-      style={{ bottom: "calc(1rem + var(--sticky-book-h, 0px))" }}
-      className={`fixed left-4 z-40 inline-flex size-11 items-center justify-center rounded-full bg-[#25D366] text-[#062d15] shadow-lg transition-all duration-300 hover:scale-110 hover:brightness-105 motion-reduce:transition-none ${
+      style={{ bottom: "calc(1rem + var(--sticky-book-h, 0px) + 3.5rem)" }}
+      className={`fixed right-4 z-40 inline-flex size-11 items-center justify-center rounded-full bg-[#25D366] text-[#062d15] shadow-lg transition-all duration-300 hover:scale-110 hover:brightness-105 motion-reduce:transition-none ${
         shown ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
       }`}
-
     >
-      <WhatsAppIcon className="size-6 -mt-0.5" />
+      <WhatsAppIcon className="size-6" />
     </a>
   );
 }
