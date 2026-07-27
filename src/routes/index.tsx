@@ -209,25 +209,24 @@ function Home() {
 
         <div className="relative mx-auto max-w-4xl px-5 py-24 text-center sm:py-28 lg:px-8 lg:py-36">
           <Reveal>
-            <div className="mb-8 flex justify-center sm:mb-10">
-              <div
-                className="glass-strong relative inline-flex items-center justify-center rounded-[1.75rem] px-7 py-4 sm:px-9 sm:py-5"
+            <div className="relative mb-8 flex justify-center sm:mb-10">
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute left-1/2 top-1/2 -z-0 h-[140%] w-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-70 blur-[46px]"
                 style={{
-                  boxShadow:
-                    "0 1px 0 0 color-mix(in oklab, white 70%, transparent) inset, 0 18px 45px -22px color-mix(in oklab, var(--magenta) 45%, transparent)",
+                  background:
+                    "radial-gradient(60% 60% at 30% 40%, color-mix(in oklab, var(--magenta) 34%, transparent) 0%, transparent 70%), radial-gradient(55% 55% at 75% 60%, color-mix(in oklab, var(--amber) 32%, transparent) 0%, transparent 72%)",
                 }}
-              >
-                <span
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-0 rounded-[1.75rem] opacity-70"
-                  style={{
-                    background:
-                      "linear-gradient(115deg, color-mix(in oklab, var(--magenta) 10%, transparent) 0%, transparent 45%, color-mix(in oklab, var(--amber) 12%, transparent) 100%)",
-                  }}
-                />
-                <Logo className="relative h-10 sm:h-12 lg:h-14" />
-              </div>
+              />
+              <Logo
+                className="relative z-10 h-11 w-auto sm:h-14 lg:h-16"
+                style={{
+                  filter:
+                    "drop-shadow(0 10px 22px color-mix(in oklab, var(--magenta) 22%, transparent)) drop-shadow(0 2px 1px color-mix(in oklab, white 85%, transparent))",
+                }}
+              />
             </div>
+
 
             <p className="type-eyebrow mb-6 text-amber-ink sm:mb-7">
 
