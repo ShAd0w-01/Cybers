@@ -209,7 +209,11 @@ function Home() {
 
         <div className="relative mx-auto max-w-4xl px-5 py-24 text-center sm:py-28 lg:px-8 lg:py-36">
           <Reveal>
+            <div className="mb-8 flex justify-center sm:mb-10">
+              <Logo className="h-10 sm:h-12 lg:h-14" />
+            </div>
             <p className="type-eyebrow mb-6 text-amber-ink sm:mb-7">
+
 
               Free 30-minute consultation • India • UAE • International
             </p>
