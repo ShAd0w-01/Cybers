@@ -15,6 +15,8 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { AdvisorWidget } from "@/components/advisor/AdvisorWidget";
 import { WhatsAppButton } from "@/components/site/WhatsAppButton";
+import { ContrastQA } from "@/components/site/ContrastQA";
+
 
 import { ThemeStyle } from "@/components/site/ThemeStyle";
 import { getActiveTheme } from "@/lib/theme.functions";
