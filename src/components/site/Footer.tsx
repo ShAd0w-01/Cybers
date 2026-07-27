@@ -92,9 +92,6 @@ export function Footer() {
               <FooterLink to="/threat-map">Live Threat Map</FooterLink>
             </li>
             <li>
-              <FooterLink to="/security-scorecard">Security Scorecard</FooterLink>
-            </li>
-            <li>
               <FooterLink to="/compliance-explorer">Compliance Explorer</FooterLink>
             </li>
             <li>

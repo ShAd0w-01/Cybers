@@ -407,13 +407,6 @@ export type ResourceItem = {
 
 export const resourceHub: ResourceItem[] = [
   {
-    title: "Security Scorecard",
-    kind: "Tool",
-    summary: "Answer eight questions and get a maturity score with prioritised next steps for your environment.",
-    to: "/security-scorecard",
-    cta: "Start the scorecard",
-  },
-  {
     title: "Compliance Framework Explorer",
     kind: "Guide",
     summary: "Compare ISO 27001, SOC 2, PCI DSS, DPDPA, GDPR and sector frameworks with readiness checklists.",

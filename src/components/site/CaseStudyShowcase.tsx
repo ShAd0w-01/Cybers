@@ -143,9 +143,6 @@ export function CaseStudyShowcase() {
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3">
               <CtaLink to="/contact">Book a consultation</CtaLink>
-              <CtaLink to="/security-scorecard" variant="outline">
-                Take the security scorecard
-              </CtaLink>
             </div>
           </Reveal>
         </div>
