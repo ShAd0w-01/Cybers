@@ -19,8 +19,9 @@ export function PageHero({
   crumbs?: Crumb[];
 }) {
   return (
-    <section className="ink-wash relative overflow-hidden bg-ink text-ink-foreground">
+    <section className="wash-warm band-soft relative overflow-hidden text-ink-foreground">
       <div className="ink-grid absolute inset-0" aria-hidden="true" />
+      <div className="hero-noise pointer-events-none absolute inset-0" aria-hidden="true" />
       <div
         className="absolute -right-40 -top-40 size-[34rem] rounded-full opacity-20 blur-3xl"
         style={{
