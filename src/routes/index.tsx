@@ -28,7 +28,10 @@ import { Reveal, CountUp } from "@/components/site/Reveal";
 import { IconTile } from "@/components/site/IconTile";
 import { AuroraBloom } from "@/components/site/AuroraBloom";
 import { BrandMark } from "@/components/site/Logo";
-import heroLogo from "@/assets/logo-dark.asset.json";
+import { HeroLogo, type HeroLogoSize } from "@/components/site/HeroLogo";
+
+/** Switch between "sm" | "default" | "lg" hero logo presets. */
+const HERO_LOGO_SIZE: HeroLogoSize = "lg";
 
 
 import { SectionRenderer } from "@/components/site/SectionRenderer";
@@ -210,19 +213,11 @@ function Home() {
 
         <div className="relative mx-auto max-w-4xl px-5 py-24 text-center sm:py-28 lg:px-8 lg:py-36">
           <Reveal>
-            <div className="mb-8 flex justify-center">
-              <span className="glass-strong card-lift inline-flex items-center rounded-full px-6 py-4 shadow-[0_18px_45px_-24px_color-mix(in_oklab,var(--magenta)_60%,transparent)] sm:px-8 sm:py-5">
-                <img
-                  src={heroLogo.url}
-                  alt="CyberSentinels"
-                  width={520}
-                  height={120}
-                  className="h-12 w-auto sm:h-14"
-                  loading="eager"
-                />
-              </span>
+            <div className="mb-10 flex justify-center sm:mb-12 lg:mb-14">
+              <HeroLogo size={HERO_LOGO_SIZE} />
             </div>
-            <p className="type-eyebrow mb-7 text-amber-ink">
+            <p className="type-eyebrow mb-6 text-amber-ink sm:mb-7">
+
               Free 30-minute consultation • India • UAE • International
             </p>
 
