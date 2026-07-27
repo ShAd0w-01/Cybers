@@ -1,13 +1,15 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
-type Tone = "quiet" | "soft" | "warm";
+type Tone = "quiet" | "soft" | "warm" | "glass";
 
 const tones: Record<Tone, string> = {
   quiet: "panel-quiet",
   soft: "panel-soft",
   warm: "panel-warm",
+  glass: "panel-glass",
 };
+
 
 export type GradientPanelProps<T extends React.ElementType = "div"> = {
   /** Element to render — article, li, section… defaults to div. */
