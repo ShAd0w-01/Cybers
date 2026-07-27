@@ -51,12 +51,12 @@ export function SectionRenderer({
 
   return (
     <section
-      className={cn("band-fade py-16 sm:py-20", tinted ? "bg-surface" : "bg-background")}
+      className={cn("band-soft py-20 sm:py-28", tinted ? "wash-soft" : "wash-quiet")}
     >
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <Reveal>
           <div className="max-w-3xl">
-            <div className="brand-rule mb-5" />
+            <div className="brand-rule mb-6" />
             <h2
               className={cn(
                 "type-h2",
@@ -66,19 +66,20 @@ export function SectionRenderer({
               {section.heading}
             </h2>
             {intro.map((p, i) => (
-              <p key={i} className="mt-4 text-base leading-relaxed text-muted-foreground">
+              <p key={i} className="mt-5 type-lead">
                 {p}
               </p>
             ))}
           </div>
         </Reveal>
 
+
         {bare.length > 0 ? (
           <Reveal delay={60}>
-            <ul className="mt-8 grid gap-x-10 gap-y-3 sm:grid-cols-2">
+            <ul className="mt-10 grid gap-x-10 gap-y-4 sm:grid-cols-2">
               {bare.flatMap((g) => g.items).map((item, i) => (
-                <li key={i} className="flex gap-3 text-sm leading-relaxed text-muted-foreground">
-                  <Check className="mt-0.5 size-4 shrink-0 text-coral-ink" aria-hidden="true" />
+                <li key={i} className="flex gap-3 type-body text-muted-foreground">
+                  <Check className="mt-1 size-4 shrink-0 text-coral-ink" aria-hidden="true" />
                   <span>{item}</span>
                 </li>
               ))}
@@ -87,27 +88,33 @@ export function SectionRenderer({
         ) : null}
 
         {isNumbered ? (
-          <ol className="mt-12 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+          <ol className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {titled.map((g, i) => (
-              <Reveal as="li" key={i} delay={i * 50} className="bg-background p-6">
-                <span className="brand-gradient-text font-display text-2xl font-bold">
+              <Reveal
+                as="li"
+                key={i}
+                delay={i * 50}
+                className="section-card card-lift bg-card/80 p-7 backdrop-blur-sm"
+              >
+                <span className="brand-gradient-text font-display text-3xl font-bold">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <h3 className="mt-3 font-display text-sm font-semibold">
+                <h3 className="mt-3 type-h4">
                   {g.title!.replace(/^\d+\.\s*/, "")}
                 </h3>
                 {g.paragraphs.map((p, j) => (
-                  <p key={j} className="mt-2 text-[13px] leading-relaxed text-muted-foreground">
+                  <p key={j} className="mt-2.5 type-small text-muted-foreground">
                     {p}
                   </p>
                 ))}
               </Reveal>
             ))}
+
           </ol>
         ) : titled.length > 0 ? (
           <div
             className={cn(
-              "mt-12 grid gap-6",
+              "mt-14 grid gap-6",
               titled.length === 1
                 ? "sm:grid-cols-1"
                 : titled.length % 3 === 0
@@ -120,23 +127,23 @@ export function SectionRenderer({
                 as="article"
                 key={i}
                 delay={i * 50}
-                className="group rounded-xl border border-border bg-background p-6 transition-all duration-300 hover:-translate-y-1 hover:border-coral/40 hover:shadow-xl hover:shadow-coral/5"
+                className="section-card card-lift group bg-card/80 p-7 backdrop-blur-sm"
               >
                 <h3 className="type-h4">{g.title}</h3>
                 <div className="brand-rule mt-3 mb-4 w-6 transition-all duration-300 group-hover:w-12" />
                 {g.paragraphs.map((p, j) => (
-                  <p key={j} className="text-sm leading-relaxed text-muted-foreground">
+                  <p key={j} className="type-body text-muted-foreground">
                     {p}
                   </p>
                 ))}
                 {g.items.length > 0 ? (
-                  <ul className="mt-4 space-y-2">
+                  <ul className="mt-5 space-y-2.5">
                     {g.items.map((item, j) => (
                       <li
                         key={j}
-                        className="flex gap-2.5 text-[13px] leading-relaxed text-muted-foreground"
+                        className="flex gap-2.5 type-small text-muted-foreground"
                       >
-                        <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-coral" />
+                        <span className="mt-2 size-1.5 shrink-0 rounded-full bg-coral" />
                         <span>{item}</span>
                       </li>
                     ))}
@@ -146,6 +153,7 @@ export function SectionRenderer({
             ))}
           </div>
         ) : null}
+
 
         {buttons.length > 0 ? (
           <Reveal delay={80}>

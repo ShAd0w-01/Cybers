@@ -19,7 +19,7 @@ export function NewsStrip() {
   const items = data?.items ?? [];
 
   return (
-    <section className="band-fade bg-surface py-16 sm:py-24">
+    <section className="band-soft wash-soft py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <Reveal>
           <div className="brand-rule mb-5" />

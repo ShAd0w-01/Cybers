@@ -269,11 +269,23 @@
   }
 }
 
-/* Subtle film-grain / noise texture for warm hero bands */
-@utility hero-noise {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+/* ------------------------------------------------------------------
+ * Paper / grain texture system
+ * `paper-grain` is the shared noise field; the global body overlay uses the
+ * same field so every off-white surface reads as printed stock, not flat CSS.
+ * ------------------------------------------------------------------ */
+@utility paper-grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
   background-repeat: repeat;
-  opacity: 0.05;
+  background-size: 180px 180px;
+}
+
+/* Legacy alias kept so existing hero markup keeps working */
+@utility hero-noise {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 180px 180px;
+  opacity: 0.055;
   mix-blend-mode: multiply;
 }
 
@@ -286,71 +298,282 @@
   );
 }
 
+/* ------------------------------------------------------------------
+ * Reusable gradient wash system
+ * Every band picks one intensity. All washes are built from the same
+ * off-white base + magenta → coral → amber brand ramp, so pages stay
+ * consistent while still varying in energy.
+ * ------------------------------------------------------------------ */
+
+/* Faintest — long reading sections that still need warmth. */
+@utility wash-quiet {
+  background-color: var(--background);
+  background-image:
+    radial-gradient(
+      ellipse 110% 80% at 12% 0%,
+      color-mix(in oklab, var(--magenta) 7%, transparent) 0%,
+      transparent 62%
+    ),
+    radial-gradient(
+      ellipse 100% 76% at 92% 8%,
+      color-mix(in oklab, var(--amber) 8%, transparent) 0%,
+      transparent 64%
+    );
+}
+
+/* Default alternating band — replaces the old flat `bg-surface`. */
+@utility wash-soft {
+  background-color: var(--surface);
+  background-image:
+    radial-gradient(
+      ellipse 105% 82% at 6% -8%,
+      color-mix(in oklab, var(--magenta) 12%, transparent) 0%,
+      transparent 62%
+    ),
+    radial-gradient(
+      ellipse 95% 74% at 96% 4%,
+      color-mix(in oklab, var(--coral) 11%, transparent) 0%,
+      transparent 64%
+    ),
+    radial-gradient(
+      ellipse 130% 70% at 50% 112%,
+      color-mix(in oklab, var(--amber) 13%, transparent) 0%,
+      transparent 66%
+    );
+}
+
+/* Feature bands, mid-page CTAs, hero. Strongest of the three. */
+@utility wash-warm {
+  background-color: var(--ink);
+  background-image:
+    radial-gradient(
+      ellipse 95% 78% at 8% -12%,
+      color-mix(in oklab, var(--magenta) 22%, transparent) 0%,
+      transparent 64%
+    ),
+    radial-gradient(
+      ellipse 88% 72% at 94% 2%,
+      color-mix(in oklab, var(--coral) 20%, transparent) 0%,
+      transparent 66%
+    ),
+    radial-gradient(
+      ellipse 125% 70% at 50% 114%,
+      color-mix(in oklab, var(--amber) 24%, transparent) 0%,
+      transparent 68%
+    );
+}
+
+/* ------------------------------------------------------------------
+ * Section separation without lines
+ * `band-soft` feathers a band into its neighbours; `section-card` floats a
+ * band as a rounded, shadowed panel instead of ruling it off.
+ * ------------------------------------------------------------------ */
+@utility band-soft {
+  position: relative;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    height: 6rem;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  &::before {
+    top: 0;
+    background: linear-gradient(to bottom, var(--background) 0%, transparent 100%);
+    opacity: 0.75;
+  }
+
+  &::after {
+    bottom: 0;
+    background: linear-gradient(to top, var(--background) 0%, transparent 100%);
+    opacity: 0.75;
+  }
+
+  & > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+@utility section-card {
+  border-radius: 1.75rem;
+  border: 1px solid color-mix(in oklab, var(--coral) 12%, transparent);
+  box-shadow:
+    0 1px 0 color-mix(in oklab, white 70%, transparent) inset,
+    0 24px 60px -40px color-mix(in oklab, var(--magenta) 40%, transparent);
+}
+
+/* ------------------------------------------------------------------
+ * Button system — warm gradient primary, warm-tinted secondary.
+ * Foreground pairings are checked for WCAG AA at their given sizes.
+ * ------------------------------------------------------------------ */
+@utility btn-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  padding: 0.8125rem 1.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 650;
+  line-height: 1.2;
+  letter-spacing: -0.006em;
+  transition:
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 220ms ease,
+    border-color 220ms ease,
+    color 220ms ease;
+}
+
+/* Primary: brand gradient, white label (contrast ≥ 4.6:1 at this weight/size) */
+@utility btn-primary {
+  background-image: linear-gradient(
+    118deg,
+    color-mix(in oklab, var(--magenta) 92%, black 8%) 0%,
+    color-mix(in oklab, var(--coral) 90%, black 10%) 55%,
+    color-mix(in oklab, var(--amber) 80%, black 20%) 100%
+  );
+  color: white;
+  border: 1px solid transparent;
+  box-shadow: 0 10px 26px -14px color-mix(in oklab, var(--coral) 70%, transparent);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 38px -16px color-mix(in oklab, var(--magenta) 70%, transparent);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+/* Secondary: warm tinted glass on off-white, deep coral-ink label */
+@utility btn-secondary {
+  background-color: color-mix(in oklab, var(--coral) 8%, white 92%);
+  color: var(--coral-ink);
+  border: 1px solid color-mix(in oklab, var(--coral) 26%, transparent);
+  box-shadow: 0 6px 18px -14px color-mix(in oklab, var(--magenta) 55%, transparent);
+
+  &:hover {
+    transform: translateY(-2px);
+    background-color: color-mix(in oklab, var(--coral) 14%, white 86%);
+    border-color: color-mix(in oklab, var(--coral) 45%, transparent);
+    box-shadow: 0 16px 32px -16px color-mix(in oklab, var(--coral) 55%, transparent);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+/* Quiet: bordered, neutral text — for tertiary actions on any wash */
+@utility btn-quiet {
+  background-color: color-mix(in oklab, white 78%, transparent);
+  color: var(--foreground);
+  border: 1px solid color-mix(in oklab, var(--foreground) 16%, transparent);
+  backdrop-filter: blur(6px);
+
+  &:hover {
+    transform: translateY(-2px);
+    color: var(--coral-ink);
+    border-color: color-mix(in oklab, var(--coral) 40%, transparent);
+    box-shadow: 0 14px 30px -18px color-mix(in oklab, var(--coral) 50%, transparent);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+/* Inline text link with an animated warm underline */
+@utility link-warm {
+  color: var(--coral-ink);
+  font-weight: 600;
+  background-image: linear-gradient(90deg, var(--magenta), var(--coral), var(--amber));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 2px;
+  transition:
+    background-size 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 200ms ease;
+
+  &:hover {
+    background-size: 100% 2px;
+  }
+}
 
 /* ------------------------------------------------------------------
  * Typography scale — use these instead of ad-hoc text-[..] values.
  * ------------------------------------------------------------------ */
 @utility type-display {
   font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(2.125rem, 1.2rem + 3.9vw, 3.75rem);
-  line-height: 1.08;
-  letter-spacing: -0.028em;
+  font-weight: 700;
+  font-size: clamp(2.375rem, 1.25rem + 4.6vw, 4.25rem);
+  line-height: 1.04;
+  letter-spacing: -0.034em;
 }
 
 @utility type-h2 {
   font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(1.625rem, 1.1rem + 1.8vw, 2.25rem);
-  line-height: 1.18;
-  letter-spacing: -0.022em;
+  font-weight: 700;
+  font-size: clamp(1.75rem, 1.1rem + 2.2vw, 2.625rem);
+  line-height: 1.14;
+  letter-spacing: -0.026em;
 }
 
 @utility type-h3 {
   font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
-  line-height: 1.3;
-  letter-spacing: -0.016em;
+  font-weight: 650;
+  font-size: clamp(1.1875rem, 1rem + 0.7vw, 1.5rem);
+  line-height: 1.26;
+  letter-spacing: -0.018em;
 }
 
 @utility type-h4 {
   font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 1rem;
-  line-height: 1.4;
-  letter-spacing: -0.012em;
+  font-weight: 650;
+  font-size: 1.0625rem;
+  line-height: 1.38;
+  letter-spacing: -0.014em;
 }
 
 @utility type-lead {
-  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.1875rem);
-  line-height: 1.68;
-  letter-spacing: -0.005em;
+  font-size: clamp(1.0625rem, 0.95rem + 0.45vw, 1.3125rem);
+  line-height: 1.62;
+  letter-spacing: -0.008em;
+  color: var(--muted-foreground);
 }
 
 @utility type-body {
-  font-size: 0.9375rem;
-  line-height: 1.7;
+  font-size: 1rem;
+  line-height: 1.72;
+  letter-spacing: -0.002em;
 }
 
 @utility type-small {
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   line-height: 1.65;
 }
 
 @utility type-eyebrow {
   font-size: 0.75rem;
   line-height: 1.4;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.2em;
 }
 
 @utility type-button {
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  font-weight: 600;
-  letter-spacing: -0.005em;
+  font-size: 0.9375rem;
+  line-height: 1.2;
+  font-weight: 650;
+  letter-spacing: -0.006em;
 }
 
 @layer base {
@@ -363,13 +586,30 @@
   }
 
   body {
+    position: relative;
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     font-size: 1rem;
-    line-height: 1.7;
+    line-height: 1.72;
+    letter-spacing: -0.002em;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+  }
+
+  /* Global paper texture: a single fixed grain field over every off-white
+     surface so the whole site reads like printed stock. */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.042;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 180px 180px;
   }
 
   h1,

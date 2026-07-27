@@ -148,7 +148,7 @@ function Home() {
   return (
     <>
       {/* ---------------------------------------------------------- Hero */}
-      <section className="ink-wash relative overflow-hidden bg-ink text-ink-foreground">
+      <section className="wash-warm relative overflow-hidden text-ink-foreground">
         {/* drifting ambient gradients */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
           <div
@@ -243,16 +243,16 @@ function Home() {
       </section>
 
       {/* -------------------------------------------------- Credibility */}
-      <section className="band-fade bg-background py-16 sm:py-20">
+      <section className="band-soft wash-quiet py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
-          <div className="grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {credCards.map((c, i) => (
-              <Reveal key={c.title} delay={i * 70} className="bg-background p-7">
+              <Reveal key={c.title} delay={i * 70} className="section-card card-lift bg-card/80 p-7 backdrop-blur-sm">
                 <p className="brand-gradient-text font-display text-3xl font-bold">
                   <StatValue title={c.title} />
                 </p>
-                <h2 className="mt-2 font-display text-sm font-semibold">{statLabel(c.title)}</h2>
-                <p className="mt-3 text-[13px] leading-relaxed text-muted-foreground">{c.body}</p>
+                <h2 className="mt-2 type-h4">{statLabel(c.title)}</h2>
+                <p className="mt-3 type-small text-muted-foreground">{c.body}</p>
               </Reveal>
             ))}
           </div>
@@ -260,7 +260,7 @@ function Home() {
       </section>
 
       {/* -------------------------------------------------- Value props */}
-      <section className="band-fade bg-surface py-16 sm:py-24">
+      <section className="band-soft wash-soft py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal>
             <div className="max-w-3xl">
@@ -294,7 +294,7 @@ function Home() {
       </section>
 
       {/* ------------------------------------------------ Challenge grid */}
-      <section className="band-fade bg-background py-16 sm:py-24">
+      <section className="band-soft wash-quiet py-16 sm:py-24">
 
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal>
@@ -355,7 +355,7 @@ function Home() {
       </section>
 
       {/* ------------------------------------------------------ Approach */}
-      <section className="ink-wash band-fade bg-ink py-16 text-ink-foreground sm:py-24">
+      <section className="wash-warm band-soft py-16 text-ink-foreground sm:py-24">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal>
             <div className="max-w-3xl">
@@ -383,7 +383,7 @@ function Home() {
       </section>
 
       {/* -------------------------------------------------- Mid-page CTA */}
-      <section className="band-fade bg-surface py-14">
+      <section className="band-soft wash-soft py-14">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal className="flex flex-col gap-6 rounded-xl border border-border bg-background p-8 sm:p-10 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-2xl">
@@ -407,7 +407,7 @@ function Home() {
 
 
       {/* ----------------------------------------------------- Practices */}
-      <section className="band-fade bg-background py-16 sm:py-24">
+      <section className="band-soft wash-quiet py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-6">
@@ -476,7 +476,7 @@ function Home() {
       <NewsStrip />
 
       {/* ---------------------------------------------------- Industries */}
-      <section className="band-fade bg-background py-16 sm:py-24">
+      <section className="band-soft wash-quiet py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal>
             <div className="brand-rule mb-5" />
@@ -484,9 +484,9 @@ function Home() {
               Security and Compliance Designed Around Your Industry
             </h2>
           </Reveal>
-          <div className="mt-10 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {industries.map((ind, i) => (
-              <Reveal key={ind.url} delay={i * 60} className="bg-background">
+              <Reveal key={ind.url} delay={i * 60} className="section-card card-lift bg-card/80 backdrop-blur-sm">
                 <Link to={ind.url} className="group block h-full p-7">
                   <IconTile icon={industryIcons[i] ?? Briefcase} size="sm" className="mb-5" />
                   <h3 className="type-h4 transition-colors group-hover:text-coral-ink">
@@ -505,7 +505,7 @@ function Home() {
       </section>
 
       {/* --------------------------------------------------- Testimonials */}
-      <section className="band-fade bg-surface py-16 sm:py-24">
+      <section className="band-soft wash-soft py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal>
             <div className="max-w-3xl">
@@ -531,7 +531,7 @@ function Home() {
       {insights ? <SectionRenderer section={insights} index={1} /> : null}
 
       {/* ------------------------------------------------- Where to start */}
-      <section className="ink-wash bg-ink py-16 text-ink-foreground sm:py-24">
+      <section className="wash-warm py-16 text-ink-foreground sm:py-24">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 lg:grid-cols-2 lg:px-8">
           <Reveal>
             <div className="brand-rule mb-5" />

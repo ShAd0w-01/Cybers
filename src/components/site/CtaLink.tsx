@@ -5,18 +5,13 @@ type Variant = "primary" | "outline" | "ghost-dark" | "link";
 
 // Focus styling is inherited from the global focus-visible rule in styles.css
 // so every link and button in the design shares one ring.
-const base =
-  "inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 type-button transition-all duration-200";
-
+const base = "btn-base";
 
 const styles: Record<Variant, string> = {
-  primary:
-    "brand-gradient anim-glow text-white hover:brightness-110 hover:-translate-y-0.5 hover:shadow-[0_16px_36px_-12px_color-mix(in_oklab,var(--coral)_70%,transparent)] active:translate-y-0",
-  outline:
-    "border border-border bg-background text-foreground hover:-translate-y-0.5 hover:border-coral hover:text-coral-ink hover:shadow-[0_12px_28px_-14px_color-mix(in_oklab,var(--coral)_35%,transparent)] active:translate-y-0",
-  "ghost-dark":
-    "border border-ink-border bg-white/70 text-ink-foreground backdrop-blur-sm hover:-translate-y-0.5 hover:border-coral hover:text-coral-ink hover:shadow-[0_14px_30px_-14px_color-mix(in_oklab,var(--coral)_45%,transparent)] active:translate-y-0",
-  link: "px-0 py-0 text-coral-ink hover:gap-3",
+  primary: "btn-primary anim-glow",
+  outline: "btn-secondary",
+  "ghost-dark": "btn-quiet",
+  link: "link-warm rounded-none px-0 py-0 hover:gap-3",
 };
 
 export function CtaLink({
