@@ -43,7 +43,7 @@ function Article() {
   const { post } = Route.useLoaderData() as { post: BlogPost };
   return (
     <article>
-      <header className="ink-grid bg-ink py-16 text-ink-foreground sm:py-20">
+      <header className="ink-wash-grid bg-ink py-16 text-ink-foreground sm:py-20">
         <div className="mx-auto max-w-3xl px-5 lg:px-8">
           <Link
             to="/blog"
