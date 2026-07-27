@@ -34,6 +34,8 @@ import {
   type Testimonial,
 } from "@/components/site/TestimonialCarousel";
 import { ThreatMap } from "@/components/site/ThreatMap";
+import { HeroScorecard } from "@/components/site/HeroScorecard";
+import { TrustedBy } from "@/components/site/TrustedBy";
 import { NewsStrip } from "@/components/site/NewsStrip";
 
 
@@ -217,6 +219,8 @@ function Home() {
               Free 30-minute scoping call — no obligation
             </p>
 
+            <HeroScorecard className="mt-12" />
+
             {heroTail ? (
               <p className="type-body mx-auto mt-12 max-w-2xl border-l-2 border-coral pl-5 text-left italic text-ink-muted">
                 {heroTail.type === "p" ? heroTail.text : null}
@@ -243,6 +247,9 @@ function Home() {
           </div>
         </div>
       </section>
+
+      {/* --------------------------------------------------- Trusted by */}
+      <TrustedBy className="band-soft wash-quiet py-12 sm:py-14" />
 
       {/* -------------------------------------------------- Credibility */}
       <section className="band-soft wash-quiet py-16 sm:py-20">
