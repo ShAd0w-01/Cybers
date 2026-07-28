@@ -80,7 +80,7 @@ function ComplianceExplorer() {
                 </button>
               ))}
             </div>
-            <label className="ml-auto flex items-center gap-2 text-sm text-muted-foreground">
+            <label className="flex items-center gap-2 text-sm text-muted-foreground">
               <span className="sr-only sm:not-sr-only">Region</span>
               <select
                 value={region}
