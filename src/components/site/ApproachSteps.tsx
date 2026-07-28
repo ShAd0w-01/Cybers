@@ -446,14 +446,19 @@ export function ApproachSteps({ steps }: { steps: ApproachStep[] }) {
   }, [steps]);
 
   const toggle = useCallback((title: string) => {
-    setOpen((prev) => {
-      const next = prev === title ? null : title;
-      track(next ? "approach_step_expand" : "approach_step_collapse", { step: title });
-      const url = new URL(window.location.href);
-      url.hash = next ? `approach-${slug(title)}` : "";
-      window.history.replaceState(window.history.state, "", next ? url.href : url.href.replace(/#$/, ""));
-      return next;
-    });
+    // Side effects live outside the state updater: React may invoke updaters
+    // twice (StrictMode / concurrent rendering) and events must fire once.
+    const next = openRef.current === title ? null : title;
+    openRef.current = next;
+    setOpen(next);
+    track(next ? "approach_step_expand" : "approach_step_collapse", { step: title });
+    const url = new URL(window.location.href);
+    url.hash = next ? `approach-${slug(title)}` : "";
+    window.history.replaceState(
+      window.history.state,
+      "",
+      next ? url.href : url.href.replace(/#$/, ""),
+    );
   }, []);
 
   return (
