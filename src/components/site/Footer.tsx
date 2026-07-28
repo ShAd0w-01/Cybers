@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Logo } from "./Logo";
+import { Doodle } from "./Doodle";
 import { CtaLink } from "./CtaLink";
 import { industries, legalLinks, pillars } from "@/content/site";
 
@@ -8,7 +9,8 @@ const year = new Date().getFullYear();
 export function Footer() {
   return (
     <footer className="bg-ink text-ink-foreground">
-      <div className="wash-warm ink-grid band-soft">
+      <div className="wash-warm band-soft relative overflow-hidden">
+        <Doodle variant="globe" opacity={0.8} />
         <div className="mx-auto flex max-w-7xl flex-col gap-6 px-5 py-14 lg:flex-row lg:items-center lg:justify-between lg:px-8">
           <div>
             <h2 className="max-w-2xl type-h2">
