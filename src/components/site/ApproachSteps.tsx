@@ -158,18 +158,29 @@ function MotionToggle() {
 
 /* ------------------------------------------------------------- CTA form */
 
-function ApproachCta() {
+function ApproachCta({ openStep }: { openStep: string | null }) {
   const send = useServerFn(submitLead);
+  const [sheetOpen, setSheetOpen] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", company: "", message: "" });
   const mutation = useMutation({
     mutationFn: () => send({ data: { ...form, source: "homepage-approach-panel" } }),
+    onSuccess: () =>
+      track("approach_cta_submit_success", { step: openStep ?? "none", company: form.company || "" }),
+    onError: (error) =>
+      track("approach_cta_submit_error", { message: (error as Error).message.slice(0, 120) }),
   });
 
   const field =
     "w-full rounded-md border border-border bg-background px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground";
 
   return (
-    <Sheet>
+    <Sheet
+      open={sheetOpen}
+      onOpenChange={(next) => {
+        setSheetOpen(next);
+        track(next ? "approach_cta_open" : "approach_cta_close", { step: openStep ?? "none" });
+      }}
+    >
       <SheetTrigger asChild>
         <button
           type="button"
