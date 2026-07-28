@@ -218,7 +218,7 @@ function Home() {
 
 
             <p className="type-eyebrow mb-6 text-amber-ink sm:mb-7">
-              Serving clients across India, UAE and global markets
+              SERVING CLIENTS ACROSS INDIA & GLOBAL CUSTOMER
             </p>
 
             <h1 className="type-display">
