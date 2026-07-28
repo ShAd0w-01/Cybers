@@ -11,6 +11,7 @@ import { Suspense, lazy, useEffect, useState, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { CRITICAL_CSS } from "@/lib/critical-css";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { WhatsAppButton } from "@/components/site/WhatsAppButton";
@@ -191,6 +192,10 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        {/* Without JS the deferred stylesheet never flips to media="all". */}
+        <noscript>
+          <link rel="stylesheet" href={appCss} />
+        </noscript>
       </head>
       <body>
         {children}
