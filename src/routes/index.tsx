@@ -218,9 +218,7 @@ function Home() {
 
 
             <p className="type-eyebrow mb-6 text-amber-ink sm:mb-7">
-
-
-              Free 30-minute consultation • India • UAE • International
+              Serving clients across India, UAE and global markets
             </p>
 
             <h1 className="type-display">
