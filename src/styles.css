@@ -1143,7 +1143,7 @@ html[data-aurora-preview="off"] .aurora-bloom {
   &::before {
     content: "";
     position: absolute;
-    inset: -6px;
+    inset: -4px;
     border-radius: 999px;
     background: linear-gradient(135deg, var(--magenta), var(--coral), var(--amber));
     opacity: 0.35;
@@ -1159,7 +1159,7 @@ html[data-aurora-preview="off"] .aurora-bloom {
     opacity: 0.3;
   }
   50% {
-    transform: scale(1.12);
+    transform: scale(1.08);
     opacity: 0.55;
   }
 }
