@@ -9,6 +9,8 @@
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
+    "perf": "node scripts/perf-audit.mjs",
+    "perf:json": "node scripts/perf-audit.mjs --json",
     "format": "prettier --write ."
   },
   "dependencies": {

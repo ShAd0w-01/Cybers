@@ -33,9 +33,7 @@ const BUDGETS = {
 };
 
 async function auditRoute(browser, path) {
-  const context = await browser.new_context
-    ? null
-    : await browser.newContext({ viewport: { width: 1280, height: 900 } });
+  const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
   const page = await context.newPage();
 
   const bytes = { js: 0, css: 0, img: 0, other: 0 };
