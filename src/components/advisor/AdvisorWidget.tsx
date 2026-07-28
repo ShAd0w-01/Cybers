@@ -125,13 +125,35 @@ export function AdvisorWidget() {
         onFocus={() => void import("@/components/advisor/AdvisorChat")}
         aria-label="Open the CyberSentinels AI Advisor"
         title="Open the CyberSentinels AI Advisor"
-
         style={{ bottom: "calc(1rem + var(--sticky-book-h, 0px))" }}
-        className={`brand-gradient fixed right-4 z-40 inline-flex size-11 items-center justify-center rounded-full text-white shadow-lg transition-transform hover:scale-110 ${
+        className={`brand-gradient advisor-pulse fixed right-4 z-40 inline-flex size-14 items-center justify-center rounded-full text-white shadow-[0_10px_28px_-10px_color-mix(in_oklab,var(--coral)_60%,transparent)] transition-all duration-300 ease-[cubic-bezier(0.34,1.4,0.44,1)] hover:scale-110 hover:shadow-[0_14px_36px_-10px_color-mix(in_oklab,var(--magenta)_65%,transparent)] active:scale-95 ${
           open ? "hidden sm:inline-flex" : ""
         }`}
       >
-        <MessageCircle className="h-6 w-6" />
+        <svg
+          viewBox="0 0 32 32"
+          className="h-7 w-7"
+          fill="none"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <defs>
+            <linearGradient id="advisorIcon" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stopColor="#fff" />
+              <stop offset="100%" stopColor="#fff8f5" />
+            </linearGradient>
+          </defs>
+          <path
+            d="M25.5 14.25c0 4.97-4.03 9-9 9a8.93 8.93 0 0 1-4.05-.97L8 25l1.1-3.3a8.93 8.93 0 0 1-.97-4.05c0-4.97 4.03-9 9-9s9 4.03 9 9Z"
+            stroke="url(#advisorIcon)"
+            strokeWidth="2.2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <circle cx="12.25" cy="14.25" r="1.25" fill="url(#advisorIcon)" />
+          <circle cx="16.5" cy="14.25" r="1.25" fill="url(#advisorIcon)" />
+          <circle cx="20.75" cy="14.25" r="1.25" fill="url(#advisorIcon)" />
+        </svg>
       </button>
     </>
   );

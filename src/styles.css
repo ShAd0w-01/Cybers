@@ -1136,6 +1136,34 @@ html[data-aurora-preview="off"] .aurora-bloom {
   }
 }
 
+/* Pulsing halo for the floating advisor launcher */
+@utility advisor-pulse {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--magenta), var(--coral), var(--amber));
+    opacity: 0.35;
+    z-index: -1;
+    animation: advisor-halo 2.4s ease-in-out infinite;
+  }
+}
+
+@keyframes advisor-halo {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.12);
+    opacity: 0.55;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
