@@ -447,7 +447,7 @@ function Home() {
                 key={c.title}
                 delay={i * 80}
                 className="group glass card-lift sheen relative overflow-hidden rounded-2xl p-6 transition-[transform,box-shadow] duration-500 focus-within:ring-2 focus-within:ring-ring"
-                tabIndex={0}
+                
               >
                 <span
                   aria-hidden="true"
