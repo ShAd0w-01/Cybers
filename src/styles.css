@@ -197,6 +197,30 @@
   background-size: 64px 64px;
 }
 
+@utility chex {
+  --chex-color: oklch(0.28 0.03 340 / 5%);
+  background-image:
+    linear-gradient(45deg, var(--chex-color) 25%, transparent 25%, transparent 75%, var(--chex-color) 75%, var(--chex-color)),
+    linear-gradient(45deg, var(--chex-color) 25%, transparent 25%, transparent 75%, var(--chex-color) 75%, var(--chex-color));
+  background-position: 0 0, 32px 32px;
+  background-size: 64px 64px;
+}
+
+.chex-hero {
+  -webkit-mask-image: radial-gradient(ellipse at center, rgb(0 0 0 / 0) 0%, rgb(0 0 0 / 0) 32%, rgb(0 0 0 / 0.55) 55%, rgb(0 0 0 / 1) 100%);
+  mask-image: radial-gradient(ellipse at center, rgb(0 0 0 / 0) 0%, rgb(0 0 0 / 0) 32%, rgb(0 0 0 / 0.55) 55%, rgb(0 0 0 / 1) 100%);
+}
+
+@media (max-width: 48rem) {
+  .chex {
+    background-size: 48px 48px;
+    background-position: 0 0, 24px 24px;
+  }
+  .chex-hero {
+    opacity: 0.14;
+  }
+}
+
 /* Warm off-white gradient wash — magenta → coral → amber over off-white. */
 @utility ink-wash {
   background-image:
