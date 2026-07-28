@@ -205,7 +205,7 @@ function Home() {
 
         </div>
         <AuroraBloom intensity={0.8} blur={82} spread={24} grain={0.6} />
-        <Doodle variant="orbit" />
+        <Doodle variant="analyst" />
         <div className="hero-noise pointer-events-none absolute inset-0" aria-hidden="true" />
         <div className="hero-vignette pointer-events-none absolute inset-0" aria-hidden="true" />
 
