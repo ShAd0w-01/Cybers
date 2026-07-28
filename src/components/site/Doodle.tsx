@@ -344,4 +344,7 @@ const SCENES: Record<DoodleVariant, ReactElement> = {
   globe,
   radar,
   toolkit,
+  analyst,
+  operator,
+
 };
