@@ -435,6 +435,7 @@ export function ApproachSteps({ steps }: { steps: ApproachStep[] }) {
       if (!hash.startsWith("approach-")) return;
       const target = steps.find((s) => slug(s.title) === hash.slice("approach-".length));
       if (!target) return;
+      openRef.current = target.title;
       setOpen(target.title);
       requestAnimationFrame(() => {
         const el = document.getElementById(`approach-${slug(target.title)}`);
