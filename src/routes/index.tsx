@@ -583,7 +583,9 @@ function Home() {
       {why ? <SectionRenderer section={why} index={1} /> : null}
 
       {/* -------------------------------------------- Live threat map */}
-      <ThreatMap />
+      <Deferred minHeight={520}>
+        <ThreatMap />
+      </Deferred>
 
       {/* ---------------------------------------------------- Industries */}
       <section className="band-soft wash-quiet relative overflow-hidden py-16 sm:py-24">
