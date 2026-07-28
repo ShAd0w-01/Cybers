@@ -24,6 +24,7 @@ const nav = [
   { to: "/admin/pages", label: "Website content", icon: LayoutTemplate },
   { to: "/admin/theme", label: "Theme settings", icon: Palette },
   { to: "/admin/advisor", label: "Advisor analytics", icon: BarChart3 },
+  { to: "/admin/access", label: "Admin access", icon: ShieldCheck },
 ];
 
 export function AdminShell({ children }: { children?: React.ReactNode }) {
