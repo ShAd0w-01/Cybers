@@ -1255,31 +1255,37 @@ html[data-aurora-preview="off"] .aurora-bloom {
  * Animated brand doodle layer (hero decoration)
  * ---------------------------------------------------------------- */
 .hero-doodle {
-  mix-blend-mode: multiply;
-  /* keep the doodles in the outer margins so they never fight with copy */
+  /* subtle lift so strokes read on warm backgrounds */
+  filter: drop-shadow(0 1px 2px rgb(11 11 18 / 0.12));
+  /* keep the doodles in the outer margins so they never fight with copy,
+     but let them remain visible closer to the edges for stronger appeal */
   -webkit-mask-image: linear-gradient(
     to right,
     rgb(0 0 0 / 1) 0%,
-    rgb(0 0 0 / 0.85) 14%,
-    rgb(0 0 0 / 0) 30%,
-    rgb(0 0 0 / 0) 70%,
-    rgb(0 0 0 / 0.85) 86%,
+    rgb(0 0 0 / 1) 22%,
+    rgb(0 0 0 / 0.55) 30%,
+    rgb(0 0 0 / 0) 44%,
+    rgb(0 0 0 / 0) 56%,
+    rgb(0 0 0 / 0.55) 70%,
+    rgb(0 0 0 / 1) 78%,
     rgb(0 0 0 / 1) 100%
   );
   mask-image: linear-gradient(
     to right,
     rgb(0 0 0 / 1) 0%,
-    rgb(0 0 0 / 0.85) 14%,
-    rgb(0 0 0 / 0) 30%,
-    rgb(0 0 0 / 0) 70%,
-    rgb(0 0 0 / 0.85) 86%,
+    rgb(0 0 0 / 1) 22%,
+    rgb(0 0 0 / 0.55) 30%,
+    rgb(0 0 0 / 0) 44%,
+    rgb(0 0 0 / 0) 56%,
+    rgb(0 0 0 / 0.55) 70%,
+    rgb(0 0 0 / 1) 78%,
     rgb(0 0 0 / 1) 100%
   );
 }
 
 @media (max-width: 48rem) {
   .hero-doodle {
-    opacity: 0.5;
+    opacity: 0.55;
   }
 }
 
