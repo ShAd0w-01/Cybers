@@ -46,6 +46,7 @@ import { Route as AdminPagesRouteImport } from './routes/admin.pages'
 import { Route as AdminLeadsRouteImport } from './routes/admin.leads'
 import { Route as AdminBlogRouteImport } from './routes/admin.blog'
 import { Route as AdminAdvisorRouteImport } from './routes/admin.advisor'
+import { Route as AdminAccessRouteImport } from './routes/admin.access'
 
 const WebsiteDisclaimerRoute = WebsiteDisclaimerRouteImport.update({
   id: '/website-disclaimer',
@@ -232,6 +233,11 @@ const AdminAdvisorRoute = AdminAdvisorRouteImport.update({
   path: '/advisor',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminAccessRoute = AdminAccessRouteImport.update({
+  id: '/access',
+  path: '/access',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -253,6 +259,7 @@ export interface FileRoutesByFullPath {
   '/terms-of-use': typeof TermsOfUseRoute
   '/threat-map': typeof ThreatMapRoute
   '/website-disclaimer': typeof WebsiteDisclaimerRoute
+  '/admin/access': typeof AdminAccessRoute
   '/admin/advisor': typeof AdminAdvisorRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/leads': typeof AdminLeadsRoute
@@ -290,6 +297,7 @@ export interface FileRoutesByTo {
   '/terms-of-use': typeof TermsOfUseRoute
   '/threat-map': typeof ThreatMapRoute
   '/website-disclaimer': typeof WebsiteDisclaimerRoute
+  '/admin/access': typeof AdminAccessRoute
   '/admin/advisor': typeof AdminAdvisorRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/leads': typeof AdminLeadsRoute
@@ -330,6 +338,7 @@ export interface FileRoutesById {
   '/terms-of-use': typeof TermsOfUseRoute
   '/threat-map': typeof ThreatMapRoute
   '/website-disclaimer': typeof WebsiteDisclaimerRoute
+  '/admin/access': typeof AdminAccessRoute
   '/admin/advisor': typeof AdminAdvisorRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/leads': typeof AdminLeadsRoute
@@ -371,6 +380,7 @@ export interface FileRouteTypes {
     | '/terms-of-use'
     | '/threat-map'
     | '/website-disclaimer'
+    | '/admin/access'
     | '/admin/advisor'
     | '/admin/blog'
     | '/admin/leads'
@@ -408,6 +418,7 @@ export interface FileRouteTypes {
     | '/terms-of-use'
     | '/threat-map'
     | '/website-disclaimer'
+    | '/admin/access'
     | '/admin/advisor'
     | '/admin/blog'
     | '/admin/leads'
@@ -447,6 +458,7 @@ export interface FileRouteTypes {
     | '/terms-of-use'
     | '/threat-map'
     | '/website-disclaimer'
+    | '/admin/access'
     | '/admin/advisor'
     | '/admin/blog'
     | '/admin/leads'
@@ -759,10 +771,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAdvisorRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/access': {
+      id: '/admin/access'
+      path: '/access'
+      fullPath: '/admin/access'
+      preLoaderRoute: typeof AdminAccessRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
 interface AdminRouteChildren {
+  AdminAccessRoute: typeof AdminAccessRoute
   AdminAdvisorRoute: typeof AdminAdvisorRoute
   AdminBlogRoute: typeof AdminBlogRoute
   AdminLeadsRoute: typeof AdminLeadsRoute
@@ -772,6 +792,7 @@ interface AdminRouteChildren {
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminAccessRoute: AdminAccessRoute,
   AdminAdvisorRoute: AdminAdvisorRoute,
   AdminBlogRoute: AdminBlogRoute,
   AdminLeadsRoute: AdminLeadsRoute,
