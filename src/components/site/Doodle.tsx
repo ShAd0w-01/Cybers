@@ -296,7 +296,7 @@ function Figure({ x, y, scale = 1, flip = false }: { x: number; y: number; scale
 
 const analyst = (
   <>
-    <Figure x={96} y={104} scale={0.92} />
+    <Figure x={132} y={118} scale={0.76} />
     <g className="doodle-spin" style={{ transformOrigin: "980px 240px" }} opacity="0.4">
       <circle cx="980" cy="240" r="86" stroke="var(--amber)" strokeWidth="1.2" strokeDasharray="3 10" />
       <circle cx="980" cy="154" r="4" fill="var(--coral)" />
