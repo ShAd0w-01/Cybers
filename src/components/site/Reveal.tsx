@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import { prefersReducedMotion } from "@/lib/useMotionPref";
 
 /** Fades and lifts children into view on scroll. Respects reduced motion. */
 export function Reveal({
