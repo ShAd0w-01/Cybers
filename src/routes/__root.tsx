@@ -129,7 +129,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
-      { rel: "stylesheet", href: appCss },
+      // The app stylesheet is fetched at high priority but does NOT block the
+      // first paint — the inlined critical CSS below covers the first screen
+      // and the script flips this link to `all` as soon as it is parsed.
+      { rel: "preload", as: "style", href: appCss },
+      {
+        rel: "stylesheet",
+        href: appCss,
+        media: "print",
+        "data-defer-css": "true",
+      } as unknown as { rel: string; href: string },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       // Trimmed to the weights actually used; display=swap keeps text visible
@@ -150,11 +159,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
+    styles: [{ children: CRITICAL_CSS }],
     scripts: [
       {
         children:
-          "document.querySelectorAll('link[data-font-css]').forEach(function(l){if(l.sheet){l.media='all';}else{l.addEventListener('load',function(){l.media='all';});}});",
+          "document.querySelectorAll('link[data-font-css],link[data-defer-css]').forEach(function(l){if(l.sheet){l.media='all';}else{l.addEventListener('load',function(){l.media='all';});}});",
       },
+
       {
         type: "application/ld+json",
         children: JSON.stringify({
