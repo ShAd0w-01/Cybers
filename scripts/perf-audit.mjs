@@ -10,6 +10,28 @@
  *   node scripts/perf-audit.mjs --json          # machine readable output
  */
 import { chromium } from "playwright";
+import { existsSync, readdirSync } from "node:fs";
+
+/** Use a locally installed Chromium when Playwright's own download is absent. */
+function findChromium() {
+  if (process.env.PERF_CHROMIUM_PATH) return process.env.PERF_CHROMIUM_PATH;
+  for (const root of ["/", "/opt", "/usr/lib"]) {
+    let entries = [];
+    try {
+      entries = readdirSync(root);
+    } catch {
+      continue;
+    }
+    for (const dir of entries.filter((d) => d.startsWith("chromium-"))) {
+      const bin = `${root === "/" ? "" : root}/${dir}/chrome-linux/chrome`;
+      if (existsSync(bin)) return bin;
+    }
+  }
+  for (const bin of ["/usr/bin/chromium", "/usr/bin/google-chrome"]) {
+    if (existsSync(bin)) return bin;
+  }
+  return undefined;
+}
 
 const args = process.argv.slice(2);
 const arg = (name, fallback) => {
@@ -84,7 +106,7 @@ async function auditRoute(browser, path) {
 
 const fmtKb = (n) => `${Math.round(n / 1024)}kb`;
 
-const browser = await chromium.launch({ headless: true });
+const browser = await chromium.launch({ headless: true, executablePath: findChromium() });
 const results = [];
 for (const path of ROUTES) results.push(await auditRoute(browser, path));
 await browser.close();
