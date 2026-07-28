@@ -111,6 +111,8 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   loader: async () => ({ theme: await getActiveTheme() }),
+  // The theme rarely changes; keep it out of every client-side navigation.
+  staleTime: 5 * 60 * 1000,
   head: ({ loaderData }) => ({
     meta: [
       { charSet: "utf-8" },
