@@ -64,26 +64,27 @@ export function Header() {
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
           <TopLink to="/">Home</TopLink>
           <MenuTrigger label="Services" id="services" open={open} setOpen={setOpen}>
-            <div className="grid grid-cols-4 gap-8 p-8">
+            <div className="grid grid-cols-4 gap-px bg-border/40 p-px">
               {pillars.map((p) => (
-                <div key={p.url}>
+                <div key={p.url} className="flex flex-col bg-background/80 px-6 py-7">
                   <Link
                     to={p.url}
-                    className="font-display text-sm font-semibold text-foreground hover:text-coral-ink"
+                    className="font-display text-[13px] font-semibold uppercase tracking-[0.08em] text-foreground hover:text-coral-ink"
                     onClick={() => setOpen(null)}
                   >
                     {p.title}
                   </Link>
-                  <div className="brand-rule mt-2 mb-3 w-8" />
-                  <ul className="space-y-1.5">
+                  <div className="brand-rule mt-2.5 mb-4 w-8" />
+                  <ul className="flex flex-col gap-0.5">
                     {p.services.map((svc) => (
                       <li key={svc.url}>
                         <Link
                           to={svc.url}
-                          className="block text-[13px] leading-snug text-muted-foreground transition-colors hover:text-coral-ink"
+                          title={svc.title}
+                          className="block truncate rounded-md px-2 py-[7px] text-[13px] leading-5 text-muted-foreground transition-colors hover:bg-surface hover:text-coral-ink"
                           onClick={() => setOpen(null)}
                         >
-                          {svc.title}
+                          {shortServiceTitle(svc.title)}
                         </Link>
                       </li>
                     ))}
@@ -103,6 +104,7 @@ export function Header() {
                 View all services →
               </Link>
             </div>
+
           </MenuTrigger>
           <MenuTrigger label="Industries" id="industries" open={open} setOpen={setOpen} narrow>
             <SimpleList
