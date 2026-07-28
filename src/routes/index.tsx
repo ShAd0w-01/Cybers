@@ -72,6 +72,19 @@ const heroProof = [
   { label: "vCISO on demand", icon: UserCog },
 ];
 
+/** Trims boilerplate suffixes so service lists read uniformly in cards. */
+function shortServiceTitle(title: string) {
+  return title
+    .replace(/\s*(and|&)\s*Implementation\s*Services?$/i, "")
+    .replace(/\s*Implementation\s*(and|&)\s*Certification\s*Assistance$/i, "")
+    .replace(/\s*Guidelines\s*Implementation\s*Assistance$/i, " Guidelines")
+    .replace(/\s*Compliance\s*Assistance$/i, " Compliance")
+    .replace(/\s*Readiness\s*(and|&)\s*Implementation\s*Services?$/i, " Readiness")
+    .replace(/\s*—\s*/g, " · ")
+    .trim();
+}
+
+
 /** High-intent compliance destinations linked from the hero and service band. */
 const complianceLinks = [
   {
