@@ -29,7 +29,7 @@ import { Reveal, CountUp } from "@/components/site/Reveal";
 import { IconTile } from "@/components/site/IconTile";
 import { AuroraBloom } from "@/components/site/AuroraBloom";
 import { Doodle } from "@/components/site/Doodle";
-import { HeroDoodle } from "@/components/site/HeroDoodle";
+
 import { ApproachSteps } from "@/components/site/ApproachSteps";
 
 import { BrandMark, Logo } from "@/components/site/Logo";
@@ -231,7 +231,7 @@ function Home() {
         <AuroraBloom intensity={0.8} blur={82} spread={24} grain={0.6} />
         <div className="hero-noise pointer-events-none absolute inset-0" aria-hidden="true" />
         <div className="hero-vignette pointer-events-none absolute inset-0" aria-hidden="true" />
-        <HeroDoodle />
+        <div className="chex chex-hero pointer-events-none absolute inset-0" aria-hidden="true" />
 
         <div className="relative mx-auto max-w-4xl px-5 py-24 text-center sm:py-28 lg:px-8 lg:py-36">
           <Reveal>
