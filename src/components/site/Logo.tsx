@@ -43,7 +43,9 @@ export function Logo({
   style,
   halo = "sm",
   reveal = false,
+  priority = false,
 }: {
+
   tone?: "light" | "dark";
   className?: string;
   style?: React.CSSProperties;
