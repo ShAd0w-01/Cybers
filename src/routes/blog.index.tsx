@@ -76,9 +76,6 @@ function PostCard({ post }: { post: BlogPostCard }) {
           src={post.cover_image_url}
           alt=""
           loading="lazy"
-          decoding="async"
-          width={640}
-          height={352}
           className="h-44 w-full object-cover"
         />
       ) : (

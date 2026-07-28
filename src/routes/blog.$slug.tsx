@@ -83,10 +83,6 @@ function Article() {
           <img
             src={post.cover_image_url}
             alt=""
-            width={1024}
-            height={576}
-            decoding="async"
-            fetchPriority="high"
             className="-mt-10 w-full rounded-xl border border-border object-cover shadow-lg"
           />
         </div>

@@ -11,7 +11,6 @@ import { Suspense, lazy, useEffect, useState, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { CRITICAL_CSS } from "@/lib/critical-css";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { WhatsAppButton } from "@/components/site/WhatsAppButton";
@@ -130,16 +129,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
-      // The app stylesheet is fetched at high priority but does NOT block the
-      // first paint — the inlined critical CSS below covers the first screen
-      // and the script flips this link to `all` as soon as it is parsed.
-      { rel: "preload", as: "style", href: appCss },
-      {
-        rel: "stylesheet",
-        href: appCss,
-        media: "print",
-        "data-defer-css": "true",
-      } as unknown as { rel: string; href: string },
+      { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       // Trimmed to the weights actually used; display=swap keeps text visible
@@ -160,13 +150,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
-    styles: [{ children: CRITICAL_CSS }],
     scripts: [
       {
         children:
-          "document.querySelectorAll('link[data-font-css],link[data-defer-css]').forEach(function(l){if(l.sheet){l.media='all';}else{l.addEventListener('load',function(){l.media='all';});}});",
+          "document.querySelectorAll('link[data-font-css]').forEach(function(l){if(l.sheet){l.media='all';}else{l.addEventListener('load',function(){l.media='all';});}});",
       },
-
       {
         type: "application/ld+json",
         children: JSON.stringify({
@@ -192,10 +180,6 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
-        {/* Without JS the deferred stylesheet never flips to media="all". */}
-        <noscript>
-          <link rel="stylesheet" href={appCss} />
-        </noscript>
       </head>
       <body>
         {children}
