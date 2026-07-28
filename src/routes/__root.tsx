@@ -193,7 +193,7 @@ function RootComponent() {
           <Outlet />
         </main>
         <Footer />
-        <AdvisorWidget />
+        <IdleAdvisor />
         <WhatsAppButton />
         <StickyBookBar />
         {import.meta.env.DEV ? <ContrastQA /> : null}
