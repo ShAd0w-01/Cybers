@@ -197,26 +197,18 @@
   background-size: 64px 64px;
 }
 
-@utility chex {
-  --chex-color: oklch(0.28 0.03 340 / 9%);
-  background-image:
-    linear-gradient(45deg, var(--chex-color) 25%, transparent 25%, transparent 75%, var(--chex-color) 75%, var(--chex-color)),
-    linear-gradient(45deg, var(--chex-color) 25%, transparent 25%, transparent 75%, var(--chex-color) 75%, var(--chex-color));
-  background-position: 0 0, 32px 32px;
-  background-size: 64px 64px;
-}
-
-.chex-hero {
-  opacity: 0.22;
+/* Hero grid — a fine, warm-tinted wire grid that feels premium and readable. */
+.hero-grid {
+  opacity: 0.18;
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 82% 62% at 50% 40%, black 0%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 82% 62% at 50% 40%, black 0%, transparent 100%);
 }
 
 @media (max-width: 48rem) {
-  .chex {
-    background-size: 48px 48px;
-    background-position: 0 0, 24px 24px;
-  }
-  .chex-hero {
-    opacity: 0.14;
+  .hero-grid {
+    opacity: 0.12;
+    background-size: 40px 40px;
   }
 }
 
