@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { Logo } from "./Logo";
 import { CtaLink } from "./CtaLink";
-import { industries, pillars } from "@/content/site";
+import { industries, pillars, shortServiceTitle } from "@/content/site";
 import { cn } from "@/lib/utils";
 
 const resources = [
