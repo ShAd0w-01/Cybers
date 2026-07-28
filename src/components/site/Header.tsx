@@ -58,7 +58,7 @@ export function Header() {
           onClick={() => setMobile(false)}
           className="inline-flex shrink-0 items-center"
         >
-          <Logo className="h-8 w-auto sm:h-9" />
+          <Logo priority className="h-8 w-auto sm:h-9" />
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
