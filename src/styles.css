@@ -1223,6 +1223,64 @@ html[data-aurora-preview="off"] .aurora-bloom {
   100% { transform: translate3d(0, 0, 0) scale(0.95); }
 }
 
+/* ------------------------------------------------------------------
+ * Animated brand doodle layer (hero decoration)
+ * ---------------------------------------------------------------- */
+.hero-doodle {
+  mix-blend-mode: multiply;
+}
+
+.hero-doodle .doodle-draw {
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
+  animation: doodle-draw 2.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes doodle-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+.doodle-float-a { animation: doodle-float-a 16s ease-in-out infinite; }
+.doodle-float-b { animation: doodle-float-b 19s ease-in-out infinite; }
+.doodle-spin { animation: arc-spin 40s linear infinite; }
+.doodle-spin-rev { animation: arc-spin 52s linear infinite reverse; }
+.doodle-twinkle path {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: doodle-twinkle 4.5s ease-in-out infinite;
+}
+.doodle-twinkle .doodle-twinkle-b { animation-delay: 1.3s; }
+.doodle-twinkle .doodle-twinkle-c { animation-delay: 2.6s; }
+
+@keyframes doodle-float-a {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(10px, -14px, 0); }
+}
+
+@keyframes doodle-float-b {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(-14px, 12px, 0); }
+}
+
+@keyframes doodle-twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.85); }
+  50% { opacity: 0.7; transform: scale(1.1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-doodle .doodle-draw {
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+  .doodle-float-a,
+  .doodle-float-b,
+  .doodle-spin,
+  .doodle-spin-rev,
+  .doodle-twinkle path {
+    animation: none;
+  }
+}
+
 
 /* ==================================================================
  * iOS-style glass (frosted, specular, warm-tinted) + spring motion
