@@ -643,7 +643,9 @@ function Home() {
 
 
       {/* ------------------------------------------------------- News */}
-      <NewsRotator />
+      <Deferred minHeight={460}>
+        <NewsRotator />
+      </Deferred>
 
       {/* ------------------------------------------------- Lead magnet */}
       <section className="band-soft wash-soft relative overflow-hidden py-16 sm:py-20">
