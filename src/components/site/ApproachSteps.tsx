@@ -92,12 +92,19 @@ function useStaggerReveal(count: number) {
   const pending = useRef<Set<number>>(new Set());
   const frame = useRef(0);
 
-  const register = useCallback(
-    (i: number) => (el: HTMLElement | null) => {
-      nodes.current[i] = el;
-    },
-    [],
-  );
+  // Ref callbacks are cached per index so memoised cards keep identical props
+  // across renders (no detach/attach churn, no wasted re-renders).
+  const refCache = useRef<Map<number, (el: HTMLElement | null) => void>>(new Map());
+  const register = useCallback((i: number) => {
+    let cb = refCache.current.get(i);
+    if (!cb) {
+      cb = (el: HTMLElement | null) => {
+        nodes.current[i] = el;
+      };
+      refCache.current.set(i, cb);
+    }
+    return cb;
+  }, []);
 
   useEffect(() => {
     if (prefersReducedMotion()) {
