@@ -160,23 +160,24 @@ export function Header() {
                     <span aria-hidden className="text-coral-ink">→</span>
                   </Link>
                   <div className="brand-rule mt-2 mb-3 w-8" />
-                  <ul className="space-y-1.5">
+                  <ul className="space-y-0.5">
                     {p.services.map((svc) => (
                       <li key={svc.url}>
                         <Link
                           to={svc.url}
-                          className="flex items-start gap-2 rounded-md py-1 text-[13px] leading-snug text-muted-foreground transition-colors hover:text-coral-ink"
+                          className="flex items-center gap-2 rounded-md py-1.5 text-[13px] leading-5 text-muted-foreground transition-colors hover:text-coral-ink"
                           onClick={() => setMobile(false)}
                         >
                           <span
                             aria-hidden
-                            className="mt-[7px] size-1.5 shrink-0 rounded-full bg-coral-ink/60"
+                            className="size-1.5 shrink-0 rounded-full bg-coral-ink/60"
                           />
-                          <span>{svc.title}</span>
+                          <span className="truncate">{shortServiceTitle(svc.title)}</span>
                         </Link>
                       </li>
                     ))}
                   </ul>
+
                 </div>
               ))}
               <Link
