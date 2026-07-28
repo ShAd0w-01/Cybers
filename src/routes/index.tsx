@@ -559,9 +559,9 @@ function Home() {
                 </ul>
                 <Link
                   to={p.url}
-                  className="mt-auto pt-5 text-sm font-semibold text-coral-ink transition-all hover:tracking-wide"
+                  className="mt-auto pt-5 text-sm font-semibold text-coral-ink transition-all hover:tracking-wide whitespace-pre-line"
                 >
-                  Explore {p.short} →
+                  Explore{"\n"}{p.short} →
                 </Link>
               </Reveal>
             ))}
