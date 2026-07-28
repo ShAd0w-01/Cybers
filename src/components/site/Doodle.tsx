@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import type { CSSProperties, ReactElement } from "react";
 import { cn } from "@/lib/utils";
 
 /**
@@ -245,7 +245,7 @@ function Sparks() {
   );
 }
 
-const SCENES: Record<DoodleVariant, JSX.Element> = {
+const SCENES: Record<DoodleVariant, ReactElement> = {
   orbit,
   shield,
   compliance,
