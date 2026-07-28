@@ -238,7 +238,94 @@ const toolkit = (
   </>
 );
 
+/* ---- character line-art -------------------------------------------- */
+
+/** Side-profile engineer, chin up, hands in pockets, gear-loaded backpack. */
+function Figure({ x, y, scale = 1, flip = false }: { x: number; y: number; scale?: number; flip?: boolean }) {
+  return (
+    <g
+      className="doodle-float-a"
+      transform={`translate(${x} ${y}) scale(${flip ? -scale : scale} ${scale})`}
+      stroke="var(--ink)"
+      strokeWidth="2.4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      fill="none"
+    >
+      {/* hair bun + back hair */}
+      <path className="doodle-draw" style={D(0.05)} d="M58 30a13 13 0 1 1 20 10" stroke="var(--magenta)" />
+      <path className="doodle-draw" style={D(0.15)} d="M66 40c-8 12-11 26-8 40l6 14" stroke="var(--magenta)" />
+      {/* head profile, tilted up */}
+      <path
+        className="doodle-draw"
+        style={D(0.2)}
+        d="M70 46c4-14 18-22 32-18 13 4 20 16 18 30-1 8-5 12-4 18l-6 4-2 10-14 4c-16 0-28-16-24-48z"
+        stroke="var(--ink)"
+      />
+      <path className="doodle-draw" style={D(0.45)} d="M112 62l6 4-6 5" stroke="var(--coral)" strokeWidth="2" />
+      <path className="doodle-draw" style={D(0.5)} d="M100 50c4-2 8-1 10 2" stroke="var(--ink)" strokeWidth="2" />
+      {/* collar + hoodie body */}
+      <path className="doodle-draw" style={D(0.55)} d="M74 96c12 10 30 10 40-2" stroke="var(--coral)" />
+      <path
+        className="doodle-draw"
+        style={D(0.6)}
+        d="M76 100c-18 6-27 22-29 42l-6 60c-1 12 5 19 16 21 21 4 45 4 63-2 9-3 13-10 12-19l-9-64c-2-19-11-31-26-37"
+      />
+      {/* arm, hand in pocket */}
+      <path className="doodle-draw" style={D(0.8)} d="M60 148c-7 27-7 54 2 76 4 10 13 14 24 12" stroke="var(--coral)" />
+      {/* backpack + gear */}
+      <g stroke="var(--magenta)">
+        <path className="doodle-draw" style={D(0.9)} d="M40 116c-13 3-20 13-20 27v66c0 13 8 21 21 21l14-2" />
+        <path className="doodle-draw" style={D(1)} d="M30 150h26M30 182h26" strokeWidth="2" />
+        <circle className="doodle-twinkle-b" cx="20" cy="140" r="6" fill="var(--amber)" stroke="none" />
+        <path className="doodle-draw" style={D(1.1)} d="M16 196h12v14H16zM14 218l10 12" strokeWidth="2" />
+      </g>
+      {/* shorts */}
+      <path className="doodle-draw" style={D(1.15)} d="M48 232l-2 58c0 7 4 11 11 11h58c8 0 12-6 11-15l-7-54" stroke="var(--ink)" />
+      <path className="doodle-draw" style={D(1.25)} d="M86 301v-58" stroke="var(--coral)" strokeWidth="2" />
+      {/* legs */}
+      <path className="doodle-draw" style={D(1.3)} d="M62 301l-3 88 4 62M110 301l6 86-3 64" />
+      <path className="doodle-draw" style={D(1.45)} d="M52 372h20M104 368h20" stroke="var(--amber)" strokeWidth="2" />
+      {/* boots */}
+      <path className="doodle-draw" style={D(1.5)} d="M63 451c-16 4-26 10-26 17h44l4-17zM113 451c-14 5-22 10-22 17h44l3-17z" />
+      {/* ground shadow */}
+      <path className="doodle-draw" style={D(1.7)} d="M22 476h140" stroke="var(--coral)" strokeWidth="2" strokeDasharray="6 10" />
+    </g>
+  );
+}
+
+const analyst = (
+  <>
+    <Figure x={96} y={104} scale={0.92} />
+    <g className="doodle-spin" style={{ transformOrigin: "980px 240px" }} opacity="0.4">
+      <circle cx="980" cy="240" r="86" stroke="var(--amber)" strokeWidth="1.2" strokeDasharray="3 10" />
+      <circle cx="980" cy="154" r="4" fill="var(--coral)" />
+    </g>
+    <g className="doodle-float-b" opacity="0.45" strokeLinecap="round">
+      <path className="doodle-draw" style={D(0.7)} d="M700 560c130-40 250-30 360 40" stroke="var(--magenta)" strokeWidth="1.3" strokeDasharray="6 10" />
+      <path className="doodle-draw" style={D(1)} d="M760 460h180M760 500h120" stroke="var(--coral)" strokeWidth="1.4" />
+    </g>
+    <Sparks />
+  </>
+);
+
+const operator = (
+  <>
+    <Figure x={1104} y={116} scale={0.86} flip />
+    <g className="doodle-float-a" opacity="0.48" strokeLinecap="round" strokeLinejoin="round">
+      <path className="doodle-draw" style={D(0.3)} d="M120 220h260v160H120z" stroke="var(--magenta)" strokeWidth="1.5" />
+      <path className="doodle-draw" style={D(0.7)} d="M156 268h150M156 302h110M156 336h180" stroke="var(--coral)" strokeWidth="1.4" />
+      <path className="doodle-draw" style={D(1.1)} d="M100 412h300" stroke="var(--amber)" strokeWidth="1.4" strokeDasharray="5 9" />
+    </g>
+    <g className="doodle-spin-rev" style={{ transformOrigin: "560px 560px" }} opacity="0.32">
+      <circle cx="560" cy="560" r="72" stroke="var(--magenta)" strokeWidth="1.1" strokeDasharray="3 11" />
+    </g>
+    <Sparks />
+  </>
+);
+
 function Sparks() {
+
   return (
     <g className="doodle-twinkle">
       <path d="M640 84l6 14 14 6-14 6-6 14-6-14-14-6 14-6z" fill="var(--amber)" opacity="0.55" />
