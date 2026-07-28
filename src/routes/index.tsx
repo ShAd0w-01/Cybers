@@ -205,7 +205,6 @@ function Home() {
 
         </div>
         <AuroraBloom intensity={0.8} blur={82} spread={24} grain={0.6} />
-        <Doodle variant="analyst" />
         <div className="hero-noise pointer-events-none absolute inset-0" aria-hidden="true" />
         <div className="hero-vignette pointer-events-none absolute inset-0" aria-hidden="true" />
 
@@ -664,7 +663,6 @@ function Home() {
       {/* ------------------------------------------------- Where to start */}
       <section className="wash-warm relative overflow-hidden py-16 text-ink-foreground sm:py-24">
         <AuroraBloom intensity={0.55} blur={84} direction="bottom" grain={0.6} fade={62} />
-        <Doodle variant="operator" opacity={0.85} />
         <div className="relative mx-auto grid max-w-7xl gap-10 px-5 lg:grid-cols-2 lg:px-8">
           <Reveal>
             <div className="brand-rule mb-5" />
