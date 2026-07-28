@@ -1,29 +1,15 @@
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useMutation } from "@tanstack/react-query";
-import { useServerFn } from "@tanstack/react-start";
 import { Link } from "@tanstack/react-router";
 import {
   ArrowRight,
   CheckCircle2,
   ChevronDown,
   Send,
-  Sparkles,
-  Zap,
-  ZapOff,
 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { track } from "@/lib/analytics";
-import { submitLead } from "@/lib/crm.functions";
-import { useMotionPref, prefersReducedMotion } from "@/lib/useMotionPref";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { prefersReducedMotion } from "@/lib/useMotionPref";
 
 export type ApproachStep = { title: string; body: string };
 
