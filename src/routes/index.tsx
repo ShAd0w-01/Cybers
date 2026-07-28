@@ -440,42 +440,8 @@ function Home() {
               </h2>
             </div>
           </Reveal>
-          <ol className="relative mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {approachSteps.map((c, i) => (
-              <Reveal
-                as="li"
-                key={c.title}
-                delay={i * 80}
-                className="group glass card-lift sheen relative overflow-hidden rounded-2xl p-6 transition-[transform,box-shadow] duration-500 focus-within:ring-2 focus-within:ring-ring"
-                
-              >
-                <span
-                  aria-hidden="true"
-                  className="brand-gradient pointer-events-none absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 transition-transform duration-500 ease-out group-hover:scale-x-100 group-focus-within:scale-x-100"
-                />
-                <span
-                  aria-hidden="true"
-                  className="pointer-events-none absolute -right-10 -top-10 size-32 rounded-full bg-[radial-gradient(circle,color-mix(in_oklab,var(--brand-magenta)_28%,transparent),transparent_70%)] opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100 group-focus-within:opacity-100"
-                />
-                <div className="relative flex items-center gap-3">
-                  <span className="brand-gradient grid size-10 shrink-0 place-items-center rounded-full text-sm font-bold text-white shadow-md transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6 group-focus-within:scale-110">
-                    {i + 1}
-                  </span>
-                  <div className="h-px flex-1 bg-ink-border">
-                    <div className="brand-gradient h-px w-0 transition-[width] duration-700 ease-out group-hover:w-full group-focus-within:w-full" />
-                  </div>
-                  <ArrowRight
-                    aria-hidden="true"
-                    className="size-4 -translate-x-2 text-coral-ink opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100 group-focus-within:translate-x-0 group-focus-within:opacity-100"
-                  />
-                </div>
-                <h3 className="relative mt-4 type-h4 transition-colors duration-300 group-hover:text-coral-ink">
-                  {c.title}
-                </h3>
-                <p className="relative mt-2 text-sm leading-relaxed text-ink-muted">{c.body}</p>
-              </Reveal>
-            ))}
-          </ol>
+          <ApproachSteps steps={approachSteps} />
+
 
         </div>
       </section>
