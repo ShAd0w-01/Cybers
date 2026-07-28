@@ -119,11 +119,11 @@ export function Header() {
           <TopLink to="/contact">Contact</TopLink>
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
-          <CtaLink to="/contact" variant="outline" className="px-4 py-2.5">
+        <div className="hidden flex-nowrap items-center gap-3 lg:flex">
+          <CtaLink to="/contact" variant="outline" className="whitespace-nowrap px-4 py-2.5">
             Request an Assessment
           </CtaLink>
-          <CtaLink to="/contact" className="px-4 py-2.5">
+          <CtaLink to="/contact" className="whitespace-nowrap px-4 py-2.5">
             Book a Consultation
           </CtaLink>
         </div>
