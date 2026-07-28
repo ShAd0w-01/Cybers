@@ -69,10 +69,10 @@ export function Header() {
                 <div key={p.url} className="flex flex-col bg-background/80 px-6 py-7">
                   <Link
                     to={p.url}
-                    className="font-display text-[13px] font-semibold uppercase tracking-[0.08em] text-foreground hover:text-coral-ink"
+                    className="truncate font-display text-[13px] font-semibold uppercase tracking-[0.08em] text-foreground hover:text-coral-ink"
                     onClick={() => setOpen(null)}
                   >
-                    {p.title}
+                    {p.short}
                   </Link>
                   <div className="brand-rule mt-2.5 mb-4 w-8" />
                   <ul className="flex flex-col gap-0.5">
