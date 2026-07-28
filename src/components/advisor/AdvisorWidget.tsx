@@ -91,15 +91,24 @@ export function AdvisorWidget() {
           </header>
 
           {threadId && initialMessages ? (
-            <AdvisorChat
-              key={threadId}
-              threadId={threadId}
-              visitorId={visitorId}
-              initialMessages={initialMessages}
-              onActivity={() =>
-                queryClient.invalidateQueries({ queryKey: ["advisor-threads", visitorId] })
+            <Suspense
+              fallback={
+                <div className="flex flex-1 items-center justify-center text-sm text-muted-foreground">
+                  Loading the advisor…
+                </div>
               }
-            />
+            >
+              <AdvisorChat
+                key={threadId}
+                threadId={threadId}
+                visitorId={visitorId}
+                initialMessages={initialMessages}
+                onActivity={() =>
+                  queryClient.invalidateQueries({ queryKey: ["advisor-threads", visitorId] })
+                }
+              />
+            </Suspense>
+
           ) : (
             <div className="flex flex-1 items-center justify-center text-sm text-muted-foreground">
               Starting the advisor…
