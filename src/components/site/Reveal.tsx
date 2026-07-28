@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import { prefersReducedMotion } from "@/lib/useMotionPref";
 
 /** Fades and lifts children into view on scroll. Respects reduced motion. */
 export function Reveal({
@@ -19,24 +20,31 @@ export function Reveal({
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (prefersReducedMotion()) {
       setShown(true);
       return;
     }
+    let raf = 0;
     const io = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setShown(true);
-            io.disconnect();
-          }
+          if (!entry.isIntersecting) continue;
+          io.disconnect();
+          // Defer the state flip to the next frame so several reveals entering
+          // together are painted in one batch instead of mid-scroll.
+          raf = requestAnimationFrame(() => setShown(true));
+          return;
         }
       },
       { rootMargin: "0px 0px -8% 0px", threshold: 0.08 },
     );
     io.observe(node);
-    return () => io.disconnect();
+    return () => {
+      io.disconnect();
+      if (raf) cancelAnimationFrame(raf);
+    };
   }, []);
+
 
   return (
     <Tag
