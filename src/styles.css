@@ -199,7 +199,7 @@
 
 /* Hero grid — a fine, warm-tinted wire grid that feels premium and readable. */
 .hero-grid {
-  opacity: 0.18;
+  opacity: 0.26;
   background-size: 56px 56px;
   mask-image: radial-gradient(ellipse 82% 62% at 50% 40%, black 0%, transparent 100%);
   -webkit-mask-image: radial-gradient(ellipse 82% 62% at 50% 40%, black 0%, transparent 100%);
@@ -207,7 +207,7 @@
 
 @media (max-width: 48rem) {
   .hero-grid {
-    opacity: 0.12;
+    opacity: 0.18;
     background-size: 40px 40px;
   }
 }
