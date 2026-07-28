@@ -126,13 +126,13 @@ export function AdvisorWidget() {
         aria-label="Open the CyberSentinels AI Advisor"
         title="Open the CyberSentinels AI Advisor"
         style={{ bottom: "calc(1rem + var(--sticky-book-h, 0px))" }}
-        className={`brand-gradient advisor-pulse fixed right-4 z-40 inline-flex size-14 items-center justify-center rounded-full text-white shadow-[0_10px_28px_-10px_color-mix(in_oklab,var(--coral)_60%,transparent)] transition-all duration-300 ease-[cubic-bezier(0.34,1.4,0.44,1)] hover:scale-110 hover:shadow-[0_14px_36px_-10px_color-mix(in_oklab,var(--magenta)_65%,transparent)] active:scale-95 ${
+        className={`brand-gradient advisor-pulse fixed right-4 z-40 inline-flex size-11 items-center justify-center rounded-full text-white shadow-[0_8px_22px_-8px_color-mix(in_oklab,var(--coral)_60%,transparent)] transition-all duration-300 ease-[cubic-bezier(0.34,1.4,0.44,1)] hover:scale-110 hover:shadow-[0_12px_28px_-8px_color-mix(in_oklab,var(--magenta)_65%,transparent)] active:scale-95 ${
           open ? "hidden sm:inline-flex" : ""
         }`}
       >
         <svg
           viewBox="0 0 24 24"
-          className="h-7 w-7"
+          className="h-5 w-5"
           fill="none"
           aria-hidden="true"
           focusable="false"
