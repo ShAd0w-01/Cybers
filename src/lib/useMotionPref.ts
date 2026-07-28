@@ -66,11 +66,7 @@ export function prefersReducedMotion() {
 
 /** Reactive version for components that must branch in JSX. */
 export function useReducedMotion() {
-  const { pref } = useMotionPref();
-  const [reduced, setReduced] = [
-    prefersReducedMotion(),
-    (_: boolean) => {},
-  ] as const;
-  useEffect(() => {}, [pref]);
-  return reduced;
+  useMotionPref(); // subscribes: re-renders when the preference changes
+  return prefersReducedMotion();
 }
+
