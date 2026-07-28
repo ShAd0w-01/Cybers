@@ -15,7 +15,10 @@ export type DoodleVariant =
   | "insight" // reading, charts, ideas
   | "globe" // footer / global reach
   | "radar" // threat map / monitoring
-  | "toolkit"; // starter kit / downloads
+  | "toolkit" // starter kit / downloads
+  | "analyst" // character line-art — engineer with gear-loaded backpack
+  | "operator"; // character line-art — analyst at a floating console
+
 
 const D = (delay: number) => ({ animationDelay: `${delay}s` } as CSSProperties);
 
