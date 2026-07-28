@@ -14,6 +14,7 @@ import {
 
 import { submitLead } from "@/lib/crm.functions";
 import { AuroraBloom } from "@/components/site/AuroraBloom";
+import { Doodle } from "@/components/site/Doodle";
 import { Reveal } from "@/components/site/Reveal";
 import { IconTile } from "@/components/site/IconTile";
 import { CtaLink } from "@/components/site/CtaLink";

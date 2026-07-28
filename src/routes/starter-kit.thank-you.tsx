@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import { CheckCircle2, Download, CalendarCheck, ArrowRight } from "lucide-react";
 
 import { AuroraBloom } from "@/components/site/AuroraBloom";
+import { Doodle } from "@/components/site/Doodle";
 import { Reveal } from "@/components/site/Reveal";
 import { CtaLink } from "@/components/site/CtaLink";
 import {

@@ -3,6 +3,7 @@ import { ArrowLeft, CalendarDays, Clock3, User2 } from "lucide-react";
 
 import { getPublishedPost, type BlogPost } from "@/lib/blog.functions";
 import { Markdown } from "@/components/site/Markdown";
+import { Doodle } from "@/components/site/Doodle";
 import { CtaLink } from "@/components/site/CtaLink";
 
 export const Route = createFileRoute("/blog/$slug")({
