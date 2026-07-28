@@ -633,7 +633,9 @@ function Home() {
             </div>
           </Reveal>
           <Reveal delay={80} className="mt-12">
-            <TestimonialCarousel items={testimonials} />
+            <Deferred minHeight={320}>
+              <TestimonialCarousel items={testimonials} />
+            </Deferred>
           </Reveal>
 
         </div>
