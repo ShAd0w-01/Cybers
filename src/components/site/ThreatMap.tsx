@@ -1,13 +1,17 @@
-import { Radar, Globe2, ShieldAlert } from "lucide-react";
+import { useState } from "react";
+import { Radar, Globe2, ShieldAlert, Play } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { Doodle } from "./Doodle";
 import { CtaLink } from "./CtaLink";
 
 /**
  * Live global threat activity, embedded from the Kaspersky Cyberthreat
- * Real-Time Map widget. Lazy-loaded so it never blocks first paint.
+ * Real-Time Map widget. The third-party iframe is only requested after an
+ * explicit click, so it never competes with first paint.
  */
 export function ThreatMap({ compact = false }: { compact?: boolean }) {
+  const [live, setLive] = useState(false);
+
   return (
     <section className="wash-warm relative overflow-hidden py-16 text-ink-foreground sm:py-24">
       <Doodle variant="radar" opacity={0.85} />
