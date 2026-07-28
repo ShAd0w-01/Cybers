@@ -42,29 +42,42 @@ export function Logo({
   halo?: "sm" | "lg" | "none";
   /** Play the one-off entrance animation (hero use). */
   reveal?: boolean;
+  /** Header/hero marks paint immediately; everything else defers. */
+  priority?: boolean;
 }) {
-  const asset = tone === "dark" ? logoWhite : logoPrimary;
+  const dark = tone === "dark";
+  const asset = dark ? logoWhite : logoPrimary;
+  const avif = dark ? [whiteAvif360, whiteAvif720] : [primaryAvif360, primaryAvif720];
+  const webp = dark ? [whiteWebp360, whiteWebp720] : [primaryWebp360, primaryWebp720];
+  const srcSet = (set: { url: string }[]) => `${set[0].url} 360w, ${set[1].url} 720w`;
+
   return (
     <span className={cn("logo-wrap align-middle", reveal && "logo-reveal")}>
       {halo !== "none" && (
         <span aria-hidden="true" className={cn("logo-halo", halo === "sm" && "logo-halo-sm")} />
       )}
-      <img
-        src={asset.url}
-        alt="CyberSentinels"
-        width={1154}
-        height={326}
-        style={style}
-        className={cn(
-          "logo-img block h-8 w-auto shrink-0 object-contain object-left sm:h-9",
-          tone === "dark" && "logo-img-dark",
-          className,
-        )}
-        loading="eager"
-        decoding="async"
-      />
+      <picture>
+        <source type="image/avif" srcSet={srcSet(avif)} sizes="(min-width: 640px) 320px, 220px" />
+        <source type="image/webp" srcSet={srcSet(webp)} sizes="(min-width: 640px) 320px, 220px" />
+        <img
+          src={asset.url}
+          alt="CyberSentinels"
+          width={1154}
+          height={326}
+          style={style}
+          className={cn(
+            "logo-img block h-8 w-auto shrink-0 object-contain object-left sm:h-9",
+            dark && "logo-img-dark",
+            className,
+          )}
+          loading={priority ? "eager" : "lazy"}
+          fetchPriority={priority ? "high" : "auto"}
+          decoding="async"
+        />
+      </picture>
     </span>
   );
 }
+
 
 
