@@ -1244,7 +1244,11 @@ html[data-aurora-preview="off"] .aurora-bloom {
 .doodle-float-b { animation: doodle-float-b 19s ease-in-out infinite; }
 .doodle-spin { animation: arc-spin 40s linear infinite; }
 .doodle-spin-rev { animation: arc-spin 52s linear infinite reverse; }
-.doodle-twinkle path { animation: doodle-twinkle 4.5s ease-in-out infinite; }
+.doodle-twinkle path {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: doodle-twinkle 4.5s ease-in-out infinite;
+}
 .doodle-twinkle .doodle-twinkle-b { animation-delay: 1.3s; }
 .doodle-twinkle .doodle-twinkle-c { animation-delay: 2.6s; }
 
