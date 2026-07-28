@@ -28,6 +28,7 @@ import { Reveal, CountUp } from "@/components/site/Reveal";
 import { IconTile } from "@/components/site/IconTile";
 import { AuroraBloom } from "@/components/site/AuroraBloom";
 import { Doodle } from "@/components/site/Doodle";
+import { ApproachSteps } from "@/components/site/ApproachSteps";
 
 import { BrandMark, Logo } from "@/components/site/Logo";
 
