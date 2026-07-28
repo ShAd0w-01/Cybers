@@ -72,6 +72,19 @@ const heroProof = [
   { label: "vCISO on demand", icon: UserCog },
 ];
 
+/** Trims boilerplate suffixes so service lists read uniformly in cards. */
+function shortServiceTitle(title: string) {
+  return title
+    .replace(/\s*(and|&)\s*Implementation\s*Services?$/i, "")
+    .replace(/\s*Implementation\s*(and|&)\s*Certification\s*Assistance$/i, "")
+    .replace(/\s*Guidelines\s*Implementation\s*Assistance$/i, " Guidelines")
+    .replace(/\s*Compliance\s*Assistance$/i, " Compliance")
+    .replace(/\s*Readiness\s*(and|&)\s*Implementation\s*Services?$/i, " Readiness")
+    .replace(/\s*—\s*/g, " · ")
+    .trim();
+}
+
+
 /** High-intent compliance destinations linked from the hero and service band. */
 const complianceLinks = [
   {
@@ -519,24 +532,27 @@ function Home() {
                 as="article"
                 key={p.url}
                 delay={i * 60}
-                className="group card-lift sheen flex flex-col rounded-xl border border-border bg-background p-6"
+                className="group card-lift sheen flex h-full flex-col rounded-xl border border-border bg-background p-6"
               >
                 <span className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <h3 className="mt-3 type-h4">
+                <h3 className="mt-3 type-h4 lg:min-h-[3.5rem]">
                   {p.title}
                 </h3>
                 <div className="brand-rule mt-3 mb-4 w-6 transition-all duration-300 group-hover:w-12" />
-                <p className="text-sm leading-relaxed text-muted-foreground">{p.intent}</p>
+                <p className="text-sm leading-relaxed text-muted-foreground lg:min-h-[5rem]">
+                  {p.intent}
+                </p>
                 <ul className="mt-5 space-y-2 border-t border-border pt-4">
                   {p.services.slice(0, 5).map((s) => (
                     <li key={s.url}>
                       <Link
                         to={s.url}
-                        className="text-[13px] leading-snug text-muted-foreground transition-colors hover:text-coral-ink"
+                        className="block truncate text-[13px] leading-snug text-muted-foreground transition-colors hover:text-coral-ink"
+                        title={s.title}
                       >
-                        {s.title}
+                        {shortServiceTitle(s.title)}
                       </Link>
                     </li>
                   ))}
@@ -550,6 +566,7 @@ function Home() {
               </Reveal>
             ))}
           </div>
+
         </div>
       </section>
 
