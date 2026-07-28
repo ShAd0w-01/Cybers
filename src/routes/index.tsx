@@ -34,15 +34,23 @@ import { BrandMark, Logo } from "@/components/site/Logo";
 
 
 import { SectionRenderer } from "@/components/site/SectionRenderer";
-import {
-  TestimonialCarousel,
-  type Testimonial,
-} from "@/components/site/TestimonialCarousel";
-import { ThreatMap } from "@/components/site/ThreatMap";
+import { type Testimonial } from "@/components/site/TestimonialCarousel";
+import { Deferred } from "@/components/site/Deferred";
 import { TrustedBy } from "@/components/site/TrustedBy";
-import { NewsRotator } from "@/components/site/NewsRotator";
 import { FaqAccordion } from "@/components/site/FaqAccordion";
 import { homeFaqs, faqSchema } from "@/content/faqs";
+
+// Below-the-fold, network-heavy blocks load only when they scroll into view.
+const TestimonialCarousel = lazy(() =>
+  import("@/components/site/TestimonialCarousel").then((m) => ({ default: m.TestimonialCarousel })),
+);
+const ThreatMap = lazy(() =>
+  import("@/components/site/ThreatMap").then((m) => ({ default: m.ThreatMap })),
+);
+const NewsRotator = lazy(() =>
+  import("@/components/site/NewsRotator").then((m) => ({ default: m.NewsRotator })),
+);
+
 
 
 
