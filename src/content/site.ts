@@ -116,7 +116,7 @@ export const pillars: Pillar[] = [
     services: [
       s("/services/iso-27001-implementation-certification-assistance"),
       s("/services/iso-27701-privacy-information-management"),
-      s("/services/iso-22301-business-continuity"),
+      // s("/services/iso-22301-business-continuity"),
       s("/services/iso-27032-cybersecurity-guidelines"),
       s("/services/iso-42001-ai-management-system"),
       s("/services/iso-9001-quality-management"),
