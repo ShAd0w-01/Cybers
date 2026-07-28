@@ -291,12 +291,6 @@ export function ApproachSteps({ steps }: { steps: ApproachStep[] }) {
 
   return (
     <div>
-      <div className="mt-8 flex flex-wrap items-center gap-3">
-        <ApproachCta openStep={open} />
-        <MotionToggle />
-        <p className="text-sm text-ink-muted">Select a stage to see what it includes.</p>
-      </div>
-
       <ol className="relative mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {steps.map((step, i) => (
           <StepCard
