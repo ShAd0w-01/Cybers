@@ -311,7 +311,7 @@ const analyst = (
 
 const operator = (
   <>
-    <Figure x={1104} y={116} scale={0.86} flip />
+    <Figure x={1076} y={130} scale={0.72} flip />
     <g className="doodle-float-a" opacity="0.48" strokeLinecap="round" strokeLinejoin="round">
       <path className="doodle-draw" style={D(0.3)} d="M120 220h260v160H120z" stroke="var(--magenta)" strokeWidth="1.5" />
       <path className="doodle-draw" style={D(0.7)} d="M156 268h150M156 302h110M156 336h180" stroke="var(--coral)" strokeWidth="1.4" />
