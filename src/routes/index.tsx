@@ -27,7 +27,7 @@ import { CtaLink, routeForLabel } from "@/components/site/CtaLink";
 import { Reveal, CountUp } from "@/components/site/Reveal";
 import { IconTile } from "@/components/site/IconTile";
 import { AuroraBloom } from "@/components/site/AuroraBloom";
-import { HeroDoodle } from "@/components/site/HeroDoodle";
+import { Doodle } from "@/components/site/Doodle";
 
 import { BrandMark, Logo } from "@/components/site/Logo";
 
@@ -205,7 +205,7 @@ function Home() {
 
         </div>
         <AuroraBloom intensity={0.8} blur={82} spread={24} grain={0.6} />
-        <HeroDoodle />
+        <Doodle variant="orbit" />
         <div className="hero-noise pointer-events-none absolute inset-0" aria-hidden="true" />
         <div className="hero-vignette pointer-events-none absolute inset-0" aria-hidden="true" />
 
@@ -431,6 +431,7 @@ function Home() {
       {/* ------------------------------------------------------ Approach */}
       <section className="wash-warm band-soft relative overflow-hidden py-16 text-ink-foreground sm:py-24">
         <AuroraBloom intensity={0.4} blur={90} direction="left" grain={0.6} fade={70} />
+        <Doodle variant="compliance" opacity={0.85} />
         <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal>
             <div className="max-w-3xl">
@@ -663,6 +664,7 @@ function Home() {
       {/* ------------------------------------------------- Where to start */}
       <section className="wash-warm relative overflow-hidden py-16 text-ink-foreground sm:py-24">
         <AuroraBloom intensity={0.55} blur={84} direction="bottom" grain={0.6} fade={62} />
+        <Doodle variant="network" opacity={0.85} />
         <div className="relative mx-auto grid max-w-7xl gap-10 px-5 lg:grid-cols-2 lg:px-8">
           <Reveal>
             <div className="brand-rule mb-5" />

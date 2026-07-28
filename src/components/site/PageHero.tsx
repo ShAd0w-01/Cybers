@@ -3,6 +3,21 @@ import { BrandMark } from "./Logo";
 import { CtaLink, routeForLabel } from "./CtaLink";
 import { Reveal } from "./Reveal";
 import { AuroraBloom } from "./AuroraBloom";
+import { Doodle, type DoodleVariant } from "./Doodle";
+
+/** Picks a doodle scene that matches the page subject. */
+function doodleFor(title: string): DoodleVariant {
+  const t = title.toLowerCase();
+  if (/(iso|soc|pci|gdpr|dpdpa|cmmc|sebi|compliance|audit|certif|policy|privacy|governance)/.test(t))
+    return "compliance";
+  if (/(pen ?test|penetration|vapt|red team|vulnerab|threat|attack|security testing|assurance)/.test(t))
+    return "radar";
+  if (/(cloud|network|infrastructure|api|saas|technology|logistics|supply)/.test(t)) return "network";
+  if (/(insight|blog|article|news|case stud|resource|career)/.test(t)) return "insight";
+  if (/(contact|about|industr|global|partner)/.test(t)) return "globe";
+  if (/(kit|download|template|toolkit|starter)/.test(t)) return "toolkit";
+  return "shield";
+}
 
 export type Crumb = { label: string; to?: string };
 
@@ -12,17 +27,19 @@ export function PageHero({
   paragraphs,
   buttons = [],
   crumbs = [],
+  doodle,
 }: {
   eyebrow?: string;
   title: string;
   paragraphs: string[];
   buttons?: string[];
   crumbs?: Crumb[];
+  doodle?: DoodleVariant;
 }) {
   return (
     <section className="wash-warm band-soft relative overflow-hidden text-ink-foreground">
       <AuroraBloom intensity={0.62} blur={78} direction="bottom" fade={58} />
-      <div className="ink-grid absolute inset-0" aria-hidden="true" />
+      <Doodle variant={doodle ?? doodleFor(`${eyebrow ?? ""} ${title}`)} opacity={0.85} />
       <div className="hero-noise pointer-events-none absolute inset-0" aria-hidden="true" />
       <div
         className="absolute -right-40 -top-40 size-[34rem] rounded-full opacity-20 blur-3xl"

@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import { CheckCircle2, Download, CalendarCheck, ArrowRight } from "lucide-react";
 
 import { AuroraBloom } from "@/components/site/AuroraBloom";
+import { Doodle } from "@/components/site/Doodle";
 import { Reveal } from "@/components/site/Reveal";
 import { CtaLink } from "@/components/site/CtaLink";
 import {
@@ -64,6 +65,7 @@ function ThankYou() {
     <>
       <section className="wash-warm relative overflow-hidden py-20 text-foreground sm:py-24">
         <AuroraBloom intensity={0.6} blur={84} direction="center" grain={0.6} fade={66} />
+        <Doodle variant="shield" opacity={0.85} />
         <div className="relative mx-auto max-w-3xl px-5 text-center lg:px-8">
           <Reveal>
             <span className="brand-gradient mx-auto inline-flex size-14 items-center justify-center rounded-full text-white">

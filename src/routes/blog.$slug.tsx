@@ -3,6 +3,7 @@ import { ArrowLeft, CalendarDays, Clock3, User2 } from "lucide-react";
 
 import { getPublishedPost, type BlogPost } from "@/lib/blog.functions";
 import { Markdown } from "@/components/site/Markdown";
+import { Doodle } from "@/components/site/Doodle";
 import { CtaLink } from "@/components/site/CtaLink";
 
 export const Route = createFileRoute("/blog/$slug")({
@@ -43,8 +44,9 @@ function Article() {
   const { post } = Route.useLoaderData() as { post: BlogPost };
   return (
     <article>
-      <header className="wash-warm ink-grid band-soft py-20 text-ink-foreground sm:py-20">
-        <div className="mx-auto max-w-3xl px-5 lg:px-8">
+      <header className="wash-warm band-soft relative overflow-hidden py-20 text-ink-foreground sm:py-20">
+        <Doodle variant="insight" opacity={0.85} />
+        <div className="relative mx-auto max-w-3xl px-5 lg:px-8">
           <Link
             to="/blog"
             className="inline-flex items-center gap-2 text-sm text-ink-foreground/65 hover:text-coral"

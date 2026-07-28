@@ -1,5 +1,6 @@
 import { Radar, Globe2, ShieldAlert } from "lucide-react";
 import { Reveal } from "./Reveal";
+import { Doodle } from "./Doodle";
 import { CtaLink } from "./CtaLink";
 
 /**
@@ -8,8 +9,9 @@ import { CtaLink } from "./CtaLink";
  */
 export function ThreatMap({ compact = false }: { compact?: boolean }) {
   return (
-    <section className="wash-warm ink-grid relative overflow-hidden py-16 text-ink-foreground sm:py-24">
-      <div className="mx-auto max-w-7xl px-5 lg:px-8">
+    <section className="wash-warm relative overflow-hidden py-16 text-ink-foreground sm:py-24">
+      <Doodle variant="radar" opacity={0.85} />
+      <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
         <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.25fr]">
           <Reveal>
             <p className="type-eyebrow text-coral">Live threat intelligence</p>

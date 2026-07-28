@@ -14,6 +14,7 @@ import {
 
 import { submitLead } from "@/lib/crm.functions";
 import { AuroraBloom } from "@/components/site/AuroraBloom";
+import { Doodle } from "@/components/site/Doodle";
 import { Reveal } from "@/components/site/Reveal";
 import { IconTile } from "@/components/site/IconTile";
 import { CtaLink } from "@/components/site/CtaLink";
@@ -73,6 +74,7 @@ function StarterKit() {
     <>
       <section className="wash-warm relative overflow-hidden py-16 text-foreground sm:py-20">
         <AuroraBloom intensity={0.55} blur={86} direction="left" grain={0.6} fade={68} />
+        <Doodle variant="toolkit" opacity={0.85} />
         <div className="relative mx-auto grid max-w-7xl items-start gap-12 px-5 lg:grid-cols-2 lg:px-8">
           <Reveal>
             <nav aria-label="Breadcrumb" className="type-small text-muted-foreground">
