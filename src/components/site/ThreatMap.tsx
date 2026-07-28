@@ -1,13 +1,17 @@
-import { Radar, Globe2, ShieldAlert } from "lucide-react";
+import { useState } from "react";
+import { Radar, Globe2, ShieldAlert, Play } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { Doodle } from "./Doodle";
 import { CtaLink } from "./CtaLink";
 
 /**
  * Live global threat activity, embedded from the Kaspersky Cyberthreat
- * Real-Time Map widget. Lazy-loaded so it never blocks first paint.
+ * Real-Time Map widget. The third-party iframe is only requested after an
+ * explicit click, so it never competes with first paint.
  */
 export function ThreatMap({ compact = false }: { compact?: boolean }) {
+  const [live, setLive] = useState(false);
+
   return (
     <section className="wash-warm relative overflow-hidden py-16 text-ink-foreground sm:py-24">
       <Doodle variant="radar" opacity={0.85} />
@@ -67,13 +71,30 @@ export function ThreatMap({ compact = false }: { compact?: boolean }) {
                   Source: Kaspersky
                 </a>
               </div>
-              <iframe
-                title="Kaspersky Cyberthreat Real-Time Map"
-                src="https://cybermap.kaspersky.com/en/widget/dynamic/dark"
-                loading="lazy"
-                className="h-[320px] w-full border-0 sm:h-[420px]"
-                referrerPolicy="no-referrer"
-              />
+              {live ? (
+                <iframe
+                  title="Kaspersky Cyberthreat Real-Time Map"
+                  src="https://cybermap.kaspersky.com/en/widget/dynamic/dark"
+                  loading="lazy"
+                  className="h-[320px] w-full border-0 sm:h-[420px]"
+                  referrerPolicy="no-referrer"
+                />
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => setLive(true)}
+                  className="group flex h-[320px] w-full flex-col items-center justify-center gap-3 bg-ink-soft text-ink-foreground/70 transition-colors hover:text-ink-foreground sm:h-[420px]"
+                >
+                  <span className="brand-gradient inline-flex size-12 items-center justify-center rounded-full text-white shadow-lg transition-transform group-hover:scale-110">
+                    <Play className="ml-0.5 h-5 w-5" aria-hidden="true" />
+                  </span>
+                  <span className="text-sm font-semibold">Load the live threat map</span>
+                  <span className="max-w-xs text-center text-xs text-ink-foreground/55">
+                    Loads a third-party Kaspersky widget on demand, keeping this page fast.
+                  </span>
+                </button>
+              )}
+
             </div>
             <p className="mt-3 text-xs text-ink-foreground/50">
               Map data is provided by Kaspersky and is shown for situational awareness only.

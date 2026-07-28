@@ -1,13 +1,18 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { useEffect, useState } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import { MessageCircle, X, Maximize2 } from "lucide-react";
 import type { UIMessage } from "ai";
 
-import { AdvisorChat } from "@/components/advisor/AdvisorChat";
+// The chat surface pulls in the AI SDK and markdown/syntax renderers; it is
+// only fetched once the visitor actually opens the panel.
+const AdvisorChat = lazy(() =>
+  import("@/components/advisor/AdvisorChat").then((m) => ({ default: m.AdvisorChat })),
+);
 import { createThread, getThreadMessages, listThreads, toUiMessages } from "@/lib/advisor.functions";
 import { getVisitorId } from "@/lib/visitor";
+
 
 /**
  * Sitewide launcher. It continues the visitor's most recent conversation and
@@ -86,15 +91,24 @@ export function AdvisorWidget() {
           </header>
 
           {threadId && initialMessages ? (
-            <AdvisorChat
-              key={threadId}
-              threadId={threadId}
-              visitorId={visitorId}
-              initialMessages={initialMessages}
-              onActivity={() =>
-                queryClient.invalidateQueries({ queryKey: ["advisor-threads", visitorId] })
+            <Suspense
+              fallback={
+                <div className="flex flex-1 items-center justify-center text-sm text-muted-foreground">
+                  Loading the advisor…
+                </div>
               }
-            />
+            >
+              <AdvisorChat
+                key={threadId}
+                threadId={threadId}
+                visitorId={visitorId}
+                initialMessages={initialMessages}
+                onActivity={() =>
+                  queryClient.invalidateQueries({ queryKey: ["advisor-threads", visitorId] })
+                }
+              />
+            </Suspense>
+
           ) : (
             <div className="flex flex-1 items-center justify-center text-sm text-muted-foreground">
               Starting the advisor…
@@ -106,8 +120,12 @@ export function AdvisorWidget() {
       <button
         type="button"
         onClick={() => setOpen(true)}
+        // Warm the chat chunk on intent so the panel opens instantly.
+        onPointerEnter={() => void import("@/components/advisor/AdvisorChat")}
+        onFocus={() => void import("@/components/advisor/AdvisorChat")}
         aria-label="Open the CyberSentinels AI Advisor"
         title="Open the CyberSentinels AI Advisor"
+
         style={{ bottom: "calc(1rem + var(--sticky-book-h, 0px))" }}
         className={`brand-gradient fixed right-4 z-40 inline-flex size-11 items-center justify-center rounded-full text-white shadow-lg transition-transform hover:scale-110 ${
           open ? "hidden sm:inline-flex" : ""

@@ -234,7 +234,7 @@ function Home() {
         <div className="relative mx-auto max-w-4xl px-5 py-24 text-center sm:py-28 lg:px-8 lg:py-36">
           <Reveal>
             <div className="mb-7 flex justify-center sm:mb-9 lg:mb-10">
-              <Logo halo="lg" reveal className="h-10 w-auto sm:h-14 lg:h-16" />
+              <Logo halo="lg" reveal priority className="h-10 w-auto sm:h-14 lg:h-16" />
             </div>
 
 
