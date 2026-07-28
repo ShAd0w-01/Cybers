@@ -120,8 +120,12 @@ export function AdvisorWidget() {
       <button
         type="button"
         onClick={() => setOpen(true)}
+        // Warm the chat chunk on intent so the panel opens instantly.
+        onPointerEnter={() => void import("@/components/advisor/AdvisorChat")}
+        onFocus={() => void import("@/components/advisor/AdvisorChat")}
         aria-label="Open the CyberSentinels AI Advisor"
         title="Open the CyberSentinels AI Advisor"
+
         style={{ bottom: "calc(1rem + var(--sticky-book-h, 0px))" }}
         className={`brand-gradient fixed right-4 z-40 inline-flex size-11 items-center justify-center rounded-full text-white shadow-lg transition-transform hover:scale-110 ${
           open ? "hidden sm:inline-flex" : ""
