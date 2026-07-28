@@ -1,0 +1,24 @@
+# Long-lived caching for immutable, hashed build output.
+/_build/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# CDN-hosted media assets (content-addressed by asset id).
+/__l5e/assets-v1/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Static files that keep stable names: serve instantly, refresh in background.
+/favicon.ico
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/robots.txt
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
+/downloads/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+# HTML documents: revalidate quickly but always render something instantly.
+/*
+  Cache-Control: public, max-age=0, s-maxage=60, stale-while-revalidate=86400
