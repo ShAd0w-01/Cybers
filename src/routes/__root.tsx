@@ -142,11 +142,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         rel: "stylesheet",
         href: googleFontsHref(loaderData?.theme ?? DEFAULT_THEME),
-      },
+        // Loaded as a non-blocking stylesheet: `media=print` keeps it out of
+        // the critical path, the inline script below flips it on once ready.
+        media: "print",
+        "data-font-css": "true",
+      } as unknown as { rel: string; href: string },
 
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
     scripts: [
+      {
+        children:
+          "document.querySelectorAll('link[data-font-css]').forEach(function(l){if(l.sheet){l.media='all';}else{l.addEventListener('load',function(){l.media='all';});}});",
+      },
       {
         type: "application/ld+json",
         children: JSON.stringify({
@@ -159,6 +167,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         }),
       },
     ],
+
   }),
   shellComponent: RootShell,
   component: RootComponent,
