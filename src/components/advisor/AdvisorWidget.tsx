@@ -131,28 +131,45 @@ export function AdvisorWidget() {
         }`}
       >
         <svg
-          viewBox="0 0 32 32"
+          viewBox="0 0 24 24"
           className="h-7 w-7"
           fill="none"
           aria-hidden="true"
           focusable="false"
         >
           <defs>
-            <linearGradient id="advisorIcon" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+            <linearGradient id="advisorIcon" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
               <stop offset="0%" stopColor="#fff" />
               <stop offset="100%" stopColor="#fff8f5" />
             </linearGradient>
           </defs>
-          <path
-            d="M25.5 14.25c0 4.97-4.03 9-9 9a8.93 8.93 0 0 1-4.05-.97L8 25l1.1-3.3a8.93 8.93 0 0 1-.97-4.05c0-4.97 4.03-9 9-9s9 4.03 9 9Z"
+          {/* Bot head — centered in the 24×24 viewbox so it sits perfectly inside the circular button */}
+          <rect
+            x="4.5"
+            y="7.5"
+            width="15"
+            height="12"
+            rx="3"
             stroke="url(#advisorIcon)"
-            strokeWidth="2.2"
+            strokeWidth="1.8"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M12 4v3.5"
+            stroke="url(#advisorIcon)"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+          />
+          <circle cx="12" cy="4" r="1.4" fill="url(#advisorIcon)" />
+          <circle cx="9" cy="12" r="1.3" fill="url(#advisorIcon)" />
+          <circle cx="15" cy="12" r="1.3" fill="url(#advisorIcon)" />
+          <path
+            d="M9 15c1.2 1.2 2.8 1.2 4 0"
+            stroke="url(#advisorIcon)"
+            strokeWidth="1.6"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
-          <circle cx="12.25" cy="14.25" r="1.25" fill="url(#advisorIcon)" />
-          <circle cx="16.5" cy="14.25" r="1.25" fill="url(#advisorIcon)" />
-          <circle cx="20.75" cy="14.25" r="1.25" fill="url(#advisorIcon)" />
         </svg>
       </button>
     </>
