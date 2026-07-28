@@ -209,10 +209,13 @@ export function shortServiceTitle(title: string) {
     .replace(/\s*Compliance\s*Assistance$/i, " Compliance")
     .replace(/\s*Readiness\s*(and|&)\s*Implementation\s*Services?$/i, " Readiness")
     .replace(/\s*Type\s*I\s*(and|&)\s*Type\s*II\s*/i, " ")
-    .replace(/\s*Services?$/i, "")
+    .replace(/\s+Services?$/i, "")
+    .replace(/^Virtual Chief Information Security Officer\s*—.*$/i, "vCISO")
+    .replace(/^Virtual Data Protection Officer\s*—.*$/i, "vDPO")
     .replace(/\s*—\s*/g, " · ")
     .replace(/\s{2,}/g, " ")
     .trim();
+
 }
 
 
