@@ -20,7 +20,7 @@ import {
   Truck,
   Briefcase,
 } from "lucide-react";
-import { getSection, heroOf, pillars, industries, frameworkMarks, type PageContent } from "@/content/site";
+import { getSection, heroOf, pillars, industries, frameworkMarks, shortServiceTitle, type PageContent } from "@/content/site";
 
 import homeData from "@/content/pages/home.json";
 import { headFor } from "@/components/site/ContentPage";
