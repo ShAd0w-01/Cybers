@@ -1,13 +1,18 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { useEffect, useState } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import { MessageCircle, X, Maximize2 } from "lucide-react";
 import type { UIMessage } from "ai";
 
-import { AdvisorChat } from "@/components/advisor/AdvisorChat";
+// The chat surface pulls in the AI SDK and markdown/syntax renderers; it is
+// only fetched once the visitor actually opens the panel.
+const AdvisorChat = lazy(() =>
+  import("@/components/advisor/AdvisorChat").then((m) => ({ default: m.AdvisorChat })),
+);
 import { createThread, getThreadMessages, listThreads, toUiMessages } from "@/lib/advisor.functions";
 import { getVisitorId } from "@/lib/visitor";
+
 
 /**
  * Sitewide launcher. It continues the visitor's most recent conversation and
