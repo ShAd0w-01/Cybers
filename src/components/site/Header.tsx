@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { Logo } from "./Logo";
 import { CtaLink } from "./CtaLink";
-import { industries, pillars } from "@/content/site";
+import { industries, pillars, shortServiceTitle } from "@/content/site";
 import { cn } from "@/lib/utils";
 
 const resources = [
@@ -64,26 +64,27 @@ export function Header() {
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
           <TopLink to="/">Home</TopLink>
           <MenuTrigger label="Services" id="services" open={open} setOpen={setOpen}>
-            <div className="grid grid-cols-4 gap-8 p-8">
+            <div className="grid grid-cols-4 gap-px bg-border/40 p-px">
               {pillars.map((p) => (
-                <div key={p.url}>
+                <div key={p.url} className="flex flex-col bg-background/80 px-6 py-7">
                   <Link
                     to={p.url}
-                    className="font-display text-sm font-semibold text-foreground hover:text-coral-ink"
+                    className="truncate font-display text-[13px] font-semibold uppercase tracking-[0.08em] text-foreground hover:text-coral-ink"
                     onClick={() => setOpen(null)}
                   >
-                    {p.title}
+                    {p.short}
                   </Link>
-                  <div className="brand-rule mt-2 mb-3 w-8" />
-                  <ul className="space-y-1.5">
+                  <div className="brand-rule mt-2.5 mb-4 w-8" />
+                  <ul className="flex flex-col gap-0.5">
                     {p.services.map((svc) => (
                       <li key={svc.url}>
                         <Link
                           to={svc.url}
-                          className="block text-[13px] leading-snug text-muted-foreground transition-colors hover:text-coral-ink"
+                          title={svc.title}
+                          className="block truncate rounded-md px-2 py-[7px] text-[13px] leading-5 text-muted-foreground transition-colors hover:bg-surface hover:text-coral-ink"
                           onClick={() => setOpen(null)}
                         >
-                          {svc.title}
+                          {shortServiceTitle(svc.title)}
                         </Link>
                       </li>
                     ))}
@@ -103,6 +104,7 @@ export function Header() {
                 View all services →
               </Link>
             </div>
+
           </MenuTrigger>
           <MenuTrigger label="Industries" id="industries" open={open} setOpen={setOpen} narrow>
             <SimpleList
@@ -158,23 +160,24 @@ export function Header() {
                     <span aria-hidden className="text-coral-ink">→</span>
                   </Link>
                   <div className="brand-rule mt-2 mb-3 w-8" />
-                  <ul className="space-y-1.5">
+                  <ul className="space-y-0.5">
                     {p.services.map((svc) => (
                       <li key={svc.url}>
                         <Link
                           to={svc.url}
-                          className="flex items-start gap-2 rounded-md py-1 text-[13px] leading-snug text-muted-foreground transition-colors hover:text-coral-ink"
+                          className="flex items-center gap-2 rounded-md py-1.5 text-[13px] leading-5 text-muted-foreground transition-colors hover:text-coral-ink"
                           onClick={() => setMobile(false)}
                         >
                           <span
                             aria-hidden
-                            className="mt-[7px] size-1.5 shrink-0 rounded-full bg-coral-ink/60"
+                            className="size-1.5 shrink-0 rounded-full bg-coral-ink/60"
                           />
-                          <span>{svc.title}</span>
+                          <span className="truncate">{shortServiceTitle(svc.title)}</span>
                         </Link>
                       </li>
                     ))}
                   </ul>
+
                 </div>
               ))}
               <Link
