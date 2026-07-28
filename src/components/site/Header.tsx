@@ -143,31 +143,50 @@ export function Header() {
       {mobile ? (
         <div className="max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-border bg-background px-5 pb-10 lg:hidden">
           <MobileGroup label="Services" state={mobileGroup} set={setMobileGroup}>
-            {pillars.map((p) => (
-              <div key={p.url} className="py-2">
-                <Link
-                  to={p.url}
-                  className="font-display text-sm font-semibold"
-                  onClick={() => setMobile(false)}
+            <div className="space-y-3">
+              {pillars.map((p) => (
+                <div
+                  key={p.url}
+                  className="rounded-xl border border-border/60 bg-surface/60 p-3.5"
                 >
-                  {p.title}
-                </Link>
-                <ul className="mt-2 space-y-2 border-l border-border pl-3">
-                  {p.services.map((svc) => (
-                    <li key={svc.url}>
-                      <Link
-                        to={svc.url}
-                        className="block text-[13px] text-muted-foreground"
-                        onClick={() => setMobile(false)}
-                      >
-                        {svc.title}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+                  <Link
+                    to={p.url}
+                    className="flex items-center justify-between gap-2 font-display text-[13px] font-semibold text-foreground hover:text-coral-ink"
+                    onClick={() => setMobile(false)}
+                  >
+                    <span>{p.title}</span>
+                    <span aria-hidden className="text-coral-ink">→</span>
+                  </Link>
+                  <div className="brand-rule mt-2 mb-3 w-8" />
+                  <ul className="space-y-1.5">
+                    {p.services.map((svc) => (
+                      <li key={svc.url}>
+                        <Link
+                          to={svc.url}
+                          className="flex items-start gap-2 rounded-md py-1 text-[13px] leading-snug text-muted-foreground transition-colors hover:text-coral-ink"
+                          onClick={() => setMobile(false)}
+                        >
+                          <span
+                            aria-hidden
+                            className="mt-[7px] size-1.5 shrink-0 rounded-full bg-coral-ink/60"
+                          />
+                          <span>{svc.title}</span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+              <Link
+                to="/services"
+                className="block rounded-xl px-3.5 py-2.5 text-[13px] font-semibold text-coral-ink"
+                onClick={() => setMobile(false)}
+              >
+                View all services →
+              </Link>
+            </div>
           </MobileGroup>
+
           <MobileGroup label="Industries" state={mobileGroup} set={setMobileGroup}>
             <MobileList
               items={[{ title: "Industries Overview", url: "/industries" }, ...industries]}
