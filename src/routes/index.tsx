@@ -545,7 +545,7 @@ function Home() {
                   to={p.url}
                   className="mt-auto pt-5 text-sm font-semibold text-coral-ink transition-all hover:tracking-wide"
                 >
-                  Explore {p.short} →
+                  Explore Governance &<br />Compliance →
                 </Link>
               </Reveal>
             ))}
