@@ -425,6 +425,7 @@ const StepCard = memo(function StepCard({
 export function ApproachSteps({ steps }: { steps: ApproachStep[] }) {
   const { register, visible } = useStaggerReveal(steps.length);
   const [open, setOpen] = useState<string | null>(null);
+  const openRef = useRef<string | null>(null);
   const visibleSet = useMemo(() => new Set(visible), [visible]);
 
   /** Read `#approach-<slug>` on mount and on back/forward navigation. */
