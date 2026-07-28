@@ -1,6 +1,15 @@
 import logoPrimary from "@/assets/logo-primary.asset.json";
 import logoWhite from "@/assets/logo-primary-white.asset.json";
+import primaryAvif360 from "@/assets/logo-primary-360.avif.asset.json";
+import primaryAvif720 from "@/assets/logo-primary-720.avif.asset.json";
+import primaryWebp360 from "@/assets/logo-primary-360.webp.asset.json";
+import primaryWebp720 from "@/assets/logo-primary-720.webp.asset.json";
+import whiteAvif360 from "@/assets/logo-white-360.avif.asset.json";
+import whiteAvif720 from "@/assets/logo-white-720.avif.asset.json";
+import whiteWebp360 from "@/assets/logo-white-360.webp.asset.json";
+import whiteWebp720 from "@/assets/logo-white-720.webp.asset.json";
 import { cn } from "@/lib/utils";
+
 
 /** Brand arc mark, redrawn from the Cybersentinels logo. */
 export function BrandMark({ className, spin = false }: { className?: string; spin?: boolean }) {
