@@ -120,6 +120,7 @@ export const pillars: Pillar[] = [
       s("/services/iso-27032-cybersecurity-guidelines"),
       s("/services/iso-42001-ai-management-system"),
       s("/services/iso-9001-quality-management"),
+      s("/services/soc-1-compliance-assistance"),
       s("/services/soc-2-compliance-assistance"),
       s("/services/pci-dss-compliance-assistance"),
       s("/services/cmmc-level-1-level-2-readiness"),
