@@ -1,3 +1,4 @@
+import { lazy } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
@@ -34,15 +35,23 @@ import { BrandMark, Logo } from "@/components/site/Logo";
 
 
 import { SectionRenderer } from "@/components/site/SectionRenderer";
-import {
-  TestimonialCarousel,
-  type Testimonial,
-} from "@/components/site/TestimonialCarousel";
-import { ThreatMap } from "@/components/site/ThreatMap";
+import { type Testimonial } from "@/components/site/TestimonialCarousel";
+import { Deferred } from "@/components/site/Deferred";
 import { TrustedBy } from "@/components/site/TrustedBy";
-import { NewsRotator } from "@/components/site/NewsRotator";
 import { FaqAccordion } from "@/components/site/FaqAccordion";
 import { homeFaqs, faqSchema } from "@/content/faqs";
+
+// Below-the-fold, network-heavy blocks load only when they scroll into view.
+const TestimonialCarousel = lazy(() =>
+  import("@/components/site/TestimonialCarousel").then((m) => ({ default: m.TestimonialCarousel })),
+);
+const ThreatMap = lazy(() =>
+  import("@/components/site/ThreatMap").then((m) => ({ default: m.ThreatMap })),
+);
+const NewsRotator = lazy(() =>
+  import("@/components/site/NewsRotator").then((m) => ({ default: m.NewsRotator })),
+);
+
 
 
 
@@ -574,7 +583,9 @@ function Home() {
       {why ? <SectionRenderer section={why} index={1} /> : null}
 
       {/* -------------------------------------------- Live threat map */}
-      <ThreatMap />
+      <Deferred minHeight={520}>
+        <ThreatMap />
+      </Deferred>
 
       {/* ---------------------------------------------------- Industries */}
       <section className="band-soft wash-quiet relative overflow-hidden py-16 sm:py-24">
@@ -622,7 +633,9 @@ function Home() {
             </div>
           </Reveal>
           <Reveal delay={80} className="mt-12">
-            <TestimonialCarousel items={testimonials} />
+            <Deferred minHeight={320}>
+              <TestimonialCarousel items={testimonials} />
+            </Deferred>
           </Reveal>
 
         </div>
@@ -630,7 +643,9 @@ function Home() {
 
 
       {/* ------------------------------------------------------- News */}
-      <NewsRotator />
+      <Deferred minHeight={460}>
+        <NewsRotator />
+      </Deferred>
 
       {/* ------------------------------------------------- Lead magnet */}
       <section className="band-soft wash-soft relative overflow-hidden py-16 sm:py-20">

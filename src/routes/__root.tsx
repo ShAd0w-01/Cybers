@@ -7,17 +7,42 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { Suspense, lazy, useEffect, useState, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
-import { AdvisorWidget } from "@/components/advisor/AdvisorWidget";
 import { WhatsAppButton } from "@/components/site/WhatsAppButton";
 import { StickyBookBar } from "@/components/site/StickyBookBar";
 import { ContrastQA } from "@/components/site/ContrastQA";
 import { GlassGuard } from "@/components/site/GlassGuard";
+
+// The chat widget pulls in the AI SDK, so it is kept out of the first load
+// and mounted once the browser is idle.
+const AdvisorWidget = lazy(() =>
+  import("@/components/advisor/AdvisorWidget").then((m) => ({ default: m.AdvisorWidget })),
+);
+
+function IdleAdvisor() {
+  const [ready, setReady] = useState(false);
+  useEffect(() => {
+    const w = window as Window & { requestIdleCallback?: (cb: () => void) => number };
+    if (w.requestIdleCallback) {
+      const id = w.requestIdleCallback(() => setReady(true));
+      return () => (window as unknown as { cancelIdleCallback?: (id: number) => void }).cancelIdleCallback?.(id);
+    }
+    const t = window.setTimeout(() => setReady(true), 1500);
+    return () => window.clearTimeout(t);
+  }, []);
+  if (!ready) return null;
+  return (
+    <Suspense fallback={null}>
+      <AdvisorWidget />
+    </Suspense>
+  );
+}
+
 
 
 import { ThemeStyle } from "@/components/site/ThemeStyle";
@@ -86,6 +111,8 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   loader: async () => ({ theme: await getActiveTheme() }),
+  // The theme rarely changes; keep it out of every client-side navigation.
+  staleTime: 5 * 60 * 1000,
   head: ({ loaderData }) => ({
     meta: [
       { charSet: "utf-8" },
@@ -168,7 +195,7 @@ function RootComponent() {
           <Outlet />
         </main>
         <Footer />
-        <AdvisorWidget />
+        <IdleAdvisor />
         <WhatsAppButton />
         <StickyBookBar />
         {import.meta.env.DEV ? <ContrastQA /> : null}
