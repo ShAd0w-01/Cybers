@@ -24,6 +24,28 @@ export const serviceFaqs: Record<string, Faq[]> = {
       a: "Cost depends on scope, headcount, number of locations and how much control evidence already exists, plus separate certification-body fees. After a short scoping call we provide a fixed-fee proposal with clear phases and deliverables.",
     },
   ],
+  "soc-1-compliance-assistance": [
+    {
+      q: "What is the difference between SOC 1 Type I and Type II?",
+      a: "Type I evaluates the design of controls at a specified date. Type II evaluates both the design and operating effectiveness of controls over a defined review period, usually six to twelve months.",
+    },
+    {
+      q: "How is SOC 1 different from SOC 2?",
+      a: "SOC 1 reports on controls relevant to user entities' internal control over financial reporting. SOC 2 reports on controls relevant to the Trust Services Criteria such as security, availability and confidentiality.",
+    },
+    {
+      q: "How long does a SOC 1 readiness project take?",
+      a: "Readiness usually runs six to twelve weeks depending on control maturity and the complexity of services. The Type II observation window then adds six to twelve months before the CPA firm issues the report.",
+    },
+    {
+      q: "Do we need to define control objectives ourselves?",
+      a: "Control objectives are typically based on the risks your services pose to user entities' financial reporting. We help you define objectives that are specific, measurable and aligned with your actual processes.",
+    },
+    {
+      q: "Can Cybersentinels issue the SOC 1 report?",
+      a: "No. The SOC 1 examination and report must be issued by an independent licensed CPA firm. We provide readiness, implementation and coordination support only.",
+    },
+  ],
   "soc-2-compliance-assistance": [
     {
       q: "What is the difference between SOC 2 Type 1 and Type 2?",
