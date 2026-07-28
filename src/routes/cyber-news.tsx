@@ -276,7 +276,9 @@ function PagerLink({
   );
 }
 
-export function NewsCard({ item }: { item: NewsItem }) {
+// Not exported: exporting components from a route file opts it out of
+// TanStack Router's automatic route-level code splitting.
+function NewsCard({ item }: { item: NewsItem }) {
   return (
     <a
       href={item.link}
@@ -289,6 +291,9 @@ export function NewsCard({ item }: { item: NewsItem }) {
           src={item.image}
           alt=""
           loading="lazy"
+          decoding="async"
+          width={640}
+          height={352}
           className="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
         />
       ) : (
