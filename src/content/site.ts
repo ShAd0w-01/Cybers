@@ -200,6 +200,22 @@ export function pillarForService(url: string): Pillar | undefined {
   return pillars.find((p) => p.url === url || p.services.some((x) => x.url === url));
 }
 
+/** Trims boilerplate suffixes so service lists read uniformly in menus and cards. */
+export function shortServiceTitle(title: string) {
+  return title
+    .replace(/\s*(and|&)\s*Implementation\s*Services?$/i, "")
+    .replace(/\s*Implementation\s*(and|&)\s*Certification\s*Assistance$/i, "")
+    .replace(/\s*Guidelines\s*Implementation\s*Assistance$/i, " Guidelines")
+    .replace(/\s*Compliance\s*Assistance$/i, " Compliance")
+    .replace(/\s*Readiness\s*(and|&)\s*Implementation\s*Services?$/i, " Readiness")
+    .replace(/\s*Type\s*I\s*(and|&)\s*Type\s*II\s*/i, " ")
+    .replace(/\s*Services?$/i, "")
+    .replace(/\s*—\s*/g, " · ")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+}
+
+
 export const frameworkMarks = [
   "ISO/IEC 27001",
   "ISO/IEC 27701",
