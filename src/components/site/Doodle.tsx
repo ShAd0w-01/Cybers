@@ -22,7 +22,7 @@ const D = (delay: number) => ({ animationDelay: `${delay}s` } as CSSProperties);
 export function Doodle({
   variant = "orbit",
   className,
-  opacity = 1,
+  opacity = 0.72,
 }: {
   variant?: DoodleVariant;
   className?: string;
@@ -32,7 +32,7 @@ export function Doodle({
     <svg
       className={cn("hero-doodle pointer-events-none absolute inset-0 size-full", className)}
       viewBox="0 0 1200 700"
-      preserveAspectRatio="xMidYMid slice"
+      preserveAspectRatio="xMidYMid meet"
       fill="none"
       style={{ opacity }}
       aria-hidden="true"
