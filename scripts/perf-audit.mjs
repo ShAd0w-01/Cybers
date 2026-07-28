@@ -111,9 +111,15 @@ const results = [];
 for (const path of ROUTES) results.push(await auditRoute(browser, path));
 await browser.close();
 
+// The dev server ships unbundled ES modules and un-minified CSS, so transfer
+// weight is only meaningful against a production build / deployed URL.
+const isDev = /localhost:8080|127\.0\.0\.1:8080/.test(BASE);
+const skip = isDev ? new Set(["jsBytes", "cssBytes", "blockingTime"]) : new Set();
+
 const failures = [];
 for (const r of results) {
   for (const [key, budget] of Object.entries(BUDGETS)) {
+    if (skip.has(key)) continue;
     if (r[key] > budget) failures.push(`${r.path}: ${key} = ${r[key]} (budget ${budget})`);
   }
 }
@@ -144,6 +150,10 @@ if (AS_JSON) {
     );
   }
   console.log("");
+  if (isDev) {
+    console.log("note: dev server — bundle-weight and blocking-time budgets are not enforced.");
+    console.log("      run against a deployed URL for production numbers: --url=https://your-site\n");
+  }
   if (failures.length) {
     console.log("Budget failures:");
     for (const f of failures) console.log(`  ✗ ${f}`);
