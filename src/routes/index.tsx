@@ -78,11 +78,10 @@ const complianceLinks = [
     label: "ISO 27001 certification",
     slug: "iso-27001-implementation-certification-assistance",
   },
-  { label: "SOC 2 readiness", slug: "soc-2-compliance-assistance" },
-  { label: "SOC readiness", slug: "gdpr-readiness-implementation" },
+  { label: "SOC readiness", slug: "soc-2-compliance-assistance" },
   {
     label: "VAPT",
-    slug: "virtual-chief-information-security-officer-vciso",
+    slug: "vulnerability-assessment-penetration-testing",
   },
 ] as const;
 
