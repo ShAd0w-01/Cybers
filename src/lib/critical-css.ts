@@ -29,7 +29,11 @@ a{color:inherit;text-decoration:none}
 img,svg,video,picture{display:block;max-width:100%}
 img,video{height:auto}
 button{font:inherit;color:inherit;background:none;border:0}
-header{position:sticky;top:0;z-index:50}
+header{position:sticky;top:0;z-index:50;width:100%;background:var(--critical-bg)}
+/* Reserve the real header height so nothing shifts when the full sheet lands. */
+header>div{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;min-height:4.5rem;max-width:80rem;margin:0 auto;padding:1rem 1.25rem}
+header img{height:2rem;width:auto}
+.hidden{display:none}
 main{display:block;min-height:60vh}
 [hidden]{display:none!important}
 `;
