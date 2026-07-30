@@ -1272,36 +1272,35 @@ html[data-aurora-preview="off"] .aurora-bloom {
 .hero-doodle {
   /* subtle lift so strokes read on warm backgrounds */
   filter: drop-shadow(0 1px 2px rgb(11 11 18 / 0.12));
-  /* fade only the very center so copy stays readable while corner doodles pop */
+  /* Keep decoration strictly in the outer page margins so it never sits
+     behind headings or body copy. */
   -webkit-mask-image: linear-gradient(
     to right,
     rgb(0 0 0 / 1) 0%,
-    rgb(0 0 0 / 1) 30%,
-    rgb(0 0 0 / 0.55) 38%,
-    rgb(0 0 0 / 0) 48%,
-    rgb(0 0 0 / 0) 52%,
-    rgb(0 0 0 / 0.55) 62%,
-    rgb(0 0 0 / 1) 70%,
+    rgb(0 0 0 / 0.85) 6%,
+    rgb(0 0 0 / 0) 13%,
+    rgb(0 0 0 / 0) 87%,
+    rgb(0 0 0 / 0.85) 94%,
     rgb(0 0 0 / 1) 100%
   );
   mask-image: linear-gradient(
     to right,
     rgb(0 0 0 / 1) 0%,
-    rgb(0 0 0 / 1) 30%,
-    rgb(0 0 0 / 0.55) 38%,
-    rgb(0 0 0 / 0) 48%,
-    rgb(0 0 0 / 0) 52%,
-    rgb(0 0 0 / 0.55) 62%,
-    rgb(0 0 0 / 1) 70%,
+    rgb(0 0 0 / 0.85) 6%,
+    rgb(0 0 0 / 0) 13%,
+    rgb(0 0 0 / 0) 87%,
+    rgb(0 0 0 / 0.85) 94%,
     rgb(0 0 0 / 1) 100%
   );
 }
 
-@media (max-width: 48rem) {
+/* Narrow screens have no free margin — hide the doodles entirely. */
+@media (max-width: 80rem) {
   .hero-doodle {
-    opacity: 0.55;
+    display: none;
   }
 }
+
 
 .hero-doodle .doodle-draw {
   stroke-dasharray: 900;
