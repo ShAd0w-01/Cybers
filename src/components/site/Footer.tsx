@@ -4,7 +4,7 @@ import { Doodle } from "./Doodle";
 import { CtaLink } from "./CtaLink";
 import { industries, legalLinks, pillars } from "@/content/site";
 
-const year = new Date().getFullYear();
+const year = Math.max(2026, new Date().getFullYear());
 
 export function Footer() {
   return (
