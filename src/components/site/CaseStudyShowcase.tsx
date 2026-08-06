@@ -4,10 +4,12 @@ import { ArrowRight, BookOpen } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { IconTile } from "./IconTile";
 import { CtaLink } from "./CtaLink";
-import { caseStudies, resourceHub } from "@/content/tools-data";
+import { resourceHub } from "@/content/tools-data";
+import type { CaseStudyRow } from "@/lib/casestudies.functions";
 
 /** Outcome-led case studies plus the practical resource hub. */
-export function CaseStudyShowcase() {
+export function CaseStudyShowcase({ items = [] }: { items?: CaseStudyRow[] }) {
+  const caseStudies = items;
   return (
     <>
       <section className="wash-soft band-soft py-20 sm:py-24">
@@ -21,6 +23,12 @@ export function CaseStudyShowcase() {
               the close of each engagement.
             </p>
           </Reveal>
+
+          {caseStudies.length === 0 && (
+            <p className="mt-10 text-sm text-muted-foreground">
+              New engagement stories are being prepared. Please check back shortly.
+            </p>
+          )}
 
           <div className="mt-10 space-y-6">
             {caseStudies.map((cs, i) => (
