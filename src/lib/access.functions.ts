@@ -111,6 +111,39 @@ export const adminInviteUser = createServerFn({ method: "POST" })
     return { ok: true, userId: target.id };
   });
 
+/** Creates an account with a chosen email + password. Admin only. */
+export const adminCreateUser = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: { email: string; password: string; makeAdmin: boolean }) => ({
+    email: email(input.email),
+    password: String(input.password ?? ""),
+    makeAdmin: Boolean(input.makeAdmin),
+  }))
+  .handler(async ({ data, context }) => {
+    const { requireAdmin } = await import("@/lib/admin.server");
+    await requireAdmin(context.supabase, context.userId);
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(data.email)) throw new Error("Enter a valid email.");
+    if (data.password.length < 8) throw new Error("Password must be at least 8 characters.");
+
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { data: created, error } = await supabaseAdmin.auth.admin.createUser({
+      email: data.email,
+      password: data.password,
+      email_confirm: true,
+    });
+    if (error) throw new Error(error.message);
+    const target = created.user;
+    if (!target) throw new Error("Could not create that account.");
+
+    if (data.makeAdmin) {
+      const { error: roleError } = await supabaseAdmin
+        .from("user_roles")
+        .upsert({ user_id: target.id, role: "admin" }, { onConflict: "user_id,role" });
+      if (roleError) throw new Error(roleError.message);
+    }
+    return { ok: true, userId: target.id };
+  });
+
 /** Permanently removes an account. Admin only. */
 export const adminDeleteUser = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])

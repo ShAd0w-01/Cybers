@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import {
   BarChart3,
+  BookOpen,
   FileText,
   LayoutDashboard,
   LayoutTemplate,
@@ -21,6 +22,7 @@ const nav = [
   { to: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
   { to: "/admin/leads", label: "CRM — Leads", icon: Users },
   { to: "/admin/blog", label: "Blog posts", icon: FileText },
+  { to: "/admin/case-studies", label: "Case studies", icon: BookOpen },
   { to: "/admin/pages", label: "Website content", icon: LayoutTemplate },
   { to: "/admin/theme", label: "Theme settings", icon: Palette },
   { to: "/admin/advisor", label: "Advisor analytics", icon: BarChart3 },

@@ -180,6 +180,57 @@ export type Database = {
         }
         Relationships: []
       }
+      case_studies: {
+        Row: {
+          approach: string[]
+          challenge: string
+          created_at: string
+          created_by: string | null
+          id: string
+          metrics: Json
+          outcome: string
+          sector: string
+          services: Json
+          slug: string
+          sort_order: number
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          approach?: string[]
+          challenge?: string
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          metrics?: Json
+          outcome?: string
+          sector?: string
+          services?: Json
+          slug: string
+          sort_order?: number
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          approach?: string[]
+          challenge?: string
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          metrics?: Json
+          outcome?: string
+          sector?: string
+          services?: Json
+          slug?: string
+          sort_order?: number
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       crm_lead_notes: {
         Row: {
           author_id: string | null

@@ -6,6 +6,7 @@ import { KeyRound, ShieldCheck, ShieldX, Trash2, UserPlus } from "lucide-react";
 
 import { AdminHeader } from "@/components/admin/AdminShell";
 import {
+  adminCreateUser,
   adminDeleteUser,
   adminInviteUser,
   adminListAccess,
@@ -25,8 +26,11 @@ function AdminAccessPage() {
   const setRole = useServerFn(adminSetRole);
   const invite = useServerFn(adminInviteUser);
   const remove = useServerFn(adminDeleteUser);
+  const createUser = useServerFn(adminCreateUser);
 
   const [email, setEmail] = useState("");
+  const [newEmail, setNewEmail] = useState("");
+  const [newPassword, setNewPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
 
@@ -67,6 +71,19 @@ function AdminAccessPage() {
     onError: fail,
   });
 
+  const createMutation = useMutation({
+    mutationFn: () =>
+      createUser({ data: { email: newEmail, password: newPassword, makeAdmin: true } }),
+    onSuccess: () => {
+      setError(null);
+      setNotice(`Account created for ${newEmail} with administrator access.`);
+      setNewEmail("");
+      setNewPassword("");
+      refresh();
+    },
+    onError: fail,
+  });
+
   const rows = users.data ?? [];
   const admins = rows.filter((r) => r.roles.includes("admin"));
 
@@ -96,6 +113,57 @@ function AdminAccessPage() {
         <Stat label="Administrators" value={admins.length} />
         <Stat label="Standard users" value={rows.length - admins.length} />
       </div>
+
+      <section className="mb-8 rounded-xl border border-border bg-background p-5">
+        <h2 className="type-h5 flex items-center gap-2 text-foreground">
+          <KeyRound className="size-4 text-coral-ink" strokeWidth={1.75} aria-hidden="true" />
+          Create admin credentials
+        </h2>
+        <p className="mt-1.5 text-sm text-muted-foreground">
+          Set an email and password yourself and share them with the person. The account is
+          confirmed instantly and can sign in right away.
+        </p>
+        <form
+          className="mt-4 grid gap-3 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto]"
+          onSubmit={(e) => {
+            e.preventDefault();
+            createMutation.mutate();
+          }}
+        >
+          <label className="sr-only" htmlFor="new-email">
+            Email address
+          </label>
+          <input
+            id="new-email"
+            type="email"
+            required
+            value={newEmail}
+            onChange={(e) => setNewEmail(e.target.value)}
+            placeholder="teammate@company.com"
+            className="w-full rounded-md border border-border bg-surface px-3 py-2.5 text-sm text-foreground"
+          />
+          <label className="sr-only" htmlFor="new-password">
+            Password
+          </label>
+          <input
+            id="new-password"
+            type="text"
+            required
+            minLength={8}
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
+            placeholder="Password (min 8 characters)"
+            className="w-full rounded-md border border-border bg-surface px-3 py-2.5 text-sm text-foreground"
+          />
+          <button
+            type="submit"
+            disabled={createMutation.isPending}
+            className="brand-gradient rounded-md px-4 py-2.5 type-button text-white disabled:opacity-60"
+          >
+            {createMutation.isPending ? "Creating…" : "Create account"}
+          </button>
+        </form>
+      </section>
 
       <section className="mb-8 rounded-xl border border-border bg-background p-5">
         <h2 className="type-h5 flex items-center gap-2 text-foreground">

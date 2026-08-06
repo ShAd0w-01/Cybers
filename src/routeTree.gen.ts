@@ -44,6 +44,7 @@ import { Route as AiAdvisorThreadIdRouteImport } from './routes/ai-advisor.$thre
 import { Route as AdminThemeRouteImport } from './routes/admin.theme'
 import { Route as AdminPagesRouteImport } from './routes/admin.pages'
 import { Route as AdminLeadsRouteImport } from './routes/admin.leads'
+import { Route as AdminCaseStudiesRouteImport } from './routes/admin.case-studies'
 import { Route as AdminBlogRouteImport } from './routes/admin.blog'
 import { Route as AdminAdvisorRouteImport } from './routes/admin.advisor'
 import { Route as AdminAccessRouteImport } from './routes/admin.access'
@@ -223,6 +224,11 @@ const AdminLeadsRoute = AdminLeadsRouteImport.update({
   path: '/leads',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminCaseStudiesRoute = AdminCaseStudiesRouteImport.update({
+  id: '/case-studies',
+  path: '/case-studies',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminBlogRoute = AdminBlogRouteImport.update({
   id: '/blog',
   path: '/blog',
@@ -262,6 +268,7 @@ export interface FileRoutesByFullPath {
   '/admin/access': typeof AdminAccessRoute
   '/admin/advisor': typeof AdminAdvisorRoute
   '/admin/blog': typeof AdminBlogRoute
+  '/admin/case-studies': typeof AdminCaseStudiesRoute
   '/admin/leads': typeof AdminLeadsRoute
   '/admin/pages': typeof AdminPagesRoute
   '/admin/theme': typeof AdminThemeRoute
@@ -300,6 +307,7 @@ export interface FileRoutesByTo {
   '/admin/access': typeof AdminAccessRoute
   '/admin/advisor': typeof AdminAdvisorRoute
   '/admin/blog': typeof AdminBlogRoute
+  '/admin/case-studies': typeof AdminCaseStudiesRoute
   '/admin/leads': typeof AdminLeadsRoute
   '/admin/pages': typeof AdminPagesRoute
   '/admin/theme': typeof AdminThemeRoute
@@ -341,6 +349,7 @@ export interface FileRoutesById {
   '/admin/access': typeof AdminAccessRoute
   '/admin/advisor': typeof AdminAdvisorRoute
   '/admin/blog': typeof AdminBlogRoute
+  '/admin/case-studies': typeof AdminCaseStudiesRoute
   '/admin/leads': typeof AdminLeadsRoute
   '/admin/pages': typeof AdminPagesRoute
   '/admin/theme': typeof AdminThemeRoute
@@ -383,6 +392,7 @@ export interface FileRouteTypes {
     | '/admin/access'
     | '/admin/advisor'
     | '/admin/blog'
+    | '/admin/case-studies'
     | '/admin/leads'
     | '/admin/pages'
     | '/admin/theme'
@@ -421,6 +431,7 @@ export interface FileRouteTypes {
     | '/admin/access'
     | '/admin/advisor'
     | '/admin/blog'
+    | '/admin/case-studies'
     | '/admin/leads'
     | '/admin/pages'
     | '/admin/theme'
@@ -461,6 +472,7 @@ export interface FileRouteTypes {
     | '/admin/access'
     | '/admin/advisor'
     | '/admin/blog'
+    | '/admin/case-studies'
     | '/admin/leads'
     | '/admin/pages'
     | '/admin/theme'
@@ -757,6 +769,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminLeadsRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/case-studies': {
+      id: '/admin/case-studies'
+      path: '/case-studies'
+      fullPath: '/admin/case-studies'
+      preLoaderRoute: typeof AdminCaseStudiesRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/blog': {
       id: '/admin/blog'
       path: '/blog'
@@ -785,6 +804,7 @@ interface AdminRouteChildren {
   AdminAccessRoute: typeof AdminAccessRoute
   AdminAdvisorRoute: typeof AdminAdvisorRoute
   AdminBlogRoute: typeof AdminBlogRoute
+  AdminCaseStudiesRoute: typeof AdminCaseStudiesRoute
   AdminLeadsRoute: typeof AdminLeadsRoute
   AdminPagesRoute: typeof AdminPagesRoute
   AdminThemeRoute: typeof AdminThemeRoute
@@ -795,6 +815,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminAccessRoute: AdminAccessRoute,
   AdminAdvisorRoute: AdminAdvisorRoute,
   AdminBlogRoute: AdminBlogRoute,
+  AdminCaseStudiesRoute: AdminCaseStudiesRoute,
   AdminLeadsRoute: AdminLeadsRoute,
   AdminPagesRoute: AdminPagesRoute,
   AdminThemeRoute: AdminThemeRoute,
