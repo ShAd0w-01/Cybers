@@ -266,7 +266,9 @@ function PagerLink({
   return (
     <Link
       to="/cyber-news"
-      search={(prev) => ({ ...prev, ...to }) as Search}
+      search={(prev: Partial<Search>) =>
+        ({ page: 1, q: "", cat: undefined, ...prev, ...to }) as Search
+      }
       className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-4 py-2 text-sm font-medium transition-all duration-200 hover:-translate-y-0.5 hover:border-coral hover:text-coral-ink"
     >
       {!trailing && icon}
