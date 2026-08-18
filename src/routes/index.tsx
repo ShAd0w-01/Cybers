@@ -223,7 +223,6 @@ function Home() {
           <Reveal>
             <div className="mb-7 flex flex-col items-center gap-3 sm:mb-9 sm:gap-4 lg:mb-10">
               <span
-
                 className="bg-clip-text text-2xl font-extrabold leading-tight tracking-[-0.02em] text-transparent sm:text-3xl lg:text-4xl"
                 style={{
                   backgroundImage:
@@ -232,13 +231,10 @@ function Home() {
               >
                 Cybersentinels Consulting
               </span>
-
             </div>
 
-
-
-
             <p className="type-eyebrow mb-6 text-amber-ink sm:mb-7">
+
               SERVING CLIENTS ACROSS INDIA & GLOBAL CUSTOMER
             </p>
 
