@@ -31,11 +31,8 @@ import { AuroraBloom } from "@/components/site/AuroraBloom";
 import { Doodle } from "@/components/site/Doodle";
 
 import { ApproachSteps } from "@/components/site/ApproachSteps";
-
-
-
-
 import { SectionRenderer } from "@/components/site/SectionRenderer";
+
 import { type Testimonial } from "@/components/site/TestimonialCarousel";
 import { Deferred } from "@/components/site/Deferred";
 import { TrustedBy } from "@/components/site/TrustedBy";
