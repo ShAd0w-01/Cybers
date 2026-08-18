@@ -224,9 +224,23 @@ function Home() {
 
         <div className="relative mx-auto max-w-4xl px-5 py-24 text-center sm:py-28 lg:px-8 lg:py-36">
           <Reveal>
-            <div className="mb-7 flex justify-center sm:mb-9 lg:mb-10">
+            <div className="mb-7 flex flex-col items-center gap-3 sm:mb-9 sm:gap-4 lg:mb-10">
               <Logo halo="lg" reveal priority className="h-10 w-auto sm:h-14 lg:h-16" />
+              <div className="flex items-center gap-3">
+                <span
+                  aria-hidden="true"
+                  className="h-px w-8 bg-gradient-to-r from-transparent to-[var(--coral)]/60 sm:w-12"
+                />
+                <span className="text-[0.68rem] font-medium uppercase tracking-[0.34em] text-ink-muted sm:text-xs sm:tracking-[0.42em]">
+                  Cybersentinels Consulting
+                </span>
+                <span
+                  aria-hidden="true"
+                  className="h-px w-8 bg-gradient-to-l from-transparent to-[var(--amber)]/70 sm:w-12"
+                />
+              </div>
             </div>
+
 
 
 
