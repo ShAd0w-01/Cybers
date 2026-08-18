@@ -32,7 +32,7 @@ import { Doodle } from "@/components/site/Doodle";
 
 import { ApproachSteps } from "@/components/site/ApproachSteps";
 
-import { BrandMark, Logo } from "@/components/site/Logo";
+
 
 
 import { SectionRenderer } from "@/components/site/SectionRenderer";
