@@ -223,13 +223,13 @@ function Home() {
           <Reveal>
             <div className="mb-7 flex flex-col items-center gap-3 sm:mb-9 sm:gap-4 lg:mb-10">
               <span
-                className="bg-clip-text text-2xl font-extrabold leading-tight tracking-[-0.02em] text-transparent sm:text-3xl lg:text-4xl"
+                className="font-display bg-clip-text text-3xl font-black uppercase leading-none tracking-[0.02em] text-transparent sm:text-4xl lg:text-5xl"
                 style={{
                   backgroundImage:
                     "linear-gradient(90deg, var(--magenta) 0%, var(--rose, var(--magenta)) 45%, var(--coral) 100%)",
                 }}
               >
-                Cybersentinels Consulting
+                CYBERSENTINELS CONSULTING
               </span>
             </div>
 
