@@ -31,11 +31,8 @@ import { AuroraBloom } from "@/components/site/AuroraBloom";
 import { Doodle } from "@/components/site/Doodle";
 
 import { ApproachSteps } from "@/components/site/ApproachSteps";
-
-import { BrandMark, Logo } from "@/components/site/Logo";
-
-
 import { SectionRenderer } from "@/components/site/SectionRenderer";
+
 import { type Testimonial } from "@/components/site/TestimonialCarousel";
 import { Deferred } from "@/components/site/Deferred";
 import { TrustedBy } from "@/components/site/TrustedBy";
@@ -225,7 +222,6 @@ function Home() {
         <div className="relative mx-auto max-w-4xl px-5 py-24 text-center sm:py-28 lg:px-8 lg:py-36">
           <Reveal>
             <div className="mb-7 flex flex-col items-center gap-3 sm:mb-9 sm:gap-4 lg:mb-10">
-              <Logo halo="lg" reveal priority className="h-10 w-auto sm:h-14 lg:h-16" />
               <span
                 className="bg-clip-text text-2xl font-extrabold leading-tight tracking-[-0.02em] text-transparent sm:text-3xl lg:text-4xl"
                 style={{
@@ -235,13 +231,10 @@ function Home() {
               >
                 Cybersentinels Consulting
               </span>
-
             </div>
 
-
-
-
             <p className="type-eyebrow mb-6 text-amber-ink sm:mb-7">
+
               SERVING CLIENTS ACROSS INDIA & GLOBAL CUSTOMER
             </p>
 
