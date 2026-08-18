@@ -226,19 +226,16 @@ function Home() {
           <Reveal>
             <div className="mb-7 flex flex-col items-center gap-3 sm:mb-9 sm:gap-4 lg:mb-10">
               <Logo halo="lg" reveal priority className="h-10 w-auto sm:h-14 lg:h-16" />
-              <div className="flex items-center gap-3">
-                <span
-                  aria-hidden="true"
-                  className="h-px w-8 bg-gradient-to-r from-transparent to-[var(--coral)]/60 sm:w-12"
-                />
-                <span className="text-[0.68rem] font-medium uppercase tracking-[0.34em] text-ink-muted sm:text-xs sm:tracking-[0.42em]">
-                  Cybersentinels Consulting
-                </span>
-                <span
-                  aria-hidden="true"
-                  className="h-px w-8 bg-gradient-to-l from-transparent to-[var(--amber)]/70 sm:w-12"
-                />
-              </div>
+              <span
+                className="bg-clip-text text-2xl font-extrabold leading-tight tracking-[-0.02em] text-transparent sm:text-3xl lg:text-4xl"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(90deg, var(--magenta) 0%, var(--rose, var(--magenta)) 45%, var(--coral) 100%)",
+                }}
+              >
+                Cybersentinels Consulting
+              </span>
+
             </div>
 
 
